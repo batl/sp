@@ -1,0 +1,3 @@
+User-Agent: *
+Host: successful.iblogger.org
+Disallow: */static/
