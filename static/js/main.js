@@ -1,5 +1,7 @@
 var sort_type = 'asc';
 var sort = 'id';
+var group = 0;
+var search = '';
 var story = new Array();
 var titles = new Array();
 
@@ -127,6 +129,20 @@ $(document).ready(function(){
 		get_items(block, entry, start, sort, sort_type, 'ignore');
 	});
 	
+	//GROUP FILTER
+	$('#groups').change(function(){
+		group = $(this).val();
+		var start = 0;
+		var block = $('.items');
+		get_items(block, entry, start, sort, sort_type, 'ignore');
+	});
+	
+	//SEARCH FILTER
+	$('#search_btn').click(function(){		
+		var start = 0;
+		var block = $('.items');
+		get_items(block, entry, start, sort, sort_type, 'ignore');
+	});
 });
 
 function focus_input()
@@ -135,8 +151,7 @@ function focus_input()
 }
 
 function get_items(block, entry, start, sort, sort_type, clear_history)
-{
-	$('#paging').show();
+{	
 	
 	block.html('<div class="world_preloader"></div>');
 		
@@ -144,7 +159,9 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 		
 	var URL = base_url + 'page/get_items/' + entry;
 	
-	$.post(URL, {"sort":sort, "start":start, "sort_type":sort_type}, function(data)
+	if ($('#search').length) search = $('#search').val();
+	
+	$.post(URL, {"sort":sort, "start":start, "sort_type":sort_type, "group":group, "search":search}, function(data)
 	{
 		$('.world_preloader').hide();
 	
@@ -184,11 +201,9 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 			}
 			
 			if (story.length < 2) $('.history').remove();
-		}		
+		}						
 		
-		console.log(story);
-		
-		if (parseInt(data.total) > 1) transform_pagination(data.curent_page, data.total); else $('#paging').hide();
+		if (parseInt(data.total) > 1) { $('#paging').show(); transform_pagination(data.curent_page, data.total);} else $('#paging').hide();
 		
 	},"json");
 }

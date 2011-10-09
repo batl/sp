@@ -39,6 +39,11 @@
 					?>
 				</div>
 			</li>
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["in_slider"]?>:</label>
+				<div class='ginput_container'>
+					<input name='in_slider' type='checkbox' value='' class='medium' tabindex='4' <?php if ($entry['in_slider']) echo 'checked="checked"'?>/>
+				</div>
+			</li>
 		</ul>
 	</div>
 	<div class='gform_footer top_label'>

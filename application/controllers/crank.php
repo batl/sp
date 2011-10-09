@@ -224,7 +224,7 @@ class Crank extends CI_Controller {
 		return $html;		
 	}
 	
-	public function get_items($table_name = false, $custom_view = false, $fields = array(), $joins = array(), $where = array(), $single = false, $fields_types = array(), $disabled_actions = array())
+	public function get_items($table_name = false, $custom_view = false, $fields = array(), $joins = array(), $where = array(), $single = false, $fields_types = array(), $disabled_actions = array(), $like = array())
 	{
 		$data = array(
 			'result' => true			
@@ -235,6 +235,25 @@ class Crank extends CI_Controller {
 		$start = $this->input->post('start');
 		$sort  = $this->input->post('sort');
 		$sort_type = $this->input->post('sort_type');
+		$group = $this->input->post('group');
+		$search = $this->input->post('search');
+		
+		if (!empty($group))
+		{
+			switch ($table_name)
+			{
+				case 'sp_projects':
+					$where['category_id'] = $group;
+					break;
+				case 'sp_users':
+					$where['group_id'] = $group;
+					break;
+				default:
+					$where['group'] = $group;
+					break;
+			}
+		}
+		!empty($search) ? $like['tags'] = $search : '';
 		
 		empty($sort) ? $sort = 'id': '';
 		empty($sort_type) ? $sort_type = 'asc': '';
@@ -249,7 +268,7 @@ class Crank extends CI_Controller {
 			$start = 0;
 		}
 		
-		$this->params['items_array'] = $this->Crank_model->get_all_entries($table_name, $where ,$start, $limit, $sort, $sort_type, $fields, $joins, $single);
+		$this->params['items_array'] = $this->Crank_model->get_all_entries($table_name, $where ,$start, $limit, $sort, $sort_type, $fields, $joins, $single, $like);
 		
 		$items_count = count($this->Crank_model->get_all_entries($table_name, $where));
 		

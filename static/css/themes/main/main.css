@@ -25,6 +25,7 @@ margin: 0px auto;
 p {
 margin: 1em .5em;
 color:#666666;
+clear:both;
 }
 
 a {
@@ -40,7 +41,7 @@ float:left;
 margin-left:25px;
 margin-top:15px;
 font-weight: bold;
-color:#fff;
+color:#000;
 font-size:2em;
 }
 
@@ -288,12 +289,12 @@ margin-left:0px;
 #news-container{	
 	margin-right:20px;
 	margin-left:0px;
-	width:470px;
+	width:595px;
 }
 
 #anonses-container{		
 	margin-left:0px;
-	width:425px;
+	width:300px;
 	float:right;
 }
 
@@ -1886,4 +1887,20 @@ color:#333;
 }
 .days_link{
 border:1px outset;
+}
+#s1 h1{
+color: #000000;
+font-size: 2em;
+font-weight: bold;
+margin-top: 15px;
+margin-left:0px;
+float:none;
+}
+#search_btn{
+font-weight:bold;
+cursor:pointer;
+color:#ccc;
+}
+#search_btn:hover{
+color:#666;
 }

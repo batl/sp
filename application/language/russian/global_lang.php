@@ -227,6 +227,8 @@ $lang["all_projects"]			= "Все проекты";
 $lang["videos"]					= "Видео";
 $lang["main"]					= "Основная";
 $lang["poll"]					= "Опрос общественного мнения";
+$lang["in_slider"]				= "Отображать в слайдере";
+$lang["all"]					= "Все";
 
 $lang["country"][] = "Abkhazia";
 $lang["country"][] = "Afghanistan";

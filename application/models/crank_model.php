@@ -82,7 +82,7 @@ class Crank_model extends CI_Model {
 	
 /* --------------------------------------------------------------------------------- */	
 	
-	public function get_all_entries($table_name, $where = array(), $start = 0, $limit = false, $sort = 'id', $sort_type = 'asc', $fields = array(), $joins = array(), $single = false)
+	public function get_all_entries($table_name, $where = array(), $start = 0, $limit = false, $sort = 'id', $sort_type = 'asc', $fields = array(), $joins = array(), $single = false, $like = array())
 	{	
 		if (!empty($fields))
 		{
@@ -111,13 +111,13 @@ class Crank_model extends CI_Model {
 			{
 				$this->db->where($table_name.'.'.$key, $value);
 			}
-		}
+		}		
 		
 		$query = $this->db->get($table_name);
 		
 		$results = $query->result_array();		
 		
-		return $this->lang_response($results, $this->get_lang_fields($table_name), $single);
+		return $this->lang_response($results, $this->get_lang_fields($table_name), $single, 'current', $like);
 		
 	}
 
@@ -136,7 +136,7 @@ class Crank_model extends CI_Model {
 
 /* --------------------------------------------------------------------------------- */	
 	
-	function lang_response($results, $lang_fields, $single = false, $lang = 'current')
+	function lang_response($results, $lang_fields, $single = false, $lang = 'current', $like = array())
 	{
 		$response = array();
 		
@@ -162,7 +162,18 @@ class Crank_model extends CI_Model {
 					}
 				}
 				
-				array_push($response, $row);
+				if (!empty($like))
+				{
+					$status = false;
+					
+					foreach ($like as $key=>$value)
+					{						
+						if (strpos($row[$key], $value)) $status = true;
+					}
+					
+					$status ? array_push($response, $row) : '';
+				} 
+				else array_push($response, $row);
 			}
 			
 			if ($single) return $response[0]; else return $response;

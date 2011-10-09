@@ -15,7 +15,25 @@
 			</div>
 			
 			<div id="content-container">
-				<div id="sub-hdr"><h3><?php echo $lang['projects']?></h3></div>
+				<div id="sub-hdr">
+					<h3><?php echo $lang['projects']?></h3>
+					<div style="float:right; padding:6px;">						
+						<input id="search" type="text" value="" style="height:18px; width:200px;"/>
+						<span id="search_btn"><?php echo $lang['search']?></span>&nbsp;|
+						<?php echo $lang['group']?>
+						<select id="groups">
+							<option value="0"><?php echo $lang['all']?></option>
+						<?php
+							foreach ($projects_categories as $category)
+							{
+							?>
+							<option value="<?php echo $category['id']?>"><?php echo $category['name']?></option>
+							<?php
+							}
+						?>
+						</select>
+					</div>
+				</div>
 				<div id="items" class="items">
 					
 				</div>

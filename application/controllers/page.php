@@ -15,9 +15,7 @@ class Page extends Crank {
 	}
 	
 	public function index($page)
-	{			
-		
-		$this->firephp->info('FirePHP загружен.');
+	{							
 		
 		$this->params['page'] = $this->Page_model->get_page_by_data(array('slug' => $page));
 		
@@ -44,11 +42,23 @@ class Page extends Crank {
 												
 						$this->include_js('pages/news.js');				
 						$this->include_js('jquery/lightbox.js');				
+						$this->include_js('jquery/cycle.js');				
 						$this->include_css('lightbox.css');				
+						
+						$this->params['anonses'] = $this->Crank_model->get_all_entries(
+							"sp_anonses", 
+							array(
+								'in_slider' => 1
+							)
+						);
 						
 						break;
 					case 'projects':
-
+						
+						$this->params['projects_categories'] = $this->Crank_model->get_all_entries(
+							"sp_projects_categories"
+						);
+						
 						$this->lang->load('calendar', $this->params['language']);		
 						
 						$prefs = array (
@@ -199,7 +209,7 @@ class Page extends Crank {
 				(!empty($entry[1]) && empty($day)) ? $custom_view = 'project_single' : $custom_view = 'profile_projects';
 				
 				$fields = array(
-					'sp_projects' => array('id','user_id','thumb','name','date','short_description','slug'),
+					'sp_projects' => array('id','user_id','thumb','name','date','short_description','slug','tags'),
 					'sp_places' => array('name as place'),
 					'sp_projects_categories' => array('name as group_name')
 				); 
