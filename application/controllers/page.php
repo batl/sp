@@ -52,9 +52,7 @@ class Page extends Crank {
 						'poll_id' => $this->params['poll']['id']
 					)
 				);
-			}						
-			
-			$this->firephp->log($_COOKIE);
+			}												
 			
 			if ($this->params['page']['system']):
 				
