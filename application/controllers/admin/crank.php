@@ -188,6 +188,9 @@ class Crank extends CI_Controller {
 							$html .= '&nbsp;<a href="javascript:void(0);" id="photos-report-photos" class="stage_action">'.$this->params['lang']['photos'].'</a>';
 							$html .= '&nbsp;<a href="javascript:void(0);" id="videos-report-videos" class="stage_action">'.$this->params['lang']['video'].'</a>';
 							break;
+						case "sp_poll":
+							$html .= '&nbsp;<a href="javascript:void(0);" class="poll_answers">'.$this->params['lang']['poll_answers'].'</a>';							
+							break;
 					}
 					
 				$html .= '</td>';

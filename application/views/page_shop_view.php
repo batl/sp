@@ -2,13 +2,66 @@
 	<div id="content">				
 		<div id="dealer-content">
 			<?php echo $page['body']?>
-			<div id="sub-nav">
-				<ul>
-					<li><a class="selected" id="goods" href="javascript:void(0);"><?php echo $lang['goods']?></a></li>
-					<li><a id="services" href="javascript:void(0);"><?php echo $lang['services']?></a></li>					
-				</ul>
+			<div style="width:225px; float:left;">
+				<div id="sub-nav">
+					<ul>
+						<li><a class="selected" id="goods" href="javascript:void(0);"><?php echo $lang['goods']?></a></li>
+						<li><a id="services" href="javascript:void(0);"><?php echo $lang['services']?></a></li>					
+					</ul>
+				</div>
+				
+				<?php
+					if (!empty($poll)):
+					?>
+					<div id="poll" style="margin-top:20px;">
+						<div class="sub-hdr"><h3><?php echo $lang['poll_title']?></h3></div>
+						<div class="poll">
+							<p class="poll_title"><?php echo $poll['name']?></p>
+							<?php
+								
+								$poll_cookie = $this->input->cookie('poll_'.$poll['id']);
+								
+								if (!empty($poll_cookie) && $poll_cookie == $poll['id'])
+								{
+									if (!empty($poll_answers))
+									{
+										foreach ($poll_answers as $answer)
+										{
+											if (!empty($answer['thumb'])):
+											?>
+												<a class="lightbox" rel="1" href="<?php echo $base.$answer['image']?>"><img height="50px;" src="<?php echo $base.$answer['thumb']?>"/></a>
+											<?php
+											endif;
+											?>
+												<div><?php echo $answer['name']?>&nbsp;<span><?php echo $answer['count']?></span></div><br/>
+											<?php
+										}
+									}
+								}
+								else
+								{
+									if (!empty($poll_answers))
+									{
+										foreach ($poll_answers as $answer)
+										{
+											if (!empty($answer['thumb'])):
+											?>
+												<a class="lightbox" rel="1" href="<?php echo $base.$answer['image']?>"><img height="50px;" src="<?php echo $base.$answer['thumb']?>"/></a>
+											<?php
+											endif;
+											?>
+												<div id="<?php echo $answer['id']?>"><?php echo $answer['name']?>&nbsp;<a poll_id="<?php echo $poll['id']?>" answer_id="<?php echo $answer['id']?>" href="javascript:void(0);" class="set_poll"><?php echo $lang['set_poll']?></a></div><br/>
+											<?php
+										}
+									}
+								}
+								?>
+						</div>
+					</div>
+					<?php
+					endif;
+				?>					
 			</div>
-			
 			<div id="content-container">
 				<div id="sub-hdr"><h3><?php echo $lang['goods']?></h3></div>
 				<div id="items" class="items">

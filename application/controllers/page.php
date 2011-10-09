@@ -27,6 +27,35 @@ class Page extends Crank {
 			
 			$this->params['main_navi'] = 3 + $this->params['page']['id'];
 			
+			$this->params['poll'] = $this->Crank_model->get_all_entries(
+				"sp_poll", 							
+				array(
+					'active' => 1,
+					'on_page' => $this->params['page']['id'],
+					'date_start <=' => date("Y-m-d"),
+					'date_end >=' => date("Y-m-d")
+ 				),
+				0,
+				false,
+				'id',
+				'asc',
+				array(),
+				array(),
+				true
+			);
+			
+			if (!empty($this->params['poll']))
+			{
+				$this->params['poll_answers'] = $this->Crank_model->get_all_entries(
+					"sp_poll_answers", 							
+					array(
+						'poll_id' => $this->params['poll']['id']
+					)
+				);
+			}						
+			
+			$this->firephp->log($_COOKIE);
+			
 			if ($this->params['page']['system']):
 				
 				switch ($this->params['page']['slug'])
@@ -50,7 +79,7 @@ class Page extends Crank {
 							array(
 								'in_slider' => 1
 							)
-						);
+						);												
 						
 						break;
 					case 'projects':

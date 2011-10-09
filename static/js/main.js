@@ -7,6 +7,29 @@ var titles = new Array();
 
 $(document).ready(function(){	
 	
+	$('.set_poll').live('click', function(){
+		
+		var URL = base_url + 'main/update_poll'
+		
+		var poll_id = $(this).attr('poll_id');
+		var answer_id = $(this).attr('answer_id');
+		
+		$.post(URL,{'poll_id':poll_id,'answer_id':answer_id}, function(data)
+		{
+			
+			if (data.result)	
+			{
+				for (var i = 0; i < data.response.length; i++) 
+				{
+					$('.poll div[id='+data.response[i].id+']').find('a').remove();
+					$('.poll div[id='+data.response[i].id+']').append('<span>'+data.response[i].count+'</span>');
+				}
+			}
+			
+		},'json');
+		
+	});
+	
 	$('#languages a').click(function(){
 		
 		var URL = base_url + 'main/set_language'

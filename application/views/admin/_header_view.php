@@ -53,6 +53,7 @@
 					<li id="menu-item-9" <?php if ($main_navi==9) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>news"><?php echo $lang['news'].'/'.$lang['anonses']?></a></li>
 					<li id="menu-item-10" <?php if ($main_navi==10) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>event"><?php echo $lang['events']?></a></li>
 					<li id="menu-item-11" <?php if ($main_navi==11) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>settings"><?php echo $lang['settings']?></a></li>
+					<li id="menu-item-12" <?php if ($main_navi==12) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>poll"><?php echo $lang['polls']?></a></li>
 				</ul>
 				<a href="javascript:void(0);" id="menu-switcher" class="down"></a>
 			</div><!-- #main-nav -->			

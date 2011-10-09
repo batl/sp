@@ -24,6 +24,41 @@ class Main extends Crank {
 		
 	}
 	
+	function update_poll()
+	{
+		$poll_id 	= $this->input->post('poll_id');
+		$answer_id 	= $this->input->post('answer_id');
+		
+		$data = array(
+			'result' => false
+		);
+		
+		if (!empty($poll_id))
+		{
+			$poll_answer = $this->Crank_model->get_entry_by_data("sp_poll_answers", true, 'current', array('id' => $answer_id));
+			
+			$this->load->model('Poll_model');
+			
+			if ($this->Poll_model->update_poll($answer_id, ++$poll_answer['count']))
+			{							
+				
+				$this->input->set_cookie(array(
+					'name'  => 'poll_'.$poll_id, 
+					'value' => $poll_id,
+					'expire' => '31536000'
+				));								
+				
+				$data['result'] = true;
+				$data['response'] = $this->Crank_model->get_all_entries("sp_poll_answers", array('poll_id' => $poll_id), 0, false, 'id', 'asc', array('sp_poll_answers' => array('id', 'count')));
+				
+			}
+			
+		}
+		
+		echo json_encode($data);		
+		
+	}
+	
 	function check_email()
 	{
 		$data = array(

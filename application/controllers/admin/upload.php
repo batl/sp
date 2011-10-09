@@ -22,7 +22,7 @@ class Upload extends Crank {
 			{
 				if (is_dir('static/images/entries/'.$entry.'/'.$sub_entry))
 					$entry .= '/'.$sub_entry; 				
-			}
+			}						
 			
 			if ($size == 'undefined') $size = 600;
 			

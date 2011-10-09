@@ -35,6 +35,8 @@ class Crank_model extends CI_Model {
 		'sp_videos_report'			=> array(),
 		'sp_photos'					=> array(),
 		'sp_videos'					=> array(),
+		'sp_poll'					=> array('name'),
+		'sp_poll_answers'			=> array('name'),
 		'as_fields'					=> array('group_name','place', 'name', 'territory', 'supplier_name', 'project_name', 'your_name', 'partner_name')
 	);
 	

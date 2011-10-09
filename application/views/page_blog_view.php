@@ -23,9 +23,59 @@
 					</div>
 					
 				</div>
-				<div id="anonses-container" style="margin-top:20px;">
-					<div class="sub-hdr"><h3><?php echo $lang['poll']?></h3></div>				
-				</div>
+				
+				<?php
+					if (!empty($poll)):
+					?>
+					<div id="anonses-container" style="margin-top:20px;">
+						<div class="sub-hdr"><h3><?php echo $lang['poll']?></h3></div>
+						<div class="poll">
+							<p class="poll_title"><?php echo $poll['name']?></p>
+							<?php
+							
+							$poll_cookie = $this->input->cookie('poll_'.$poll['id']);
+							
+							if (!empty($poll_cookie) && $poll_cookie == $poll['id'])
+							{
+								if (!empty($poll_answers))
+								{
+									foreach ($poll_answers as $answer)
+									{
+										if (!empty($answer['thumb'])):
+										?>
+											<a class="lightbox" href="<?php echo $base.$answer['image']?>"><img height="50px;" src="<?php echo $base.$answer['thumb']?>"/></a>
+										<?php
+										endif;
+										?>
+											<div><?php echo $answer['name']?>&nbsp;<span><?php echo $answer['count']?></span></div><br/>
+										<?php
+									}
+								}
+							}
+							else
+							{
+								if (!empty($poll_answers))
+								{
+									foreach ($poll_answers as $answer)
+									{
+										if (!empty($answer['thumb'])):
+										?>
+											<a class="lightbox" href="<?php echo $base.$answer['image']?>"><img height="50px;" src="<?php echo $base.$answer['thumb']?>"/></a>
+										<?php
+										endif;
+										?>
+											<div id="<?php echo $answer['id']?>"><?php echo $answer['name']?>&nbsp;<a poll_id="<?php echo $poll['id']?>" answer_id="<?php echo $answer['id']?>" href="javascript:void(0);" class="set_poll"><?php echo $lang['set_poll']?></a></div><br/>
+										<?php
+									}
+								}
+							}
+							?>
+						</div>
+					</div>
+					<?php
+				endif;
+				?>
+					
 			</div>
 			<div id="news-container">
 				<div id="sub-hdr"><h3><?php echo $lang['news']?></h3></div>

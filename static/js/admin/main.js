@@ -278,7 +278,7 @@ function get_view(block, entry, action, id, clear_history)
 		
 		if ($('.picker').length) $('.picker').datepicker({ dateFormat: 'yy-mm-dd' });
 		
-		tiny_init();				
+		if ($('textarea').length) tiny_init();				
 		
 	},"json");
 }
