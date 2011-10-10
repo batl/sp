@@ -1,0 +1,62 @@
+<?php
+
+$lang['cal_su']			= "Вс";
+$lang['cal_mo']			= "Пн";
+$lang['cal_tu']			= "Вт";
+$lang['cal_we']			= "Ср";
+$lang['cal_th']			= "Чт";
+$lang['cal_fr']			= "Пт";
+$lang['cal_sa']			= "Сб";
+$lang['cal_sun']		= "Вс";
+$lang['cal_mon']		= "Пн";
+$lang['cal_tue']		= "Вт";
+$lang['cal_wed']		= "Ср";
+$lang['cal_thu']		= "Чт";
+$lang['cal_fri']		= "Пт";
+$lang['cal_sat']		= "Сб";
+$lang['cal_sunday']		= "Неділя";
+$lang['cal_monday']		= "Понеділок";
+$lang['cal_tuesday']	= "Вівторок";
+$lang['cal_wednesday']	= "Середа";
+$lang['cal_thursday']	= "Четвер";
+$lang['cal_friday']		= "П'ятниця";
+$lang['cal_saturday']	= "Субота";
+$lang['cal_jan']		= "Січень";
+$lang['cal_feb']		= "Лютий";
+$lang['cal_mar']		= "Березень";
+$lang['cal_apr']		= "Квітень";
+$lang['cal_may']		= "Травень";
+$lang['cal_jun']		= "Червень";
+$lang['cal_jul']		= "Липень";
+$lang['cal_aug']		= "Серпень";
+$lang['cal_sep']		= "Вересень";
+$lang['cal_oct']		= "Жовнень";
+$lang['cal_nov']		= "Листопад";
+$lang['cal_dec']		= "Грудень";
+$lang['cal_january']	= "Січень";
+$lang['cal_february']	= "Лютий";
+$lang['cal_march']		= "Березень";
+$lang['cal_april']		= "Квітень";
+$lang['cal_mayl']		= "Травень";
+$lang['cal_june']		= "Червень";
+$lang['cal_july']		= "Липень";
+$lang['cal_august']		= "Серпень";
+$lang['cal_september']	= "Вересень";
+$lang['cal_october']	= "Жовнтень";
+$lang['cal_november']	= "Листопад";
+$lang['cal_december']	= "Грудень";
+$lang["jan"]			= "Січня";
+$lang["feb"]			= "Лютого";
+$lang["mar"]			= "Березеня";
+$lang["apr"]			= "Квітня";
+$lang["may"]			= "Травня";
+$lang["jun"]			= "Червня";
+$lang["jul"]			= "Липня";
+$lang["aug"]			= "Серпня";
+$lang["sep"]			= "Вересня";
+$lang["oct"]			= "Жовнтня";
+$lang["nov"]			= "Листопада";
+$lang["deс"]			= "Грудня";
+
+/* End of file calendar_lang.php */
+/* Location: ./system/language/english/calendar_lang.php */

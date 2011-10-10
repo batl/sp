@@ -45,18 +45,18 @@ $lang['cal_september']	= "September";
 $lang['cal_october']	= "October";
 $lang['cal_november']	= "November";
 $lang['cal_december']	= "December";
-$lang["jan"]			= "January";
-$lang["feb"]			= "February";
-$lang["mar"]			= "March";
-$lang["apr"]			= "April";
-$lang["may"]			= "May";
-$lang["jun"]			= "June";
-$lang["jul"]			= "July";
-$lang["aug"]			= "August";
-$lang["sep"]			= "September";
-$lang["oct"]			= "October";
-$lang["nov"]			= "November";
-$lang["deс"]			= "December";
+$lang["jan"]			= "Января";
+$lang["feb"]			= "Февраля";
+$lang["mar"]			= "Марта";
+$lang["apr"]			= "Апреля";
+$lang["may"]			= "Мая";
+$lang["jun"]			= "Июня";
+$lang["jul"]			= "Июля";
+$lang["aug"]			= "Августа";
+$lang["sep"]			= "Сентября";
+$lang["oct"]			= "Октября";
+$lang["nov"]			= "Ноября";
+$lang["deс"]			= "Декабря";
 
 /* End of file calendar_lang.php */
 /* Location: ./system/language/english/calendar_lang.php */
