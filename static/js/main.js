@@ -1,5 +1,6 @@
 var sort_type = 'asc';
 var sort = 'id';
+var limit = 10;
 var group = 0;
 var search = '';
 var story = new Array();
@@ -103,12 +104,22 @@ $(document).ready(function(){
 		get_items(block, entry, start, sort, sort_type, true);
 	});
 	
+	$('#limit a').click(function(){
+		limit = parseInt($(this).html());
+		$('#limit a').removeClass('selected');
+		$(this).addClass('selected');
+		var page  = parseInt($('.curent_page').html());
+		var start = (page-1)*limit;
+		var block = $('.items');
+		get_items(block, entry, start, sort, sort_type, 'ignore');
+	});
+	
 	//PAGINATION
 	$('a.page').live('click', function(event){
 		event.preventDefault();
 		if ($('.curent_page').html()== $(this).html()) return false;
 		var page = parseInt($(this).html());
-		var start = (page-1)*12;
+		var start = (page-1)*limit;
 		var block = $('.items');
 		get_items(block, entry, start, sort, sort_type, 'ignore');
 	});
@@ -122,7 +133,7 @@ $(document).ready(function(){
 		event.preventDefault();
 		if($('.curent_page').html()=='1') return false;
 		var page = parseInt($('.curent_page').html())-1;
-		var start = (page-1)*12;
+		var start = (page-1)*limit;
 		var block = $('.items');
 		get_items(block, entry, start, sort, sort_type, 'ignore');
 	});
@@ -130,7 +141,7 @@ $(document).ready(function(){
 		event.preventDefault();
 		if($('.curent_page').html() == $('.total :last').html()) return false;
 		var page = parseInt($('.curent_page').html())+1;
-		var start = (page-1)*12;
+		var start = (page-1)*limit;
 		var block = $('.items');
 		get_items(block, entry, start, sort, sort_type, 'ignore');
 	});
@@ -138,14 +149,14 @@ $(document).ready(function(){
 		event.preventDefault();
 		if($('.curent_page').html() == $('.total :last').html()) return false;
 		var page = parseInt($('.total :last').html());
-		var start = (page-1)*12;
+		var start = (page-1)*limit;
 		var block = $('.items');
 		get_items(block, entry, start, sort, sort_type, 'ignore');
 	});
 	//SORT
 	$('.t_title td.sorting').live('click', function(){
 		var page  = parseInt($('.curent_page').html());
-		var start = (page-1)*12;
+		var start = (page-1)*limit;
 		sort  = $(this).find('span').html();
 		sort_type = $(this).attr('sort');		
 		var block = $(this).parents('.list div:first');
@@ -194,7 +205,7 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 	
 	if ($('#search').length) search = $('#search').val();
 	
-	$.post(URL, {"sort":sort, "start":start, "sort_type":sort_type, "group":group, "search":search}, function(data)
+	$.post(URL, {"sort":sort, "start":start, "sort_type":sort_type, "group":group, "search":search, "limit":limit}, function(data)
 	{
 		$('.world_preloader').hide();
 	
@@ -234,16 +245,16 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 			}
 			
 			if (story.length < 2) $('.history').remove();
-		}						
+		}										
 		
-		if (parseInt(data.total) > 1) { $('#paging').show(); transform_pagination(data.curent_page, data.total);} else $('#paging').hide();
+		transform_pagination(data.curent_page, data.total);
 		
 	},"json");
 }
 
 function get_view(block, entry, action, id, clear_history)
 {
-	$('.pagination').hide();
+	$('#paging, #limit').hide();
 
 	block.html('<div class="world_preloader"></div>');
 		
@@ -328,7 +339,7 @@ function get_view(block, entry, action, id, clear_history)
 
 function transform_pagination(curent_page, total)
 {
-	if (parseInt(total) == 1) { $('#paging').hide(); return false;} else {$('#paging').show();}
+	$('#paging, #limit').show();
 	
 	var html = '<div id="page-numbers">';
 	

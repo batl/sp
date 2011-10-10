@@ -4,6 +4,8 @@ $(document).ready( function($){
 		
 	var URL = base_url 	+ "profile/page";
 	
+	$('#paging, #limit, .add_item').hide();
+	
 	$.post(URL, {"page":"main_view"}, function(data)
 	{          
 		$('.items').html(data.response);
@@ -41,36 +43,36 @@ $(document).ready( function($){
 		
 		if ($(this).attr('id') == 'projects')
 		{
-			entry = 'project'; 
-			$('.add_item').show();
+			entry = 'project';
 			
-			if (parseInt($('.total :last').html()) > 1) $('#paging').show(); else $('#paging').hide();
+			$('.add_item').show();
+
+			get_items($('.items'), entry, 0, sort, sort_type, 'ignore');						
 			
 			story.push('items-'+entry);
-			titles.push($('#sub-hdr h3').html());
+			titles.push($('#sub-hdr h3').html());			
 		}
 		else 
 		{
 			entry = 'user';
-			$('#paging, .add_item').hide();
+			$('#paging, #limit, .add_item').hide();
+				
+			var page = $(this).attr('id');
+			
+			$.post(URL, {"page":page,"limit":limit}, function(data)
+			{          
+				$('.items').html(data.response);								
+							
+				if ($('#foto').length) image_upload(entry);
+				
+				$('input[type=text][language!=no], div.textarea').hide();
+		
+				$('input[type=text][language='+language_id+'], div.textarea[language='+language_id+']').show();
+				
+				if ($('textarea').length) tiny_init();
+				
+			},"json");										
 		}
-		
-		var page = $(this).attr('id');
-		
-		$.post(URL, {"page":page}, function(data)
-		{          
-			$('.items').html(data.response);								
-						
-			if ($('#foto').length) image_upload(entry);
-			
-			$('input[type=text][language!=no], div.textarea').hide();
-	
-			$('input[type=text][language='+language_id+'], div.textarea[language='+language_id+']').show();
-			
-			if ($('textarea').length) tiny_init();
-			
-		},"json");										
-		
 	});		
 	
 	$('#main_save').live('click',function(){

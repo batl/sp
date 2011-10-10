@@ -83,12 +83,24 @@
 							
 				</div>
 				<div id="paging">
-					<a href=""><img src="static/images/btn_page_begin.png" /></a> 
-					<a href=""><img src="static/images/btn_page_previous.png" /></a>
-					<div id="page-numbers"><a href="">1</a> | <a href="">2</a> | <a href="">3</a></div> 
-					<a href=""><img src="static/images/btn_page_next.png" /></a> 
-					<a href=""><img src="static/images/btn_page_end.png" /></a>
+					<a class="first_page" href="javascript:void(0);">
+						<img src="static/images/btn_page_begin.png" />
+					</a> 
+					<a class="prev_page" href="javascript:void(0);">
+						<img src="static/images/btn_page_previous.png" />
+					</a>										
+					
+					<li class="total">
+						<span><?php echo $lang['of']?> </span><span></span>
+					</li>
+					<a  class="next_page" href="javascript:void(0);">
+						<img src="static/images/btn_page_next.png" />
+					</a> 
+					<a  class="last_page" href="javascript:void(0);">
+						<img src="static/images/btn_page_end.png" />
+					</a>
 				</div>
+				<div id="limit"><a href="javascript:void(0);">5</a><a href="javascript:void(0);" class="selected">10</a><a href="javascript:void(0);">20</a><a href="javascript:void(0);">30</a></div>		
 			</div><!--  #content-container -->
 		</div>
 	</div><!--  #content -->

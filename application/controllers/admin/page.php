@@ -10,7 +10,14 @@ class Page extends Crank {
 		if (empty($this->params['admin_id'])) redirect($this->params['base'].'login');				
 						
 		$this->params['main_navi'] = 3;			
-
+		
+		$this->include_js('jquery/ui/jquery-ui-1.8.16.custom.js');
+		$this->include_js('jquery/ui/jquery.ui.core.js');
+		$this->include_js('jquery/ui/jquery.ui.sortable.js');
+		$this->include_js('jquery/ui/jquery.ui.mouse.js');
+		$this->include_js('jquery/ui/jquery.ui.draggable.js');
+		$this->include_js('jquery/ui/jquery.ui.widget.js');
+		
 		$this->include_js('admin/pages/page.js');
 		$this->include_js('tiny_mce/tiny_mce.js');
 		$this->include_css('admin/pages/page.css');
@@ -32,13 +39,17 @@ class Page extends Crank {
 		parent::get_items(
 			false,   // table name (false = default controller table)
 			array(
-				"sp_pages" => array('id','name','slug','in_footer','in_header')
+				"sp_pages" => array('id','name','slug','in_footer','in_header', 'weight')
 			),       // get fields
 			array(), // joins
 			array(
 				'in_footer' => 'bool',
-				'in_header' => 'bool'
-			)		// fields types (bool, price)
+				'in_header' => 'bool',
+				'weight' => 'hidden'
+			),		// fields types (bool, price)
+			array(),
+			array(),
+			true
 		);
 	}		
 	

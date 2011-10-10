@@ -1,9 +1,20 @@
 var sort_type = 'asc';
 var sort = 'id';
+var limit = 10;
 var story = new Array();
 var titles = new Array();
 
 $(document).ready(function(){					
+	
+	$('#limit a').click(function(){
+		limit = parseInt($(this).html());
+		$('#limit a').removeClass('selected');
+		$(this).addClass('selected');
+		var page  = parseInt($('.curent_page span').html());
+		var start = (page-1)*limit;
+		var block = $(this).parents('.list div:first');
+		get_items(block, entry, start, sort, sort_type, true);
+	});
 	
 	$('.history').live('click', function(){								
 		
@@ -78,7 +89,7 @@ $(document).ready(function(){
 	$('.page a').live('click', function(event){
 		event.preventDefault();
 		var page = parseInt($(this).html());
-		var start = (page-1)*12;
+		var start = (page-1)*limit;
 		var block = $(this).parents('.list div:first');
 		get_items(block, entry, start, sort, sort_type, true);
 	});
@@ -92,7 +103,7 @@ $(document).ready(function(){
 		event.preventDefault();
 		if($('.curent_page span').html()=='1') return false;
 		var page = parseInt($('.curent_page span').html())-1;
-		var start = (page-1)*12;
+		var start = (page-1)*limit;
 		var block = $(this).parents('.list div:first');
 		get_items(block, entry, start, sort, sort_type, true);
 	});
@@ -100,14 +111,14 @@ $(document).ready(function(){
 		event.preventDefault();
 		if($('.curent_page span').html() == $('.total :last').html()) return false;
 		var page = parseInt($('.curent_page span').html())+1;
-		var start = (page-1)*12;
+		var start = (page-1)*limit;
 		var block = $(this).parents('.list div:first');
 		get_items(block, entry, start, sort, sort_type, true);
 	});
 	//SORT
 	$('.t_title td.sorting').live('click', function(){
 		var page  = parseInt($('.curent_page span').html());
-		var start = (page-1)*12;
+		var start = (page-1)*limit;
 		sort  = $(this).find('span').html();
 		sort_type = $(this).attr('sort');		
 		var block = $(this).parents('.list div:first');
@@ -154,7 +165,7 @@ function transform_pagination(curent_page, total)
 
 function get_items(block, entry, start, sort, sort_type, clear_history)
 {
-	$('.pagination').show();
+	$('.pagination, #limit').show();
 	
 	block.html('<div class="world_preloader"></div>');
 		
@@ -162,7 +173,7 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 		
 	var URL = base_url + entry.split('_')[0] + '/get_items/' + entry.split('_')[1];
 	
-	$.post(URL, {"sort":sort, "start":start, "sort_type":sort_type}, function(data)
+	$.post(URL, {"sort":sort, "start":start, "sort_type":sort_type, "limit":limit}, function(data)
 	{
 		$('.world_preloader').hide();
 	
@@ -200,12 +211,48 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 		
 		transform_pagination(data.curent_page, data.total);
 		
+		if ($("#sortable").length)
+		{
+			$("#sortable").sortable({
+				revert: true,
+				refreshPositions:true,
+				items: 'tr',			
+				change: function(event, ui) {
+					console.log(ui);
+				},
+				stop: function(){			
+						
+					var ids 	= new Array();
+					var weight 	= new Array();
+					
+					$('#sortable tr[class!=t_title]').each(function(){
+						
+						ids.push(parseInt($(this).find('td:first').html()));
+						weight.push(parseInt($(this).find('.hidden').html()));
+						
+					});
+						
+					var URL = base_url+'main/update_weight';
+					
+					$.post(URL, {"ids":ids,"weight":weight}, function(response)
+					{          
+
+						$('.message').html(response.message).show();
+							setTimeout(function(){
+								$('.message').fadeOut('fast');
+							},3000);
+						
+					},"json");								
+				}
+			});
+		}
+		
 	},"json");
 }
 
 function get_view(block, entry, action, id, clear_history)
 {
-	$('.pagination').hide();
+	$('.pagination, #limit').hide();
 
 	block.html('<div class="world_preloader"></div>');
 		

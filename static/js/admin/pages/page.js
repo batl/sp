@@ -4,7 +4,9 @@ $(document).ready(function(){
 	
 	var block = $('.items');
 	
-	get_items(block,entry, 0, 'id', 'asc');
+	sort = 'weight';
+	
+	get_items(block,entry, 0, sort, 'asc');
 	
 	$('.add_item').click(function(){
 	

@@ -58,6 +58,39 @@ class Main extends Crank {
 		redirect($this->params['base']);
 	}
 	
+	public function update_weight()
+	{
+		$ids    = $this->input->post('ids');
+		$weight = min($this->input->post('weight'));				
+		
+		$this->load->model("Page_model");
+		
+		foreach ($ids as $key => $id) $this->Page_model->update_page($id, array('weight' => $weight+$key));
+		
+		echo json_encode(array('message' => $this->params['lang']['weight_update']));
+	}
+	
+	public function confirm_user()
+	{
+		$this->load->model("User_model");
+		
+		$id = $this->input->post('id');
+		
+		$user = $this->User_model->get_user_by_data(array('id' => $id), true);
+		
+		$this->send_mail($user['email'], 'successfull@support.com', $this->params['lang']['signup_subject'], $this->params['lang']['confirmation_mail']);
+												
+		if ($this->User_model->entry_confirmed($id))
+		{
+			echo json_encode(array('result' => true, 'message' => $this->params['lang']['user_successfully_confirmed']));
+		}
+		else
+		{
+			echo json_encode(array('result' => false, 'message' => $this->params['lang']['user_failed_confirmed']));
+		}
+				
+	}
+	
 	public function check_admin()
 	{
 		$data = array(

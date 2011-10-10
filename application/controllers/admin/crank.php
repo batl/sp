@@ -82,13 +82,27 @@ class Crank extends CI_Controller {
 		return true;
 	}
 	
-	protected function html_table($array, $fields_types = array(), $lang_fields = array(), $disabled_actions = array())
+	protected function send_mail($to, $from, $subject, $message)
+	{		
+				
+		// To send HTML mail, the Content-type header must be set
+		$headers  = 'MIME-Version: 1.0' . "\r\n";
+		$headers .= 'Content-type: text/html; charset=utf-8' . "\r\n";
+
+		// Additional headers
+		$headers .= 'From: '.$from. "\r\n";		
+
+		// Mail it
+		return mail($to, $subject, $message, $headers);
+	}
+	
+	protected function html_table($array, $fields_types = array(), $lang_fields = array(), $disabled_actions = array(), $sortable)
 	{
 		$html = '';
 		
 		if (!empty($array))
 		{
-			$html = '<table class="gen_table" cellpadding="0" cellspacing="0">';
+			$sortable ? $html = '<table class="gen_table" id="sortable" cellpadding="0" cellspacing="0">' : $html = '<table class="gen_table" cellpadding="0" cellspacing="0">';
 			
 			$titles = array_keys($array[0]);						
 			
@@ -99,25 +113,55 @@ class Crank extends CI_Controller {
 			foreach ($titles as $title)
 			{			
 				$type_sort = $this->input->post('sort_type');
-			
+				
+				$sort_direction = '';
+				
 				if ($sort_field == $title)
 				{
-					if ($type_sort == 'asc') $type_sort = 'desc'; else $type_sort = 'asc';
+					if ($type_sort == 'asc')
+					{
+						$type_sort = 'desc'; 
+						$sort_direction ='&nbsp;&#8593;';
+					}
+					else
+					{
+						$type_sort = 'asc';
+						$sort_direction = '&nbsp;&#8595;';
+					}
 				}
-				else $type_sort = 'desc';							
+				else $type_sort = 'desc';					
 				
-				if (empty($this->params['lang'][$title])) $field_title = $title; else $field_title = $this->params['lang'][$title];
+				empty($this->params['lang'][$title]) ? $field_title = $title : $field_title = $this->params['lang'][$title];
 				
-				$html .= '<td class="sorting" sort="'.$type_sort.'"><span class="display_none">'.$title.'</span>'.$field_title.'</td>';							
+				if (!empty($fields_types[$title])):
+					
+					switch ($fields_types[$title])
+					{
+						case 'hidden':
+							$html .= '<td class="sorting hidden" sort="'.$type_sort.'"><span class="display_none">'.$title.'</span>'.$field_title.$sort_direction.'</td>';							
+							break;
+						default:
+							$html .= '<td class="sorting" sort="'.$type_sort.'"><span class="display_none">'.$title.'</span>'.$field_title.$sort_direction.'</td>';							
+							break;
+					}
+				
+				else:
+				
+					$html .= '<td class="sorting" sort="'.$type_sort.'"><span class="display_none">'.$title.'</span>'.$field_title.$sort_direction.'</td>';							
+					
+				endif;
 				
 			}
 			
 			$html .= '<td style="cursor:default; color:#ccc; text-decoration:underline;">'.$this->params['lang']['actions'].'</td>';
 
-			$html .= '</tr>';
+			$html .= '</tr>';						
 			
 			foreach ($array as $row)
 			{
+			
+				$confirmed = false;
+			
 				$html .= '<tr>';
 				
 				foreach ($row as $key => $cell)
@@ -135,6 +179,10 @@ class Crank extends CI_Controller {
 							{
 								case 'bool':
 									intval($cell)?$html .= '<td>'.$this->params['lang']['yes'].'</td>':$html .= '<td>'.$this->params['lang']['no'].'</td>';
+									if ($key == 'confirmed')
+									{ 
+										intval($cell) ? $confirmed = true : $confirmed = false;
+									}
 									break;
 								case 'price':
 									$html .= '<td>'.$cell.' грн.</td>';
@@ -155,7 +203,10 @@ class Crank extends CI_Controller {
 										$html .= '<td><iframe class="youtube-player" type="text/html" width="300" height="300" src="http://www.youtube.com/embed/'.$video[count($video)-1].'" frameborder="0"></iframe></td>';
 									else
 										$html .= '<td>'.$this->params['lang']['no_video'].'</td>';
-									break;								
+									break;
+								case 'hidden':
+									$html .= '<td class="hidden">'.$cell.'</td>';	
+									break;
 								default:
 									$html .= '<td>'.$cell.'</td>';	
 									break;
@@ -175,6 +226,9 @@ class Crank extends CI_Controller {
 					
 					switch ($this->params['table_name'])
 					{
+						case "sp_users":							
+							(!$confirmed) ? $html .= '<a href="javascript:void(0);" class="confirm_user">'.$this->params['lang']['confirm_user'].'</a>': '';
+							break;
 						case "sp_projects":
 							$html .= '<a href="javascript:void(0);" class="projects_stages">'.$this->params['lang']['stages'].'</a>';
 							break;
@@ -204,7 +258,7 @@ class Crank extends CI_Controller {
 		return $html;		
 	}
 	
-	public function get_items($table_name = false, $fields = array(), $joins = array(), $fields_types = array(), $where = array(), $disabled_actions = array())
+	public function get_items($table_name = false, $fields = array(), $joins = array(), $fields_types = array(), $where = array(), $disabled_actions = array(), $sortable = false)
 	{
 		$data = array(
 			'result' => true			
@@ -212,22 +266,14 @@ class Crank extends CI_Controller {
 		
 		if (!$table_name) $table_name = $this->params['table_name'];
 		
-		$start = $this->input->post('start');
-		$sort  = $this->input->post('sort');
-		$sort_type = $this->input->post('sort_type');
+		$start 		= $this->input->post('start');
+		$sort  		= $this->input->post('sort');
+		$sort_type 	= $this->input->post('sort_type');
+		$limit 		= $this->input->post('limit');
 		
 		empty($sort) ? $sort = 'id': '';
 		empty($sort_type) ? $sort_type = 'asc': '';
-				
-		if (!empty($start)) 
-		{
-			$limit = 12;
-		}
-		else
-		{
-			$limit = false;
-			$start = 0;
-		}
+			
 		
 		$items_array = $this->Crank_model->get_all_entries($table_name, $where ,$start, $limit, $sort, $sort_type, $fields, $joins);
 		
@@ -236,7 +282,7 @@ class Crank extends CI_Controller {
 		if (!empty($items_array))
 		{
 			
-			$data['total'] = ceil($items_count/12);
+			$data['total'] = ceil($items_count/$limit);
 			
 			$data['pages'] = array();
 			
@@ -245,11 +291,11 @@ class Crank extends CI_Controller {
 				$data['pages'][] = $i;
 			}
 			
-			$data['curent_page'] = $this->input->post('start')/12;
+			$data['curent_page'] = $this->input->post('start')/$limit;
 			
 			$lang_fields = $this->Crank_model->get_lang_fields($table_name);
 		
-			$data['response'] = $this->html_table($items_array, $fields_types, $lang_fields, $disabled_actions);
+			$data['response'] = $this->html_table($items_array, $fields_types, $lang_fields, $disabled_actions, $sortable);
 			
 		}
 		else

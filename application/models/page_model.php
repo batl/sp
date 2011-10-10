@@ -15,12 +15,19 @@ class Page_model extends Crank_Model {
 	function get_pages($type)
 	{	
 		
-		return parent::get_entry_by_data($this->table_name, false, 'current', array('in_'.$type => 1));
+		return parent::get_all_entries($this->table_name, array('in_'.$type => 1), 0, false, 'weight', 'asc');
 	}
 	
 	function get_page_by_data($data)
 	{		
 		return parent::get_entry_by_data($this->table_name, true, 'current', $data);
+	}
+	
+	function update_page($id, $data = array())
+	{
+		$table_name = "sp_pages";
+		
+		return $this->db->update($table_name, $data, array('id' => $id));
 	}
 	
 }

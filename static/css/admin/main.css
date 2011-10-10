@@ -930,6 +930,10 @@ width:0;
 overflow:hidden;
 }
 
+.hidden{
+display:none;
+}
+
 .message{		
 position:absolute;
 right:0px;
@@ -974,8 +978,11 @@ width:50px;
 .t_title{
 text-align:center;
 font-weight:bold;
-text-decoration:underline;
 cursor:pointer;
+}
+
+#sortable{
+cursor:move;
 }
 
 .t_title td{	
@@ -1188,4 +1195,17 @@ display:block;
 padding-top:7px;
 width:300px;
 float:left;
+}
+
+#limit{
+float:right;
+padding-right:20px;
+}
+
+#limit a{
+margin:0px 5px;
+}
+
+#limit a.selected{
+color:#ccc;
 }

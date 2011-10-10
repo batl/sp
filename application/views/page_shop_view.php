@@ -85,7 +85,8 @@
 					<a  class="last_page" href="javascript:void(0);">
 						<img src="static/images/btn_page_end.png" />
 					</a>
-				</div>				
+				</div>	
+				<div id="limit"><a href="javascript:void(0);">5</a><a href="javascript:void(0);" class="selected">10</a><a href="javascript:void(0);">20</a><a href="javascript:void(0);">30</a></div>		
 			</div><!--  #content-container -->
 		</div>
 	</div><!--  #content -->

@@ -49,9 +49,9 @@ class Signup extends Crank {
 			if ($user_id) 
 			{	
 				$this->params['msg'] = $this->params['lang']['success_signup'];
-				$user = $this->User_model->get_user_by_data(array('id' => $user_id), true);
-				$body = '<a href="'.$this->params['base'].'signup/'.$user['verify_code'].'" target="_blanck">Для подтверждения регистрации пройдите по этой ссылке.</a>';
-				$this->send_mail($user['email'], 'successfull@support.com', 'Регистрация на сайте', $body);
+				$user = $this->User_model->get_user_by_data(array('id' => $user_id), true);				
+				$body = "<p>".$this->params['lang']['welcome_message']."</p>";
+				$this->send_mail($user['email'], 'successfull@support.com', $this->params['lang']['signup_subject'], $body);
 			}
 			
 		}

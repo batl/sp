@@ -237,6 +237,7 @@ class Crank extends CI_Controller {
 		$sort_type = $this->input->post('sort_type');
 		$group = $this->input->post('group');
 		$search = $this->input->post('search');
+		$limit 		= $this->input->post('limit');
 		
 		if (!empty($group))
 		{
@@ -256,17 +257,7 @@ class Crank extends CI_Controller {
 		!empty($search) ? $like['tags'] = $search : '';
 		
 		empty($sort) ? $sort = 'id': '';
-		empty($sort_type) ? $sort_type = 'asc': '';
-				
-		if (!empty($start)) 
-		{
-			$limit = 12;
-		}
-		else
-		{
-			$limit = false;
-			$start = 0;
-		}
+		empty($sort_type) ? $sort_type = 'asc': '';						
 		
 		$this->params['items_array'] = $this->Crank_model->get_all_entries($table_name, $where ,$start, $limit, $sort, $sort_type, $fields, $joins, $single, $like);
 		
@@ -275,7 +266,7 @@ class Crank extends CI_Controller {
 		if (!empty($this->params['items_array']))
 		{
 			
-			$data['total'] = ceil($items_count/12);
+			$data['total'] = ceil($items_count/$limit);
 			
 			$data['pages'] = array();
 			
@@ -284,7 +275,7 @@ class Crank extends CI_Controller {
 				$data['pages'][] = $i;
 			}
 			
-			$data['curent_page'] = $this->input->post('start')/12;						
+			$data['curent_page'] = $this->input->post('start')/$limit;						
 		
 			if ($custom_view)
 				$data['response'] = $this->load->view($custom_view, $this->params, true);

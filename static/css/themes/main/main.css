@@ -774,7 +774,7 @@ height:72px;
 }
 
 #paging {
-float:right;
+float:left;
 clear:both;
 margin-top:10px;
 margin-right:14px;
@@ -1938,4 +1938,19 @@ display:block;
 padding-top:7px;
 width:300px;
 float:left;
+}
+
+#limit{
+float: right;
+margin-right: 20px;
+padding-top: 25px;
+font-weight:bold;
+}
+
+#limit a{
+margin:0px 5px;
+}
+
+#limit a.selected{
+color:#ccc;
 }
