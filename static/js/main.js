@@ -165,8 +165,18 @@ $(document).ready(function(){
 		var start = 0;
 		var block = $('.items');
 		get_items(block, entry, start, sort, sort_type, 'ignore');
-	});
+	});		
+
 });
+
+//TAG SEARCH
+function tag_search(id)
+{
+	$('#search').val($('span[id="'+id+'"]').html());
+	var start = 0;
+	var block = $('.items');
+	get_items(block, entry, start, sort, sort_type, 'ignore');
+}
 
 function focus_input()
 {

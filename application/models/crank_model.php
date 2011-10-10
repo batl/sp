@@ -84,7 +84,7 @@ class Crank_model extends CI_Model {
 	
 /* --------------------------------------------------------------------------------- */	
 	
-	public function get_all_entries($table_name, $where = array(), $start = 0, $limit = false, $sort = 'id', $sort_type = 'asc', $fields = array(), $joins = array(), $single = false, $like = array())
+	public function get_all_entries($table_name, $where = array(), $start = 0, $limit = false, $sort = 'id', $sort_type = 'asc', $fields = array(), $joins = array(), $single = false, $like = array(), $distinct = false)
 	{	
 		if (!empty($fields))
 		{
@@ -114,6 +114,8 @@ class Crank_model extends CI_Model {
 				$this->db->where($table_name.'.'.$key, $value);
 			}
 		}		
+		
+		if ($distinct) $this->db->distinct();
 		
 		$query = $this->db->get($table_name);
 		

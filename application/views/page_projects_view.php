@@ -11,7 +11,10 @@
 				</div>				
 				<div id="calendar">
 					<?php echo $calendar;?>
-				</div>			
+				</div>
+				<div id="3dcloud_block" style="text-align:center;font-size:12pt;">
+					
+  			    </div>
 			</div>
 			
 			<div id="content-container">

@@ -119,6 +119,7 @@ class Page extends Crank {
 												
 						$this->include_css('pages/projects.css');															
 						$this->include_js('pages/projects.js');
+						$this->include_js('jquery/swfobject.js');
 						
 						break;
 				}

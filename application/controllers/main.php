@@ -59,6 +59,49 @@ class Main extends Crank {
 		
 	}
 	
+	function get_tags()
+	{
+		$this->load->model("Project_model");
+		
+		$tags = $this->Crank_model->get_all_entries(
+			"sp_projects",
+			array(),
+			0,
+			false,
+			'id',
+			'asc',
+			array("sp_projects" => array('tags')),
+			array(),
+			false,
+			array(),
+			true
+		);
+		
+		$response = "<tags>";				
+		$hidden = "<span style='display:none;'>";
+		if (!empty($tags))
+		{
+			$i = 0;
+			foreach ($tags as $tag)
+			{
+				foreach ($tag as $localtag)
+				{
+					$parse_tags = explode(',', $localtag);
+					foreach ($parse_tags as $parse_tag)
+					{						
+						$response .= "<a href='javascript:tag_search($i);' class='tag_search'>".trim($parse_tag)."</a>";
+						$hidden .= "<span id='$i' class='tag_search'>".trim($parse_tag)."</span>";
+						$i++;
+					}					
+				}				
+			}
+		}
+		$hidden .= "</span>";
+		$response .= "</tags>";
+		
+		echo json_encode(array('response' => $response, 'hidden' => $hidden));
+	}
+	
 	function check_email()
 	{
 		$data = array(

@@ -8,6 +8,6 @@ class Project_model extends Crank_Model {
 	{
 		parent::__construct();			
 		
-	}
+	}	
 	
 }

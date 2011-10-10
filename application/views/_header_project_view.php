@@ -76,7 +76,7 @@
 										<td class="b-menu__layout-r">
 											<ul class="b-menu__list">
 												<li class="b-menu__item">
-												<div id="languages">
+												<div id="languages" style="background:none;">
 												<?php
 													foreach ($languages as $item):
 													?>

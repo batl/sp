@@ -96,4 +96,26 @@ $(document).ready(function(){
 		
 	});
 	
+	
+	$.post(base_url + 'main/get_tags', {'entry':'project'}, function(data)
+	{		
+		var rnumber = Math.floor(Math.random()*9999999);
+		var so = new SWFObject("http://szenprogs.ru/tagcloud/tagcloud.swf?r="+rnumber, "tagcloudflash", "225", "225", "7");
+		so.addParam("wmode", "transparent");
+		so.addParam("allowScriptAccess", "always");
+		so.addParam("bgcolor", "#FF0000");
+		so.addVariable("tspeed", "150");
+		so.addVariable("distr", "true");
+		so.addVariable("mode", "tags");
+		so.addVariable("minFontSize", "8");
+		so.addVariable("maxFontSize", "14");
+		so.addVariable("tcolor", "0x009CFF");
+		so.addVariable("tcolor2", "0x009CFF");
+		so.addVariable("hicolor", "0x009CCF");
+		so.addVariable("tagcloud", data.response);
+		so.write("3dcloud_block");
+		$('body').append(data.hidden);
+		
+	},'json');	
+	
 });
