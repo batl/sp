@@ -203,6 +203,8 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 		
 	var URL = base_url + 'page/get_items/' + entry;
 	
+	var sub_entry = entry.split('/');
+	
 	if ($('#search').length) search = $('#search').val();
 	
 	$.post(URL, {"sort":sort, "start":start, "sort_type":sort_type, "group":group, "search":search, "limit":limit}, function(data)
@@ -247,7 +249,7 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 			if (story.length < 2) $('.history').remove();
 		}										
 		
-		transform_pagination(data.curent_page, data.total);
+		if (sub_entry.length == 1) transform_pagination(data.curent_page, data.total); else $('#paging, #limit').hide();
 		
 	},"json");
 }
