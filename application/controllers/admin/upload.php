@@ -91,7 +91,7 @@ class Upload extends Crank {
 					
 					if (!$status) 
 					{
-						$result = array('error' => 'Internal Copy Error. Please Contact webmaster@anyart.com');
+						$result = array('error' => 'Internal Copy Error.');
 						exit(json_encode($result));
 					}
 					else
@@ -118,7 +118,42 @@ class Upload extends Crank {
 				exit(json_encode($result));
 			}
 		}
-	}	
+	}
+
+	function upload_doc()
+	{
+		$this->firephp->log($_FILES);
+		
+		$data = array(
+			'result' => false
+		);
+		
+		if ($_FILES["doc"]["name"] != "")
+		{														
+			$extension = strtolower($this->getExtension($_FILES["doc"]["name"]));
+			
+			$this->firephp->log($extension);
+			
+			if (($extension == "pdf") || ($extension == "doc") || ($extension == "exl"))
+			{
+				$name = md5(microtime()).'.'.$extension;
+				
+				$this->firephp->log($_SERVER['DOCUMENT_ROOT']."/doc/".$name);
+				
+				if (copy($_FILES["doc"]["tmp_name"], $_SERVER['DOCUMENT_ROOT']."/doc/".$name))
+				{									
+					
+					$data['result'] = true;
+					$data['file'] = $name;
+					
+				}			
+				
+			}
+			
+		}
+		
+		echo json_encode($data);
+	}
 
 	function getExtension($str) 
     {

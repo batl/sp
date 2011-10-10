@@ -239,6 +239,8 @@ $lang["on_page"]				= "На странице";
 $lang["in_slider"]				= "Отображать в слайдере";
 $lang["all"]					= "Все";
 $lang["set_poll"]				= "Голосовать";
+$lang["download_view"]			= "скачать/просмотреть";
+$lang["not_download"]			= "документ не загружен";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

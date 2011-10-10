@@ -290,6 +290,10 @@ function get_view(block, entry, action, id, clear_history)
 		if ($('#foto').length) image_upload(entry);
 		if ($('#background').length) image_upload(entry, 'background', 'site_background', 960);
 		if ($('#banner').length) image_upload(entry, 'banner', 'project_banner', 450, 'width');
+		if ($('.document').length)
+		{
+			$('.document').each(function(){ document_upload($(this).attr('id')); });
+		}
 		
 		if ($('#colorSelector').length) 
 		{
@@ -497,6 +501,31 @@ function image_upload(obj, input_file, logo_view, size, direction)
 				}
 				//$('#photo_th').css('display','block');
 				//$('#loader_th').css('display','none');
+			}
+        }
+    });
+		
+}
+
+//--------------------------------------------------------------------------------------
+function document_upload(input_file)
+{	
+	
+	if (input_file == undefined) input_file = 'doc';
+	
+	new AjaxUpload(input_file, {
+        action: base_url + 'upload/upload_doc',
+        name: 'doc',        
+        onComplete: function(file, response) 
+		{
+			if (response.result)
+			{
+				alert(response.result);
+				location.reload();
+			}
+			else
+			{
+				console.log(response);
 			}
         }
     });

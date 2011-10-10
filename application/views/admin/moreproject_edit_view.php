@@ -3,6 +3,7 @@
 	</div>
 	<div class='gform_body'>
 		<input type='hidden' class='gform_hidden' name='id' value='<?php echo $entry['id']?>'/>
+		<input type="hidden" class='gform_hidden' name='project_id' value='<?php echo $project_id?>'/>
 		<ul class='gform_fields top_label'>			
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["title"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>					
@@ -14,21 +15,7 @@
 						endforeach;						
 					?>
 				</div>
-			</li>
-			<li class='gfield'><label class='checkbox_label'><?php echo $lang["project"]?><span class='gfield_required'>*</span>:</label>
-				<div class='ginput_container'>
-					<select name="projects_id">						
-						<?php
-						foreach ($projects as $project)
-						{
-						?>
-						<option value="<?php echo $project['id']?>" <?php if ($project['id'] == $entry['projects_id']) echo 'selected="selected"';?>><?php echo $project['name']?></option>
-						<?php
-						}
-						?>
-					</select>	
-				</div>
-			</li>
+			</li>			
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["territory"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
 					<select name="territory">	
@@ -61,27 +48,87 @@
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["resourses"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
-					<input name='resourses' type='file' value='<?php echo $entry['resourses']?>' class='medium' tabindex='3'/>
+					<input id='resourses' type='file' value='' class='medium document' tabindex='3'/>
+					<?php
+					if (!empty($entry['resourses'])):
+					?>
+					<a class="document_file" href="<?php echo $front_url?>doc/<?php echo $entry['resourses']?>"><?php echo $lang["resourses"].'('.$lang["download_view"].')'?></a>
+					<?php
+					else:
+					?>
+					<a class="document_file" href="javascript:void(0);"><?php echo $lang["not_download"]?></a>
+					<?php
+					endif;
+					?>
+					<input name='resourses' type='hidden' value='<?php echo $entry['resourses']?>'/>
 				</div>
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["project_plan"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
-					<input name='project_plan' type='file' value='<?php echo $entry['project_plan']?>' class='medium' tabindex='3'/>
+					<input id='project_plan' type='file' value='' class='medium document' tabindex='3'/>
+					<?php
+					if (!empty($entry['project_plan'])):
+					?>
+					<a class="document_file" href="<?php echo $front_url?>doc/<?php echo $entry['project_plan']?>"><?php echo $lang["project_plan"].'('.$lang["download_view"].')'?></a>
+					<?php
+					else:
+					?>
+					<a class="document_file" href="javascript:void(0);"><?php echo $lang["not_download"]?></a>
+					<?php
+					endif;
+					?>
+					<input name='project_plan' type='hidden' value='<?php echo $entry['project_plan']?>'/>
 				</div>
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["application_form"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
-					<input name='application_form' type='file' value='<?php echo $entry['application_form']?>' class='medium' tabindex='3'/>
+					<input id='application_form' type='file' value='' class='medium document' tabindex='3'/>
+					<?php
+					if (!empty($entry['application_form'])):
+					?>
+					<a class="document_file" href="<?php echo $front_url?>doc/<?php echo $entry['application_form']?>"><?php echo $lang["application_form"].'('.$lang["download_view"].')'?></a>
+					<?php
+					else:
+					?>
+					<a class="document_file" href="javascript:void(0);"><?php echo $lang["not_download"]?></a>
+					<?php
+					endif;
+					?>
+					<input name='application_form' type='hidden' value='<?php echo $entry['application_form']?>'/>
 				</div>
 			</li>	
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["business_plan"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
-					<input name='business_plan' type='file' value='<?php echo $entry['business_plan']?>' class='medium' tabindex='3'/>
+					<input id='business_plan' type='file' value='' class='medium document' tabindex='3'/>
+					<?php
+					if (!empty($entry['business_plan'])):
+					?>
+					<a class="document_file" href="<?php echo $front_url?>doc/<?php echo $entry['business_plan']?>"><?php echo $lang["business_plan"].'('.$lang["download_view"].')'?></a>
+					<?php
+					else:
+					?>
+					<a class="document_file" href="javascript:void(0);"><?php echo $lang["not_download"]?></a>
+					<?php
+					endif;
+					?>
+					<input name='business_plan' type='hidden' value='<?php echo $entry['business_plan']?>'/>
 				</div>
 			</li>			
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["scheme_budget"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
-					<input name='scheme_budget' type='file' value='<?php echo $entry['scheme_budget']?>' class='medium' tabindex='3'/>
+					<input id='scheme_budget' type='file' value='' class='medium document' tabindex='3'/>
+					<?php
+					if (!empty($entry['scheme_budget'])):
+					?>
+					<a class="document_file" href="<?php echo $front_url?>doc/<?php echo $entry['scheme_budget']?>"><?php echo $lang["scheme_budget"].'('.$lang["download_view"].')'?></a>
+					<?php
+					else:
+					?>
+					<a class="document_file" href="javascript:void(0);"><?php echo $lang["not_download"]?></a>
+					<?php
+					endif;
+					?>
+					<input name='scheme_budget' type='hidden' value='<?php echo $entry['scheme_budget']?>'/>
 				</div>
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["note"]?>: </label>

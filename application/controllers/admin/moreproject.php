@@ -41,9 +41,9 @@ class Moreproject extends Crank {
 		);
 	}		
 	
-	public function get_view()
+	public function get_view($id)
 	{		
-		parent::get_view(array('territories' => 'sp_territories', 'projects' => 'sp_projects', 'events' => 'sp_events'));
+		parent::get_view(array('territories' => 'sp_territories', 'events' => 'sp_events'), false, false, array('project_id' => $id));
 	}
 	
 	public function save_entry()

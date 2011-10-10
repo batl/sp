@@ -837,6 +837,8 @@ width:300px;
 
 label{
 font-weight:bold;
+display:block;
+clear:both;
 }
 
 input[type="checkbox"]{
@@ -1174,4 +1176,16 @@ background:#ccc;
 .remove{
 cursor:pointer;
 color:red;
+}
+
+.document{
+width:250px;
+float:left;
+}
+
+.document_file{
+display:block;
+padding-top:7px;
+width:300px;
+float:left;
 }
