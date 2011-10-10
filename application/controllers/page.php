@@ -340,6 +340,7 @@ class Page extends Crank {
 	
 	public function get_view($entry, $custom_view = false, $custom_data = array())
 	{	
+		
 		switch ($entry[0])
 		{
 			case 'project':
@@ -349,6 +350,9 @@ class Page extends Crank {
 			case 'moreproject':
 				$table_name = 'sp_projectsstages';
 				$data = array('territories' => 'sp_territories', 'projects' => 'sp_projects', 'events' => 'sp_events');
+				$custom_data = array(
+					'project_id' => $entry[1]
+				);
 				break;
 			case 'joins':
 

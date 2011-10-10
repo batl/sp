@@ -519,13 +519,14 @@ function document_upload(input_file)
         onComplete: function(file, response) 
 		{
 			if (response.result)
-			{
-				alert(response.result);
-				location.reload();
+			{				
+				$('input[name='+input_file+']').val(response.file);
+				$('#'+input_file).parents('.ginput_container').find('a').attr('href', base_url+'doc/'+response.file).html(response.file);
 			}
 			else
 			{
-				console.log(response);
+				alert(response.result);
+				location.reload();
 			}
         }
     });

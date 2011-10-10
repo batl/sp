@@ -848,6 +848,7 @@ border:0;
 .gfield {
 height:auto;
 margin: 20px 0;
+list-style:none;
 }
 
 .button {
@@ -1859,6 +1860,8 @@ clear:both;
 }
 .items .gfield_label, .items .checkbox_label{
 	font-weight:bold;
+	display:block;
+	clear:both;
 }
 .remove_item{
 	color: #D72521;
@@ -1923,4 +1926,16 @@ float:right;
 .set_poll{
 color: #999999;
 float: right;
+}
+
+.document{
+width:250px;
+float:left;
+}
+
+.document_file{
+display:block;
+padding-top:7px;
+width:300px;
+float:left;
 }

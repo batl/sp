@@ -3,7 +3,7 @@
 	</div>
 	<div class='gform_body'>
 		<input type='hidden' class='gform_hidden' name='id' value='<?php echo $entry['id']?>'/>
-		<input type="hidden" class='gform_hidden' name='project_id' value='<?php echo $project_id?>'/>
+		<input type="hidden" class='gform_hidden' name='projects_id' value='<?php echo $project_id?>'/>
 		<ul class='gform_fields top_label'>			
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["title"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>					

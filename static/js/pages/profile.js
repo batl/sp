@@ -135,7 +135,7 @@ $(document).ready( function($){
 		
 		var id = $(this).attr('id');
 		
-		$('.section_title').html($(this).html()+" "+$(this).parents('.project-item-content').find('.single').html());
+		$('.section_title').html($(this).html()+" "+$(this).parents('.project-item-content').find('a[target=_blanck]').html());
 		
 		entry = 'moreproject/'+id;
 		

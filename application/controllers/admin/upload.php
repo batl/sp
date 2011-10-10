@@ -134,7 +134,7 @@ class Upload extends Crank {
 			
 			$this->firephp->log($extension);
 			
-			if (($extension == "pdf") || ($extension == "doc") || ($extension == "exl"))
+			if (($extension == "pdf") || ($extension == "doc") || ($extension == "xls"))
 			{
 				$name = md5(microtime()).'.'.$extension;
 				
