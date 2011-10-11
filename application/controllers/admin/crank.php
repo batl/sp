@@ -178,7 +178,7 @@ class Crank extends CI_Controller {
 							switch ($fields_types[$key])
 							{
 								case 'bool':
-									intval($cell)?$html .= '<td>'.$this->params['lang']['yes'].'</td>':$html .= '<td>'.$this->params['lang']['no'].'</td>';
+									intval($cell)?$html .= '<td><input type="checkbox" checked="checked" disabled="disabled"/></td>':$html .= '<td><input type="checkbox" disabled="disabled"/></td>';
 									if ($key == 'confirmed')
 									{ 
 										intval($cell) ? $confirmed = true : $confirmed = false;
@@ -187,10 +187,12 @@ class Crank extends CI_Controller {
 								case 'price':
 									$html .= '<td>'.$cell.' грн.</td>';
 									break;
-								case 'date':
-									$date = explode(" ",date("j M Y",strtotime($cell)));
-									if (!empty($date))
+								case 'date':									
+									if (!empty($cell))
+									{
+										$date = explode(" ",date("j M Y",strtotime($cell)));
 										$html .= '<td>'.$date[0].' '.$this->params['lang']['month'][strtolower($date[1])].' '.$date[2].'</td>';
+									}
 									else
 										$html .= '<td>'.$this->params['lang']['no_date'].'</td>';
 									break;

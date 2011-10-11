@@ -196,7 +196,7 @@ color:#666;
 * Sub Navigation
 ************************************************/
 
-#sub-nav , #calendar, #sub-nav-profile{
+#sub-nav , #calendar, #sub-nav-profile, .sidebar{
 height:auto;
 width:220px;
 float:left;
@@ -213,8 +213,14 @@ border: 1px solid #ccc;
 box-shadow: 0px 0px 3px #ccc;
 }
 
-#calendar{
+#calendar, .sidebar{
 margin-top:10px;
+text-align:center;
+}
+
+.sidebar{
+padding-bottom:10px;
+position:relative;
 }
 
 #sub-nav ul li, #sub-nav-profile ul li {
@@ -1915,6 +1921,15 @@ height:18px;
 background:url("/static/images/search.png") no-repeat;
 margin:2px 5px 0px;
 float:left;
+}
+#date_search{
+cursor:pointer;
+width:18px;
+height:18px;
+background:url("/static/images/search.png") no-repeat;
+position:absolute;
+top:10px;
+right:20px;
 }
 .poll_title{
 text-align:center;

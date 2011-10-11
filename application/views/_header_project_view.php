@@ -41,8 +41,8 @@
 							<div class="b-dates">
 								<i class="b-dates__ill"></i>
 								<div class="b-dates__dates">
-									<span class="b-dates__date"><?php echo date("d", strtotime($project['date']));?></span>
-									<span class="b-dates__month"><?php echo $lang['month'][strtolower(date('M', strtotime($project['date'])))]?></span>
+									<span class="b-dates__date"><?php echo date("d", strtotime($project['date_start']));?></span>
+									<span class="b-dates__month"><?php echo $lang['month'][strtolower(date('M', strtotime($project['date_start'])))]?></span>
 								</div>
 							</div>
 							<div class="b-strapline">
@@ -106,7 +106,7 @@
 					<td class="b-sub-header__layout-l">
 						<div class="b-sub-header__layout-i">
 							<div class="b-head-info b-block">
-								<h2><?php echo $project['name'].' '.date("Y", strtotime($project['date']))?> </h2>
+								<h2><?php echo $project['name'].' '.date("Y", strtotime($project['date_start']))?> </h2>
 								<div class="b-block__accent">
 									<?php echo $project['purpose']?>
                                 </div>
@@ -121,8 +121,8 @@
 									<div class="b-artist__photo">
 										<img src="<?php echo $base.$project['banner'];?>" class="b-artist__img"/>
 										<div class="b-mini-artist__date">
-											<span class="b-mini-artist__num"><?php echo date('d', strtotime($project['date']))?></span>
-											<span class="b-mini-artist__month"><?php echo $lang['month'][strtolower(date('M', strtotime($project['date'])))]?></span>
+											<span class="b-mini-artist__num"><?php echo date('d', strtotime($project['date_start']))?></span>
+											<span class="b-mini-artist__month"><?php echo $lang['month'][strtolower(date('M', strtotime($project['date_start'])))]?></span>
 										</div>
 									</div>
 									<div class="g-line">

@@ -109,7 +109,7 @@ class Page extends Crank {
 							$projects = count($this->Crank_model->get_all_entries(
 								"sp_projects", 
 								array(
-									'date' => date("Y").'-'.date("m").'-'.$i
+									'date_start' => date("Y").'-'.date("m").'-'.$i
 								), 
 								0, 
 								false, 
@@ -124,7 +124,11 @@ class Page extends Crank {
 						}
 						
 						$this->params['calendar'] = $this->calendar->generate(date("Y"),date("m"), $links);
-												
+
+						$this->include_js('jquery/ui/jquery.ui.core.js');
+						$this->include_js('jquery/ui/jquery.ui.widget.js');
+						$this->include_js('jquery/ui/jquery.ui.datepicker.js');
+						$this->include_css('ui/jquery.ui.all.css');		
 						$this->include_css('pages/projects.css');															
 						$this->include_js('pages/projects.js');
 						$this->include_js('jquery/swfobject.js');
@@ -161,7 +165,7 @@ class Page extends Crank {
 			$projects = count($this->Crank_model->get_all_entries(
 				"sp_projects", 
 				array(
-					'date' => $data[0].'-'.$data[1].'-'.$i
+					'date_start' => $data[0].'-'.$data[1].'-'.$i
 				), 
 				0, 
 				false, 
@@ -180,7 +184,7 @@ class Page extends Crank {
 	
 	/* ---------------------------------------------------------------------- */
 	
-	public function get_items($entry, $custom_view = false, $fields = array(), $joins = array(), $where = array(), $single = false, $types = array(), $disabled_actions = array())
+	public function get_items($entry, $custom_view = false, $fields = array(), $joins = array(), $where = array(), $single = false, $types = array(), $disabled_actions = array(), $or_where = array())
 	{		
 		$table_name = '';		
 		switch ($entry[0])
@@ -242,10 +246,36 @@ class Page extends Crank {
 			
 				!empty($entry[3]) ? $day = $entry[3] : $day = NULL;
 				
-				(!empty($entry[1]) && empty($day)) ? $custom_view = 'project_single' : $custom_view = 'profile_projects';
+				if (!empty($entry[1]))
+				{
+					switch ($entry[1])
+					{
+						case 'date_filter':
+							
+							$dates = explode('v', $entry[2]); 
+						
+							if (!empty($dates[0]))
+							{
+								$where['date_start >='] 	 = date("Y-m-d", strtotime($dates[0]));
+								$or_where['date_start IS NULL'] = NULL;								
+							}
+							if (!empty($dates[1]))
+							{
+								$where['date_end <=']   = date("Y-m-d", strtotime($dates[1]));
+								$or_where['date_end IS NULL'] = NULL;								
+							}
+							
+							$where['in_process'] = 0;
+							
+							$day = NULL;
+							break;
+					}					
+				}
+				
+				$custom_view = 'profile_projects';
 				
 				$fields = array(
-					'sp_projects' => array('id','user_id','thumb','name','date','short_description','slug','tags'),
+					'sp_projects' => array('id','user_id','thumb','name','date_start', 'date_end','short_description','slug','tags','in_process'),
 					'sp_places' => array('name as place'),
 					'sp_projects_categories' => array('name as group_name')
 				); 
@@ -258,16 +288,34 @@ class Page extends Crank {
 					switch ($day)
 					{
 						case 'no':
-							$where = array('date >=' => date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01')), 'date <=' => date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month')));
+							$where = array(
+								'date_start >=' => date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01')), 
+								'date_start <=' => date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month')),
+								'in_process' => 0
+							);
 							break;
 						case 'next':
-							$where = array('date >=' => date("Y-m-d"));
+							$where = array(
+								'date_start >=' => date("Y-m-d"),
+								'in_process' => 0
+							);
 							break;
 						case 'prev':
-							$where = array('date <' => date("Y-m-d"));
+							$where = array(
+								'date_start <' => date("Y-m-d"),
+								'in_process' => 0
+							);
+							break;
+						case 'in_process':
+							$where = array(
+								'in_process' => 1
+							);
 							break;
 						default:
-							$where = array('date' => $entry[1].'-'.$entry[2].'-'.$day);
+							$where = array(
+								'date_start' => $entry[1].'-'.$entry[2].'-'.$day,
+								'in_process' => 0
+							);
 							break;
 					}						
 				}
@@ -275,8 +323,8 @@ class Page extends Crank {
 				if ($entry[0] == 'project') $where['user_id'] = $this->session->userdata('user_id');									
 				
 				$table_name = "sp_projects";
-				(!empty($entry[1]) && empty($day)) ? $single = true : $single = false;
-				(!empty($entry[1]) && empty($day)) ? $where = array('id' => intval($entry[1])):'';
+				//(!empty($entry[1]) && empty($day)) ? $single = true : $single = false;
+				//(!empty($entry[1]) && empty($day)) ? $where = array('id' => intval($entry[1])):'';
 				break;
 				
 			case 'moreproject':
@@ -342,7 +390,7 @@ class Page extends Crank {
 		//(!empty($entry[1]) && empty($day)) ? $single = true : $single = false;
 		//(!empty($entry[1]) && empty($day)) ? $where = array('id' => intval($entry[1])):'';
 		
-		parent::get_items($table_name, $custom_view, $fields, $joins, $where, $single, $types, $disabled_actions);
+		parent::get_items($table_name, $custom_view, $fields, $joins, $where, $single, $types, $disabled_actions, array(), $or_where);
 			
 	}
 	

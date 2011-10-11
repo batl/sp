@@ -42,7 +42,7 @@ class Project extends Crank {
 		parent::get_items(
 			false, 
 			array(
-				'sp_projects' => array('id','thumb','name','date'),
+				'sp_projects' => array('id','thumb','name','date_start', 'date_end', 'in_process'),
 				'sp_places' => array('name as place'),
 				'sp_projects_categories' => array('name as group_name')
 			), 
@@ -51,7 +51,9 @@ class Project extends Crank {
 				'sp_projects_categories' => 'category_id'
 			),
 			array(
-				'date' => 'date'
+				'date_start' => 'date',
+				'date_end' => 'date',
+				'in_process' => 'bool'
 			)
 		);
 	}		

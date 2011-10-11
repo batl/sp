@@ -69,8 +69,8 @@
 					<h3><?php echo $lang['goods']?></h3>
 					<div style="float:right; padding:6px;">
 						<div class="clear_search"></div><input id="search" type="text" value="" style="height:18px; width:200px; float:left;"/>
-						<div id="search_btn"></div>&nbsp;|
-						<?php echo $lang['group']?>
+						<div id="search_btn"></div>&nbsp;
+						<strong><?php echo $lang['group']?></strong>
 						<select class="groups" rel="goods">
 							<option value="0"><?php echo $lang['all']?></option>
 						<?php

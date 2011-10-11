@@ -161,7 +161,7 @@ $lang["investor"]				= "Инвестор";
 $lang["individual"]				= "ЧП";
 $lang["thumb"]					= "Лого";
 $lang["date_start"]				= "Начало";
-$lang["date_end"]				= "Конец";
+$lang["date_end"]				= "Окончание";
 $lang["number_of_sessions"]		= "Количество занятий";
 $lang["schedule"]				= "График";
 $lang["curators"]				= "Кураторы";
@@ -248,6 +248,9 @@ $lang["confirm_user"]			= "Подтвердить";
 $lang["user_successfully_confirmed"]	= "Пользователь успешно подтвержден.";
 $lang["user_failed_confirmed"]			= "Пользователь не подтвершден.";
 $lang["confirmation_mail"]			= "Ваша заявка на регистрацию успешно обработана. Добро пожаловать на сайт 'Успешный проект'.";
+$lang["in_process"]				= "В разработке";
+$lang["no_data"]				= "<span style='font-size:11px;'>Не указано</span>";
+$lang["date_filter"]			= "Диапазон дат";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

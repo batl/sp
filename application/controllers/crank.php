@@ -160,10 +160,12 @@ class Crank extends CI_Controller {
 								case 'price':
 									$html .= '<td>'.$cell.' грн.</td>';
 									break;
-								case 'date':
-									$date = explode(" ",date("j M Y",strtotime($cell)));
-									if (!empty($date))
+								case 'date':									
+									if (!empty($cell))
+									{
+										$date = explode(" ",date("j M Y",strtotime($cell)));
 										$html .= '<td>'.$date[0].' '.$this->params['lang']['month'][strtolower($date[1])].' '.$date[2].'</td>';
+									}
 									else
 										$html .= '<td>'.$this->params['lang']['no_date'].'</td>';
 									break;
@@ -224,7 +226,7 @@ class Crank extends CI_Controller {
 		return $html;		
 	}
 	
-	public function get_items($table_name = false, $custom_view = false, $fields = array(), $joins = array(), $where = array(), $single = false, $fields_types = array(), $disabled_actions = array(), $like = array())
+	public function get_items($table_name = false, $custom_view = false, $fields = array(), $joins = array(), $where = array(), $single = false, $fields_types = array(), $disabled_actions = array(), $like = array(), $or_where = array())
 	{
 		$data = array(
 			'result' => true			
@@ -267,7 +269,7 @@ class Crank extends CI_Controller {
 		empty($sort) ? $sort = 'id': '';
 		empty($sort_type) ? $sort_type = 'asc': '';						
 		
-		$this->params['items_array'] = $this->Crank_model->get_all_entries($table_name, $where ,$start, $limit, $sort, $sort_type, $fields, $joins, $single, $like);
+		$this->params['items_array'] = $this->Crank_model->get_all_entries($table_name, $where ,$start, $limit, $sort, $sort_type, $fields, $joins, $single, $like, false, $or_where);
 		
 		$items_count = count($this->Crank_model->get_all_entries($table_name, $where));
 		

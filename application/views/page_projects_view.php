@@ -7,11 +7,17 @@
 						<li><a id="projects" class="selected" href="javascript:void(0);"><?php echo $lang['all_projects']?></a></li>
 						<li><a id="projects/<?php echo date("Y").'/'.date("m").'/next'?>" href="javascript:void(0);"><?php echo $lang['curent']?></a></li>
 						<li><a id="projects/<?php echo date("Y").'/'.date("m").'/prev'?>" href="javascript:void(0);"><?php echo $lang['previus']?></a></li>					
+						<li><a id="projects/<?php echo date("Y").'/'.date("m").'/in_process'?>" href="javascript:void(0);"><?php echo $lang['in_process']?></a></li>					
 					</ul>
-				</div>				
+				</div>
+				<div id="date_filter" class="sidebar">
+					<p style="text-align:center;"><?php echo $lang['date_filter']?></p><div id="date_search"></div>
+					<input id="date_start" class="picker" type="text" value="" style="height:18px; width:180px; margin:5px;"/>
+					<input id="date_end" class="picker" type="text" value="" style="height:18px; width:180px; margin:5px;"/>
+				</div>
 				<div id="calendar">
 					<?php echo $calendar;?>
-				</div>
+				</div>				
 				<div id="3dcloud_block" style="text-align:center;font-size:12pt;">
 					
   			    </div>
@@ -22,8 +28,8 @@
 					<h3><?php echo $lang['projects']?></h3>
 					<div style="float:right; padding:6px;">						
 						<div class="clear_search"></div><input id="search" type="text" value="" style="height:18px; width:200px; float:left;"/>
-						<div id="search_btn"></div>&nbsp;|
-						<?php echo $lang['group']?>
+						<div id="search_btn"></div>&nbsp;
+						<strong><?php echo $lang['group']?></strong>
 						<select class="groups">
 							<option value="0"><?php echo $lang['all']?></option>
 						<?php

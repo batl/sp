@@ -4,7 +4,15 @@ $(document).ready(function(){
 	
 	var block = $('.items');
 	
+	$('.picker').datepicker({ dateFormat: 'yy-mm-dd' });
+	
 	get_items(block, entry, 0, 'id', 'asc');
+	
+	$('#date_search').click(function(){
+		
+		get_items(block, 'projects/date_filter/'+$('#date_start').val()+'v'+$('#date_end').val(), 0, 'id', 'asc', 'ignore');
+		
+	});
 	
 	$('#calendar th a').live('click', function(event){
 		

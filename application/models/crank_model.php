@@ -84,7 +84,7 @@ class Crank_model extends CI_Model {
 	
 /* --------------------------------------------------------------------------------- */	
 	
-	public function get_all_entries($table_name, $where = array(), $start = 0, $limit = false, $sort = 'id', $sort_type = 'asc', $fields = array(), $joins = array(), $single = false, $like = array(), $distinct = false)
+	public function get_all_entries($table_name, $where = array(), $start = 0, $limit = false, $sort = 'id', $sort_type = 'asc', $fields = array(), $joins = array(), $single = false, $like = array(), $distinct = false, $or_where = array())
 	{	
 		if (!empty($fields))
 		{
@@ -111,13 +111,23 @@ class Crank_model extends CI_Model {
 		{
 			foreach ($where as $key=>$value)
 			{
-				$this->db->where($table_name.'.'.$key, $value);
+				if ($value !== '') (strpos($key, 'IS NULL') !== false) ? $this->db->where($table_name.'.'.$key, $value, false) : $this->db->where($table_name.'.'.$key, $value);
+			}
+		}				
+		
+		if (!empty($or_where))
+		{
+			foreach ($or_where as $key=>$value)
+			{
+				if ($value !== '') (strpos($key, 'IS NULL') !== false) ? $this->db->or_where($table_name.'.'.$key, $value, false) : $this->db->or_where($table_name.'.'.$key, $value);
 			}
 		}		
 		
-		if ($distinct) $this->db->distinct();
+		if ($distinct) $this->db->distinct();			
 		
 		$query = $this->db->get($table_name);
+		
+		
 		
 		$results = $query->result_array();		
 		

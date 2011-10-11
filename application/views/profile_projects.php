@@ -6,20 +6,34 @@
 		<div class="project-item-content">
 			<a href="<?php echo $base.'project/'.$project['slug']?>" target="_blanck"><?php echo $project['name']?></a><br />			
 			<?php 
-				$date = explode(" ",date("j M Y",strtotime($project['date'])));
-				echo $lang['date'].': '.$date[0].' '.$lang['month'][strtolower($date[1])].' '.$date[2];	
+				echo $lang['date_start'].': ';
+				if (!empty($project['date_start']))
+				{
+					$date = explode(" ",date("j M Y",strtotime($project['date_start'])));
+					echo $date[0].' '.$lang['month'][strtolower($date[1])].' '.$date[2];	
+				}
+				else echo $lang['no_data'];
+			?>			
+			<?php 
+				echo $lang['date_end'].': ';
+				if (!empty($project['date_end']))
+				{
+					$date = explode(" ",date("j M Y",strtotime($project['date_end'])));
+					echo $date[0].' '.$lang['month'][strtolower($date[1])].' '.$date[2];	
+				}
+				else echo $lang['no_data'];
+			?>
+			<br/><br/>
+			<?php
+				echo $lang['place'].': '; echo !(empty($project['place'])) ? $project['place'] : $lang['no_data'];
 			?>
 			<br/>
 			<?php
-				echo $lang['place'].': '.$project['place'];
+				echo $lang['group'].': '; echo !(empty($project['group_name'])) ? $project['group_name'] : $lang['no_data'];
 			?>
 			<br/>
 			<?php
-				echo $lang['group'].': '.$project['group_name'];
-			?>
-			<br/>
-			<?php
-				echo $lang['note'].': '.$project['short_description'];
+				echo $lang['note'].': '; echo !(empty($project['short_description'])) ? $project['short_description'] : $lang['no_data'];
 			?>
 			<br/>
 			<div class="actions">
