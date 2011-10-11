@@ -1,7 +1,6 @@
 <div id="wrapper">
 	<div id="content">		
-		<div id="dealer-content">
-			<?php echo $page['body']?>
+		<div id="dealer-content">			
 			<div style="float:right; width:300px;">
 				<div id="anonses-container">
 					<div class="sub-hdr"><h3><?php echo $lang['anonses']?></h3></div>

@@ -8,6 +8,7 @@
 		<h3>
 			<a class="single" id="services/<?php echo $service['id']?>" href="javascript:void(0);"><?php echo $service['name'] ?></a>
 		</h3>
+		<p style="font-size:10px;"><?php echo $lang['group']?>:  <?php echo $service['group_name']?></p>
 		<p><?php echo $lang['price']?>:  <?php echo $service['price']?> грн. </p>
 		<a class="buy-btn" href="javascript:void(0);"><?php echo $lang['buy_now']?></a>
 	</div>

@@ -8,6 +8,14 @@ var titles = new Array();
 
 $(document).ready(function(){	
 	
+	$('.clear_search').click(function(){
+		$('#search').val('');
+		var page  = parseInt($('.curent_page').html());
+		var start = (page-1)*limit;				
+		var block = $('.items');
+		get_items(block, entry, start, sort, sort_type, 'ignore');
+	});		
+	
 	$('.set_poll').live('click', function(){
 		
 		var URL = base_url + 'main/update_poll'
@@ -100,6 +108,7 @@ $(document).ready(function(){
 		var start = 0;
 		var block = $('.items');
 		sort = 'id';
+		group = 0;
 		entry = $(this).attr('id');
 		get_items(block, entry, start, sort, sort_type, true);
 	});
@@ -164,7 +173,7 @@ $(document).ready(function(){
 	});
 	
 	//GROUP FILTER
-	$('#groups').change(function(){
+	$('.groups').change(function(){
 		group = $(this).val();
 		var start = 0;
 		var block = $('.items');
@@ -177,7 +186,16 @@ $(document).ready(function(){
 		var block = $('.items');
 		get_items(block, entry, start, sort, sort_type, 'ignore');
 	});		
-
+	
+	$('#search').keypress(function(event){				
+		if (event.which == '13') 
+		{
+			var start = 0;
+			var block = $('.items');
+			get_items(block, entry, start, sort, sort_type, 'ignore');
+	    }
+	});
+	
 });
 
 //TAG SEARCH

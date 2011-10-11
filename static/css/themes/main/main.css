@@ -224,8 +224,8 @@ clear:both;
 margin:10px 20px;
 }
 
-#sub-nav ul li a.selected, #sub-nav-profile ul li a.selected{
-color:#999;
+#sub-nav ul li a.selected, #sub-nav-profile ul li a.selected, #links ul li a.selected{
+color:#999 !important;
 }
 
 .total{
@@ -629,18 +629,19 @@ DESCRIPTION: Store Styles
 */
 
 .store-item {
-float:left;
-margin-top:20px;
-margin-left:40px;
+float: left;
+margin-left: 10px;
+margin-top: 20px;
+width: 157px;
 }
 
 .store-item-img {
-width:100px;
-height:100px;
-padding:5px;
-border:1px solid #ccc;
-margin-bottom:10px;
-text-align:center;
+border: 1px solid #CCCCCC;
+height: 100px;
+margin-bottom: 10px;
+padding: 10px 23px;
+text-align: center;
+width: 100px;
 }
 
 .anons_thumb{
@@ -865,14 +866,13 @@ line-height: 1;
 -moz-box-shadow: 0 1px 3px #999;
 -webkit-box-shadow: 0 1px 3px #999;
 text-shadow: 0 -1px 1px #222;
-border-bottom: 1px solid #222;
 position: relative;
 cursor: pointer;
 -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
 border-bottom: 1px solid rgba(0,0,0,0.25);
-font-size:.9em;
+font-size:11px !important; 
 }
 
 
@@ -1064,6 +1064,7 @@ margin-top:5px;
 #languages #links{
 float:left;
 margin-left:5px;
+width:400px;
 }
 
 #languages #links a{
@@ -1071,6 +1072,8 @@ margin-right:5px;
 display:block;
 float:left;
 height:25px;
+color:#666;
+font-size:11px;
 }
 
 .title-russian{
@@ -1657,6 +1660,9 @@ width:0;
 overflow:hidden;
 }
 
+.hidden{
+display:none;
+}
 
 /**
 * IE-7 FIXING
@@ -1903,12 +1909,12 @@ margin-left:0px;
 float:none;
 }
 #search_btn{
-font-weight:bold;
 cursor:pointer;
-color:#ccc;
-}
-#search_btn:hover{
-color:#666;
+width:18px;
+height:18px;
+background:url("/static/images/search.png") no-repeat;
+margin:2px 5px 0px;
+float:left;
 }
 .poll_title{
 text-align:center;
@@ -1953,4 +1959,19 @@ margin:0px 5px;
 
 #limit a.selected{
 color:#ccc;
+}
+
+#links ul li{
+list-style:none;
+float:left;
+margin-top:6px;
+}
+
+.clear_search{
+width:18px;
+height:18px;
+float:left;
+background:url("/static/images/clear.png") no-repeat;
+margin-top:2px;
+cursor:pointer;
 }

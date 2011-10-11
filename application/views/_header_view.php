@@ -36,6 +36,12 @@
 				<?php if (!empty($user_id)):?>
 					<a href="<?php echo $base;?>login/logout"><img src="<?php echo $base_img?>exit.png" style="height:21px; margin-top:3px;"/></a>
 				<?php endif;?>
+				<ul>
+				<?php if (empty($user_id)):?>
+					<li><a href="<?php echo $base;?>login"><?php echo $lang['menu_login'];?></a></li>
+					<li><a href="<?php echo $base;?>signup" <?php if ($main_navi == 3) echo "class='selected'" ?>><?php echo $lang['signup'];?></a></li>
+				<?php endif;?>
+				</ul>
 			</div>			
 			<div id="flags">
 			<?php
@@ -66,11 +72,7 @@
 				?>
 				<?php if (!empty($user_id)):?>
 					<li><a href="<?php echo $base;?>profile" <?php if ($main_navi == 2) echo "class='selected'" ?>><?php echo $lang['menu_profile'];?></a></li>
-				<?php endif;?>
-				<?php if (empty($user_id)):?>
-					<li><a href="<?php echo $base;?>login"><?php echo $lang['menu_login'];?></a></li>
-					<li><a href="<?php echo $base;?>signup" <?php if ($main_navi == 3) echo "class='selected'" ?>><?php echo $lang['signup'];?></a></li>
-				<?php endif;?>
+				<?php endif;?>				
 			</ul>
 		</div>
 	</div><!--  #wrapper-header -->	

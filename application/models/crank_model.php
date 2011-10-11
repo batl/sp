@@ -172,7 +172,7 @@ class Crank_model extends CI_Model {
 					
 					foreach ($like as $key=>$value)
 					{						
-						if (strpos($row[$key], $value)) $status = true;
+						if (!empty($row[$key]) && strpos(strtolower($row[$key]), strtolower($value))!==false) $status = true;
 					}
 					
 					$status ? array_push($response, $row) : '';

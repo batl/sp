@@ -60,6 +60,14 @@ class Page extends Crank {
 				{
 					case 'shop':
 												
+						$this->params['goods_categories'] = $this->Crank_model->get_all_entries(
+							"sp_goods_categories"
+						);
+						
+						$this->params['services_categories'] = $this->Crank_model->get_all_entries(
+							"sp_services_categories"
+						);
+						
 						$this->include_js('pages/goods.js');
 						$this->include_js('jquery/lightbox.js');
 						$this->include_css('lightbox.css');				

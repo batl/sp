@@ -249,12 +249,20 @@ class Crank extends CI_Controller {
 				case 'sp_users':
 					$where['group_id'] = $group;
 					break;
+				case 'sp_goods':
+				case 'sp_services':
+					$where['type'] = $group;
+					break;
 				default:
 					$where['group'] = $group;
 					break;
 			}
 		}
-		!empty($search) ? $like['tags'] = $search : '';
+		if (!empty($search))
+		{
+			$like['tags'] = $search;
+			$like['name'] = $search;
+		}		
 		
 		empty($sort) ? $sort = 'id': '';
 		empty($sort_type) ? $sort_type = 'asc': '';						
