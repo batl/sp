@@ -6,6 +6,10 @@ var titles = new Array();
 
 $(document).ready(function(){					
 	
+	$('.remove_image').live('click', function(){
+		$(this).parents('li').find('img').attr({'small':'', 'big':'', 'src':''});
+	});
+	
 	$('#limit a').click(function(){
 		limit = parseInt($(this).html());
 		$('#limit a').removeClass('selected');
@@ -13,22 +17,26 @@ $(document).ready(function(){
 		var page  = parseInt($('.curent_page span').html());
 		var start = (page-1)*limit;
 		var block = $(this).parents('.list div:first');
-		get_items(block, entry, start, sort, sort_type, true);
+		get_items(block, entry, start, sort, sort_type, 'ignore');
 	});
 	
-	$('.history').live('click', function(){								
+	$('.history').live('click', function(){												
+		
+		story = removeDuplicateElement(story);				
 		
 		doing = story[story.length-2].split('-');
 		
 		var title = titles[titles.length-2];
 		
+		entry = doing[1];
+		
 		switch (doing[0])
 		{
 			case 'items':
-				get_items($('.items'), doing[1], 0, sort, sort_type, false);
+				get_items($('.items'), entry, 0, sort, sort_type, false);
 				break;
 			case 'view':
-				get_view($('.items'), doing[1], doing[2], doing[3], false);
+				get_view($('.items'), entry, doing[2], doing[3], false);
 				break;
 		}
 						
@@ -79,8 +87,7 @@ $(document).ready(function(){
 		$(this).addClass('selected');
 		$('#content h2:first').html($(this).html());
 		var start = 0;
-		var block = $(this).parents('.list div:first');
-		sort = 'id';
+		var block = $(this).parents('.list div:first');		
 		entry = $(this).attr('id');
 		get_items(block, entry, start, sort, sort_type, true);
 	});
@@ -91,13 +98,13 @@ $(document).ready(function(){
 		var page = parseInt($(this).html());
 		var start = (page-1)*limit;
 		var block = $(this).parents('.list div:first');
-		get_items(block, entry, start, sort, sort_type, true);
+		get_items(block, entry, start, sort, sort_type, 'ignore');
 	});
 	$('.first_page a').live('click',function(event){
 		event.preventDefault();		
 		var start = 0;
 		var block = $(this).parents('.list div:first');
-		get_items(block, entry, start, sort, sort_type, true);
+		get_items(block, entry, start, sort, sort_type, 'ignore');
 	});
 	$('.prev_page a').click(function(event){
 		event.preventDefault();
@@ -105,7 +112,7 @@ $(document).ready(function(){
 		var page = parseInt($('.curent_page span').html())-1;
 		var start = (page-1)*limit;
 		var block = $(this).parents('.list div:first');
-		get_items(block, entry, start, sort, sort_type, true);
+		get_items(block, entry, start, sort, sort_type, 'ignore');
 	});
 	$('.next_page a').click(function(event){
 		event.preventDefault();
@@ -113,7 +120,7 @@ $(document).ready(function(){
 		var page = parseInt($('.curent_page span').html())+1;
 		var start = (page-1)*limit;
 		var block = $(this).parents('.list div:first');
-		get_items(block, entry, start, sort, sort_type, true);
+		get_items(block, entry, start, sort, sort_type, 'ignore');
 	});
 	//SORT
 	$('.t_title td.sorting').live('click', function(){
@@ -122,7 +129,7 @@ $(document).ready(function(){
 		sort  = $(this).find('span').html();
 		sort_type = $(this).attr('sort');		
 		var block = $(this).parents('.list div:first');
-		get_items(block, entry, start, sort, sort_type, true);
+		get_items(block, entry, start, sort, sort_type, 'ignore');
 	});
 });
 
@@ -190,6 +197,10 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 			
 			story.push('items-'+entry);
 			titles.push($('#content h2:first').html());				
+		}
+		else if (clear_history == 'ignore')
+		{
+		
 		}
 		else 
 		{
@@ -264,37 +275,7 @@ function get_view(block, entry, action, id, clear_history)
 	{
 		$('.world_preloader').hide();
 	
-		block.html(data.response);
-		
-		if (clear_history == undefined)
-		{
-			if (story.length)
-			{
-				$('.history').remove();
-		
-				$('#content h2:first').before('<span class="history"></span>');
-			}
-			
-			story.push('view-'+entry+'-'+action+'-'+id);
-			titles.push($('#content h2:first').html());			
-		}
-		else 
-		{
-			if (clear_history)
-			{			
-				story = new Array();
-				titles = new Array();
-				story.push('view-'+entry+'-'+action+'-'+id);
-				titles.push($('#content h2:first').html());
-			}
-			else
-			{
-				story.pop(); 
-				titles.pop();
-			}
-			
-			if (story.length < 2) $('.history').remove();
-		}								
+		block.html(data.response);									
 
 		if ($('#foto').length) image_upload(entry);
 		if ($('#background').length) image_upload(entry, 'background', 'site_background', 960);
@@ -431,7 +412,7 @@ function save_entry(block, entry, id, single)
 			var page  = parseInt($('.curent_page span').html());
 			var start = (page-1)*12;
 				
-			get_items(block, entry, start, sort, sort_type, true);
+			get_items(block, entry, start, sort, sort_type, 'ignore');
 		}
 		
 	},"json");
@@ -605,4 +586,19 @@ function tiny_init()
 					customformat : {inline : 'span', styles : {color : '#00ff00', fontSize : '20px'}, attributes : {title : 'My custom format'}}
 			}
 	});
+}
+
+function removeDuplicateElement(arrayName)
+{
+	var newArray=new Array();
+	label:for(var i=0; i<arrayName.length;i++ )
+	{
+		for(var j=0; j<newArray.length;j++ )
+		{
+			if(newArray[j]==arrayName[i])
+				continue label;
+		}
+		newArray[newArray.length] = arrayName[i];
+	}
+	return newArray;
 }

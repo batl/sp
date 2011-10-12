@@ -4,7 +4,11 @@ $(document).ready(function(){
 	
 	var block = $('#items');
 	
-	get_items(block, entry, 0, 'date', 'desc');
+	sort = 'date';
+	
+	sort_type = 'desc';
+	
+	get_items(block, entry, 0, sort, sort_type);
 	
 	$(document).ready(function() {
 		$('#s1, #s2').cycle({

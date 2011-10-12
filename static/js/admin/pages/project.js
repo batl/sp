@@ -46,6 +46,42 @@ $(document).ready(function(){
 		
 	});
 	
+	$('.projects_news').live('click', function(){
+		
+		var id = $(this).parents('tr').find('td:first').html();					
+		
+		$('#content h2:first').html($(this).html()+" "+$(this).parents('tr').find('td').eq(2).html());
+		
+		entry = 'news_'+id;
+		
+		get_items(block,entry, 0, 'id', 'asc');
+		
+	});
+	
+	$('.projects_polls').live('click', function(){
+		
+		var id = $(this).parents('tr').find('td:first').html();					
+		
+		$('#content h2:first').html($(this).html()+" "+$(this).parents('tr').find('td').eq(2).html());
+		
+		entry = 'poll_'+id;
+		
+		get_items(block,entry, 0, 'id', 'asc');
+		
+	});
+	
+	$('.poll_answers').live('click', function(){
+		
+		var id = $(this).parents('tr').find('td:first').html();					
+		
+		$('#content h2:first').html($(this).parents('tr').find('td').eq(1).html());
+		
+		entry = 'pollanswers_'+id;
+		
+		get_items(block,entry, 0, 'id', 'asc');
+		
+	});	
+	
 	$('.stage_partners').live('click', function(){
 		
 		var id = $(this).parents('tr').find('td:first').html();					

@@ -29,21 +29,22 @@ class Poll extends Crank {
 		$this->include_view('poll_view',$this->params);
 	}
 	
-	public function get_items()
+	public function get_items($id = 0)
 	{
 		parent::get_items(
 			false,  // table name (false = default controller table)
 			array(
 				'sp_poll' => array('id','name','date_start','date_end', 'active')
-			),
-			array(),			
-			array('date_start' => 'date', 'date_end' => 'date', 'active' => 'bool')
+			),// fields
+			array(),	// joins		
+			array('date_start' => 'date', 'date_end' => 'date', 'active' => 'bool'), // types
+			array('project_id' => $id) // where
 		);
 	}		
 	
-	public function get_view()
+	public function get_view($id = 0)
 	{		
-		parent::get_view(array('pages' => 'sp_pages'));			
+		parent::get_view(array('pages' => 'sp_pages'), false, false, array('project_id' => $id));			
 	}
 	
 	public function save_entry()

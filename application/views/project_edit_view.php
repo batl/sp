@@ -17,7 +17,7 @@
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["slug"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
-					<input name='slug' language="no" type='text' value='<?php echo $entry['slug']?>' class='medium' tabindex='3'/>
+					<input name='slug' language="no" type='text' value='<?php echo $entry['slug']?>' class='medium' tabindex='3' disabled="disabled"/>
 				</div>
 			</li>
 			<img id="foto_img" name="logo" big="<?php echo $entry['logo']?>" small="<?php echo $entry['thumb']?>" src="<?php echo $base.$entry['thumb']?>"/>
@@ -147,6 +147,7 @@
 				<div class='ginput_container'>
 					<input name='userfile' language="no" id='background' type='file' value='' class='upload' tabindex='3'/>
 				</div>
+				<a href="javascript:void(0);" class="remove_image"><?php echo $lang['remove_image']?></a>
 			</li>
 			<li class='gfield'>
 				<div class='ginput_container'>					

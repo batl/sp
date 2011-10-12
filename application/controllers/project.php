@@ -28,7 +28,7 @@ class Project extends Crank {
 			'id',
 			'asc',
 			array(
-				'sp_projects' => array('id','user_id','thumb','name','date_start','date_end','short_description','slug','purpose','poster','banner','note', 'tags', 'bg_image', 'bg_color'),
+				'sp_projects' => array('id','user_id','logo','name','date_start','date_end','short_description','slug','purpose','poster','banner','note', 'tags', 'bg_image', 'bg_color'),
 				'sp_places' => array('name as place'),
 				'sp_projects_categories' => array('name as group_name')
 			),
@@ -38,6 +38,33 @@ class Project extends Crank {
 			),
 			true
 		);
+		
+		$this->params['poll'] = $this->Crank_model->get_all_entries(
+			"sp_poll", 							
+			array(
+				'active' => 1,
+				'project_id' => $this->params['project']['id'],
+				'date_start <=' => date("Y-m-d"),
+				'date_end >=' => date("Y-m-d")
+			),
+			0,
+			false,
+			'id',
+			'asc',
+			array(),
+			array(),
+			true
+		);
+		
+		if (!empty($this->params['poll']))
+		{
+			$this->params['poll_answers'] = $this->Crank_model->get_all_entries(
+				"sp_poll_answers", 							
+				array(
+					'poll_id' => $this->params['poll']['id']
+				)
+			);
+		}
 		
 		$this->session->set_userdata(array('project' => $this->params['project']['id']));				
 		

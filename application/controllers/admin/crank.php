@@ -220,7 +220,7 @@ class Crank extends CI_Controller {
 				
 				// Entry Actions 
 				
-				$html .= '<td>';
+				$html .= '<td class="actions">';
 					if (!in_array('edit', $disabled_actions))
 						$html .= '<a href="javascript:void(0);" class="edit_item">'.$this->params['lang']['edit'].'</a>';
 					if (!in_array('remove', $disabled_actions))
@@ -233,19 +233,21 @@ class Crank extends CI_Controller {
 							break;
 						case "sp_projects":
 							$html .= '<a href="javascript:void(0);" class="projects_stages">'.$this->params['lang']['stages'].'</a>';
+							$html .= '<a href="javascript:void(0);" class="projects_news">'.$this->params['lang']['news'].'</a>';
+							$html .= '<a href="javascript:void(0);" class="projects_polls">'.$this->params['lang']['poll_title'].'</a>';
 							break;
 						case "sp_events":
 							$html .= '<a href="javascript:void(0);" id="events-curators-organizations" class="event_action">'.$this->params['lang']['curators'].'</a>';
-							$html .= '&nbsp;<a href="javascript:void(0);" id="events-methods-methods" class="event_action">'.$this->params['lang']['methods'].'</a>';
-							$html .= '&nbsp;<a href="javascript:void(0);" id="events-organizes-organizations" class="event_action">'.$this->params['lang']['organizators'].'</a>';
+							$html .= '<a href="javascript:void(0);" id="events-methods-methods" class="event_action">'.$this->params['lang']['methods'].'</a>';
+							$html .= '<a href="javascript:void(0);" id="events-organizes-organizations" class="event_action">'.$this->params['lang']['organizators'].'</a>';
 							break;
 						case "sp_projectsstages":
-							$html .= '&nbsp;<a href="javascript:void(0);" id="projectsstages-partners-organizations" class="stage_partners">'.$this->params['lang']['partners'].'</a>';
-							$html .= '&nbsp;<a href="javascript:void(0);" id="photos-report-photos" class="stage_action">'.$this->params['lang']['photos'].'</a>';
-							$html .= '&nbsp;<a href="javascript:void(0);" id="videos-report-videos" class="stage_action">'.$this->params['lang']['video'].'</a>';
+							$html .= '<a href="javascript:void(0);" id="projectsstages-partners-organizations" class="stage_partners">'.$this->params['lang']['partners'].'</a>';
+							$html .= '<a href="javascript:void(0);" id="photos-report-photos" class="stage_action">'.$this->params['lang']['photos'].'</a>';
+							$html .= '<a href="javascript:void(0);" id="videos-report-videos" class="stage_action">'.$this->params['lang']['video'].'</a>';
 							break;
 						case "sp_poll":
-							$html .= '&nbsp;<a href="javascript:void(0);" class="poll_answers">'.$this->params['lang']['poll_answers'].'</a>';							
+							$html .= '<a href="javascript:void(0);" class="poll_answers">'.$this->params['lang']['poll_answers'].'</a>';							
 							break;
 					}
 					

@@ -94,8 +94,7 @@ $(document).ready(function(){
 		event.preventDefault();				
 		$('#sub-hdr h3').html($(this).html());
 		var start = 0;
-		var block = $('.items');
-		sort = 'id';
+		var block = $('.items');		
 		entry = $(this).attr('id');
 		get_items(block, entry, start, sort, sort_type);
 	});
@@ -106,8 +105,7 @@ $(document).ready(function(){
 		$(this).addClass('selected');
 		$('#sub-hdr h3').html($(this).html());
 		var start = 0;
-		var block = $('.items');
-		sort = 'id';
+		var block = $('.items');		
 		group = 0;
 		entry = $(this).attr('id');
 		get_items(block, entry, start, sort, sort_type, true);
@@ -267,7 +265,7 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 			if (story.length < 2) $('.history').remove();
 		}										
 		
-		if (sub_entry.length == 1) transform_pagination(data.curent_page, data.total); else $('#paging, #limit').hide();
+		if (sub_entry.length == 1) transform_pagination(data.curent_page, data.total); else if (!parseInt(sub_entry[1])) transform_pagination(data.curent_page, data.total); else $('#paging, #limit').hide();
 		
 	},"json");
 }
@@ -286,37 +284,7 @@ function get_view(block, entry, action, id, clear_history)
 	{
 		$('.world_preloader').hide();
 	
-		block.html(data.response);
-		
-		if (clear_history == undefined)
-		{
-			if (story.length)
-			{
-				$('.history').remove();
-		
-				$('#sub-hdr h3').before('<span class="history"></span>');
-			}
-			
-			story.push('view-'+entry+'/'+action+'/'+id);
-			titles.push($('#sub-hdr h3').html());			
-		}
-		else 
-		{
-			if (clear_history)
-			{			
-				story = new Array();
-				titles = new Array();
-				story.push('view-'+entry+'/'+action+'/'+id);
-				titles.push($('#sub-hdr h3').html());
-			}
-			else
-			{
-				story.pop(); 
-				titles.pop();
-			}
-			
-			if (story.length < 2) $('.history').remove();
-		}				
+		block.html(data.response);								
 		
 		if ($('#foto').length) image_upload(entry);
 		if ($('#background').length) image_upload(entry, 'background', 'site_background', 960);
@@ -358,7 +326,8 @@ function get_view(block, entry, action, id, clear_history)
 
 
 function transform_pagination(curent_page, total)
-{
+{		
+
 	$('#paging, #limit').show();
 	
 	var html = '<div id="page-numbers">';

@@ -203,8 +203,8 @@ class Page extends Crank {
 						'sp_projects'=>'project_result'
 					);
 					$table_name = "sp_goods";
-					(!empty($entry[1]) && empty($day)) ? $single = true : $single = false;
-					(!empty($entry[1]) && empty($day)) ? $where = array('id' => intval($entry[1])):'';
+					(!empty($entry[1])) ? $single = true : $single = false;
+					(!empty($entry[1])) ? $where = array('id' => intval($entry[1])):'';
 				break;
 			case  'services':
 					!empty($entry[1]) ? $custom_view = 'shop_services_single' : $custom_view = 'shop_services';					
@@ -220,8 +220,8 @@ class Page extends Crank {
 						'sp_projects'=>'project_result'
 					);	
 					$table_name = "sp_services";
-					(!empty($entry[1]) && empty($day)) ? $single = true : $single = false;
-					(!empty($entry[1]) && empty($day)) ? $where = array('id' => intval($entry[1])):'';
+					(!empty($entry[1])) ? $single = true : $single = false;
+					(!empty($entry[1])) ? $where = array('id' => intval($entry[1])):'';
 				break;
 			case  'news':
 					!empty($entry[1]) ? $custom_view = 'blog_news_single' : $custom_view = 'blog_news';					
@@ -229,8 +229,9 @@ class Page extends Crank {
 						'sp_news' => array('id','name','date','short_description', 'description')
 					); 		// get fields		
 					$table_name = "sp_news";
-					(!empty($entry[1]) && empty($day)) ? $single = true : $single = false;
-					(!empty($entry[1]) && empty($day)) ? $where = array('id' => intval($entry[1])):'';
+					(!empty($entry[2])) ? $project_id = $entry[2] : $project_id = 0;
+					(!empty($entry[1])) ? $single = true : $single = false;
+					(!empty($entry[1])) ? $where = array('id' => intval($entry[1])): $where = array('project_id' => $project_id);
 				break;
 			case  'anonses':
 					!empty($entry[1]) ? $custom_view = 'blog_anonses_single' : $custom_view = 'blog_anonses';					
@@ -238,8 +239,8 @@ class Page extends Crank {
 						'sp_anonses' => array('id', 'thumb', 'name','link', 'description')
 					); 		// get fields
 					$table_name = "sp_anonses";
-					(!empty($entry[1]) && empty($day)) ? $single = true : $single = false;
-					(!empty($entry[1]) && empty($day)) ? $where = array('id' => intval($entry[1])):'';
+					(!empty($entry[1])) ? $single = true : $single = false;
+					(!empty($entry[1])) ? $where = array('id' => intval($entry[1])):'';
 				break;
 			case 'projects':											
 			case 'project':
@@ -275,7 +276,7 @@ class Page extends Crank {
 				$custom_view = 'profile_projects';
 				
 				$fields = array(
-					'sp_projects' => array('id','user_id','thumb','name','date_start', 'date_end','short_description','slug','tags','in_process'),
+					'sp_projects' => array('id','user_id','logo','name','date_start', 'date_end','short_description','slug','tags','in_process'),
 					'sp_places' => array('name as place'),
 					'sp_projects_categories' => array('name as group_name')
 				); 
@@ -387,8 +388,6 @@ class Page extends Crank {
 				break;
 		}
 		
-		//(!empty($entry[1]) && empty($day)) ? $single = true : $single = false;
-		//(!empty($entry[1]) && empty($day)) ? $where = array('id' => intval($entry[1])):'';
 		
 		parent::get_items($table_name, $custom_view, $fields, $joins, $where, $single, $types, $disabled_actions, array(), $or_where);
 			

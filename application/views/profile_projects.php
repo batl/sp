@@ -1,7 +1,7 @@
 <?php foreach ($items_array as $project):?>
 	<div class="project-item">
 		<div class="anons_thumb">
-			<img src="<?php echo $base.$project['thumb']?>" />
+			<img src="<?php echo $base.$project['logo']?>" />
 		</div>
 		<div class="project-item-content">
 			<a href="<?php echo $base.'project/'.$project['slug']?>" target="_blanck"><?php echo $project['name']?></a><br />			

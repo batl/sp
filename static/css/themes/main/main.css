@@ -53,7 +53,6 @@ font-family: Georgia, Times, serif;
 font-style:italic;
 font-weight:normal;
 color: #666; 
-text-shadow: 1px 1px 0px #fff;
 font-size:2em;
 padding-bottom:20px;
 }
@@ -268,7 +267,7 @@ display:none;
 box-shadow: 0px 0px 3px #ccc;
 }
 
-#content-container, #content-container-100, #news-container, #anonses-container, #poll {
+#content-container, #content-container-100, #news-container, #anonses-container, #poll, #single_content {
 float:left;
 margin-left:20px;
 width:670px;
@@ -284,6 +283,11 @@ background-color:#fff;
 -webkit-border-radius: 5px;
 -khtml-border-radius: 5px;
 border-radius: 5px;
+}
+
+#single_content{
+margin:20px 0px;
+width:960px;
 }
 
 #content-container-100{
@@ -905,6 +909,12 @@ width:960px;
 float:left;
 width:100%;
 height:33px;
+background-color:#fff;
+-moz-box-shadow: 0px 0px 3px #ccc; 
+-khtml-box-shadow: 0px 0px 3px #ccc; 
+-webkit-box-shadow: 0px 0px 3px #ccc; 
+box-shadow: 0px 0px 3px #ccc;
+margin-bottom:10px;
 }
 
 #footer-links ul {
@@ -1070,7 +1080,6 @@ margin-top:5px;
 #languages #links{
 float:left;
 margin-left:5px;
-width:400px;
 }
 
 #languages #links a{
@@ -1080,18 +1089,6 @@ float:left;
 height:25px;
 color:#666;
 font-size:11px;
-}
-
-.title-russian{
-background:url("/static/images/themes/main/title.png") no-repeat;
-}
-
-.title-ukrainian{
-background:url("/static/images/themes/main/title-ua.png") no-repeat;
-}
-
-.title-english{
-background:url("/static/images/themes/main/title-en.png") no-repeat;
 }
 
 #dealer-nav {

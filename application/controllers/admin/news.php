@@ -31,21 +31,22 @@ class News extends Crank {
 		$this->include_view('news_view',$this->params);
 	}
 	
-	public function get_items()
+	public function get_items($id = 0)
 	{
 		parent::get_items(
 			false,  // table name (false = default controller table)
 			array(
 				'sp_news' => array('id','name','date')
-			),
-			array(),			
-			array('date' => 'date')
+			),// fields
+			array(),	// joins		
+			array('date' => 'date'), //types
+			array('project_id' => $id) // where
 		);
 	}		
 	
-	public function get_view()
+	public function get_view($id = 0)
 	{		
-		parent::get_view();			
+		parent::get_view(array(), false, false, array('project_id' => $id));			
 	}
 	
 	public function save_entry()

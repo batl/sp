@@ -1209,3 +1209,10 @@ margin:0px 5px;
 #limit a.selected{
 color:#ccc;
 }
+
+.actions a{
+display: inline-block;
+padding: 0 2px;
+height:16px;
+vertical-align:middle;
+}

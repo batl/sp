@@ -16,14 +16,14 @@ class Crank extends CI_Controller {
 		$this->load->model("Crank_model");
 						
 		/* set & load language */
-			$this->params['language'] = $this->session->userdata('lang');		
-			if (empty($this->params['language'])) $this->session->set_userdata(array('lang'=>'russian'));		
-			$this->params['language'] = $this->session->userdata('lang');		
-			$this->params['language_id'] = $this->Crank_model->get_language_id($this->params['language']);		
+			$this->params['language'] 				= $this->session->userdata('lang');		
+			if (empty($this->params['language'])) 	$this->session->set_userdata(array('lang'=>'russian'));		
+			$this->params['language'] 				= $this->session->userdata('lang');		
+			$this->params['language_id'] 			= $this->Crank_model->get_language_id($this->params['language']);		
 			$this->session->set_userdata(array('lang_id'=>$this->params['language_id']));		
 			$this->lang->load('global', $this->params['language']);			
-			$this->params['lang'] = $this->lang->language;
-			$this->params['languages'] = $this->Crank_model->get_languages();
+			$this->params['lang'] 			= $this->lang->language;
+			$this->params['languages'] 		= $this->Crank_model->get_languages();
 		/* end language*/
 		$this->params['current_settings'] = $this->Crank_model->get_entry_by_data("sp_settings", true, 'current', array('id'=>1));
 		$this->params['include_keywords'] = explode(',',$this->params['current_settings']['keywords']);
@@ -31,6 +31,11 @@ class Crank extends CI_Controller {
 		$this->include_js('jquery/jquery.min.js');
 		$this->include_js('main.js');		
 		$this->include_css('themes/'.$this->params['current_settings']['theme'].'/main.css');	
+		
+		if (!empty($this->params['user_id']))
+		{					
+			$this->params['user_info'] = $this->Crank_model->get_entry_by_data("sp_users", true, 'current', array('id' => $this->params['user_id']));
+		}
 		
 		$this->load->model("Page_model");	
 
