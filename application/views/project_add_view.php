@@ -46,9 +46,19 @@
 					?>
 				</div>
 			</li>
-			<li class='gfield'><label class='gfield_label'><?php echo $lang["date"]?><span class='gfield_required'>*</span>:</label>
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["in_process"]?>:</label>
 				<div class='ginput_container'>
-					<input name='date' language="no" type='text' value='' class='medium picker' tabindex='3'/>
+					<input name='in_process' type='checkbox' class='medium' tabindex='4'/>
+				</div>
+			</li>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["date_start"]?><span class='gfield_required'>*</span>:</label>
+				<div class='ginput_container'>
+					<input name='date_start' language="no" type='text' value='' class='medium picker' tabindex='3'/>
+				</div>
+			</li>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["date_end"]?><span class='gfield_required'>*</span>:</label>
+				<div class='ginput_container'>
+					<input name='date_end' language="no" type='text' value='' class='medium picker' tabindex='3'/>
 				</div>
 			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["group"]?><span class='gfield_required'>*</span>:</label>

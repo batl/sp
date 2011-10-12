@@ -58,8 +58,8 @@
 			<h2><?php echo $current_settings['description']?></h2>
 		</div>
 		<div id="dealer-nav">
-			<ul>				
-				<!--<li><a href="<?php echo $base;?>" <?php if ($main_navi == 1) echo "class='selected'" ?>><?php echo $lang['menu_home'];?></a></li>-->
+			<ul>								
+				<li><a href="<?php echo $base;?>" <?php if ($main_navi == 1) echo "class='selected'" ?>><?php echo $lang['menu_home'];?></a></li>
 				<?php if (!empty($header_pages)):
 						foreach ($header_pages as $page):						
 						?>

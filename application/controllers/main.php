@@ -14,6 +14,46 @@ class Main extends Crank {
 	{										
 		$this->set_title($this->params['lang']['menu_home']);
 		$this->set_description($this->params['lang']['menu_home']);
+		
+		$this->include_js('pages/news.js');
+		$this->include_js('jquery/lightbox.js');				
+		$this->include_js('jquery/cycle.js');				
+		$this->include_css('lightbox.css');				
+		
+		$this->params['anonses'] = $this->Crank_model->get_all_entries(
+			"sp_anonses", 
+			array(
+				'in_slider' => 1
+			)
+		);
+		
+		$this->params['poll'] = $this->Crank_model->get_all_entries(
+			"sp_poll", 							
+			array(
+				'active' => 1,
+				'on_page' => 0,
+				'date_start <=' => date("Y-m-d"),
+				'date_end >=' => date("Y-m-d")
+			),
+			0,
+			false,
+			'id',
+			'asc',
+			array(),
+			array(),
+			true
+		);
+		
+		if (!empty($this->params['poll']))
+		{
+			$this->params['poll_answers'] = $this->Crank_model->get_all_entries(
+				"sp_poll_answers", 							
+				array(
+					'poll_id' => $this->params['poll']['id']
+				)
+			);
+		}
+		
 		$this->include_view('main_view',$this->params);
 	}
 	

@@ -28,7 +28,8 @@
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["on_page"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
 					<select name="on_page">
-						<option value="0"><?php echo $lang["hide"]?></option>
+						<option value="-1"><?php echo $lang["hide"]?></option>
+						<option value="0" <?php if (!$entry['on_page']) echo 'selected="selected"';?>><?php echo $lang["menu_home"]?></option>
 						<?php
 						foreach ($pages as $page)
 						{
