@@ -5,6 +5,7 @@ class Crank extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();	
+		$this->params['front_url']			= $this->config->config['base_url'];
 		$this->params['base']				= $this->config->config['base_url'];
 		$this->params['base_img']			= $this->config->config['base_url'].'static/images/';
 		$this->params['base_css']			= $this->config->config['base_url'].'static/css/';
@@ -195,7 +196,7 @@ class Crank extends CI_Controller {
 				
 				// Entry Actions 
 				
-				$html .= '<td>';
+				$html .= '<td class="actions">';
 					if (!in_array('edit', $disabled_actions))
 						$html .= '<a href="javascript:void(0);" id="'.$row['id'].'" class="edit_item">'.$this->params['lang']['edit'].'</a>';
 					if (!in_array('remove', $disabled_actions))
@@ -217,6 +218,9 @@ class Crank extends CI_Controller {
 							$html .= '&nbsp;<a href="javascript:void(0);" id="projectsstages/partners/organizations" class="stage_partners">'.$this->params['lang']['partners'].'</a>';
 							$html .= '&nbsp;<a href="javascript:void(0);" id="photos/report/photos" class="stage_action">'.$this->params['lang']['photos'].'</a>';
 							$html .= '&nbsp;<a href="javascript:void(0);" id="videos/report/videos" class="stage_action">'.$this->params['lang']['video'].'</a>';
+							break;
+						case "sp_poll":
+							$html .= '<a href="javascript:void(0);" class="poll_answers">'.$this->params['lang']['poll_answers'].'</a>';							
 							break;
 					}
 					

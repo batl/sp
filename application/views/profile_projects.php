@@ -37,9 +37,11 @@
 			?>
 			<br/>
 			<div class="actions">
-				<a href="javascript:void(0);" id="<?php echo $project['id']?>" class="edit_item"><?php echo $lang['edit']?></a> | 
-				<a href="javascript:void(0);" id="<?php echo $project['id']?>" class="projects_stages"><?php echo $lang['stages']?></a> |
+				<a href="javascript:void(0);" id="<?php echo $project['id']?>" class="edit_item"><?php echo $lang['edit']?></a>				
 				<a href="javascript:void(0);" id="<?php echo $project['id']?>" class="remove_item"><?php echo $lang['remove']?></a>
+				<a href="javascript:void(0);" id="<?php echo $project['id']?>" class="projects_stages"><?php echo $lang['stages']?></a>
+				<a href="javascript:void(0);" id="<?php echo $project['id']?>" class="projects_news"><?php echo $lang['news']?></a>
+				<a href="javascript:void(0);" id="<?php echo $project['id']?>" class="projects_polls"><?php echo $lang['poll_title']?></a>
 			</div>
 		</div>
 	</div>	

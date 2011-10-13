@@ -19,7 +19,7 @@
 	<![endif]-->
 
 	 <script type="text/javascript">
-        var base_url = '<?php echo $base; ?>';
+        var base_url = '<?php echo $base; ?>';		
 		var admin_url = '<?php echo $base.'admin/'; ?>';
 		var language_id  = '<?php echo $language_id;?>';
     </script>
@@ -36,7 +36,7 @@
 				<?php if (!empty($user_id)):?>
 					<a href="<?php echo $base;?>login/logout"><img src="<?php echo $base_img?>exit.png" style="height:21px; margin-top:3px;"/></a>
 				<?php endif;?>
-				<ul>
+				<ul style="float:left;">
 				<?php if (empty($user_id)):?>
 					<li><a href="<?php echo $base;?>login"><?php echo $lang['menu_login'];?></a></li>
 					<li><a href="<?php echo $base;?>signup" <?php if ($main_navi == 3) echo "class='selected'" ?>><?php echo $lang['signup'];?></a></li>

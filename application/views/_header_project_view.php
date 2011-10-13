@@ -33,7 +33,7 @@
 				<div id="log-in-welcome"><span style="float:left;"><?php echo $lang['welcome'].', '.$user_info['name'].' '.$user_info['suname'].'&nbsp;';?></span><a href="<?php echo $base;?>login/logout"><img src="<?php echo $base_img?>exit.png" style="height:21px; margin-top:3px;"/></a></div>				
 			<?php endif;?>			
 			<?php if (empty($user_id)):?>
-			<ul>
+			<ul style="float:left;">
 				<li><a href="<?php echo $base;?>login"><?php echo $lang['menu_login'];?></a></li>
 				<li><a href="<?php echo $base;?>signup" <?php if ($main_navi == 3) echo "class='selected'" ?>><?php echo $lang['signup'];?></a></li>
 			</ul>

@@ -224,10 +224,21 @@ class Page extends Crank {
 					(!empty($entry[1])) ? $where = array('id' => intval($entry[1])):'';
 				break;
 			case  'news':
-					!empty($entry[1]) ? $custom_view = 'blog_news_single' : $custom_view = 'blog_news';					
-					$fields = array(
-						'sp_news' => array('id','name','date','short_description', 'description')
-					); 		// get fields		
+					if (!empty($entry[3])):
+						$custom_view = false;
+						$fields = array(
+							'sp_news' => array('id','name','date')
+						); 		// get fields		
+						$types = array(
+							'date' => 'date'
+						);
+					else:
+						$fields = array(
+							'sp_news' => array('id','name','date','short_description', 'description')
+						); 		// get fields		
+						!empty($entry[1]) ? $custom_view = 'blog_news_single' : $custom_view = 'blog_news';					
+					endif;
+										
 					$table_name = "sp_news";
 					(!empty($entry[2])) ? $project_id = $entry[2] : $project_id = 0;
 					(!empty($entry[1])) ? $single = true : $single = false;
@@ -241,6 +252,21 @@ class Page extends Crank {
 					$table_name = "sp_anonses";
 					(!empty($entry[1])) ? $single = true : $single = false;
 					(!empty($entry[1])) ? $where = array('id' => intval($entry[1])):'';
+				break;
+			case 'poll':
+					$table_name = "sp_poll";
+					$fields = array(
+						'sp_poll' => array('id','name','date_start','date_end', 'active')
+					);
+					$types = array('date_start' => 'date', 'date_end' => 'date', 'active' => 'bool');
+					$where = array('project_id' => $entry[1]);
+				break;
+			case 'pollanswers':
+					$table_name = "sp_poll_answers";
+					$fields = array(
+						'sp_poll_answers' => array('id','name','thumb','count as answers_count')
+					);
+					$where = array('poll_id' => $entry[1]);
 				break;
 			case 'projects':											
 			case 'project':
@@ -401,6 +427,7 @@ class Page extends Crank {
 			case 'project':
 				$table_name = 'sp_projects';
 				$data 		= array('groups' => 'sp_projects_categories', 'places' => 'sp_places');
+				$custom_view = 'admin/project';
 				break;
 			case 'moreproject':
 				$table_name = 'sp_projectsstages';
@@ -408,6 +435,31 @@ class Page extends Crank {
 				$custom_data = array(
 					'project_id' => $entry[1]
 				);
+				$custom_view = 'admin/moreproject';
+				break;
+			case 'news':
+				$table_name = "sp_news";
+				$data = array();
+				$custom_data = array(
+					'project_id' => $entry[2]
+				);
+				$custom_view = 'admin/news';
+				break;			
+			case 'poll':
+				$table_name = "sp_poll";
+				$data = array();
+				$custom_data = array(
+					'project_id' => $entry[1]
+				);
+				$custom_view = 'admin/poll';
+				break;
+			case 'pollanswers':
+				$table_name = 'sp_poll_answers';
+				$data = array();
+				$custom_data = array(
+					'poll_id' => $entry[1]
+				);
+				$custom_view = 'admin/pollanswers';
 				break;
 			case 'joins':
 
@@ -434,7 +486,8 @@ class Page extends Crank {
 					'entry_id'   => $entry[4],
 					'field_name' => $entry[3]."_id",
 					'type'		 => $type
-				);			    
+				);
+				$custom_view = 'admin/join';
 				break;
 		}
 		parent::get_view( $data, $table_name, $entry[0], $custom_view, $custom_data);
@@ -449,6 +502,15 @@ class Page extends Crank {
 				break;
 			case 'moreproject':
 				$table_name = 'sp_projectsstages';
+				break;
+			case 'news':
+				$table_name = 'sp_news';
+				break;
+			case 'poll':
+				$table_name = 'sp_poll';
+				break;
+			case 'pollanswers':
+				$table_name = 'sp_poll_answers';
 				break;
 			case 'user':
 				$table_name = 'sp_users';

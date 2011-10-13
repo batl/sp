@@ -837,7 +837,6 @@ color:#963;
 }
 
 #gform_wrapper_2 {
-margin-top:20px;
 margin-left:20px;
 color:#666;
 }
@@ -1986,4 +1985,15 @@ float:left;
 background:url("/static/images/clear.png") no-repeat;
 margin-top:2px;
 cursor:pointer;
+}
+
+.actions{
+margin-top:10px;
+}
+
+.actions a{
+display:inline-block;
+height:20px;
+vertical-align:middle;
+margin:0px 5px;
 }
