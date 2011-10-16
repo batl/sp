@@ -42,18 +42,24 @@ class Project extends Crank {
 		$this->params['poll'] = $this->Crank_model->get_all_entries(
 			"sp_poll", 							
 			array(
-				'active' => 1,
-				'project_id' => $this->params['project']['id'],
+				'active' 		=> 1,
+				'project_id' 	=> $this->params['project']['id'],
 				'date_start <=' => date("Y-m-d"),
-				'date_end >=' => date("Y-m-d")
-			),
-			0,
-			false,
-			'id',
-			'asc',
-			array(),
-			array(),
-			true
+				'date_end >=' 	=> date("Y-m-d")
+			),		 // where
+			0,		 // start
+			false,	 // limit
+			'id',	 // sort fields
+			'asc',   // sort type
+			array(), // fields
+			array(), // joins	
+			true,	 // single
+			array(), // like
+			false,   // distinct
+			array(
+				'date_end IS NULL' => NULL,
+				'date_end' => '0000-00-00'
+			)	     // or_where
 		);
 		
 		if (!empty($this->params['poll']))
@@ -76,7 +82,7 @@ class Project extends Crank {
 		$this->set_title($this->params['project']['name']);
 		$this->include_keywords($this->params['project']['tags']);
 		$this->set_description($this->params['project']['short_description']);
-		$this->include_project_view('project_single',$this->params);
+		$this->include_project_view('single_project/main',$this->params);
 	}
 				
 	public function page($view)
@@ -109,7 +115,8 @@ class Project extends Crank {
 				
 				break;
 			case 'links':
-			case 'media':
+			case 'photoreport':
+			case 'videoreport':
 			case 'steps':
 			case 'partners':
 				
@@ -161,7 +168,7 @@ class Project extends Crank {
 		}
 
 		$data = array(
-			'response' => $this->load->view('project_'.$view[0], $this->params, true)
+			'response' => $this->load->view('single_project/project_'.$view[0].'_view', $this->params, true)
 		);
 		
 		echo json_encode($data);

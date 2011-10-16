@@ -1,24 +1,7 @@
 <?php
 foreach ($project_more as $step):	
-
-	if (!empty($step['photos'])):
-	?>
-		<h3><?php echo $lang['photos']?></h3>
-	<?php
-		foreach ($step['photos'] as $photo):
-		?>
-			<div class="step-item-img">
-				<a class="lightbox" href="<?php echo $base.$photo['foto']?>"><img src="<?php echo $base.$photo['thumb']?>" /></a>
-			</div>
-		<?php
-		endforeach;
-	endif;		
 	
 	if (!empty($step['videos'])):
-	?>
-		<div class="clear"></div>
-		<h3><?php echo $lang['videos']?></h3>
-	<?php
 		foreach ($step['videos'] as $video):			
 			$video = explode('/',$video['url']);
 			?>

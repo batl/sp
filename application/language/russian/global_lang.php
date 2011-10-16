@@ -264,6 +264,7 @@ $lang["project_videoreport"]	= "Видеоотчет";
 $lang["project_feedbacks"]		= "Отзывы";
 $lang["project_paper"]			= "Пресса";
 $lang["hidden_link"]			= "Скрытая ссылка";
+$lang["records_per_page"]		= "Записей на страницу";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

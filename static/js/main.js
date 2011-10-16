@@ -8,6 +8,9 @@ var titles = new Array();
 
 $(document).ready(function(){	
 	
+	Cufon.replace(".cabin",{fontFamily: "Cabin-Bold"});
+	Cufon.replace(".euphorigenic",{fontFamily: "euphorigenic"});
+	
 	$('.clear_search').click(function(){
 		$('#search').val('');
 		var page  = parseInt($('.curent_page').html());
@@ -88,7 +91,7 @@ $(document).ready(function(){
 		
 	});
 	
-	setTimeout(function () {$('#content, #footer').fadeIn('slow');}, 500);
+	setTimeout(function () {$('#content, #footer').fadeIn('slow');}, 100);
 	
 	$('a.single').live('click', function(event){
 		event.preventDefault();				
@@ -264,6 +267,8 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 			
 			if (story.length < 2) $('.history').remove();
 		}										
+		
+		console.log(sub_entry);
 		
 		if (sub_entry.length == 1) transform_pagination(data.curent_page, data.total); else if (!parseInt(sub_entry[1])) transform_pagination(data.curent_page, data.total); else $('#paging, #limit').hide();
 		

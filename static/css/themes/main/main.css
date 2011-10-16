@@ -99,6 +99,14 @@ width: 100%;
 -khtml-box-shadow: 0px 0px 3px #ccc; 
 -webkit-box-shadow: 0px 0px 3px #ccc; 
 box-shadow: 0px 0px 3px #ccc;
+-moz-border-radius-topLeft: 5px;
+-webkit-border-radius-topLeft: 5px;
+-khtml-border-radius-topLeft: 5px;
+border-radius-topLeft: 5px;
+-moz-border-radius-topRight: 5px;
+-webkit-border-radius-topRight: 5px;
+-khtml-border-radius-topRight: 5px;
+border-radius-topRight: 5px;
 }
 
 #site_info h1{
@@ -265,6 +273,14 @@ display:none;
 -khtml-box-shadow: 0px 0px 3px #ccc; 
 -webkit-box-shadow: 0px 0px 3px #ccc; 
 box-shadow: 0px 0px 3px #ccc;
+-moz-border-radius-bottomLeft: 5px;
+-webkit-border-radius-bottomLeft: 5px;
+-khtml-border-radius-bottomLeft: 5px;
+border-radius-bottomLeft: 5px;
+-moz-border-radius-bottomRight: 5px;
+-webkit-border-radius-bottomRight: 5px;
+-khtml-border-radius-bottomRight: 5px;
+border-radius-bottomRight: 5px;
 }
 
 #content-container, #content-container-100, #news-container, #anonses-container, #poll, #single_content {
@@ -467,7 +483,6 @@ font-size:1em;
 color:#666;
 }
 .project-item-content{
-background: none repeat scroll 0 0 #DFF;
 float: left;
 padding: 5px;
 width: 525px;
@@ -913,6 +928,10 @@ background-color:#fff;
 -khtml-box-shadow: 0px 0px 3px #ccc; 
 -webkit-box-shadow: 0px 0px 3px #ccc; 
 box-shadow: 0px 0px 3px #ccc;
+-moz-border-radius: 10px;
+-webkit-border-radius: 5px;
+-khtml-border-radius: 5px;
+border-radius: 5px;
 margin-bottom:10px;
 }
 
@@ -1961,15 +1980,22 @@ float:left;
 float: right;
 margin-right: 20px;
 padding-top: 25px;
-font-weight:bold;
+font-weight:normal;
+font-size:0.9em;
 }
 
 #limit a{
 margin:0px 5px;
+color:#333;
+font-weight:bold;
 }
 
 #limit a.selected{
-color:#ccc;
+color:#1158A8;
+}
+
+#limit span{
+color:#999;
 }
 
 #links ul li{
@@ -1996,4 +2022,22 @@ display:inline-block;
 height:20px;
 vertical-align:middle;
 margin:0px 5px;
+}
+
+.switcher{
+cursor:pointer;
+float:right;
+margin:10px;
+}
+
+.hide_switcher{
+background:url("/static/images/hide_switcher.png") no-repeat;
+width:16px;
+height:8px;
+}
+
+.show_switcher{
+background:url("/static/images/show_switcher.png") no-repeat;
+width:16px;
+height:8px;
 }

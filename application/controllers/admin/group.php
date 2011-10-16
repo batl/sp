@@ -7,7 +7,7 @@ class Group extends Crank {
 	{
 		parent::__construct();	
 		
-		if (empty($this->params['admin_id'])) redirect($this->params['base'].'login');
+		if (empty($this->params['admin_id'])) redirect($this->params['base']);
 
 		$this->include_js('admin/pages/user.js');
 		$this->include_js('tiny_mce/tiny_mce.js');

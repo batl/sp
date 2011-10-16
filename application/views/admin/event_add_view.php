@@ -15,6 +15,36 @@
 					?>
 				</div>
 			</li>
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["group"]?><span class='gfield_required'>*</span>:</label>
+				<div class='ginput_container'>
+					<select name="type">
+						<option value="0"><?php echo $lang["no_group"]?></option>
+						<?php
+						foreach ($groups as $group)
+						{
+						?>
+						<option value="<?php echo $group['id']?>"><?php echo $group['name']?></option>
+						<?php
+						}
+						?>
+					</select>	
+				</div>
+			</li>
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["project"]?><span class='gfield_required'>*</span>:</label>
+				<div class='ginput_container'>
+					<select name="project_id">
+						<option value="0"><?php echo $lang["no_project"]?></option>
+						<?php
+						foreach ($projects as $project)
+						{
+						?>
+						<option value="<?php echo $project['id']?>"><?php echo $project['name']?></option>
+						<?php
+						}
+						?>
+					</select>	
+				</div>
+			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["place"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
 					<select name="place">
@@ -70,22 +100,7 @@
 						endforeach;						
 					?>
 				</div>
-			</li>
-			<li class='gfield'><label class='checkbox_label'><?php echo $lang["project"]?><span class='gfield_required'>*</span>:</label>
-				<div class='ginput_container'>
-					<select name="project_id">
-						<option value="0"><?php echo $lang["no_project"]?></option>
-						<?php
-						foreach ($projects as $project)
-						{
-						?>
-						<option value="<?php echo $project['id']?>"><?php echo $project['name']?></option>
-						<?php
-						}
-						?>
-					</select>	
-				</div>
-			</li>
+			</li>			
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["poster"]?>: </label>
 				<div class='ginput_container'>					
 					<?php 						
@@ -111,22 +126,7 @@
 						endforeach;						
 					?>
 				</div>
-			</li>						
-			<li class='gfield'><label class='checkbox_label'><?php echo $lang["group"]?><span class='gfield_required'>*</span>:</label>
-				<div class='ginput_container'>
-					<select name="type">
-						<option value="0"><?php echo $lang["no_group"]?></option>
-						<?php
-						foreach ($groups as $group)
-						{
-						?>
-						<option value="<?php echo $group['id']?>"><?php echo $group['name']?></option>
-						<?php
-						}
-						?>
-					</select>	
-				</div>
-			</li>									
+			</li>																		
 		</ul>
 	</div>
 	<div class='gform_footer top_label'>

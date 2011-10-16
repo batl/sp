@@ -28,8 +28,11 @@ class Crank extends CI_Controller {
 		/* end language*/
 		$this->params['current_settings'] = $this->Crank_model->get_entry_by_data("sp_settings", true, 'current', array('id'=>1));
 		$this->params['include_keywords'] = explode(',',$this->params['current_settings']['keywords']);
-		
+
 		$this->include_js('jquery/jquery.min.js');
+		$this->include_js('cufon/cufon-yui.js');
+		$this->include_js('cufon/euphorigenic_400.font.js');
+		$this->include_js('cufon/Cabin-Bold_700.font.js');
 		$this->include_js('main.js');		
 		$this->include_css('themes/'.$this->params['current_settings']['theme'].'/main.css');	
 		
@@ -55,9 +58,9 @@ class Crank extends CI_Controller {
 	
 	protected function include_project_view($viewname, $data= array())
 	{
-		$header = $this->load->view('_header_project_view',$data);
+		$header = $this->load->view('single_project/_header_view',$data);
 		$body = $this->load->view($viewname,$data);
-		$footer = $this->load->view('_footer_project_view',$data);
+		$footer = $this->load->view('single_project/_footer_view',$data);
 		return $header.$body.$footer;
 	}
 	
@@ -167,7 +170,7 @@ class Crank extends CI_Controller {
 									$html .= '<td>'.$cell.' грн.</td>';
 									break;
 								case 'date':									
-									if (!empty($cell))
+									if (!empty($cell) && $cell != '0000-00-00')
 									{
 										$date = explode(" ",date("j M Y",strtotime($cell)));
 										$html .= '<td>'.$date[0].' '.$this->params['lang']['month'][strtolower($date[1])].' '.$date[2].'</td>';
@@ -280,7 +283,7 @@ class Crank extends CI_Controller {
 		
 		$this->params['items_array'] = $this->Crank_model->get_all_entries($table_name, $where ,$start, $limit, $sort, $sort_type, $fields, $joins, $single, $like, false, $or_where);
 		
-		$items_count = count($this->Crank_model->get_all_entries($table_name, $where));
+		$items_count = count($this->Crank_model->get_all_entries($table_name, $where, 0, false, 'id', 'asc', $fields, $joins, false, $like, false, $or_where));
 		
 		if (!empty($this->params['items_array']))
 		{

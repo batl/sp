@@ -26,7 +26,7 @@
 					<input name='date_end' language="no" type='text' value='' class='medium picker' tabindex='3'/>
 				</div>
 			</li>
-			<?php if (empty($project_id)):?>
+			<?php if ($project_id == 'undefined'):?>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["on_page"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
 					<select name="on_page">

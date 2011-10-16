@@ -188,7 +188,7 @@ class Crank extends CI_Controller {
 									$html .= '<td>'.$cell.' грн.</td>';
 									break;
 								case 'date':									
-									if (!empty($cell))
+									if (!empty($cell) && $cell != '0000-00-00')
 									{
 										$date = explode(" ",date("j M Y",strtotime($cell)));
 										$html .= '<td>'.$date[0].' '.$this->params['lang']['month'][strtolower($date[1])].' '.$date[2].'</td>';
@@ -281,7 +281,7 @@ class Crank extends CI_Controller {
 		
 		$items_array = $this->Crank_model->get_all_entries($table_name, $where ,$start, $limit, $sort, $sort_type, $fields, $joins);
 		
-		$items_count = count($this->Crank_model->get_all_entries($table_name, $where));
+		$items_count = count($this->Crank_model->get_all_entries($table_name, $where, 0, false, 'id', 'asc', $fields, $joins));
 		
 		if (!empty($items_array))
 		{

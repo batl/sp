@@ -34,14 +34,20 @@ class Page extends Crank {
 					'on_page' => $this->params['page']['id'],
 					'date_start <=' => date("Y-m-d"),
 					'date_end >=' => date("Y-m-d")
- 				),
-				0,
-				false,
-				'id',
-				'asc',
-				array(),
-				array(),
-				true
+ 				),		 // where
+				0,		 // start
+				false,	 // limit
+				'id',	 // sort fields
+				'asc',   // sort type
+				array(), // fields
+				array(), // joins	
+				true,	 // single
+				array(), // like
+				false,   // distinct
+				array(
+					'date_end IS NULL' => NULL,
+					'date_end' => '0000-00-00'
+				)	     // or_where
 			);
 			
 			if (!empty($this->params['poll']))
@@ -104,12 +110,15 @@ class Page extends Crank {
 						 
 						$this->load->library('calendar',$prefs);
 						
+						$links = array();
+						
 						for ($i = 1; $i <= 31; $i++)
 						{
 							$projects = count($this->Crank_model->get_all_entries(
 								"sp_projects", 
 								array(
-									'date_start' => date("Y").'-'.date("m").'-'.$i
+									'date_start' => date("Y").'-'.date("m").'-'.$i,
+									'in_process' => 0
 								), 
 								0, 
 								false, 
@@ -165,7 +174,8 @@ class Page extends Crank {
 			$projects = count($this->Crank_model->get_all_entries(
 				"sp_projects", 
 				array(
-					'date_start' => $data[0].'-'.$data[1].'-'.$i
+					'date_start' => $data[0].'-'.$data[1].'-'.$i,
+					'in_process' => 0
 				), 
 				0, 
 				false, 
@@ -285,11 +295,13 @@ class Page extends Crank {
 							{
 								$where['date_start >='] 	 = date("Y-m-d", strtotime($dates[0]));
 								$or_where['date_start IS NULL'] = NULL;								
+								$or_where['date_start'] = '0000-00-00';								
 							}
 							if (!empty($dates[1]))
 							{
 								$where['date_end <=']   = date("Y-m-d", strtotime($dates[1]));
 								$or_where['date_end IS NULL'] = NULL;								
+								$or_where['date_end'] = '0000-00-00';								
 							}
 							
 							$where['in_process'] = 0;
@@ -302,7 +314,7 @@ class Page extends Crank {
 				$custom_view = 'profile_projects';
 				
 				$fields = array(
-					'sp_projects' => array('id','user_id','logo','name','date_start', 'date_end','short_description','slug','tags','in_process'),
+					'sp_projects' => array('id','user_id','logo','name','date_start', 'date_end','short_description','slug','tags','in_process','bg_color'),
 					'sp_places' => array('name as place'),
 					'sp_projects_categories' => array('name as group_name')
 				); 

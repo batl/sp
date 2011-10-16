@@ -117,7 +117,7 @@
 						<img src="static/images/btn_page_end.png" />
 					</a>
 				</div>	
-				<div id="limit"><a href="javascript:void(0);">4</a><a href="javascript:void(0);" class="selected">12</a><a href="javascript:void(0);">24</a><a href="javascript:void(0);">48</a></div>		
+				<div id="limit"><span><?php echo $lang['records_per_page']?>:</span>&nbsp;<a href="javascript:void(0);">4</a><a href="javascript:void(0);" class="selected">12</a><a href="javascript:void(0);">24</a><a href="javascript:void(0);">48</a></div>		
 			</div><!--  #content-container -->
 		</div>
 	</div><!--  #content -->

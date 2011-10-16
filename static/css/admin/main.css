@@ -1207,7 +1207,11 @@ margin:0px 5px;
 }
 
 #limit a.selected{
-color:#ccc;
+font-weight:bold;
+}
+
+#limit span{
+color:#999;
 }
 
 .actions a{

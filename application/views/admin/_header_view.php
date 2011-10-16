@@ -18,7 +18,7 @@
 		var admin_url  = '<?php echo $base;?>';
     </script>
 </head>
-<body <?php if (intval($current_settings['bgcolor_trigger'])) echo "style='background:".$current_settings['bg_color']."'"; else if (!intval($current_settings['default_background']) && !empty($current_settings['background'])) echo "style='background:url(".$front_url.$current_settings['background'].")'"?>>
+<body>
 
 <div id="header">
 	<div id="wrapper-header">

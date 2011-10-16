@@ -49,7 +49,7 @@
 						</div>
 					</li>
 					<hr/>
-					<li class='gfield'><label class='gfield_label'><?php echo $lang['site_logo']?><span class='gfield_required'>*</span></label>
+					<!--<li class='gfield'><label class='gfield_label'><?php echo $lang['site_logo']?><span class='gfield_required'>*</span></label>
 						
 						<div id="photo-preview">
 						<?php 						
@@ -73,7 +73,7 @@
 							endforeach;						
 						?>
 						</div>
-					</li>
+					</li>-->
 					<li class='gfield'><label class='gfield_label'><?php echo $lang['site_background']?><span class='gfield_required'>*</span></label>
 						<div id="photo-preview">
 							<img id="site_background" language="no" name="background" big="<?php echo $settings['background']?>" style="max-height:100px; max-width:100px;" src="<?php echo $front_url.$settings['background']?>"/>
@@ -99,12 +99,11 @@
 					<hr/>
 					<li class='gfield'><label class='checkbox_label'><?php echo $lang["theme"]?>:</label>
 						<select name="theme">
-							<option value="standart" <?php if ($settings['theme'] == 'standart') echo "selected='selected'";?>><?php echo $lang['standart_theme']?></option>
-							<option value="black" <?php if ($settings['theme'] == 'black') echo "selected='selected'";?>><?php echo $lang['black_theme']?></option>
+							<!--<option value="standart" <?php if ($settings['theme'] == 'standart') echo "selected='selected'";?>><?php echo $lang['standart_theme']?></option>
+							<option value="black" <?php if ($settings['theme'] == 'black') echo "selected='selected'";?>><?php echo $lang['black_theme']?></option>-->
 							<option value="main" <?php if ($settings['theme'] == 'main') echo "selected='selected'";?>><?php echo $lang['main']?></option>
 						</select>
-					</li>
-					<hr/>
+					</li>					
 					<!--<li class='gfield'><label class='gfield_label'><?php echo $lang['site_banner']?><span class='gfield_required'>*</span></label>
 						<div id="photo-preview">
 							<img id="site_banner" language="no" name="site_banner" big="<?php echo $settings['site_banner']?>" style="max-height:100px; max-width:100px;" src="<?php echo $front_url.$settings['site_banner']?>"/>
@@ -114,7 +113,7 @@
 						</div>
 						<span class="remove"><?php echo $lang['remove']?></span>
 					</li>-->
-					<li class='gfield'><label class='gfield_label'><?php echo $lang['admin_banner']?><span class='gfield_required'>*</span></label>
+					<!--<li class='gfield'><label class='gfield_label'><?php echo $lang['admin_banner']?><span class='gfield_required'>*</span></label>
 						<div id="photo-preview">
 							<img id="admin_banner" language="no" name="admin_banner" big="<?php echo $settings['admin_banner']?>" style="max-height:100px; max-width:100px;" src="<?php echo $front_url.$settings['admin_banner']?>"/>
 						</div>
@@ -122,11 +121,10 @@
 							<input name='userfile' language="no" id='back_banner' type='file' value='' class='upload' tabindex='3'/>
 						</div>
 						<span class="remove"><?php echo $lang['remove']?></span>
-					</li>
+					</li>-->
 				</ul>
 			</div>
-			<div class="clear"></div>
-			<hr/><br/>
+			<div class="clear"></div>			
 			<div class='gform_footer top_label'>
 				<input type='button' id='main_save' class='button' value='<?php echo $lang['save']?>' tabindex='6' name="submit"/>
 				<div id="translates">

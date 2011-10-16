@@ -7,7 +7,7 @@ class Project extends Crank {
 	{
 		parent::__construct();	
 		
-		if (empty($this->params['admin_id'])) redirect($this->params['base'].'login');				
+		if (empty($this->params['admin_id'])) redirect($this->params['base']);				
 				
 		$this->params['main_navi'] = 5;		
 		
@@ -42,7 +42,7 @@ class Project extends Crank {
 		parent::get_items(
 			false, 
 			array(
-				'sp_projects' => array('id','thumb','name','date_start', 'date_end', 'in_process'),
+				'sp_projects' => array('id','logo','name','date_start', 'date_end', 'in_process'),
 				'sp_places' => array('name as place'),
 				'sp_projects_categories' => array('name as group_name')
 			), 

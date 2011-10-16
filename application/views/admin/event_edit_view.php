@@ -15,6 +15,36 @@
 					?>
 				</div>
 			</li>
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["group"]?><span class='gfield_required'>*</span>:</label>
+				<div class='ginput_container'>
+					<select name="type">
+						<option value="0"><?php echo $lang["no_group"]?></option>
+						<?php
+						foreach ($groups as $group)
+						{
+						?>
+						<option value="<?php echo $group['id']?>" <?php if ($group['id'] == $entry['type']) echo 'selected="selected"';?>><?php echo $group['name']?></option>
+						<?php
+						}
+						?>
+					</select>	
+				</div>
+			</li>
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["project"]?><span class='gfield_required'>*</span>:</label>
+				<div class='ginput_container'>
+					<select name="project_id">
+						<option value="0"><?php echo $lang["no_project"]?></option>
+						<?php
+						foreach ($projects as $project)
+						{
+						?>
+						<option value="<?php echo $project['id']?>" <?php if ($project['id'] == $entry['project_id']) echo 'selected="selected"';?>><?php echo $project['name']?></option>
+						<?php
+						}
+						?>
+					</select>	
+				</div>
+			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["place"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
 					<select name="place">
@@ -32,12 +62,12 @@
 			</li>	
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["date_start"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
-					<input name='date_start' language="no" type='text' value='<?php echo $entry['date_start'];?>' class='medium picker' tabindex='3'/>
+					<input name='date_start' language="no" type='text' value='<?php  if (!empty($entry['date_start']) && $entry['date_start'] != '0000-00-00') echo $entry['date_start'];?>' class='medium picker' tabindex='3'/>
 				</div>
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["date_end"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
-					<input name='date_end' language="no" type='text' value='<?php echo $entry['date_end'];?>' class='medium picker' tabindex='3'/>
+					<input name='date_end' language="no" type='text' value='<?php if (!empty($entry['date_end']) && $entry['date_end'] != '0000-00-00') echo $entry['date_end'];?>' class='medium picker' tabindex='3'/>
 				</div>
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["number_of_sessions"]?><span class='gfield_required'>*</span>:</label>
@@ -70,22 +100,7 @@
 						endforeach;						
 					?>
 				</div>
-			</li>
-			<li class='gfield'><label class='checkbox_label'><?php echo $lang["project"]?><span class='gfield_required'>*</span>:</label>
-				<div class='ginput_container'>
-					<select name="project_id">
-						<option value="0"><?php echo $lang["no_project"]?></option>
-						<?php
-						foreach ($projects as $project)
-						{
-						?>
-						<option value="<?php echo $project['id']?>" <?php if ($project['id'] == $entry['project_id']) echo 'selected="selected"';?>><?php echo $project['name']?></option>
-						<?php
-						}
-						?>
-					</select>	
-				</div>
-			</li>
+			</li>			
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["poster"]?>: </label>
 				<div class='ginput_container'>					
 					<?php 						
@@ -111,22 +126,7 @@
 						endforeach;						
 					?>
 				</div>
-			</li>						
-			<li class='gfield'><label class='checkbox_label'><?php echo $lang["group"]?><span class='gfield_required'>*</span>:</label>
-				<div class='ginput_container'>
-					<select name="type">
-						<option value="0"><?php echo $lang["no_group"]?></option>
-						<?php
-						foreach ($groups as $group)
-						{
-						?>
-						<option value="<?php echo $group['id']?>" <?php if ($group['id'] == $entry['type']) echo 'selected="selected"';?>><?php echo $group['name']?></option>
-						<?php
-						}
-						?>
-					</select>	
-				</div>
-			</li>									
+			</li>																	
 		</ul>
 	</div>
 	<div class='gform_footer top_label'>

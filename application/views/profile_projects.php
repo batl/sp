@@ -7,7 +7,7 @@
 			<a href="<?php echo $base.'project/'.$project['slug']?>" target="_blanck"><?php echo $project['name']?></a><br />			
 			<?php 
 				echo $lang['date_start'].': ';
-				if (!empty($project['date_start']))
+				if (!empty($project['date_start']) && $project['date_start'] != '0000-00-00')
 				{
 					$date = explode(" ",date("j M Y",strtotime($project['date_start'])));
 					echo $date[0].' '.$lang['month'][strtolower($date[1])].' '.$date[2];	
@@ -16,7 +16,7 @@
 			?>			
 			<?php 
 				echo $lang['date_end'].': ';
-				if (!empty($project['date_end']))
+				if (!empty($project['date_end']) && $project['date_end'] != '0000-00-00')
 				{
 					$date = explode(" ",date("j M Y",strtotime($project['date_end'])));
 					echo $date[0].' '.$lang['month'][strtolower($date[1])].' '.$date[2];	

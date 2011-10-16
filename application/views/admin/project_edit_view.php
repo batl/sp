@@ -52,12 +52,12 @@
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["date_start"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
-					<input name='date_start' language="no" type='text' value='<?php echo $entry['date_start']?>' class='medium picker' tabindex='3'/>
+					<input name='date_start' language="no" type='text' value='<?php if (!empty($entry['date_start']) && $entry['date_start'] != '0000-00-00') echo $entry['date_start']?>' class='medium picker' tabindex='3'/>
 				</div>
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["date_end"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
-					<input name='date_end' language="no" type='text' value='<?php echo $entry['date_end']?>' class='medium picker' tabindex='3'/>
+					<input name='date_end' language="no" type='text' value='<?php if (!empty($entry['date_end']) && $entry['date_end'] != '0000-00-00') echo $entry['date_end']?>' class='medium picker' tabindex='3'/>
 				</div>
 			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["group"]?><span class='gfield_required'>*</span>:</label>

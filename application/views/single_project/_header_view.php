@@ -90,18 +90,18 @@
 										<td class="b-menu__layout-l">
 											<ul class="b-menu__list">
 												<li class="b-menu__item"><a href="javascript:void(0);" class="selected" id="about"><?php echo $lang['project_about']?></a></li>
-												<li class="b-menu__item"><a href="javascript:void(0);" id="project_plan"><?php echo $lang['project_plan']?></a></li>
-												<li class="b-menu__item"><a href="javascript:void(0);" id="project_map"><?php echo $lang['project_map']?></a></li>
-												<li class="b-menu__item"><a href="javascript:void(0);" id="project_products"><?php echo $lang['project_products']?></a></li>												
+												<li class="b-menu__item"><a href="javascript:void(0);" id="plan"><?php echo $lang['project_plan']?></a></li>
+												<li class="b-menu__item"><a href="javascript:void(0);" id="map"><?php echo $lang['project_map']?></a></li>
+												<li class="b-menu__item"><a href="javascript:void(0);" id="products"><?php echo $lang['project_products']?></a></li>												
 												<!--<li class="b-menu__item"><a href="javascript:void(0);" id="steps"><?php echo $lang['project_steps']?></a></li>-->
 											</ul>
 										</td>
 										<td class="b-menu__layout-c">
 											<ul class="b-menu__list">
-												<li class="b-menu__item"><a href="javascript:void(0);" id="project_peoples"><?php echo $lang['project_peoples']?></a></li>
-												<li class="b-menu__item"><a href="javascript:void(0);" id="project_contacts"><?php echo $lang['project_peoples']?></a></li>
-												<li class="b-menu__item"><a href="javascript:void(0);" id="project_photoreport"><?php echo $lang['project_photoreport']?></a></li>
-												<li class="b-menu__item"><a href="javascript:void(0);" id="project_videoreport"><?php echo $lang['project_videoreport']?></a></li>
+												<li class="b-menu__item"><a href="javascript:void(0);" id="peoples"><?php echo $lang['project_peoples']?></a></li>
+												<li class="b-menu__item"><a href="javascript:void(0);" id="contacts"><?php echo $lang['project_contacts']?></a></li>
+												<li class="b-menu__item"><a href="javascript:void(0);" id="photoreport"><?php echo $lang['project_photoreport']?></a></li>
+												<li class="b-menu__item"><a href="javascript:void(0);" id="videoreport"><?php echo $lang['project_videoreport']?></a></li>
 												
 												<!--<li class="b-menu__item"><a href="javascript:void(0);" id="media"><?php echo $lang['project_media']?></a></li>												
 												<li class="b-menu__item"><a href="javascript:void(0);" id="links"><?php echo $lang['project_links']?></a></li>-->
@@ -109,8 +109,8 @@
 										</td>
 										<td class="b-menu__layout-r">
 											<ul class="b-menu__list">
-												<li class="b-menu__item"><a href="javascript:void(0);" id="project_feedbacks"><?php echo $lang['project_feedbacks']?></a></li>
-												<li class="b-menu__item"><a href="javascript:void(0);" id="project_paper"><?php echo $lang['project_paper']?></a></li>
+												<li class="b-menu__item"><a href="javascript:void(0);" id="feedbacks"><?php echo $lang['project_feedbacks']?></a></li>
+												<li class="b-menu__item"><a href="javascript:void(0);" id="paper"><?php echo $lang['project_paper']?></a></li>
 												<li class="b-menu__item"><a href="javascript:void(0);" id="partners"><?php echo $lang['project_partners']?></a></li>
 												<?php if (!empty($user_id) || !empty($admin_id)):?><li class="b-menu__item"><a href="javascript:void(0);" id="hidden_link"><?php echo $lang['hidden_link']?></a></li><?php endif;?>												
 											</ul>														
@@ -134,15 +134,14 @@
 								<h2><?php echo $project['name']?> </h2>
 								<div class="b-block__accent">
 									<p style="font-weight:bold;"><?php echo $lang['purpose']?>:</p>
-									<?php echo $project['purpose']?>
-									<p style="font-weight:bold;"><?php echo $lang['short_description']?>:</p>
-									<p><?php echo $project['short_description']?></p>
+									<?php echo $project['purpose']?>																	
                                 </div>								
 							</div>
 						</div>
 					</td>
+					<?php if (!empty($project['banner'])):?>
 					<td class="b-sub-header__layout-r">
-						<div class="b-sub-header__layout-i" <?php if (empty($project['banner'])) echo "style='display:none;'";?>>
+						<div class="b-sub-header__layout-i">
 							<div class="b-mini-artist b-block b-round">
 								<div class="b-artist">
 									<div class="b-artist__photo">
@@ -161,6 +160,7 @@
 							</div>
 						</div>
 					</td>
+					<?php endif;?>
 				</tr>
 			</tbody>
 		</table>

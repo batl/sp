@@ -1,33 +1,12 @@
 <div id="wrapper">
-	<div id="content">		
-		<div id="dealer-content">			
-			<div style="float:right; width:300px;">
-				<div id="anonses-container">
-					<div class="sub-hdr"><h3><?php echo $lang['anonses']?></h3></div>
-					<div id="s1" style="height:350px; margin-left:5px; overflow:hidden;">
-						<?php
-							foreach ($anonses as $anons)
-							{
-							?>	
-								<div>
-									<img width="290px" src="<?php echo $base.$anons['image']?>" />	
-									<div style="text-align:center;">
-										<h1><?php echo $anons['name']?></h1>
-										<?php echo $anons['description']?>
-									</div>
-								</div>
-							<?php
-							}
-						?>												
-					</div>
-					
-				</div>
-				
-				<?php
-					if (!empty($poll)):
-					?>
-					<div id="anonses-container" style="margin-top:20px;">
-						<div class="sub-hdr"><h3><?php echo $lang['poll']?></h3></div>
+	<div>
+		<div style="float:right; width:300px;">				
+			<?php
+				if (!empty($poll)):
+				?>
+				<div id="anonses-container" class="switcher_parent">
+					<div class="sub-hdr"><h3><?php echo $lang['poll']?></h3><span class="switcher hide_switcher"></span></div>
+					<div class="switcher_content">
 						<div class="poll">
 							<p class="poll_title"><?php echo $poll['name']?></p>
 							<?php
@@ -71,36 +50,55 @@
 							?>
 						</div>
 					</div>
-					<?php
-				endif;
-				?>
-					
-			</div>
-			<div id="news-container">
-				<div id="sub-hdr"><h3><?php echo $lang['news']?></h3></div>
+				</div>
+				<?php
+			endif;
+			?>
+				
+		</div>
+		<div id="news-container" class="switcher_parent" <?php if (!empty($poll)):?> style="width:635px;" <?php else: ?> style="width:100%;" <?php endif;?>>
+			<div id="sub-hdr"><h3><?php echo $lang['news']?></h3><span class="switcher hide_switcher"></span></div>
+			<div class="switcher_content">
 				<div id="items" class="items">
 							
 				</div>
 				<div id="paging">
 					<a class="first_page" href="javascript:void(0);">
-						<img src="static/images/btn_page_begin.png" />
+						<img src="/static/images/btn_page_begin.png" />
 					</a> 
 					<a class="prev_page" href="javascript:void(0);">
-						<img src="static/images/btn_page_previous.png" />
+						<img src="/static/images/btn_page_previous.png" />
 					</a>										
 					
 					<li class="total">
 						<span><?php echo $lang['of']?> </span><span></span>
 					</li>
 					<a  class="next_page" href="javascript:void(0);">
-						<img src="static/images/btn_page_next.png" />
+						<img src="/static/images/btn_page_next.png" />
 					</a> 
 					<a  class="last_page" href="javascript:void(0);">
-						<img src="static/images/btn_page_end.png" />
+						<img src="/static/images/btn_page_end.png" />
 					</a>
 				</div>
 				<div id="limit"><span><?php echo $lang['records_per_page']?>:</span>&nbsp;<a href="javascript:void(0);">5</a><a href="javascript:void(0);" class="selected">10</a><a href="javascript:void(0);">20</a><a href="javascript:void(0);">30</a></div>		
-			</div><!--  #content-container -->
+			</div>
+		</div><!--  #content-container -->
+	</div>
+	<div id="single_content">	
+		<div class="sub-hdr"><h3><?php echo $lang['about_project']?></h3></div>
+		<div id="dealer-content">
+			<div class="h_section">
+				<h2><?php echo $lang['poster']?></h2>			
+				<div class="h_section_content">
+					<?php echo $project['poster']?>
+				</div>
+			</div>
+			<div class="h_section">
+				<h2><?php echo $lang['note']?></h2>
+				<div class="h_section_content">
+					<?php echo $project['note']?>
+				</div>
+			</div>
 		</div>
 	</div><!--  #content -->
 </div><!--  #wrapper -->

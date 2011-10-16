@@ -9,7 +9,7 @@ class Upload extends Crank {
 	{
 		parent::__construct();	
 		
-		if (empty($this->params['admin_id'])) redirect($this->params['base'].'login');				
+		if (empty($this->params['admin_id'])) redirect($this->params['base']);
 						
 	}	
 		
