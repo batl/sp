@@ -101,16 +101,19 @@ class Main extends Crank {
 	
 	function get_tags()
 	{
+	
+		$entry = $this->input->post('entry');
+		
 		$this->load->model("Project_model");
 		
 		$tags = $this->Crank_model->get_all_entries(
-			"sp_projects",
+			"sp_".$entry,
 			array(),
 			0,
 			false,
 			'id',
 			'asc',
-			array("sp_projects" => array('tags')),
+			array("sp_".$entry => array('tags')),
 			array(),
 			false,
 			array(),
@@ -119,6 +122,7 @@ class Main extends Crank {
 		
 		$response = "<tags>";				
 		$hidden = "<span style='display:none;'>";
+		
 		if (!empty($tags))
 		{
 			$i = 0;

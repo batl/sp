@@ -4,10 +4,10 @@
 			<div class="left-bar">
 				<div id="sub-nav">
 					<ul>
-						<li><a id="projects" class="selected" href="javascript:void(0);"><?php echo $lang['all_projects']?></a></li>
-						<li><a id="projects/<?php echo date("Y").'/'.date("m").'/next'?>" href="javascript:void(0);"><?php echo $lang['curent']?></a></li>
-						<li><a id="projects/<?php echo date("Y").'/'.date("m").'/prev'?>" href="javascript:void(0);"><?php echo $lang['previus']?></a></li>					
-						<li><a id="projects/<?php echo date("Y").'/'.date("m").'/in_process'?>" href="javascript:void(0);"><?php echo $lang['in_process']?></a></li>					
+						<li><a id="events" class="selected" href="javascript:void(0);"><?php echo $lang['all_events']?></a></li>
+						<li><a id="events/<?php echo date("Y").'/'.date("m").'/next'?>" href="javascript:void(0);"><?php echo $lang['curent']?></a></li>
+						<li><a id="events/<?php echo date("Y").'/'.date("m").'/prev'?>" href="javascript:void(0);"><?php echo $lang['previus']?></a></li>					
+						<li><a id="events/<?php echo date("Y").'/'.date("m").'/in_process'?>" href="javascript:void(0);"><?php echo $lang['in_process']?></a></li>					
 					</ul>
 				</div>
 				<div id="date_filter" class="sidebar">
@@ -25,7 +25,7 @@
 			
 			<div id="content-container">
 				<div id="sub-hdr">
-					<h3><?php echo $lang['projects']?></h3>
+					<h3><?php echo $lang['events']?></h3>
 					<div style="float:right; padding:6px;">						
 						<div class="clear_search"></div><input id="search" type="text" value="" style="height:18px; width:200px; float:left;"/>
 						<div id="search_btn"></div>&nbsp;

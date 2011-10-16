@@ -265,6 +265,8 @@ $lang["project_feedbacks"]		= "Отзывы";
 $lang["project_paper"]			= "Пресса";
 $lang["hidden_link"]			= "Скрытая ссылка";
 $lang["records_per_page"]		= "Записей на страницу";
+$lang["all_events"]				= "Все события";
+$lang["profile_my_events"]		= "Мои события";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

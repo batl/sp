@@ -29,16 +29,13 @@ class Crank extends CI_Controller {
 		$this->params['current_settings'] = $this->Crank_model->get_entry_by_data("sp_settings", true, 'current', array('id'=>1));
 		$this->params['include_keywords'] = explode(',',$this->params['current_settings']['keywords']);
 
-		$this->include_js('jquery/jquery.min.js');
-		$this->include_js('cufon/cufon-yui.js');
-		$this->include_js('cufon/euphorigenic_400.font.js');
-		$this->include_js('cufon/Cabin-Bold_700.font.js');
+		$this->include_js('jquery/jquery.min.js');		
 		$this->include_js('main.js');		
 		$this->include_css('themes/'.$this->params['current_settings']['theme'].'/main.css');	
 		
 		if (!empty($this->params['user_id']))
 		{					
-			$this->params['user_info'] = $this->Crank_model->get_entry_by_data("sp_users", true, 'current', array('id' => $this->params['user_id']));
+			$this->params['user_info'] = $this->params['admin_info'] = $this->Crank_model->get_entry_by_data("sp_users", true, 'current', array('id' => $this->params['user_id']));
 		}
 		
 		$this->load->model("Page_model");	
@@ -265,6 +262,7 @@ class Crank extends CI_Controller {
 					break;
 				case 'sp_goods':
 				case 'sp_services':
+				case 'sp_events':
 					$where['type'] = $group;
 					break;
 				default:

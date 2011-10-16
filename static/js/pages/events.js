@@ -1,4 +1,4 @@
-var entry = 'projects';
+var entry = 'events';
 
 $(document).ready(function(){
 	
@@ -10,7 +10,7 @@ $(document).ready(function(){
 	
 	$('#date_search').click(function(){
 		
-		get_items(block, 'projects/date_filter/'+$('#date_start').val()+'v'+$('#date_end').val(), 0, 'id', 'asc', 'ignore');
+		get_items(block, 'events/date_filter/'+$('#date_start').val()+'v'+$('#date_end').val(), 0, 'id', 'asc', 'ignore');
 		
 	});
 	
@@ -42,11 +42,11 @@ $(document).ready(function(){
 		
 		$('#sub-hdr h3').html($(this).html());
 						
-		get_items(block, 'projects/'+$(this).html().split('&nbsp;')[1]+'/'+$(this).attr('slug')+'/no', 0, 'id', 'asc');
+		get_items(block, 'events/'+$(this).html().split('&nbsp;')[1]+'/'+$(this).attr('slug')+'/no', 0, 'id', 'asc');
 		
 	});
 	
-	$.post(base_url + 'main/get_tags', {'entry':'projects'}, function(data)
+	$.post(base_url + 'main/get_tags', {'entry':'events'}, function(data)
 	{		
 		var rnumber = Math.floor(Math.random()*9999999);
 		var so = new SWFObject("http://szenprogs.ru/tagcloud/tagcloud.swf?r="+rnumber, "tagcloudflash", "225", "225", "7");

@@ -54,7 +54,7 @@
 			</div>
 		</div>
 		<div id="site_info">
-			<h1><?php echo $current_settings['site_name']?></h1>
+			<h1 class="euphorigenic"><?php echo $current_settings['site_name']?></h1>
 			<h2><?php echo $current_settings['description']?></h2>
 		</div>
 		<div id="dealer-nav">

@@ -23,12 +23,14 @@ $(document).ready( function($){
 	},"json");
 	
 	$('#cpassword').bind("focus", focus_input);
+	
 	$('#password').bind("focus", focus_input);		
 	
 	$('#sub-nav-profile ul li a').click(function()
 	{				
 		
 		$('#sub-nav-profile ul li a').removeClass('selected');
+		
 		$(this).addClass('selected');
 		
 		var URL = base_url 	+ "profile/page";
@@ -38,41 +40,64 @@ $(document).ready( function($){
 		$('.items').html('<div class="world_preloader"></div>');
 		
 		$('.history').remove();
+		
 		story = new Array();
+		
 		titles = new Array();
 		
-		if ($(this).attr('id') == 'projects')
+		switch ($(this).attr('id'))
 		{
-			entry = 'project';
+			case 'projects':
+					entry = 'project';
 			
-			$('.add_item').show();
+					$('.add_item').show();
 
-			get_items($('.items'), entry, 0, sort, sort_type, 'ignore');						
+					get_items($('.items'), entry, 0, sort, sort_type, 'ignore');						
+					
+					story.push('items-'+entry);
+					
+					titles.push($('#sub-hdr h3').html());
+					
+				break;
+				
+			case 'events':
+					entry = 'event';
 			
-			story.push('items-'+entry);
-			titles.push($('#sub-hdr h3').html());			
-		}
-		else 
-		{
-			entry = 'user';
-			$('#paging, #limit, .add_item').hide();
+					$('.add_item').show();
+
+					get_items($('.items'), entry, 0, sort, sort_type, 'ignore');						
+					
+					story.push('items-'+entry);
+
+					titles.push($('#sub-hdr h3').html());
+					
+				break;
 				
-			var page = $(this).attr('id');
+			default:
+					entry = 'user';
+					
+					$('#paging, #limit, .add_item').hide();
+						
+					var page = $(this).attr('id');
+					
+					$.post(URL, {"page":page,"limit":limit}, function(data)
+					{          
+						$('.items').html(data.response);								
+									
+						if ($('#foto').length) image_upload(entry);
+						
+						$('input[type=text][language!=no], div.textarea').hide();
+				
+						$('input[type=text][language='+language_id+'], div.textarea[language='+language_id+']').show();
+						
+						if ($('textarea').length) tiny_init();
+						
+					},"json");
+					
+				break;
 			
-			$.post(URL, {"page":page,"limit":limit}, function(data)
-			{          
-				$('.items').html(data.response);								
-							
-				if ($('#foto').length) image_upload(entry);
-				
-				$('input[type=text][language!=no], div.textarea').hide();
-		
-				$('input[type=text][language='+language_id+'], div.textarea[language='+language_id+']').show();
-				
-				if ($('textarea').length) tiny_init();
-				
-			},"json");										
 		}
+				
 	});		
 	
 	$('#main_save').live('click',function(){
@@ -82,7 +107,9 @@ $(document).ready( function($){
 	});
 	
 	$('#change_pass_save').live('click',function(){
+	
 		var status = true;
+		
 		if ($('#password').val() == '') 
 		{
 			$('#password').css("background-color","#fcecec");
@@ -200,6 +227,16 @@ $(document).ready( function($){
 		$('section_title').html($(this).html());				
 		
 		entry = 'joins/'+$(this).attr('id')+'/'+id;
+		
+		get_items($('.items'),entry, 0, 'id', 'asc');
+		
+	});
+	
+	$('.events_actions').live('click', function(){				
+		
+		$('.section_title').html($(this).html());
+		
+		entry = 'joins/'+$(this).attr('id');
 		
 		get_items($('.items'),entry, 0, 'id', 'asc');
 		

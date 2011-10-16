@@ -10,6 +10,9 @@
 						<a id="projects" href="javascript:void(0);"><?php echo $lang['profile_my_projects']?></a>
 					</li>
 					<li>
+						<a id="events" href="javascript:void(0);"><?php echo $lang['profile_my_events']?></a>
+					</li>
+					<li>
 						<a id="change_pass_view" href="javascript:void(0);"><?php echo $lang['profile_change_password']?></a>
 					</li>
 				</ul>
@@ -39,7 +42,7 @@
 						<img src="static/images/btn_page_end.png" />
 					</a>
 				</div>
-				<div id="limit"><a href="javascript:void(0);">5</a><a href="javascript:void(0);" class="selected">10</a><a href="javascript:void(0);">20</a><a href="javascript:void(0);">30</a></div>
+				<div id="limit"><span><?php echo $lang['records_per_page']?>:</span>&nbsp;<a href="javascript:void(0);">5</a><a href="javascript:void(0);" class="selected">10</a><a href="javascript:void(0);">20</a><a href="javascript:void(0);">30</a></div>
 			</div><!--  #content-container -->
 			
 						

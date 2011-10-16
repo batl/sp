@@ -3,6 +3,7 @@
 	</div>
 	<div class='gform_body'>
 		<input type='hidden' class='gform_hidden' name='id' value='0'/>
+		<input type='hidden' class='gform_hidden' name='user_id' value='<?php echo $admin_info['id']?>'/>
 		<ul class='gform_fields top_label'>								
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["title"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>					
@@ -13,6 +14,12 @@
 							<?php								
 						endforeach;						
 					?>
+				</div>
+			</li>
+			<img id="foto_img" name="logo" big="" small="" src=""/>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["foto"]?><span class='gfield_required'>*</span>:</label>
+				<div class='ginput_container'>
+					<input name='userfile' id="foto" type='file' value='' class='medium' tabindex='3'/>					
 				</div>
 			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["group"]?><span class='gfield_required'>*</span>:</label>
@@ -60,6 +67,22 @@
 					</select>	
 				</div>
 			</li>	
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["terms"]?><span class='gfield_required'>*</span>:</label>
+				<div class='ginput_container'>					
+					<?php 						
+						foreach ($languages as $language):
+							?>
+							<input name='tags' language="<?php echo $language['id']?>" type='text' class='medium' tabindex='3'/>
+							<?php								
+						endforeach;						
+					?>
+				</div>
+			</li>
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["in_process"]?>:</label>
+				<div class='ginput_container'>
+					<input name='in_process' type='checkbox' class='medium' tabindex='4'/>
+				</div>
+			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["date_start"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
 					<input name='date_start' language="no" type='text' value='<?php echo date("m/d/Y");?>' class='medium picker' tabindex='3'/>

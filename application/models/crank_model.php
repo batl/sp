@@ -24,7 +24,7 @@ class Crank_model extends CI_Model {
 		'sp_goods_categories' 		=> array('name'),
 		'sp_goods' 					=> array('name'),
 		'sp_events_categories' 		=> array('name'),
-		'sp_events' 				=> array('name', 'schedule', 'poster', 'description', 'price'),
+		'sp_events' 				=> array('name', 'schedule', 'poster', 'description', 'price', 'tags'),
 		'sp_anonses' 				=> array('name', 'description'),
 		'sp_activities' 			=> array('name'),
 		'sp_events_curators'		=> array(),

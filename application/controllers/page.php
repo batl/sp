@@ -62,7 +62,9 @@ class Page extends Crank {
 			
 			if ($this->params['page']['system']):
 				
-				switch ($this->params['page']['slug'])
+				$slug = $this->params['page']['slug'];
+				
+				switch ($slug)
 				{
 					case 'shop':
 												
@@ -94,17 +96,18 @@ class Page extends Crank {
 						);												
 						
 						break;
+					case 'events':
 					case 'projects':
 						
-						$this->params['projects_categories'] = $this->Crank_model->get_all_entries(
-							"sp_projects_categories"
+						$this->params['categories'] = $this->Crank_model->get_all_entries(
+							"sp_".$slug."_categories"
 						);
 						
 						$this->lang->load('calendar', $this->params['language']);		
 						
 						$prefs = array (
 						   'show_next_prev'  => TRUE,
-						   'next_prev_url'   => $this->params['base'].'page/get_calendar/',
+						   'next_prev_url'   => $this->params['base'].'page/get_calendar/'.$slug.'/',
 						   'lang'			 => $this->lang->language
 						 );
 						 
@@ -115,7 +118,7 @@ class Page extends Crank {
 						for ($i = 1; $i <= 31; $i++)
 						{
 							$projects = count($this->Crank_model->get_all_entries(
-								"sp_projects", 
+								"sp_".$slug, 
 								array(
 									'date_start' => date("Y").'-'.date("m").'-'.$i,
 									'in_process' => 0
@@ -125,11 +128,11 @@ class Page extends Crank {
 								'id', 
 								'asc', 
 								array(
-									'sp_projects' => array('id')								
+									'sp_'.$slug => array('id')								
 								)
 							));
 							
-							if ($projects) $links[$i] = 'projects/'.date("Y").'/'.date("m").'/'.$i;							
+							if ($projects) $links[$i] = $slug.'/'.date("Y").'/'.date("m").'/'.$i;							
 						}
 						
 						$this->params['calendar'] = $this->calendar->generate(date("Y"),date("m"), $links);
@@ -138,8 +141,8 @@ class Page extends Crank {
 						$this->include_js('jquery/ui/jquery.ui.widget.js');
 						$this->include_js('jquery/ui/jquery.ui.datepicker.js');
 						$this->include_css('ui/jquery.ui.all.css');		
-						$this->include_css('pages/projects.css');															
-						$this->include_js('pages/projects.js');
+						$this->include_css('pages/'.$slug.'.css');															
+						$this->include_js('pages/'.$slug.'.js');
 						$this->include_js('jquery/swfobject.js');
 						
 						break;
@@ -156,12 +159,13 @@ class Page extends Crank {
 	/* ---------------------------------------------------------------------- */
 	
 	public function get_calendar($data)
-	{
+	{			
+		
 		$this->lang->load('calendar', $this->params['language']);		
 		
 		$prefs = array (
 		   'show_next_prev'  => TRUE,
-		   'next_prev_url'   => $this->params['base'].'page/get_calendar/',
+		   'next_prev_url'   => $this->params['base'].'page/get_calendar/'.$data[0].'/',
 		   'lang'			 => $this->lang->language
 		 );
 		 
@@ -172,9 +176,9 @@ class Page extends Crank {
 		for ($i = 1; $i <= 31; $i++)
 		{
 			$projects = count($this->Crank_model->get_all_entries(
-				"sp_projects", 
+				"sp_".$data[0], 
 				array(
-					'date_start' => $data[0].'-'.$data[1].'-'.$i,
+					'date_start' => $data[1].'-'.$data[2].'-'.$i,
 					'in_process' => 0
 				), 
 				0, 
@@ -182,14 +186,14 @@ class Page extends Crank {
 				'id', 
 				'asc', 
 				array(
-					'sp_projects' => array('id')								
+					'sp_'.$data[0] => array('id')								
 				)
 			));
 			
-			if ($projects) $links[$i] = 'projects/'.$data[0].'/'.$data[1].'/'.$i;
+			if ($projects) $links[$i] = $data[0].'/'.$data[1].'/'.$data[2].'/'.$i;
 		}
 	
-		echo json_encode(array('responce' => $this->calendar->generate($data[0], $data[1], $links)));
+		echo json_encode(array('responce' => $this->calendar->generate($data[1], $data[2], $links)));
 	}
 	
 	/* ---------------------------------------------------------------------- */
@@ -278,6 +282,92 @@ class Page extends Crank {
 					);
 					$where = array('poll_id' => $entry[1]);
 				break;
+			case 'event':
+			case 'events':
+				
+				!empty($entry[3]) ? $day = $entry[3] : $day = NULL;
+				
+				if (!empty($entry[1]))
+				{
+					switch ($entry[1])
+					{
+						case 'date_filter':
+							
+							$dates = explode('v', $entry[2]); 
+						
+							if (!empty($dates[0]))
+							{
+								$where['date_start >='] 	 = date("Y-m-d", strtotime($dates[0]));
+								$or_where['date_start IS NULL'] = NULL;								
+								$or_where['date_start'] = '0000-00-00';								
+							}
+							if (!empty($dates[1]))
+							{
+								$where['date_end <=']   = date("Y-m-d", strtotime($dates[1]));
+								$or_where['date_end IS NULL'] = NULL;								
+								$or_where['date_end'] = '0000-00-00';								
+							}
+							
+							$where['in_process'] = 0;
+							
+							$day = NULL;
+							break;
+					}					
+				}
+				
+				$custom_view = 'profile_events_view';
+				
+				$fields = array(
+					'sp_events' => array('id','user_id','logo','name','date_start', 'date_end','tags','in_process'),
+					'sp_places' => array('name as place'),
+					'sp_events_categories' => array('name as group_name')
+				); 
+				$joins = array(
+					'sp_places'=>'place', 
+					'sp_events_categories' => 'type'
+				);
+				if (!empty($day))
+				{
+					switch ($day)
+					{
+						case 'no':
+							$where = array(
+								'date_start >=' => date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01')), 
+								'date_start <=' => date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month')),
+								'in_process' => 0
+							);
+							break;
+						case 'next':
+							$where = array(
+								'date_start >=' => date("Y-m-d"),
+								'in_process' => 0
+							);
+							break;
+						case 'prev':
+							$where = array(
+								'date_start <' => date("Y-m-d"),
+								'in_process' => 0
+							);
+							break;
+						case 'in_process':
+							$where = array(
+								'in_process' => 1
+							);
+							break;
+						default:
+							$where = array(
+								'date_start' => $entry[1].'-'.$entry[2].'-'.$day,
+								'in_process' => 0
+							);
+							break;
+					}						
+				}
+				
+				if ($entry[0] == 'event') $where['user_id'] = $this->session->userdata('user_id');									
+				
+				$table_name = "sp_events";				
+				
+				break;
 			case 'projects':											
 			case 'project':
 			
@@ -311,7 +401,7 @@ class Page extends Crank {
 					}					
 				}
 				
-				$custom_view = 'profile_projects';
+				$custom_view = 'profile_projects_view';
 				
 				$fields = array(
 					'sp_projects' => array('id','user_id','logo','name','date_start', 'date_end','short_description','slug','tags','in_process','bg_color'),
@@ -362,8 +452,7 @@ class Page extends Crank {
 				if ($entry[0] == 'project') $where['user_id'] = $this->session->userdata('user_id');									
 				
 				$table_name = "sp_projects";
-				//(!empty($entry[1]) && empty($day)) ? $single = true : $single = false;
-				//(!empty($entry[1]) && empty($day)) ? $where = array('id' => intval($entry[1])):'';
+				
 				break;
 				
 			case 'moreproject':
@@ -441,6 +530,11 @@ class Page extends Crank {
 				$data 		= array('groups' => 'sp_projects_categories', 'places' => 'sp_places');
 				$custom_view = 'admin/project';
 				break;
+			case 'event':
+				$table_name = 'sp_events';
+				$data 		= array('groups' => 'sp_events_categories', 'places' => 'sp_places');
+				$custom_view = 'admin/event';
+				break;
 			case 'moreproject':
 				$table_name = 'sp_projectsstages';
 				$data = array('territories' => 'sp_territories', 'projects' => 'sp_projects', 'events' => 'sp_events');
@@ -511,6 +605,9 @@ class Page extends Crank {
 		{
 			case 'project':
 				$table_name = 'sp_projects';
+				break;
+			case 'event':
+				$table_name = 'sp_events';
 				break;
 			case 'moreproject':
 				$table_name = 'sp_projectsstages';

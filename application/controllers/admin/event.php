@@ -36,12 +36,12 @@ class Event extends Crank {
 		parent::get_items(
 			false, 
 			array(
-				'sp_events' => array('id','name','date_start', 'date_end'),
+				'sp_events' => array('id','name','logo','date_start', 'date_end'),
 				'sp_places' => array('name as place')			
 			), 
 			array('sp_places'=>'place'),
 			array('date_start' => 'date', 'date_end' => 'date')
-			);
+		);
 	}		
 	
 	public function get_view()

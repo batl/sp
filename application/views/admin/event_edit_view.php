@@ -15,6 +15,12 @@
 					?>
 				</div>
 			</li>
+			<img id="foto_img" name="logo" big="<?php echo $entry['logo']?>" small="<?php echo $entry['thumb']?>" src="<?php echo $front_url.$entry['thumb']?>"/>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["foto"]?><span class='gfield_required'>*</span>:</label>
+				<div class='ginput_container'>
+					<input name='userfile' id="foto" type='file' value='' class='medium' tabindex='3'/>					
+				</div>
+			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["group"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
 					<select name="type">
@@ -60,6 +66,22 @@
 					</select>	
 				</div>
 			</li>	
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["terms"]?><span class='gfield_required'>*</span>:</label>
+				<div class='ginput_container'>					
+					<?php 						
+						foreach ($languages as $language):
+							?>
+							<input name='tags' language="<?php echo $language['id'];?>" type='text' value='<?php echo $entry['tags'][$language['id']];?>' class='medium' tabindex='3'/>
+							<?php								
+						endforeach;						
+					?>
+				</div>
+			</li>
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["in_process"]?>:</label>
+				<div class='ginput_container'>
+					<input name='in_process' type='checkbox' class='medium' tabindex='4' <?php if ($entry['in_process']) echo 'checked="checked"'?>/>
+				</div>
+			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["date_start"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
 					<input name='date_start' language="no" type='text' value='<?php  if (!empty($entry['date_start']) && $entry['date_start'] != '0000-00-00') echo $entry['date_start'];?>' class='medium picker' tabindex='3'/>

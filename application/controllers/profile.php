@@ -59,8 +59,11 @@ class Profile extends Crank {
 					'user_id' => $this->session->userdata('user_id')
 				);
 				
-				parent::get_items('sp_projects', 'profile_'.$view, $fields, $joins, $where);
+				parent::get_items('sp_projects', 'profile_projects_view', $fields, $joins, $where);
 				
+				break;
+			case 'events':
+			
 				break;
 			default:
 				

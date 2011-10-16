@@ -6,10 +6,7 @@ var search = '';
 var story = new Array();
 var titles = new Array();
 
-$(document).ready(function(){	
-	
-	Cufon.replace(".cabin",{fontFamily: "Cabin-Bold"});
-	Cufon.replace(".euphorigenic",{fontFamily: "euphorigenic"});
+$(document).ready(function(){			
 	
 	$('.clear_search').click(function(){
 		$('#search').val('');
