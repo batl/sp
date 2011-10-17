@@ -1839,7 +1839,8 @@ padding:5px;
 }
 
 .gen_table{
-width:100%;
+width:650px;
+margin-left:10px;
 }
 
 .gen_table tr td{

@@ -106,7 +106,9 @@ class Crank extends CI_Controller {
 			
 			$titles = array_keys($array[0]);						
 			
-			$html .= '<tr class="t_title">';			
+			$html .= '<tr class="t_title">';	
+				
+			$html .= '<td style="cursor:default; color:#ccc; text-decoration:underline;">№</td>';
 			
 			$sort_field = $this->input->post('sort');
 			
@@ -153,16 +155,18 @@ class Crank extends CI_Controller {
 				
 			}
 			
+			$start = $this->input->post('start');						
+			
 			$html .= '<td style="cursor:default; color:#ccc; text-decoration:underline;">'.$this->params['lang']['actions'].'</td>';
 
 			$html .= '</tr>';						
 			
-			foreach ($array as $row)
+			foreach ($array as $row_key => $row)
 			{
 			
-				$confirmed = false;
+				$confirmed = false;							
 			
-				$html .= '<tr>';
+				$html .= '<tr>';								
 				
 				foreach ($row as $key => $cell)
 				{
@@ -207,7 +211,7 @@ class Crank extends CI_Controller {
 										$html .= '<td>'.$this->params['lang']['no_video'].'</td>';
 									break;
 								case 'hidden':
-									$html .= '<td class="hidden">'.$cell.'</td>';	
+									if ($key == 'id') $html .= '<td class="hidden">'.$cell.'</td><td>'.($row_key + $start + 1).'</td>';	 else $html .= '<td class="hidden">'.$cell.'</td>';
 									break;
 								default:
 									$html .= '<td>'.$cell.'</td>';	

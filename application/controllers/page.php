@@ -198,7 +198,7 @@ class Page extends Crank {
 	
 	/* ---------------------------------------------------------------------- */
 	
-	public function get_items($entry, $custom_view = false, $fields = array(), $joins = array(), $where = array(), $single = false, $types = array(), $disabled_actions = array(), $or_where = array())
+	public function get_items($entry, $custom_view = false, $fields = array(), $joins = array(), $where = array(), $single = false, $types = array(), $disabled_actions = array(), $or_where = array(), $custom_where = false)
 	{		
 		$table_name = '';		
 		switch ($entry[0])
@@ -295,22 +295,21 @@ class Page extends Crank {
 							
 							$dates = explode('v', $entry[2]); 
 						
-							if (!empty($dates[0]))
+							if (!empty($dates[0]) && !empty($dates[1]))
 							{
-								$where['date_start >='] 	 = date("Y-m-d", strtotime($dates[0]));
-								$or_where['date_start IS NULL'] = NULL;								
-								$or_where['date_start'] = '0000-00-00';								
+								$custom_where = "((date_start<='".date("Y-m-d", strtotime($dates[1]))."' AND (date_end='0000-00-00' OR date_end IS NULL)) OR (((date_start<='".date("Y-m-d", strtotime($dates[1]))."' OR (date_end>='".date("Y-m-d", strtotime($dates[0]))."' AND date_end<='".date("Y-m-d", strtotime($dates[1]))."')) AND date_end!='0000-00-00' AND date_end IS NOT NULL)) AND in_process=0)";
 							}
-							if (!empty($dates[1]))
-							{
-								$where['date_end <=']   = date("Y-m-d", strtotime($dates[1]));
-								$or_where['date_end IS NULL'] = NULL;								
-								$or_where['date_end'] = '0000-00-00';								
+							elseif (!empty($dates[0]))
+							{							
+								$custom_where = "(date_start>='".date("Y-m-d", strtotime($dates[0]))."' AND in_process=0)";
 							}
-							
-							$where['in_process'] = 0;
+							elseif (!empty($dates[1]))
+							{															
+								$custom_where = "(date_end<='".date("Y-m-d", strtotime($dates[1]))."' OR date_end='0000-00-00' OR date_end IS NULL AND in_process=0)";
+							}							
 							
 							$day = NULL;
+							
 							break;
 					}					
 				}
@@ -330,35 +329,35 @@ class Page extends Crank {
 				{
 					switch ($day)
 					{
-						case 'no':
-							$where = array(
-								'date_start >=' => date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01')), 
-								'date_start <=' => date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month')),
-								'in_process' => 0
-							);
+						case 'no': // В определенный месяц "Октябрь"
+							
+							$custom_where = "((date_start>='".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01'))."' AND date_start<'".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month'))."' AND in_process=0 AND (date_end='0000-00-00' OR date_end IS NULL)) OR ((date_start>='".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01'))."' AND date_start<'".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month'))."' AND in_process=0)) OR (date_end>='".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01'))."' AND date_end<'".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month'))."' AND in_process=0))";
+							
 							break;
-						case 'next':
-							$where = array(
-								'date_start >=' => date("Y-m-d"),
-								'in_process' => 0
-							);
+							
+						case 'next': // Текущие							
+							
+							$custom_where = "((date_start<='".date("Y-m-d")."' AND date_end>='".date("Y-m-d")."' AND in_process=0) OR (date_start<='".date("Y-m-d")."' AND (date_end IS NULL OR date_end='0000-00-00') AND in_process=0))";														
+							
 							break;
-						case 'prev':
-							$where = array(
-								'date_start <' => date("Y-m-d"),
-								'in_process' => 0
-							);
+							
+						case 'prev': // Прошедшие
+
+							$custom_where = "(date_end<'".date("Y-m-d")."' AND in_process=0 AND date_end!='0000-00-00' AND date_end IS NOT NULL)";
+							
 							break;
-						case 'in_process':
+							
+						case 'in_process': // Помечен как "В процессе"
 							$where = array(
 								'in_process' => 1
 							);
+							
 							break;
-						default:
-							$where = array(
-								'date_start' => $entry[1].'-'.$entry[2].'-'.$day,
-								'in_process' => 0
-							);
+							
+						default: // Попадает в определенный день
+						
+							$custom_where = "(date_start<='".$entry[1].'-'.$entry[2].'-'.$day."' AND (date_end>='".$entry[1].'-'.$entry[2].'-'.$day."' OR date_end='0000-00-00' OR date_end IS NULL))";
+														
 							break;
 					}						
 				}
@@ -381,22 +380,21 @@ class Page extends Crank {
 							
 							$dates = explode('v', $entry[2]); 
 						
-							if (!empty($dates[0]))
+							if (!empty($dates[0]) && !empty($dates[1]))
 							{
-								$where['date_start >='] 	 = date("Y-m-d", strtotime($dates[0]));
-								$or_where['date_start IS NULL'] = NULL;								
-								$or_where['date_start'] = '0000-00-00';								
+								$custom_where = "((date_start<='".date("Y-m-d", strtotime($dates[1]))."' AND (date_end='0000-00-00' OR date_end IS NULL)) OR (((date_start<='".date("Y-m-d", strtotime($dates[1]))."' OR (date_end>='".date("Y-m-d", strtotime($dates[0]))."' AND date_end<='".date("Y-m-d", strtotime($dates[1]))."')) AND date_end!='0000-00-00' AND date_end IS NOT NULL)) AND in_process=0)";
 							}
-							if (!empty($dates[1]))
-							{
-								$where['date_end <=']   = date("Y-m-d", strtotime($dates[1]));
-								$or_where['date_end IS NULL'] = NULL;								
-								$or_where['date_end'] = '0000-00-00';								
+							elseif (!empty($dates[0]))
+							{							
+								$custom_where = "(date_start>='".date("Y-m-d", strtotime($dates[0]))."' AND in_process=0)";
 							}
-							
-							$where['in_process'] = 0;
+							elseif (!empty($dates[1]))
+							{															
+								$custom_where = "(date_end<='".date("Y-m-d", strtotime($dates[1]))."' OR date_end='0000-00-00' OR date_end IS NULL AND in_process=0)";
+							}							
 							
 							$day = NULL;
+							
 							break;
 					}					
 				}
@@ -416,35 +414,35 @@ class Page extends Crank {
 				{
 					switch ($day)
 					{
-						case 'no':
-							$where = array(
-								'date_start >=' => date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01')), 
-								'date_start <=' => date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month')),
-								'in_process' => 0
-							);
+						case 'no': // В определенный месяц "Октябрь"
+							
+							$custom_where = "((date_start>='".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01'))."' AND date_start<'".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month'))."' AND in_process=0 AND (date_end='0000-00-00' OR date_end IS NULL)) OR ((date_start>='".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01'))."' AND date_start<'".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month'))."' AND in_process=0)) OR (date_end>='".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01'))."' AND date_end<'".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month'))."' AND in_process=0))";
+							
 							break;
-						case 'next':
-							$where = array(
-								'date_start >=' => date("Y-m-d"),
-								'in_process' => 0
-							);
+							
+						case 'next': // Текущие							
+							
+							$custom_where = "((date_start<='".date("Y-m-d")."' AND date_end>='".date("Y-m-d")."' AND in_process=0) OR (date_start<='".date("Y-m-d")."' AND (date_end IS NULL OR date_end='0000-00-00') AND in_process=0))";														
+							
 							break;
-						case 'prev':
-							$where = array(
-								'date_start <' => date("Y-m-d"),
-								'in_process' => 0
-							);
+							
+						case 'prev': // Прошедшие
+
+							$custom_where = "(date_end<'".date("Y-m-d")."' AND in_process=0 AND date_end!='0000-00-00' AND date_end IS NOT NULL)";
+							
 							break;
-						case 'in_process':
+							
+						case 'in_process': // Помечен как "В процессе"
 							$where = array(
 								'in_process' => 1
 							);
+							
 							break;
-						default:
-							$where = array(
-								'date_start' => $entry[1].'-'.$entry[2].'-'.$day,
-								'in_process' => 0
-							);
+							
+						default: // Попадает в определенный день
+						
+							$custom_where = "(date_start<='".$entry[1].'-'.$entry[2].'-'.$day."' AND (date_end>='".$entry[1].'-'.$entry[2].'-'.$day."' OR date_end='0000-00-00' OR date_end IS NULL))";
+														
 							break;
 					}						
 				}
@@ -513,10 +511,9 @@ class Page extends Crank {
 				$where = array('entry_id'=> $entry[4]);
 				$disabled_actions = array('edit');
 				break;
-		}
+		}				
 		
-		
-		parent::get_items($table_name, $custom_view, $fields, $joins, $where, $single, $types, $disabled_actions, array(), $or_where);
+		parent::get_items($table_name, $custom_view, $fields, $joins, $where, $single, $types, $disabled_actions, array(), $custom_where);
 			
 	}
 	

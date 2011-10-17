@@ -250,7 +250,7 @@ $lang["user_failed_confirmed"]			= "Пользователь не подтвер
 $lang["confirmation_mail"]			= "Ваша заявка на регистрацию успешно обработана. Добро пожаловать на сайт 'Успешный проект'.";
 $lang["in_process"]				= "В разработке";
 $lang["no_data"]				= "<span style='font-size:11px;'>Не указано</span>";
-$lang["date_filter"]			= "Диапазон дат";
+$lang["date_filter"]			= "Поиск по дате";
 $lang["remove_image"]			= "Идалить изображение";
 $lang["about_project"]			= "О проекте";
 $lang["print_report"]			= "Печать отчета";
@@ -275,6 +275,11 @@ $lang["create_new_place"]		= "Создать новое место";
 $lang["create_new_scope"]		= "Создать новую сферу деятельности";
 $lang["create_new_place_type"]	= "Создать новый тип места";
 $lang["create_new_event_type"]	= "Создать новый тип события";
+$lang["date_range"]				= "Дата проведения";
+$lang["from"]					= "с";
+$lang["to"]						= "по";
+$lang["start"]					= "Начало";
+$lang["end"]					= "Конец";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

@@ -4,9 +4,9 @@
 			<img src="<?php echo $base.$project['logo']?>" />
 		</div>
 		<div class="project-item-content">
-			<a href="<?php echo $base.'project/'.$project['slug']?>" target="_blanck"><?php echo $project['name']?></a><br />			
+			<a href="<?php echo $base.'project/'.$project['slug']?>" target="_blanck"><?php echo $project['name']?> <?php if ($project['in_process']) echo '<span style="color:red; font-size:11px;">('.$lang['in_process'].')</span>'?></a><br />			
 			<?php 
-				echo $lang['date_start'].': ';
+				echo $lang['date_range'].': '.$lang['from'].' ';
 				if (!empty($project['date_start']) && $project['date_start'] != '0000-00-00')
 				{
 					$date = explode(" ",date("j M Y",strtotime($project['date_start'])));
@@ -15,7 +15,7 @@
 				else echo $lang['no_data'];
 			?>			
 			<?php 
-				echo $lang['date_end'].': ';
+				echo $lang['to'].' ';
 				if (!empty($project['date_end']) && $project['date_end'] != '0000-00-00')
 				{
 					$date = explode(" ",date("j M Y",strtotime($project['date_end'])));

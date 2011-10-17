@@ -265,6 +265,11 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 								$('.message').fadeOut('fast');
 							},3000);
 						
+						var page = parseInt($('.curent_page span').html());
+						var start = (page-1)*limit;
+						var block = $(this).parents('.list div:first');
+						get_items(block, entry, start, sort, sort_type, 'ignore');
+						
 					},"json");								
 				}
 			});

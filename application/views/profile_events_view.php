@@ -6,7 +6,7 @@
 		<div class="project-item-content">
 			<a href="javascript:void(0);" class="single" id="events/<?php echo $event['id']?>"><?php echo $event['name']?></a><br />			
 			<?php 
-				echo $lang['date_start'].': ';
+				echo $lang['date_range'].': '.$lang['from'].' ';
 				if (!empty($event['date_start']) && $event['date_start'] != '0000-00-00')
 				{
 					$date = explode(" ",date("j M Y",strtotime($event['date_start'])));
@@ -15,7 +15,7 @@
 				else echo $lang['no_data'];
 			?>			
 			<?php 
-				echo $lang['date_end'].': ';
+				echo $lang['to'].' ';
 				if (!empty($event['date_end']) && $event['date_end'] != '0000-00-00')
 				{
 					$date = explode(" ",date("j M Y",strtotime($event['date_end'])));

@@ -12,8 +12,8 @@
 				</div>
 				<div id="date_filter" class="sidebar">
 					<p style="text-align:center;"><?php echo $lang['date_filter']?></p><div id="date_search"></div>
-					<input id="date_start" class="picker" type="text" value="" style="height:18px; width:180px; margin:5px;"/>
-					<input id="date_end" class="picker" type="text" value="" style="height:18px; width:180px; margin:5px;"/>
+					<span><?php echo $lang['start']?></span><input id="date_start" class="picker" type="text" value="" style="height:18px; width:150px; margin:5px;"/>
+					<span><?php echo $lang['end']?>&nbsp;&nbsp;&nbsp;</span><input id="date_end" class="picker" type="text" value="" style="height:18px; width:150px; margin:5px;"/>
 				</div>
 				<div id="calendar">
 					<?php echo $calendar;?>

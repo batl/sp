@@ -38,7 +38,7 @@ $(document).ready(function(){
 		
 		var id = $(this).parents('tr').find('td:first').html();	
 		
-		$('#content h2:first').html($(this).html()+' '+$(this).parents('tr').find('td').eq(1).html());
+		$('#content h2:first').html($(this).html()+' '+$(this).parents('tr').find('td').eq(2).html());
 		
 		entry = 'joins_'+$(this).attr('id')+'-'+id;
 		

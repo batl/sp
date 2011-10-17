@@ -235,7 +235,7 @@ class Crank extends CI_Controller {
 		return $html;		
 	}
 	
-	public function get_items($table_name = false, $custom_view = false, $fields = array(), $joins = array(), $where = array(), $single = false, $fields_types = array(), $disabled_actions = array(), $like = array(), $or_where = array())
+	public function get_items($table_name = false, $custom_view = false, $fields = array(), $joins = array(), $where = array(), $single = false, $fields_types = array(), $disabled_actions = array(), $like = array(), $custom_where = false)
 	{
 		$data = array(
 			'result' => true			
@@ -279,9 +279,9 @@ class Crank extends CI_Controller {
 		empty($sort) ? $sort = 'id': '';
 		empty($sort_type) ? $sort_type = 'asc': '';						
 		
-		$this->params['items_array'] = $this->Crank_model->get_all_entries($table_name, $where ,$start, $limit, $sort, $sort_type, $fields, $joins, $single, $like, false, $or_where);
+		$this->params['items_array'] = $this->Crank_model->get_all_entries($table_name, $where ,$start, $limit, $sort, $sort_type, $fields, $joins, $single, $like, false, $custom_where);
 		
-		$items_count = count($this->Crank_model->get_all_entries($table_name, $where, 0, false, 'id', 'asc', $fields, $joins, false, $like, false, $or_where));
+		$items_count = count($this->Crank_model->get_all_entries($table_name, $where, 0, false, 'id', 'asc', $fields, $joins, false, $like, false, $custom_where));
 		
 		if (!empty($this->params['items_array']))
 		{
