@@ -39,7 +39,7 @@
 			</div>
 		</div>
 		
-		<form method='post' id="type_modal_form" title="<?php echo $lang['create_new_goods_category']?>">
+		<form method='post' id="type_modal_form" title="<?php echo $lang['create_new_category']?>">
 			<div class='gform_heading'>
 			</div>
 			<div class='gform_body'>

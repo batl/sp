@@ -106,4 +106,36 @@ $(document).ready(function(){
 		
 	});
 	
+	init_modal_window('category_modal_form', 'group_projects', function(response){
+		$('select[name=category_id]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=category_id] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});
+	
+	init_modal_window('scope_modal_form', 'group_scopes', function(response){
+		$('select[name=scope]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=scope] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});
+	
+	init_modal_window('place_modal_form', 'dictionary', function(response){
+		$('select[name=place]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=place] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});
+	
+	$("#create_category").live('click', function(){				
+			$("#category_modal_form").dialog( "open" );
+	});	
+	
+	$("#create_place").live('click', function(){				
+			$("#place_modal_form").dialog( "open" );
+	});
+	
+	$("#create_scope").live('click', function(){				
+			$("#scope_modal_form").dialog( "open" );
+	});
 });

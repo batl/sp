@@ -45,6 +45,7 @@
 						}
 						?>
 					</select>
+					<span id="create_organization" class="create_new"></span>
 				</div>
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["price"]?><span class='gfield_required'>*</span>:</label>
@@ -65,6 +66,7 @@
 						}
 						?>
 					</select>	
+					<span id="create_type" class="create_new"></span>
 				</div>
 			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["project_result"]?>:</label>

@@ -40,7 +40,8 @@ class Service extends Crank {
 				'sp_projects'=>'project_result'
 			),		// joins
 			array(
-				'price' => 'price'
+				'price' => 'price',
+				'id' => 'hidden'
 			)		// fields types (bool, price)
 		);
 	}		

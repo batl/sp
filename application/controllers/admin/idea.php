@@ -11,8 +11,14 @@ class Idea extends Crank {
 				
 		$this->params['main_navi'] = 5;		
 		
+		$this->include_js('jquery/ui/jquery.ui.core.js');
+		$this->include_js('jquery/ui/jquery.ui.widget.js');
+		$this->include_js('jquery/ui/jquery.ui.dialog.js');		
+		$this->include_js('jquery/ui/jquery.ui.position.js');
+		
 		$this->include_js('admin/pages/project.js');
 		$this->include_js('tiny_mce/tiny_mce.js');
+		$this->include_css('ui/jquery.ui.all.css');		
 		$this->include_css('admin/pages/project.css');
 		
 		$this->params['table_name'] = 'sp_ideas';
@@ -28,10 +34,19 @@ class Idea extends Crank {
 	
 	public function get_items()
 	{
-		parent::get_items(false, array(
-			'sp_ideas' => array('id','name'),
-			'sp_scopes' => array('name as scope')			
-		), array('sp_scopes'=>'scope'));
+		parent::get_items(
+			false, 
+			array(
+				'sp_ideas' => array('id','name'),
+				'sp_scopes' => array('name as scope')			
+			), 
+			array(
+				'sp_scopes'=>'scope'
+			),
+			array(
+				'id' => 'hidden'
+			)
+		);
 	}		
 	
 	public function get_view()

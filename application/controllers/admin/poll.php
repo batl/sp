@@ -37,7 +37,7 @@ class Poll extends Crank {
 				'sp_poll' => array('id','name','date_start','date_end', 'active')
 			),// fields
 			array(),	// joins		
-			array('date_start' => 'date', 'date_end' => 'date', 'active' => 'bool'), // types
+			array('date_start' => 'date', 'date_end' => 'date', 'active' => 'bool', 'id' => 'hidden'), // types
 			array('project_id' => $id) // where
 		);
 	}		

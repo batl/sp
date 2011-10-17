@@ -38,6 +38,7 @@
 						}
 						?>
 					</select>
+					<span id="create_scope" class="create_new"></span>
 				</div>
 			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["grantor"]?><span class='gfield_required'>*</span>:</label>

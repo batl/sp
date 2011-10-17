@@ -29,7 +29,7 @@ class Pollanswers extends Crank {
 				'sp_poll_answers' => array('id','name','thumb','count as answers_count')
 			), 
 			array(),			
-			array(),
+			array('id' => 'hidden'),
 			array(
 				'poll_id'=> $id
 			)

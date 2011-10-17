@@ -343,10 +343,6 @@ border: 1px solid #ccc;
 -webkit-box-shadow: 0px 0px 3px #ccc; 
 box-shadow: 0px 0px 3px #ccc;
 background-color:#fff;
--moz-border-radius: 10px;
--webkit-border-radius: 10px;
--khtml-border-radius: 10px;
-border-radius: 10px;
 }	
 
 .items, #content-container{

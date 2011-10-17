@@ -74,6 +74,7 @@
 						}
 						?>
 					</select>	
+					<span id="create_category" class="create_new"></span>
 				</div>
 			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["place"]?><span class='gfield_required'>*</span>:</label>
@@ -89,6 +90,7 @@
 						}
 						?>
 					</select>	
+					<span id="create_place" class="create_new"></span>
 				</div>
 			</li>					
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["purpose"]?>: </label>

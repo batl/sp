@@ -14,6 +14,8 @@ class Dictionary extends Crank {
 		$this->include_js('jquery/ajaxupload.js');
 		$this->include_js('jquery/ui/jquery.ui.core.js');
 		$this->include_js('jquery/ui/jquery.ui.widget.js');
+		$this->include_js('jquery/ui/jquery.ui.dialog.js');		
+		$this->include_js('jquery/ui/jquery.ui.position.js');
 		$this->include_js('jquery/ui/jquery.ui.datepicker.js');
 		$this->include_js('admin/pages/dictionary.js');
 		$this->include_js('tiny_mce/tiny_mce.js');
@@ -27,7 +29,13 @@ class Dictionary extends Crank {
 	{			
 		$this->set_title($this->params['lang']['dictionary']);
 		$this->include_keywords($this->params['lang']['dictionary']);
-		$this->set_description($this->params['lang']['dictionary']);				
+		$this->set_description($this->params['lang']['dictionary']);
+				
+		$this->params['grantors'] 		= $this->Crank_model->get_all_entries('sp_organizations');
+		$this->params['places'] 		= $this->Crank_model->get_all_entries('sp_places');
+		$this->params['place_types'] 	= $this->Crank_model->get_all_entries('sp_places_categories');
+		$this->params['scopes'] 	 	= $this->Crank_model->get_all_entries('sp_scopes');
+		
 		$this->include_view('dictionary_view',$this->params);
 	}
 	
@@ -73,7 +81,7 @@ class Dictionary extends Crank {
 				);				
 				break;
 		}
-		parent::get_items($table,$data,$joins);
+		parent::get_items($table,$data,$joins, array('id' => 'hidden'));
 	}		
 	
 	public function get_view($view)

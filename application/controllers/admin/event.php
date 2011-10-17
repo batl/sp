@@ -14,6 +14,8 @@ class Event extends Crank {
 		$this->include_js('jquery/ajaxupload.js');
 		$this->include_js('jquery/ui/jquery.ui.core.js');
 		$this->include_js('jquery/ui/jquery.ui.widget.js');
+		$this->include_js('jquery/ui/jquery.ui.dialog.js');		
+		$this->include_js('jquery/ui/jquery.ui.position.js');
 		$this->include_js('jquery/ui/jquery.ui.datepicker.js');
 		$this->include_js('admin/pages/event.js');
 		$this->include_js('tiny_mce/tiny_mce.js');
@@ -27,7 +29,10 @@ class Event extends Crank {
 	{
 		$this->set_title($this->params['lang']['events']);
 		$this->include_keywords($this->params['lang']['events']);
-		$this->set_description($this->params['lang']['events']);				
+		$this->set_description($this->params['lang']['events']);	
+		
+		$this->params['place_types'] = $this->Crank_model->get_all_entries('sp_places_categories');
+			
 		$this->include_view('event_view',$this->params);
 	}
 	
@@ -40,7 +45,7 @@ class Event extends Crank {
 				'sp_places' => array('name as place')			
 			), 
 			array('sp_places'=>'place'),
-			array('date_start' => 'date', 'date_end' => 'date')
+			array('date_start' => 'date', 'date_end' => 'date', 'id' => 'hidden')
 		);
 	}		
 	

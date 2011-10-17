@@ -46,4 +46,26 @@ $(document).ready(function(){
 		
 	});
 	
+	init_modal_window('type_modal_form', 'group_events', function(response){
+		$('select[name=type]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=type] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});	
+	
+	init_modal_window('place_modal_form', 'dictionary', function(response){
+		$('select[name=place]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=place] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});
+	
+	$("#create_type").live('click', function(){				
+		$("#type_modal_form").dialog( "open" );
+	});	
+	
+	$("#create_place").live('click', function(){				
+		$("#place_modal_form").dialog( "open" );
+	});
+		
 });

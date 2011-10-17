@@ -39,6 +39,7 @@
 						}
 						?>
 					</select>
+					<span id="create_scope" class="create_new"></span>
 				</div>
 			</li>		
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["note"]?>: </label>

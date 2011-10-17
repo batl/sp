@@ -14,6 +14,8 @@ class Project extends Crank {
 		$this->include_js('jquery/ajaxupload.js');
 		$this->include_js('jquery/ui/jquery.ui.core.js');
 		$this->include_js('jquery/ui/jquery.ui.widget.js');
+		$this->include_js('jquery/ui/jquery.ui.dialog.js');		
+		$this->include_js('jquery/ui/jquery.ui.position.js');
 		$this->include_js('jquery/ui/jquery.ui.datepicker.js');
 		$this->include_js('jquery/colorpicker/colorpicker.js');
 		$this->include_js('jquery/colorpicker/eye.js');
@@ -33,7 +35,11 @@ class Project extends Crank {
 	{
 		$this->set_title($this->params['lang']['projects']);
 		$this->include_keywords($this->params['lang']['projects']);
-		$this->set_description($this->params['lang']['projects']);				
+		$this->set_description($this->params['lang']['projects']);		
+
+		$this->params['place_types'] = $this->Crank_model->get_all_entries('sp_places_categories');
+		$this->params['scopes'] 	 = $this->Crank_model->get_all_entries('sp_scopes');
+			
 		$this->include_view('project_view',$this->params);
 	}
 	

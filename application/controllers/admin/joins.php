@@ -26,7 +26,7 @@ class Joins extends Crank {
 				'sp_'.$join[2] => array('name')			
 			); 
 			
-			$types = array('type' => 'enum');				
+			$types = array('type' => 'enum', 'id' => 'hidden');				
 			$joins = array('sp_'.$join[2] => $join[2]."_id");			
 		}
 		else 
@@ -37,14 +37,14 @@ class Joins extends Crank {
 					$select = array(
 						$table_name    => array('id','thumb as photo')
 					);
-					$types = array();
+					$types = array('id' => 'hidden');
 					$joins = array();
 					break;
 				case 'videos':
 					$select = array(
 						$table_name    => array('id','url as video')
 					);
-					$types = array('video' => 'video');
+					$types = array('video' => 'video', 'id' => 'hidden');
 					$joins = array();
 					break;
 				default:
@@ -52,7 +52,7 @@ class Joins extends Crank {
 						$table_name    => array('id'),
 						'sp_'.$join[2] => array('id', 'name')
 					);
-					$types = array();
+					$types = array('id' => 'hidden');
 					$joins = array('sp_'.$join[2] => $join[2]."_id");
 					break;
 			}			

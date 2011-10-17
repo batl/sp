@@ -39,7 +39,7 @@ class News extends Crank {
 				'sp_news' => array('id','name','date')
 			),// fields
 			array(),	// joins		
-			array('date' => 'date'), //types
+			array('date' => 'date', 'id' => 'hidden'), //types
 			array('project_id' => $id) // where
 		);
 	}		

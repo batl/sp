@@ -34,7 +34,9 @@ class Moreproject extends Crank {
 			array(
 				'sp_territories'=>'territory'
 			),
-			array(),
+			array(
+				'id' => 'hidden'
+			),
 			array(
 				'projects_id'=> $id
 			)

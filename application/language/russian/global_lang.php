@@ -268,8 +268,13 @@ $lang["records_per_page"]		= "Записей на страницу";
 $lang["all_events"]				= "Все события";
 $lang["profile_my_events"]		= "Мои события";
 $lang["create_new_user_category"]	= "Создать новую категорию пользователей";
-$lang["create_new_goods_category"]	= "Создать новую категорию товаров";
+$lang["create_new_category"]	= "Создать новую категорию";
 $lang["create_new_organization"]	= "Создать нового поставщика";
+$lang["create_new_project_category"]	= "Создать новоую категорию проектов";
+$lang["create_new_place"]		= "Создать новое место";
+$lang["create_new_scope"]		= "Создать новую сферу деятельности";
+$lang["create_new_place_type"]	= "Создать новый тип места";
+$lang["create_new_event_type"]	= "Создать новый тип события";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

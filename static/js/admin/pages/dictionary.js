@@ -33,5 +33,27 @@ $(document).ready(function(){
 		remove_entry(block, entry, id);
 		
 	});
-
+	
+	init_modal_window('place_type_modal_form', 'group_places', function(response){
+		$('select[name=place_type]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=place_type] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});
+	
+	init_modal_window('scope_modal_form', 'group_scopes', function(response){
+		$('select[name=scope]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=scope] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});
+	
+	$("#create_place_type").live('click', function(){				
+			$("#place_type_modal_form").dialog( "open" );
+	});	
+	
+	$("#create_scope").live('click', function(){				
+			$("#scope_modal_form").dialog( "open" );
+	});	
+	
 });

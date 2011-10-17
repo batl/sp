@@ -33,7 +33,9 @@ class Anonses extends Crank {
 			false, 	// table name (false = default controller table)
 			array(
 				'sp_anonses' => array('id', 'thumb', 'name','link')
-			)
+			),
+			array(),
+			array('id' => 'hidden')
 		);
 	}		
 	
