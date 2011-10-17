@@ -12,18 +12,30 @@ class Goods extends Crank {
 		$this->params['main_navi'] = 4;		
 		
 		$this->include_js('jquery/ajaxupload.js');
+		
+		$this->include_js('jquery/ui/jquery.ui.core.js');
+		$this->include_js('jquery/ui/jquery.ui.widget.js');
+		$this->include_js('jquery/ui/jquery.ui.dialog.js');		
+		$this->include_js('jquery/ui/jquery.ui.position.js');
+		
 		$this->include_js('admin/pages/goods.js');
 		$this->include_js('tiny_mce/tiny_mce.js');
 		$this->include_css('admin/pages/goods.css');
+		$this->include_css('ui/jquery.ui.all.css');
 		
 		$this->params['table_name'] = 'sp_goods';
 	}
 	
 	public function index()
-	{
+	{	
 		$this->set_title($this->params['lang']['goods']);
 		$this->include_keywords($this->params['lang']['goods']);
-		$this->set_description($this->params['lang']['goods']);				
+		$this->set_description($this->params['lang']['goods']);	
+
+		$this->params['scopes'] 	= $this->Crank_model->get_all_entries('sp_scopes');
+		$this->params['activities'] = $this->Crank_model->get_all_entries('sp_activities');
+		$this->params['places'] 	= $this->Crank_model->get_all_entries('sp_places');
+		
 		$this->include_view('goods_view',$this->params);
 	}
 	
@@ -44,13 +56,19 @@ class Goods extends Crank {
 			),		// joins
 			array(
 				'price' => 'price'
-			)		// fields types (bool, price)
+			)		 // fields types (bool, price)
 		);
 	}		
 	
 	public function get_view()
 	{		
-		parent::get_view(array('groups' => 'sp_goods_categories', 'organizations' => 'sp_organizations', 'projects' => 'sp_projects'));
+		parent::get_view(
+			array(
+				'groups' 		=> 'sp_goods_categories', 
+				'organizations' => 'sp_organizations', 
+				'projects'      => 'sp_projects'
+			)
+		);
 	}
 	
 	public function save_entry()

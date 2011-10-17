@@ -267,6 +267,9 @@ $lang["hidden_link"]			= "Скрытая ссылка";
 $lang["records_per_page"]		= "Записей на страницу";
 $lang["all_events"]				= "Все события";
 $lang["profile_my_events"]		= "Мои события";
+$lang["create_new_user_category"]	= "Создать новую категорию пользователей";
+$lang["create_new_goods_category"]	= "Создать новую категорию товаров";
+$lang["create_new_organization"]	= "Создать нового поставщика";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

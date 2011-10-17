@@ -53,7 +53,8 @@ class Project extends Crank {
 			array(
 				'date_start' => 'date',
 				'date_end' => 'date',
-				'in_process' => 'bool'
+				'in_process' => 'bool',
+				'id' => 'hidden'
 			)
 		);
 	}		

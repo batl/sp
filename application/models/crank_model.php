@@ -276,7 +276,11 @@ class Crank_model extends CI_Model {
 		}
 		else 
 		{
-			if ($this->db->insert($table_name, $data)) return $this->db->insert_id(); else return false;
+			if ($this->db->insert($table_name, $data))
+			{
+				return $this->get_entry_by_data($table_name, true, 'current', array('id' => $this->db->insert_id())); 
+			}
+			else return false;
 		}	
 	}
 

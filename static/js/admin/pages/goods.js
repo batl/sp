@@ -8,7 +8,7 @@ $(document).ready(function(){
 	
 	$('.add_item').click(function(){
 	
-		get_view(block, entry, 'add', 0);
+		get_view(block, entry, 'add', 0);				
 		
 	});
 	
@@ -33,5 +33,29 @@ $(document).ready(function(){
 		remove_entry(block, entry, id);
 		
 	});
+	
+	init_modal_window('type_modal_form', 'group_goods', function(response){
+		$('select[name=type]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=type] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});
+	
+	if ($('#organization_foto').length) image_upload('dictionary_organizations', 'organization_foto', 'organization_foto_img');
+	
+	init_modal_window('organization_modal_form', 'dictionary_organizations', function(response){
+		$('select[name=supplier]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=supplier] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});	
 
+	$("#create_type").live('click', function(){				
+			$("#type_modal_form").dialog( "open" );
+	});
+	
+	$("#create_organization").live('click', function(){				
+			$("#organization_modal_form").dialog( "open" );
+	});		
+	
 });

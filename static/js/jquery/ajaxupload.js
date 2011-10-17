@@ -373,7 +373,7 @@
                 // in Internet Explorer
                 'direction' : 'ltr',
                 //Max zIndex supported by Opera 9.0-9.2
-                'zIndex': 2147483583
+                'zIndex': 9999				
             });
             
             // Make sure that element opacity exists.

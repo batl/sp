@@ -69,6 +69,18 @@ $(document).ready(function(){
 		
 	});
 	
+	$('#modal_translates a').live('click', function(){
+		
+		$('#modal_translates a').removeClass('activ_translate');
+		
+		$(this).addClass('activ_translate');
+		
+		$(this).parents('form').find('input[type=text][language!=no], div.textarea').hide();
+		
+		$(this).parents('form').find('input[type=text][language='+$(this).attr('id')+'], div.textarea[language='+$(this).attr('id')+']').show();
+		
+	});
+	
 	if (main_navi >= 8)
 	{
 		$('#main-nav ul:first').hide();
@@ -315,9 +327,10 @@ function get_view(block, entry, action, id, clear_history)
 	},"json");
 }
 
-function save_entry(block, entry, id, single)
+function save_entry(block, entry, id, single, parent_block, after_save)
 {	
-
+	if (parent_block == undefined) parent_block = $('#wrapper');
+	
 	if ($('textarea').length) tinyMCE.triggerSave();
 		
 	var keys = new Array();
@@ -326,39 +339,39 @@ function save_entry(block, entry, id, single)
 	var lang_keys = new Array();
 	var lang_data = new Array();
 	
-	$('#wrapper').find('input[type=text][language!=no]').each(function(){
+	parent_block.find('input[type=text][language!=no]').each(function(){
 		lang_keys.push($(this).attr('name'));
 		lang_data.push($(this).val());
 	});	
 
-	$('div.textarea').each(function(){
+	parent_block.find('div.textarea').each(function(){
 		lang_keys.push($(this).attr('name'));
 		lang_data.push($(this).find('textarea').val());
 	});
 
-	$('#wrapper').find('input[type=text][language=no], select').each(function(){
+	parent_block.find('input[type=text][language=no], select').each(function(){
 		keys.push($(this).attr('name'));
 		data.push($(this).val());
 	});
 	
-	$('#wrapper').find('input[name=password][language=no], input[type=hidden][name!=id]').each(function(){
+	parent_block.find('input[name=password][language=no], input[type=hidden][name!=id]').each(function(){
 		keys.push($(this).attr('name'));
 		data.push($(this).val());
 	});
 	
-	$('#wrapper').find('input[type=checkbox]').each(function(){
+	parent_block.find('input[type=checkbox]').each(function(){
 		keys.push($(this).attr('name'));
 		if ($(this).is(':checked')) data.push(1); else data.push(0);
 	});
 
-	if ($('#foto_img').length){
+	if (parent_block.find('#foto_img').length){
 		keys.push($('#foto_img').attr('name'));
 		keys.push('thumb');
 		data.push($('#foto_img').attr('big'));
 		data.push($('#foto_img').attr('small'));
 	}
 	
-	if ($('.site_logo').length){
+	if (parent_block.find('.site_logo').length){
 		$('.site_logo').each(function(){
 			lang_keys.push($(this).attr('name'));					
 			lang_data.push($(this).attr('big'));			
@@ -369,22 +382,22 @@ function save_entry(block, entry, id, single)
 		});
 	}
 	
-	if ($('#site_background').length){
+	if (parent_block.find('#site_background').length){
 		keys.push($('#site_background').attr('name'));
 		data.push($('#site_background').attr('big'));
 	}
 	
-	if ($('#site_banner').length){
+	if (parent_block.find('#site_banner').length){
 		keys.push($('#site_banner').attr('name'));
 		data.push($('#site_banner').attr('big'));
 	}
 	
-	if ($('#project_banner').length){
+	if (parent_block.find('#project_banner').length){
 		keys.push($('#project_banner').attr('name'));
 		data.push($('#project_banner').attr('big'));
 	}
 	
-	if ($('#admin_banner').length){
+	if (parent_block.find('#admin_banner').length){
 		keys.push($('#admin_banner').attr('name'));
 		data.push($('#admin_banner').attr('big'));
 	}
@@ -414,6 +427,8 @@ function save_entry(block, entry, id, single)
 				
 			get_items(block, entry, start, sort, sort_type, 'ignore');
 		}
+		
+		if (after_save != undefined) after_save(response);
 		
 	},"json");
 }
@@ -446,6 +461,29 @@ function remove_entry(block, entry, id)
 		},"json");
 	}			
 	
+}
+
+function init_modal_window(form_id, entry, success_handler){
+	$("#"+form_id).dialog({
+		autoOpen: false,				
+		width: 800,
+		modal: true,
+		buttons: {
+			"Add": function() {
+				
+				save_entry(false, entry, 0, true, $('#'+form_id), function(response){
+
+					success_handler(response);
+					
+				});
+				
+				$( this ).dialog( "close" );				
+			},
+			Cancel: function() {
+				$( this ).dialog( "close" );
+			}
+		}
+	});
 }
 
 function check_system(block, entry, id, action)
@@ -601,4 +639,25 @@ function removeDuplicateElement(arrayName)
 		newArray[newArray.length] = arrayName[i];
 	}
 	return newArray;
+}
+
+function checkLength( o, n, min, max ) {
+	if ( o.val().length > max || o.val().length < min ) {
+		o.addClass( "ui-state-error" );
+		updateTips( "Length of " + n + " must be between " +
+			min + " and " + max + "." );
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function checkRegexp( o, regexp, n ) {
+	if ( !( regexp.test( o.val() ) ) ) {
+		o.addClass( "ui-state-error" );
+		updateTips( n );
+		return false;
+	} else {
+		return true;
+	}
 }

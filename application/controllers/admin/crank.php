@@ -374,6 +374,8 @@ class Crank extends CI_Controller {
 		
 		$result = $this->Crank_model->save_entry($table_name);
 		
+		$data['entry'] = $result;
+		
 		if ($result === true)
 		{
 			$data['message'] = $this->params['lang']['success_update'];

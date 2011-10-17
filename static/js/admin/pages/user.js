@@ -57,5 +57,18 @@ $(document).ready(function(){
 		},"json");
 		
 	});
+	
+	
+	init_modal_window('modal_form', 'group', function(response){
+		$('select[name=group_id]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=group_id] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});	
+
+	$("#create").live('click', function(){				
+			$("#modal_form").dialog( "open" );
+	});
+
 
 });

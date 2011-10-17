@@ -12,9 +12,16 @@ class User extends Crank {
 		$this->params['main_navi'] = 2;	
 
 		$this->include_js('jquery/ajaxupload.js');
+
+		$this->include_js('jquery/ui/jquery.ui.core.js');
+		$this->include_js('jquery/ui/jquery.ui.widget.js');
+		$this->include_js('jquery/ui/jquery.ui.dialog.js');		
+		$this->include_js('jquery/ui/jquery.ui.position.js');
+		
 		$this->include_js('admin/pages/user.js');		
 		$this->include_js('tiny_mce/tiny_mce.js');
 		$this->include_css('admin/pages/user.css');
+		$this->include_css('ui/jquery.ui.all.css');
 		
 		$this->params['table_name'] = 'sp_users';
 	}	
@@ -39,7 +46,8 @@ class User extends Crank {
 				'sp_groups' => 'group_id'
 			),		// joins
 			array(
-				'confirmed' => 'bool'
+				'confirmed' => 'bool',
+				'id' => 'hidden'
 			)		// fields types (bool, price)
 		);
 	}		

@@ -45,7 +45,8 @@ class Page extends Crank {
 			array(
 				'in_footer' => 'bool',
 				'in_header' => 'bool',
-				'weight' => 'hidden'
+				'weight' => 'hidden',
+				'id'=> 'hidden'
 			),		// fields types (bool, price)
 			array(),
 			array(),

@@ -60,6 +60,7 @@
 						}
 						?>
 					</select>					
+					<span id="create" class="create_new"></span>
 				</div>
 			</li>			
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["about_you"]?>:</label>
