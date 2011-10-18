@@ -28,7 +28,23 @@
 					<?php
 					break;
 				case 'methods_id':
-					
+					?>
+					<li class='gfield'><label class='checkbox_label'><?php echo $lang[$field_name]?><span class='gfield_required'>*</span>:</label>
+						<div class='ginput_container'>
+							<select name="<?php echo $field_name;?>">						
+								<?php												
+								foreach ($join_entries as $join_entry)
+								{
+								?>
+								<option value="<?php echo $join_entry['id']?>"><?php echo $join_entry['name']?></option>
+								<?php
+								}						
+								?>
+							</select>
+							<span id="create_method" class="create_new"></span>
+						</div>
+					</li>
+					<?php
 					break;
 				default:
 				?>

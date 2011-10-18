@@ -60,12 +60,34 @@ $(document).ready(function(){
 		});
 	});
 	
+	init_modal_window('method_modal_form', 'dictionary_methods', function(response){
+		$('select[name=methods_id]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=methods_id] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});
+	
+	init_modal_window('scope_modal_form', 'group_scopes', function(response){
+		$('select[name=scope]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=scope] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});
+	
 	$("#create_type").live('click', function(){				
 		$("#type_modal_form").dialog( "open" );
 	});	
 	
 	$("#create_place").live('click', function(){				
 		$("#place_modal_form").dialog( "open" );
+	});
+	
+	$("#create_method").live('click', function(){				
+		$("#method_modal_form").dialog( "open" );
+	});
+	
+	$("#create_scope").live('click', function(){				
+		$("#scope_modal_form").dialog( "open" );
 	});
 		
 });

@@ -57,15 +57,7 @@
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["links"]?>: </label>
 				<div class='ginput_container'>					
-					<?php 						
-						foreach ($languages as $language):
-							?>
-							<div class="textarea" name='links' language="<?php echo $language['id'];?>">
-								<textarea class='textarea small' tabindex='5' rows='10' cols='50'><?php echo $entry['links'][$language['id']]?></textarea>
-							</div>
-							<?php								
-						endforeach;						
-					?>
+					<input name='links' language="no" type='text' value='<?php echo $entry['links']?>' class='medium' tabindex='3'/>
 				</div>
 			</li>
 		</ul>

@@ -16,6 +16,7 @@
 					?>
 				</div>
 			</li>
+			<div id="map_canvas" style="width:100%; height:300px;"></div>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["slug"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
 					<input name='slug' language="no" type='text' value='' class='medium' tabindex='3'/>

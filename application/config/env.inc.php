@@ -20,3 +20,5 @@ $config['js_base'] = "http://{$config['webhost']}/static/js/";
 
 /* Config DB Location */
 $config['config_db'] = 'localhost';
+
+$config['env_type'] = 'dev';

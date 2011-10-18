@@ -32,6 +32,7 @@ class Event extends Crank {
 		$this->set_description($this->params['lang']['events']);	
 		
 		$this->params['place_types'] = $this->Crank_model->get_all_entries('sp_places_categories');
+		$this->params['scopes'] 	 = $this->Crank_model->get_all_entries('sp_scopes');
 			
 		$this->include_view('event_view',$this->params);
 	}

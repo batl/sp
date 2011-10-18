@@ -10,6 +10,7 @@
 	<meta name="keywords" content="<?php foreach ($include_keywords as $key=>$item){echo $item;}?>" />
 	<meta name="description" content="<?php echo $include_description;?>" />
 	<?php foreach ($include_css as $key=>$item){echo $item;}?>
+	
 	<script type="text/javascript">
         var base_url  = '<?php echo $base; ?>';
 		var front_url = '<?php echo $front_url; ?>';

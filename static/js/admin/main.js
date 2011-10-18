@@ -321,6 +321,30 @@ function get_view(block, entry, action, id, clear_history)
 			});
 		}
 		
+		if (('#map_canvas').length)
+		{
+			var map = new GMap2(document.getElementById("map_canvas"));
+			map.setCenter(new GLatLng(47.85, 35.14), 10);	
+			map.setUIToDefault();
+			var marker;
+			
+			GEvent.addListener(map,"click", function(overlay, latlng) {     
+				if (latlng) {
+					marker = new GMarker(latlng, {draggable: true});
+					map.addOverlay(marker);
+					
+					GEvent.addListener(marker, "dragend", function() {
+						marker.openInfoWindowHtml("Just bouncing along...");
+						console.log(marker.getLatLng().toString());
+					});
+					
+				}
+			});						
+
+		}
+
+	
+		
 		$('input[type=text][language!=no], div.textarea').hide();
 		
 		$('input[type=text][language='+language_id+'], div.textarea[language='+language_id+']').show();

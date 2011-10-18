@@ -137,5 +137,6 @@ $(document).ready(function(){
 	
 	$("#create_scope").live('click', function(){				
 			$("#scope_modal_form").dialog( "open" );
-	});
+	});		
+
 });

@@ -281,6 +281,7 @@ $lang["to"]						= "по";
 $lang["start"]					= "Начало";
 $lang["end"]					= "Конец";
 $lang["create_new_activity"]	= "Создать новое направление деятельности";
+$lang["create_new_method"] 		= "Создать новый метод";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

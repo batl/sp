@@ -9,6 +9,7 @@
 	<link rel="shortcut icon" href="<?php echo $base_img;?>favicon.png" type="image/x-icon" />	
 	<meta name="keywords" content="<?php foreach ($include_keywords as $key=>$item){echo $item;}?>" />
 	<meta name="description" content="<?php echo $include_description;?>" />
+	
 	<?php foreach ($include_css as $key=>$item){echo $item;}?>
 </head>
 <body <?php echo "style='background:".$project['bg_color']." url(".$base.$project['bg_image'].") 50% 0 no-repeat'"?>>
