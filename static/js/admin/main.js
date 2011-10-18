@@ -321,7 +321,7 @@ function get_view(block, entry, action, id, clear_history)
 			});
 		}
 		
-		if (('#map_canvas').length)
+		if ($('#map_canvas').length)
 		{
 			var map = new GMap2(document.getElementById("map_canvas"));
 			map.setCenter(new GLatLng(47.85, 35.14), 10);	
