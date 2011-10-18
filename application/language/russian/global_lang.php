@@ -137,7 +137,7 @@ $lang["feedback_links"]			= "Ссылки на отзывы о проекте";
 $lang["workgroups_links"]		= "Ссылки на рабочие группы проекта";
 $lang["social_links"]			= "Ссылки на социальные сети проекта";
 $lang["activities"]				= "Напраления деятельности";
-$lang["no_activities"]			= "Нет напраления деятельности";
+$lang["no_activities"]			= "Нет деятельности";
 $lang["methods"]				= "Методы";
 $lang["grants"]					= "Гранты";
 $lang["organizations"]			= "Организации";
@@ -280,6 +280,7 @@ $lang["from"]					= "с";
 $lang["to"]						= "по";
 $lang["start"]					= "Начало";
 $lang["end"]					= "Конец";
+$lang["create_new_activity"]	= "Создать новое направление деятельности";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

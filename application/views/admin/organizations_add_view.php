@@ -45,6 +45,7 @@
 						}
 						?>
 					</select>					
+					<span id="create_place" class="create_new"></span>
 				</div>
 			</li>	
 			
@@ -87,6 +88,7 @@
 						}
 						?>
 					</select>					
+					<span id="create_scope" class="create_new"></span>
 				</div>
 			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["activities"]?>:</label>
@@ -101,7 +103,8 @@
 						<?php
 						}
 						?>
-					</select>					
+					</select>
+					<span id="create_activity" class="create_new"></span>
 				</div>
 			</li>			
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["grantor"]?>:</label>

@@ -5,7 +5,7 @@
 		<input type='hidden' class='gform_hidden' name='id' value='0'/>
 		<input type='hidden' class='gform_hidden' name='entry_id' value='<?php echo $entry_id;?>'/>
 		<ul class='gform_fields top_label'>								
-			<?php
+			<?php			
 			switch ($field_name)
 			{
 				case 'photos_id':
@@ -26,6 +26,9 @@
 						</div>
 					</li>
 					<?php
+					break;
+				case 'methods_id':
+					
 					break;
 				default:
 				?>
