@@ -263,11 +263,22 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 			}
 			
 			if (story.length < 2) $('.history').remove();
-		}										
+		}														
 		
-		console.log(sub_entry);
-		
-		if (sub_entry.length == 1) transform_pagination(data.curent_page, data.total); else if (!parseInt(sub_entry[1])) transform_pagination(data.curent_page, data.total); else $('#paging, #limit').hide();
+		switch (sub_entry[0])
+		{
+			case 'projects':
+			case 'project':
+				transform_pagination(data.curent_page, data.total);
+				break;
+			case 'events':
+			case 'event':
+				if (sub_entry[1] == '0') $('#paging, #limit').hide(); else transform_pagination(data.curent_page, data.total);
+ 				break;							
+			default:
+				if (sub_entry[1] == undefined || sub_entry[1] == '0') transform_pagination(data.curent_page, data.total); else $('#paging, #limit').hide();
+				break;
+		}	
 		
 	},"json");
 }
@@ -321,7 +332,53 @@ function get_view(block, entry, action, id, clear_history)
 		
 		if ($('.picker').length) $('.picker').datepicker({ dateFormat: 'yy-mm-dd' });
 		
-		if ($('textarea').length) tiny_init();				
+		if ($('textarea').length) tiny_init();	
+
+		if ($('#map_canvas').length)
+		{
+			var map = new GMap2(document.getElementById("map_canvas"));
+			
+			if ($('input[name=map]').val() != '')
+			{				
+				map.setCenter(new GLatLng(parseFloat($('input[name=map]').val().split('-')[1]), parseFloat($('input[name=map]').val().split('-')[0])), 13);	
+			}
+			else
+			{
+				map.setCenter(new GLatLng(47.85, 35.14), 10);	
+			}
+				
+			map.setUIToDefault();
+			
+			var marker;
+			
+			if ($('input[name=map]').val() != '')
+			{
+				marker = new GMarker(new GLatLng(parseFloat($('input[name=map]').val().split('-')[1]), parseFloat($('input[name=map]').val().split('-')[0])), {draggable: true});
+				map.addOverlay(marker);								
+
+				GEvent.addListener(marker, "dragend", function() {					
+					$('input[name=map]').val(marker.getLatLng().x + '-' + marker.getLatLng().y);
+				});				
+			}
+			else
+			{
+				GEvent.addListener(map,"click", function(overlay, latlng) {     
+					if (latlng && !marker_set) {
+						marker = new GMarker(latlng, {draggable: true});
+						map.addOverlay(marker);
+						
+						$('input[name=map]').val(marker.getLatLng().x + '-' + marker.getLatLng().y);
+						
+						marker_set = true;												
+						
+						GEvent.addListener(marker, "dragend", function() {							
+							$('input[name=map]').val(marker.getLatLng().x + '-' + marker.getLatLng().y);
+						});
+					}
+				});						
+			}
+						
+		}
 		
 	},"json");
 }
@@ -392,8 +449,11 @@ function save_entry(block, entry, id, single)
 	});
 	
 	$('#wrapper').find('input[type=checkbox]').each(function(){
-		keys.push($(this).attr('name'));
-		if ($(this).is(':checked')) data.push(1); else data.push(0);
+		if (!$(this).parents('#map_canvas').length)
+		{
+			keys.push($(this).attr('name'));		
+			if ($(this).is(':checked')) data.push(1); else data.push(0);
+		}
 	});
 
 	if ($('#foto_img').length){

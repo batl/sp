@@ -243,11 +243,11 @@ class Crank extends CI_Controller {
 		
 		if (!$table_name) $table_name = $this->params['table_name'];
 		
-		$start = $this->input->post('start');
-		$sort  = $this->input->post('sort');
-		$sort_type = $this->input->post('sort_type');
-		$group = $this->input->post('group');
-		$search = $this->input->post('search');
+		$start 		= $this->input->post('start');
+		$sort  		= $this->input->post('sort');
+		$sort_type 	= $this->input->post('sort_type');
+		$group 		= $this->input->post('group');
+		$search 	= $this->input->post('search');
 		$limit 		= $this->input->post('limit');
 		
 		if (!empty($group))

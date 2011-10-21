@@ -4,7 +4,7 @@
 			<img src="<?php echo $base.$event['logo']?>" />
 		</div>
 		<div class="project-item-content">
-			<a href="javascript:void(0);" class="single" id="events/<?php echo $event['id']?>"><?php echo $event['name']?></a><br />			
+			<a href="javascript:void(0);" class="single" id="events/0/<?php echo $event['id']?>"><?php echo $event['name']?></a><br />			
 			<?php 
 				echo $lang['date_range'].': '.$lang['from'].' ';
 				if (!empty($event['date_start']) && $event['date_start'] != '0000-00-00')

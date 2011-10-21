@@ -289,6 +289,12 @@ class Page extends Crank {
 				
 				$custom_view = 'profile_events_view';
 				
+				$fields = array(
+					'sp_events' => array('id','user_id','logo','name','date_start', 'date_end','tags','in_process'),
+					'sp_places' => array('name as place'),
+					'sp_events_categories' => array('name as group_name')
+				);
+				
 				if (!empty($entry[1]))
 				{
 					switch ($entry[1])
@@ -313,25 +319,34 @@ class Page extends Crank {
 							$day = NULL;
 							
 							break;
-						default:
-							
-							$custom_view = 'events_single_view';
-							
-							break;
 					}					
-				}								
+				}
+				else
+				{
+					if (!empty($entry[2]))
+					{
+						
+						$fields = array(
+							'sp_events' => array('id','user_id','logo','name','date_start', 'date_end','tags','in_process', 'schedule', 'price','description'),
+							'sp_places' => array('name as place'),
+							'sp_events_categories' => array('name as group_name')
+						);
+						
+						$custom_view = 'events_single_view';
+						
+						$single = true;
+						
+						$where = array('id' => $entry[2]);
+					}
+				};
 				
-				$fields = array(
-					'sp_events' => array('id','user_id','logo','name','date_start', 'date_end','tags','in_process'),
-					'sp_places' => array('name as place'),
-					'sp_events_categories' => array('name as group_name')
-				); 
+				 
 				$joins = array(
 					'sp_places'=>'place', 
 					'sp_events_categories' => 'type'
 				);
 				if (!empty($day))
-				{
+				{					
 					switch ($day)
 					{
 						case 'no': // В определенный месяц "Октябрь"
@@ -364,7 +379,7 @@ class Page extends Crank {
 							);
 							
 							break;
-							
+						
 						default: // Попадает в определенный день
 						
 							$custom_where = "(date_start<='".$entry[1].'-'.$entry[2].'-'.$day."' AND (date_end>='".$entry[1].'-'.$entry[2].'-'.$day."' OR date_end='0000-00-00' OR date_end IS NULL))";

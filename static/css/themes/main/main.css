@@ -303,9 +303,12 @@ border-radius: 5px;
 
 #map_canvas{
 margin:0px;
-padding:20px;
-width:920px;
+width:100%;
 margin-bottom:10px;
+}
+
+#map_canvas h3{
+margin:25px;
 }
 
 #single_content{
@@ -510,8 +513,11 @@ margin-right:14px;
 margin-top:10px;
 font-size:1em;
 color:#666;
+text-align:justify;
 }
-
+.event_content{
+margin: 0 20px 0 0;
+}
 .news-home a, .project-item a {
 font-weight:bold;
 }
@@ -1884,7 +1890,7 @@ color:#fff;
 clear:both;
 }
 .items input[type=text], .items textarea{
-	width:97%;
+	width:99%;
 }
 .items select{
 	border: 1px solid #CCCCCC;
