@@ -30,6 +30,19 @@
 					?>
 				</div>
 			</li>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["contacts"]?>: </label>
+				<div class='ginput_container'>					
+					<?php 						
+						foreach ($languages as $language):
+							?>
+							<div class="textarea" name='contacts' language="<?php echo $language['id'];?>">
+								<textarea type='text' class='medium' tabindex='3'><?php echo $entry['contacts'][$language['id']];?></textarea>
+							</div>
+							<?php								
+						endforeach;						
+					?>
+				</div>
+			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["slug"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
 					<input name='slug' language="no" type='text' value='<?php echo $entry['slug']?>' class='medium' tabindex='3' disabled="disabled"/>
@@ -106,7 +119,22 @@
 					</select>	
 					<span id="create_place" class="create_new"></span>
 				</div>
-			</li>					
+			</li>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["facebook_link"]?>:</label>
+				<div class='ginput_container'>
+					<input name='facebook_link' language="no" type='text' value='<?php echo $entry['facebook_link']?>' class='medium' tabindex='3'/>
+				</div>
+			</li>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["twitter_link"]?>:</label>
+				<div class='ginput_container'>
+					<input name='twitter_link' language="no" type='text' value='<?php echo $entry['twitter_link']?>' class='medium' tabindex='3'/>
+				</div>
+			</li>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["vkontakte_link"]?>:</label>
+				<div class='ginput_container'>
+					<input name='vkontakte_link' language="no" type='text' value='<?php echo $entry['vkontakte_link']?>' class='medium' tabindex='3'/>
+				</div>
+			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["purpose"]?>: </label>
 				<div class='ginput_container'>					
 					<?php 						

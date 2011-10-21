@@ -485,6 +485,8 @@ function save_entry(block, entry, id, single, parent_block, after_save)
 		
 		if (after_save != undefined) after_save(response);
 		
+		$('.save_entry').scrollTo({top:'0px', left:'0px'}, 800);
+		
 	},"json");
 }
 

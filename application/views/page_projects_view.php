@@ -7,6 +7,7 @@
 						<li><a id="projects" class="selected" href="javascript:void(0);"><?php echo $lang['all_projects']?></a></li>
 						<li><a id="projects/<?php echo date("Y").'/'.date("m").'/next'?>" href="javascript:void(0);"><?php echo $lang['curent']?></a></li>
 						<li><a id="projects/<?php echo date("Y").'/'.date("m").'/prev'?>" href="javascript:void(0);"><?php echo $lang['previus']?></a></li>					
+						<li><a id="projects/<?php echo date("Y").'/'.date("m").'/future'?>" href="javascript:void(0);"><?php echo $lang['future']?></a></li>					
 						<li><a id="projects/<?php echo date("Y").'/'.date("m").'/in_process'?>" href="javascript:void(0);"><?php echo $lang['in_process']?></a></li>					
 					</ul>
 				</div>

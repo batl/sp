@@ -24,7 +24,7 @@
 <div id="header">
 	<div id="wrapper-header">
 	
-		<div id="logo" <?php if ($current_settings['admin_banner']) echo 'style="background:url('.$front_url.$current_settings['admin_banner'].') no-repeat"';?>><a class="home-link" href="/"></a></div>
+		<div id="logo" <?php if ($current_settings['admin_banner']) echo 'style="background:url('.$front_url.$current_settings['admin_banner'].') no-repeat"';?>><a class="home-link" href="/admin"></a></div>
 		
 		<div id="languages" class="title-<?php //echo $language;?>">	
 			<div>

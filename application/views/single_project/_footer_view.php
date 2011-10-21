@@ -1,4 +1,39 @@
 <?php foreach ($include_js as $key=>$item){echo $item;}?>
+<div id="social-links">
+	<div id="wrapper-footer">
+		<div id="footer-content">			
+			<div id="footer-links">
+				<span class="in_social_networks"><?php echo $project['name'].' '.$lang['in_social_networks'].':';?></span>
+				<ul>
+					<?php 
+						if (!empty($project['facebook_link'])):											
+							?>
+							<li>
+								<a href="<?php echo $project['facebook_link'];?>" target="_blanck"><img src="/static/images/facebook_ico.jpg"/></a>
+							</li>
+							<?php 							
+						endif;
+						if (!empty($project['twitter_link'])):											
+							?>
+							<li>
+								<a href="<?php echo $project['twitter_link'];?>" target="_blanck"><img src="/static/images/twitter_ico.jpg"/></a>
+							</li>
+							<?php 							
+						endif;
+						if (!empty($project['vkontakte_link'])):											
+							?>
+							<li>
+								<a href="<?php echo $project['vkontakte_link'];?>" target="_blanck"><img src="/static/images/vkontakte_ico.jpg"/></a>
+							</li>
+							<?php 							
+						endif;
+					?>					
+				</ul>
+			</div>			
+		</div>
+	</div>
+</div>
+
 <div id="footer">
 	<div id="wrapper-footer">
 		<div id="footer-content">

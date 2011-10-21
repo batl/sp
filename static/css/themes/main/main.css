@@ -1853,7 +1853,7 @@ margin-left:10px;
 .gen_table tr td{
 border: 1px dotted #CCCCCC;
 font-size: 11px;	
-padding: 5px;
+padding: 5px 1px;
 text-align: center;
 vertical-align:middle;
 }
@@ -2052,4 +2052,16 @@ height:8px;
 
 #page-content{
 padding:0px 20px;
+}
+
+.in_social_networks{
+display: inline-block;
+float: left;
+font-size: 11px;
+font-weight: bold;
+padding: 8px 15px;
+}
+
+#social-links #footer-links{
+background:#CDC4A7;
 }

@@ -30,6 +30,7 @@ class Crank extends CI_Controller {
 		$this->params['current_settings'] = $this->Crank_model->get_entry_by_data("sp_settings", true, 'current', array('id'=>1));
 		
 		$this->include_js('jquery/jquery.min.js');
+		$this->include_js('jquery/scroll_to.js');
 		$this->include_js('admin/main.js');				
 		$this->include_css('admin/main.css');
 		
@@ -236,9 +237,9 @@ class Crank extends CI_Controller {
 							(!$confirmed) ? $html .= '<a href="javascript:void(0);" class="confirm_user">'.$this->params['lang']['confirm_user'].'</a>': '';
 							break;
 						case "sp_projects":
-							$html .= '<a href="javascript:void(0);" class="projects_stages">'.$this->params['lang']['stages'].'</a>';
-							$html .= '<a href="javascript:void(0);" class="projects_news">'.$this->params['lang']['news'].'</a>';
-							$html .= '<a href="javascript:void(0);" class="projects_polls">'.$this->params['lang']['poll_title'].'</a>';
+							$html .= '<a href="javascript:void(0);" class="projects_stages"><img src="'.$this->params['lang']['stages_ico'].'" title="'.$this->params['lang']['stages'].'"/></a>';
+							$html .= '<a href="javascript:void(0);" class="projects_news"><img src="'.$this->params['lang']['news_ico'].'" title="'.$this->params['lang']['news'].'"/></a>';
+							$html .= '<a href="javascript:void(0);" class="projects_polls"><img src="'.$this->params['lang']['poll_ico'].'" title="'.$this->params['lang']['poll_title'].'"/></a>';
 							break;
 						case "sp_events":
 							$html .= '<a href="javascript:void(0);" id="events-curators-organizations" class="event_action">'.$this->params['lang']['curators'].'</a>';

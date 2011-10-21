@@ -287,6 +287,8 @@ class Page extends Crank {
 				
 				!empty($entry[3]) ? $day = $entry[3] : $day = NULL;
 				
+				$custom_view = 'profile_events_view';
+				
 				if (!empty($entry[1]))
 				{
 					switch ($entry[1])
@@ -311,10 +313,13 @@ class Page extends Crank {
 							$day = NULL;
 							
 							break;
+						default:
+							
+							$custom_view = 'events_single_view';
+							
+							break;
 					}					
-				}
-				
-				$custom_view = 'profile_events_view';
+				}								
 				
 				$fields = array(
 					'sp_events' => array('id','user_id','logo','name','date_start', 'date_end','tags','in_process'),
@@ -344,6 +349,12 @@ class Page extends Crank {
 						case 'prev': // Прошедшие
 
 							$custom_where = "(date_end<'".date("Y-m-d")."' AND in_process=0 AND date_end!='0000-00-00' AND date_end IS NOT NULL)";
+							
+							break;
+						
+						case 'future': // Будущие
+
+							$custom_where = "(date_start>'".date("Y-m-d")."' AND in_process=0)";
 							
 							break;
 							
@@ -429,6 +440,12 @@ class Page extends Crank {
 						case 'prev': // Прошедшие
 
 							$custom_where = "(date_end<'".date("Y-m-d")."' AND in_process=0 AND date_end!='0000-00-00' AND date_end IS NOT NULL)";
+							
+							break;
+						
+						case 'future': // Будущие
+
+							$custom_where = "(date_start>'".date("Y-m-d")."' AND in_process=0)";
 							
 							break;
 							

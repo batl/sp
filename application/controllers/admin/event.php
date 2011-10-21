@@ -43,9 +43,10 @@ class Event extends Crank {
 			false, 
 			array(
 				'sp_events' => array('id','name','logo','date_start', 'date_end'),
-				'sp_places' => array('name as place')			
+				'sp_places' => array('name as place'),
+				'sp_users'  => array('email as public_email')
 			), 
-			array('sp_places'=>'place'),
+			array('sp_places'=>'place', 'sp_users'=>'user_id'),			
 			array('date_start' => 'date', 'date_end' => 'date', 'id' => 'hidden')
 		);
 	}		

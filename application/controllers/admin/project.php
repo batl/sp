@@ -18,7 +18,7 @@ class Project extends Crank {
 		$this->include_js('jquery/ui/jquery.ui.draggable.js');		
 		$this->include_js('jquery/ui/jquery.ui.dialog.js');	
 		$this->include_js('jquery/ui/jquery.ui.datepicker.js');
-		$this->include_js('jquery/ajaxupload.js');
+		$this->include_js('jquery/ajaxupload.js');		
 		$this->include_js('jquery/colorpicker/colorpicker.js');
 		$this->include_js('jquery/colorpicker/eye.js');
 		$this->include_js('jquery/colorpicker/layout.js');
@@ -53,12 +53,12 @@ class Project extends Crank {
 		parent::get_items(
 			false, 
 			array(
-				'sp_projects' => array('id','name','logo','date_start', 'date_end', 'in_process'),
-				'sp_places' => array('name as place'),
-				'sp_projects_categories' => array('name as group_name')
+				'sp_projects' => array('id','name','logo','date_start', 'date_end'),
+				'sp_projects_categories' => array('name as group_name'),
+				'sp_users' => array('email as public_email')
 			), 
 			array(
-				'sp_places'=>'place', 
+				'sp_users'=>'user_id', 
 				'sp_projects_categories' => 'category_id'
 			),
 			array(

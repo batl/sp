@@ -107,26 +107,71 @@
 					?>
 				</div>
 			</li>
-			<li class='gfield'><label class='gfield_label'><?php echo $lang["product_links"]?><span class='gfield_required'>*</span>:</label>				
-				<div class='ginput_container'>
-					<input name='product_links' language="no" type='text' value='' class='medium' tabindex='3'/>					
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["product_links"]?>: </label>
+				<div class='ginput_container'>					
+					<?php 						
+						foreach ($languages as $language):
+							?>
+							<div class="textarea" name='product_links' language="<?php echo $language['id'];?>">
+								<textarea type='text' class='medium' tabindex='3'/></textarea>
+							</div>
+							<?php								
+						endforeach;						
+					?>
 				</div>
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["feedback_links"]?>: </label>
-				<div class='ginput_container'>
-					<input name='feedback_links' language="no" type='text' value='' class='medium' tabindex='3'/>					
+				<div class='ginput_container'>					
+					<?php 						
+						foreach ($languages as $language):
+							?>
+							<div class="textarea" name='feedback_links' language="<?php echo $language['id'];?>">
+								<textarea type='text' class='medium' tabindex='3'/></textarea>
+							</div>
+							<?php								
+						endforeach;						
+					?>
 				</div>
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["workgroups_links"]?>: </label>
-				<div class='ginput_container'>
-					<input name='workgroups_links' language="no" type='text' value='' class='medium' tabindex='3'/>					
+				<div class='ginput_container'>					
+					<?php 						
+						foreach ($languages as $language):
+							?>
+							<div class="textarea" name='workgroups_links' language="<?php echo $language['id'];?>">
+								<textarea type='text' class='medium' tabindex='3'/></textarea>
+							</div>
+							<?php								
+						endforeach;						
+					?>
+				</div>
+			</li>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["paper"]?>: </label>
+				<div class='ginput_container'>					
+					<?php 						
+						foreach ($languages as $language):
+							?>
+							<div class="textarea" name='paper' language="<?php echo $language['id'];?>">
+								<textarea type='text' class='medium' tabindex='3'/></textarea>
+							</div>
+							<?php								
+						endforeach;						
+					?>
 				</div>
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["social_links"]?>: </label>
-				<div class='ginput_container'>
-					<input name='social_links' language="no" type='text' value='' class='medium' tabindex='3'/>					
+				<div class='ginput_container'>					
+					<?php 						
+						foreach ($languages as $language):
+							?>
+							<div class="textarea" name='social_links' language="<?php echo $language['id'];?>">
+								<textarea type='text' class='medium' tabindex='3'/></textarea>
+							</div>
+							<?php								
+						endforeach;						
+					?>
 				</div>
-			</li>
+			</li>												
 		</ul>
 	</div>
 	<div class='gform_footer top_label'>

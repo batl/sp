@@ -28,7 +28,7 @@ class Project extends Crank {
 			'id',
 			'asc',
 			array(
-				'sp_projects' => array('id','user_id','logo','name','date_start','date_end','short_description','slug','purpose','poster','banner','note', 'tags', 'bg_image', 'bg_color', 'map', 'map_description'),
+				'sp_projects' => array('id','user_id','logo','name','date_start','date_end','short_description','slug','purpose','poster','banner','note', 'tags', 'bg_image', 'bg_color', 'map', 'map_description', 'contacts', 'facebook_link', 'twitter_link', 'vkontakte_link'),
 				'sp_places' => array('name as place'),
 				'sp_projects_categories' => array('name as group_name')
 			),
@@ -93,6 +93,7 @@ class Project extends Crank {
 		switch ($view[0])
 		{
 			case 'about':
+			case 'contacts':			
 				
 				$this->params['project'] = $this->Crank_model->get_all_entries(
 					"sp_projects", 
@@ -104,7 +105,7 @@ class Project extends Crank {
 					'id',
 					'asc',
 					array(
-						'sp_projects' => array('id','user_id','thumb','name','date_start', 'date_end','short_description','slug','purpose','poster','banner','note', 'tags'),
+						'sp_projects' => array('id','user_id','thumb','name','date_start', 'date_end','short_description','slug','purpose','poster','banner','note', 'tags', 'contacts'),
 						'sp_places' => array('name as place'),
 						'sp_projects_categories' => array('name as group_name')
 					),
@@ -119,7 +120,11 @@ class Project extends Crank {
 			case 'links':
 			case 'photoreport':
 			case 'videoreport':
-			case 'steps':
+			case 'products':
+			case 'peoples':
+			case 'feedbacks':
+			case 'paper':
+			case 'hidden_link':
 			case 'partners':
 				
 				$this->params['project_more'] = $this->Crank_model->get_entry_by_data("sp_projectsstages", false, 'current', array('projects_id' => $this->session->userdata('project')));

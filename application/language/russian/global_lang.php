@@ -284,6 +284,17 @@ $lang["create_new_activity"]	= "Создать новое направление
 $lang["create_new_method"] 		= "Создать новый метод";
 $lang["map_description"] 		= "Описание проезда";
 $lang["no_project_map"] 		= "Карта для этого проекта не задана!";
+$lang["public_email"] 			= "Опубликовал";
+$lang["in_social_networks"] 	= "в социальных сетях";
+$lang["stages_ico"]				= "/static/images/steps.png";
+$lang["news_ico"]				= "/static/images/news.png";
+$lang["poll_ico"]				= "/static/images/poll.png";
+$lang["future"]					= "Будущие";
+$lang["paper"]					= "Пресса о проекте";
+$lang["not_downloads"]			= "Документы не загружены";
+$lang["vkontakte_link"]			= "Ссылка на страничку vkontakte.ru";
+$lang["twitter_link"]			= "Ссылка на страничку twitter.com";
+$lang["facebook_link"]			= "Ссылка на страничку facebook.com";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";
