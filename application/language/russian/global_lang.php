@@ -282,6 +282,8 @@ $lang["start"]					= "Начало";
 $lang["end"]					= "Конец";
 $lang["create_new_activity"]	= "Создать новое направление деятельности";
 $lang["create_new_method"] 		= "Создать новый метод";
+$lang["map_description"] 		= "Описание проезда";
+$lang["no_project_map"] 		= "Карта для этого проекта не задана!";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

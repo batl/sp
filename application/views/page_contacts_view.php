@@ -3,7 +3,9 @@
 		<div id="dealer-content">
 			<div id="content-container-100">
 				<div id="sub-hdr"><h3><?php echo $page['name']?></h3></div>		
-					<?php echo $page['body']?>
+					<div id="page-content">
+						<?php echo $page['body']?>
+					</div>
 					<div class='gform_wrapper' id='gform_wrapper_2'>
 						<form method='post' enctype='multipart/form-data' id='gform_2' class='' action=''>
 							<div class='gform_heading'>

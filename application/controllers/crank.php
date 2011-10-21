@@ -68,10 +68,10 @@ class Crank extends CI_Controller {
 		return true;
 	}
 	
-	protected function include_js($string)
+	protected function include_js($string, $global = false)
 	{ 
 		$count = count($this->params['include_js']);
-		$this->params['include_js'][$count] = "<script type='text/javascript' src='".$this->params['base_js'].$string."'></script>";
+		(!$global) ? $this->params['include_js'][$count] = "<script type='text/javascript' src='".$this->params['base_js'].$string."'></script>" : $this->params['include_js'][$count] = "<script type='text/javascript' src='".$string."'></script>";
 		return true;
 	}
 	

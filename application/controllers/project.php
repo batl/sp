@@ -28,7 +28,7 @@ class Project extends Crank {
 			'id',
 			'asc',
 			array(
-				'sp_projects' => array('id','user_id','logo','name','date_start','date_end','short_description','slug','purpose','poster','banner','note', 'tags', 'bg_image', 'bg_color'),
+				'sp_projects' => array('id','user_id','logo','name','date_start','date_end','short_description','slug','purpose','poster','banner','note', 'tags', 'bg_image', 'bg_color', 'map', 'map_description'),
 				'sp_places' => array('name as place'),
 				'sp_projects_categories' => array('name as group_name')
 			),
@@ -74,10 +74,12 @@ class Project extends Crank {
 		
 		$this->session->set_userdata(array('project' => $this->params['project']['id']));				
 		
+		($this->config->item('env_type') == 'dev') ? $this->include_js('http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAA6yP--2v-CDoEpX6OnpY-sxRUJ1hqatF4AoZmN6zEkqgOyqwRlxTq-Alw-c5cQL1BzkQ16NsKaqBY6w', true) :  $this->include_js('http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAA6yP--2v-CDoEpX6OnpY-sxT8FfoTSPNSCinLNsksAZkths46yxSraikQy6QrFI22T_VOWK_S7Eud3g', true);
+		
 		$this->include_js('jquery/lightbox.js');				
 		$this->include_css('lightbox.css');				
 		$this->include_css('pages/single_project.css');
-		$this->include_js('pages/single_project.js');
+		$this->include_js('pages/single_project.js');			
 		
 		$this->set_title($this->params['project']['name']);
 		$this->include_keywords($this->params['project']['tags']);

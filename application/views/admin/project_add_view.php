@@ -17,6 +17,20 @@
 				</div>
 			</li>
 			<div id="map_canvas" style="width:100%; height:300px;"></div>
+			<input type='hidden' class='gform_hidden' name='map' value=''/>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["map_description"]?>: </label>
+				<div class='ginput_container'>					
+					<?php 						
+						foreach ($languages as $language):
+							?>
+							<div class="textarea" name='map_description' language="<?php echo $language['id'];?>">
+								<textarea type='text' class='medium' tabindex='3'/></textarea>
+							</div>
+							<?php								
+						endforeach;						
+					?>
+				</div>
+			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["slug"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
 					<input name='slug' language="no" type='text' value='' class='medium' tabindex='3'/>
@@ -100,7 +114,7 @@
 						foreach ($languages as $language):
 							?>
 							<div class="textarea" name='purpose' language="<?php echo $language['id'];?>">
-								<textarea type='text' class='medium' tabindex='3'/></textarea>
+								<textarea type='text' class='medium' tabindex='3'></textarea>
 							</div>
 							<?php								
 						endforeach;						
@@ -113,7 +127,7 @@
 						foreach ($languages as $language):
 							?>
 							<div class="textarea" name='poster' language="<?php echo $language['id'];?>">
-								<textarea type='text' class='medium' tabindex='3'/></textarea>
+								<textarea type='text' class='medium' tabindex='3'></textarea>
 							</div>
 							<?php								
 						endforeach;						
@@ -137,7 +151,7 @@
 						foreach ($languages as $language):
 							?>
 							<div class="textarea" name='note' language="<?php echo $language['id'];?>">
-								<textarea type='text' class='medium' tabindex='3'/></textarea>
+								<textarea type='text' class='medium' tabindex='3'></textarea>
 							</div>
 							<?php								
 						endforeach;						

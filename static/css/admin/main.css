@@ -1226,3 +1226,7 @@ height: 16px;
 margin-right: 350px;
 width: 16px;
 }
+
+#modal_forms{
+display:none;
+}

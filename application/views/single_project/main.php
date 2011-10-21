@@ -83,6 +83,9 @@
 				<div id="limit"><span><?php echo $lang['records_per_page']?>:</span>&nbsp;<a href="javascript:void(0);">5</a><a href="javascript:void(0);" class="selected">10</a><a href="javascript:void(0);">20</a><a href="javascript:void(0);">30</a></div>		
 			</div>
 		</div><!--  #content-container -->
+		<div id="map_canvas" style="height:300px;display:none;"><h3><?php echo $lang['no_project_map']?></h3></div>
+		<input type='hidden' class='gform_hidden' name='map' value='<?php echo $project['map']?>'/>
+		<input type='hidden' class='gform_hidden' name='map_description' value='<?php echo $project['map_description']?>'/>
 	</div>
 	<div id="single_content">	
 		<div class="sub-hdr"><h3><?php echo $lang['about_project']?></h3></div>

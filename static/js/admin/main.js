@@ -3,8 +3,9 @@ var sort = 'id';
 var limit = 10;
 var story = new Array();
 var titles = new Array();
+var marker_set = false;
 
-$(document).ready(function(){					
+$(document).ready(function(){							
 	
 	$('.remove_image').live('click', function(){
 		$(this).parents('li').find('img').attr({'small':'', 'big':'', 'src':''});
@@ -321,30 +322,6 @@ function get_view(block, entry, action, id, clear_history)
 			});
 		}
 		
-		if ($('#map_canvas').length)
-		{
-			var map = new GMap2(document.getElementById("map_canvas"));
-			map.setCenter(new GLatLng(47.85, 35.14), 10);	
-			map.setUIToDefault();
-			var marker;
-			
-			GEvent.addListener(map,"click", function(overlay, latlng) {     
-				if (latlng) {
-					marker = new GMarker(latlng, {draggable: true});
-					map.addOverlay(marker);
-					
-					GEvent.addListener(marker, "dragend", function() {
-						marker.openInfoWindowHtml("Just bouncing along...");
-						console.log(marker.getLatLng().toString());
-					});
-					
-				}
-			});						
-
-		}
-
-	
-		
 		$('input[type=text][language!=no], div.textarea').hide();
 		
 		$('input[type=text][language='+language_id+'], div.textarea[language='+language_id+']').show();
@@ -352,6 +329,52 @@ function get_view(block, entry, action, id, clear_history)
 		if ($('.picker').length) $('.picker').datepicker({ dateFormat: 'yy-mm-dd' });
 		
 		if ($('textarea').length) tiny_init();				
+		
+		if ($('#map_canvas').length)
+		{
+			var map = new GMap2(document.getElementById("map_canvas"));
+			
+			if ($('input[name=map]').val() != '')
+			{				
+				map.setCenter(new GLatLng(parseFloat($('input[name=map]').val().split('-')[1]), parseFloat($('input[name=map]').val().split('-')[0])), 13);	
+			}
+			else
+			{
+				map.setCenter(new GLatLng(47.85, 35.14), 10);	
+			}
+				
+			map.setUIToDefault();
+			
+			var marker;
+			
+			if ($('input[name=map]').val() != '')
+			{
+				marker = new GMarker(new GLatLng(parseFloat($('input[name=map]').val().split('-')[1]), parseFloat($('input[name=map]').val().split('-')[0])), {draggable: true});
+				map.addOverlay(marker);								
+
+				GEvent.addListener(marker, "dragend", function() {					
+					$('input[name=map]').val(marker.getLatLng().x + '-' + marker.getLatLng().y);
+				});				
+			}
+			else
+			{
+				GEvent.addListener(map,"click", function(overlay, latlng) {     
+					if (latlng && !marker_set) {
+						marker = new GMarker(latlng, {draggable: true});
+						map.addOverlay(marker);
+						
+						$('input[name=map]').val(marker.getLatLng().x + '-' + marker.getLatLng().y);
+						
+						marker_set = true;												
+						
+						GEvent.addListener(marker, "dragend", function() {							
+							$('input[name=map]').val(marker.getLatLng().x + '-' + marker.getLatLng().y);
+						});
+					}
+				});						
+			}
+						
+		}
 		
 	},"json");
 }
@@ -388,9 +411,12 @@ function save_entry(block, entry, id, single, parent_block, after_save)
 		data.push($(this).val());
 	});
 	
-	parent_block.find('input[type=checkbox]').each(function(){
-		keys.push($(this).attr('name'));
-		if ($(this).is(':checked')) data.push(1); else data.push(0);
+	parent_block.find('input[type=checkbox]:visible').each(function(){
+		if (!$(this).parents('#map_canvas').length)
+		{
+			keys.push($(this).attr('name'));		
+			if ($(this).is(':checked')) data.push(1); else data.push(0);
+		}
 	});
 
 	if (parent_block.find('#foto_img').length){
@@ -497,6 +523,7 @@ function init_modal_window(form_id, entry, success_handler){
 		autoOpen: false,				
 		width: 800,
 		modal: true,
+		draggable: true,
 		buttons: {
 			"Add": function() {
 				

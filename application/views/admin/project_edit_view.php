@@ -15,6 +15,21 @@
 					?>
 				</div>
 			</li>
+			<div id="map_canvas" style="width:100%; height:300px;"></div>
+			<input type='hidden' class='gform_hidden' name='map' value='<?php echo $entry['map']?>'/>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["map_description"]?>: </label>
+				<div class='ginput_container'>					
+					<?php 						
+						foreach ($languages as $language):
+							?>
+							<div class="textarea" name='map_description' language="<?php echo $language['id'];?>">
+								<textarea type='text' class='medium' tabindex='3'><?php echo $entry['map_description'][$language['id']];?></textarea>
+							</div>
+							<?php								
+						endforeach;						
+					?>
+				</div>
+			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["slug"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
 					<input name='slug' language="no" type='text' value='<?php echo $entry['slug']?>' class='medium' tabindex='3' disabled="disabled"/>
