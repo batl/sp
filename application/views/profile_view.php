@@ -47,5 +47,38 @@
 			
 						
 		</div>
+		
+		<div id="modal_forms">
+		
+			<form method='post' id="type_modal_form" title="<?php echo $lang['create_new_event_type']?>">
+				<?php echo $views['group_modal_form'];?>
+			</form>
+			
+			<form method='post' id="method_modal_form" title="<?php echo $lang['create_new_method']?>">
+				<?php echo $views['method_modal_form'];?>
+			</form>
+			
+			<form method='post' id="category_modal_form" title="<?php echo $lang['create_new_project_category']?>">
+				<?php echo $views['group_modal_form'];?>
+			</form>						
+			
+			<form method='post' id="territory_modal_form" title="<?php echo $lang['create_new_territory']?>">
+				<?php echo $views['group_modal_form'];?>
+			</form>
+			
+			<form method='post' id="place_type_modal_form" title="<?php echo $lang['create_new_place_type']?>">
+				<?php echo $views['group_modal_form'];?>
+			</form>
+			
+			<form method='post' id="place_modal_form" title="<?php echo $lang['create_new_place']?>">
+				<?php echo $views['place_modal_form'];?>
+			</form>
+			
+			<form method='post' id="scope_modal_form" title="<?php echo $lang['create_new_scope']?>">
+				<?php echo $views['group_modal_form'];?>
+			</form>
+			
+		</div><!-- #modal_forms -->
+		
 	</div><!--  #content -->
 </div><!--  #wrapper -->

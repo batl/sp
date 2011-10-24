@@ -1,4 +1,4 @@
-<form method='post'>
+<div class="form">
 	<div class='gform_heading'>
 	</div>
 	<div class='gform_body'>
@@ -28,7 +28,8 @@
 						<?php
 						}
 						?>
-					</select>	
+					</select>
+					<span id="create_territory" class="create_new"></span>
 				</div>
 			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["event"]?><span class='gfield_required'>*</span>:</label>
@@ -186,4 +187,4 @@
 			?>
 		</div>
 	</div>
-</form>
+</div>

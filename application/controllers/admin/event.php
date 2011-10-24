@@ -33,7 +33,11 @@ class Event extends Crank {
 		
 		$this->params['place_types'] = $this->Crank_model->get_all_entries('sp_places_categories');
 		$this->params['scopes'] 	 = $this->Crank_model->get_all_entries('sp_scopes');
-			
+		
+		$this->params['views']['group_modal_form']  = $this->load->view('admin/group_add_view', $this->params, true);
+		$this->params['views']['place_modal_form']  = $this->load->view('admin/place_add_view', $this->params, true);
+		$this->params['views']['method_modal_form'] = $this->load->view('admin/methods_add_view', $this->params, true);
+		
 		$this->include_view('event_view',$this->params);
 	}
 	

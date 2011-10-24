@@ -653,6 +653,9 @@ class Page extends Crank {
 			case 'user':
 				$table_name = 'sp_users';
 				break;
+			case 'dictionary':
+				$table_name = "sp_".$entry[1];
+				break;
 			case 'joins':
 				$table_name = "sp_".implode('_',array($entry[1], $entry[2]));
 				break;

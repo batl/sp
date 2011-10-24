@@ -11,6 +11,8 @@ $(document).ready(function(){
 		$(this).parents('li').find('img').attr({'small':'', 'big':'', 'src':''});
 	});
 	
+	$('form[id$=modal_form]').find('.save_entry').remove();
+	
 	$('#limit a').click(function(){
 		limit = parseInt($(this).html());
 		$('#limit a').removeClass('selected');
@@ -54,33 +56,26 @@ $(document).ready(function(){
 		$.post(URL,{'lang':lang}, function(data)
 		{
 			window.location.reload();
+			
 		},'json');
 		
 	});
 	
 	$('#translates a').live('click', function(){
 		
-		$('#translates a').removeClass('activ_translate');
-		
-		$(this).addClass('activ_translate');
-		
-		$('input[type=text][language!=no], div.textarea').hide();
-		
-		$('input[type=text][language='+$(this).attr('id')+'], div.textarea[language='+$(this).attr('id')+']').show();				
-		
-	});
-	
-	$('#modal_translates a').live('click', function(){
-		
-		$('#modal_translates a').removeClass('activ_translate');
+		$(this).parents('#translates').find('a').removeClass('activ_translate');
 		
 		$(this).addClass('activ_translate');
 		
 		$(this).parents('form').find('input[type=text][language!=no], div.textarea').hide();
 		
+		$(this).parents('.form').find('input[type=text][language!=no], div.textarea').hide();
+		
 		$(this).parents('form').find('input[type=text][language='+$(this).attr('id')+'], div.textarea[language='+$(this).attr('id')+']').show();
 		
-	});
+		$(this).parents('.form').find('input[type=text][language='+$(this).attr('id')+'], div.textarea[language='+$(this).attr('id')+']').show();
+		
+	});		
 	
 	if (main_navi >= 8)
 	{
@@ -427,11 +422,11 @@ function save_entry(block, entry, id, single, parent_block, after_save)
 	}
 	
 	if (parent_block.find('.site_logo').length){
-		$('.site_logo').each(function(){
+		parent_block.find('.site_logo').each(function(){
 			lang_keys.push($(this).attr('name'));					
 			lang_data.push($(this).attr('big'));			
 		});	
-		$('.site_logo').each(function(){
+		parent_block.find('.site_logo').each(function(){
 			lang_keys.push('logo_thumb');
 			lang_data.push($(this).attr('small'));
 		});

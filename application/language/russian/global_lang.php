@@ -295,6 +295,8 @@ $lang["not_downloads"]			= "Документы не загружены";
 $lang["vkontakte_link"]			= "Ссылка на страничку vkontakte.ru";
 $lang["twitter_link"]			= "Ссылка на страничку twitter.com";
 $lang["facebook_link"]			= "Ссылка на страничку facebook.com";
+$lang["create_new_territory"]	= "Создать новую территорию";
+$lang["create_new_record"]		= "Создать новую запись";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

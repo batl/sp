@@ -30,6 +30,7 @@ class Crank extends CI_Controller {
 		$this->params['include_keywords'] = explode(',',$this->params['current_settings']['keywords']);
 
 		$this->include_js('jquery/jquery.min.js');		
+		$this->include_js('jquery/scroll_to.js');
 		$this->include_js('main.js');		
 		$this->include_css('themes/'.$this->params['current_settings']['theme'].'/main.css');	
 		
@@ -373,6 +374,8 @@ class Crank extends CI_Controller {
 		);
 		
 		$result = $this->Crank_model->save_entry($table_name);
+		
+		$data['entry'] = $result;
 		
 		if ($result === true)
 		{

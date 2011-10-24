@@ -242,4 +242,80 @@ $(document).ready( function($){
 		
 	});
 	
+	init_modal_window('category_modal_form', 'dictionary/projects_categories', function(response){
+		$('select[name=category_id]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=category_id] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});
+	
+	init_modal_window('place_modal_form', 'dictionary/places', function(response){
+		$('select[name=place]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=place] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});
+	
+	init_modal_window('place_type_modal_form', 'dictionary/places_categories', function(response){
+		$('select[name=place_type]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=place_type] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});
+	
+	init_modal_window('territory_modal_form', 'dictionary/territories', function(response){
+		$('select[name=territory]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=territory] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});
+	
+	init_modal_window('method_modal_form', 'dictionary/methods', function(response){
+		$('select[name=methods_id]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=methods_id] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});
+	
+	init_modal_window('type_modal_form', 'dictionary/events_categories', function(response){
+		$('select[name=type]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=type] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});
+	
+	init_modal_window('scope_modal_form', 'dictionary/scopes', function(response){
+		$('select[name=scope]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=scope] option').each(function(){
+			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		});
+	});
+	
+	$("#create_category").live('click', function(){				
+		$("#category_modal_form").dialog( "open" );
+	});	
+	
+	$("#create_place_type").live('click', function(){				
+		$("#place_type_modal_form").dialog( "open" );
+	});	
+	
+	$("#create_place").live('click', function(){				
+		$("#place_modal_form").dialog( "open" );
+	});
+
+	$("#create_territory").live('click', function(){				
+		$("#territory_modal_form").dialog( "open" );
+	});
+	
+	$("#create_method").live('click', function(){				
+		$("#method_modal_form").dialog( "open" );
+	});
+	
+	$("#create_type").live('click', function(){				
+		$("#type_modal_form").dialog( "open" );
+	});	
+	
+	$("#create_scope").live('click', function(){				
+		$("#scope_modal_form").dialog( "open" );
+	});	
 });

@@ -349,7 +349,7 @@ background-color:#fff;
 margin:0px;
 }
 
-.items form, #content-container form{
+.items form, .items .form, #content-container form{
 margin:0px 20px;
 }
 
@@ -1223,7 +1223,7 @@ background: url("/static/images/add.png") repeat scroll 0 0 transparent;
 cursor: pointer;
 float: right;
 height: 16px;
-margin-right: 350px;
+margin-right: 35%;
 width: 16px;
 }
 

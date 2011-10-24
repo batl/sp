@@ -29,6 +29,7 @@
 						}
 						?>
 					</select>	
+					<span id="create_territory" class="create_new"></span>
 				</div>
 			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["event"]?><span class='gfield_required'>*</span>:</label>

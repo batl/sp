@@ -36,6 +36,10 @@ class Goods extends Crank {
 		$this->params['activities'] = $this->Crank_model->get_all_entries('sp_activities');
 		$this->params['places'] 	= $this->Crank_model->get_all_entries('sp_places');
 		
+		$this->params['views']['group_modal_form'] = $this->load->view('admin/group_add_view', $this->params, true);
+		$this->params['views']['place_modal_form'] = $this->load->view('admin/place_add_view', $this->params, true);
+		$this->params['views']['organization_modal_form'] = $this->load->view('admin/organizations_add_view', $this->params, true);
+		
 		$this->include_view('goods_view',$this->params);
 	}
 	

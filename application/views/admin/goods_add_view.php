@@ -1,4 +1,4 @@
-<form method='post'>
+<div class="form">
 	<div class='gform_heading'>
 	</div>
 	<div class='gform_body'>
@@ -87,4 +87,4 @@
 			?>
 		</div>
 	</div>
-</form>
+</div>

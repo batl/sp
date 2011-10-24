@@ -12,10 +12,15 @@ class Profile extends Crank {
 		$this->params['main_navi'] = 2;		
 		$this->lang->load('profile', $this->params['language']);
 		$this->params['lang'] = $this->lang->language;
-		$this->include_js('jquery/ajaxupload.js');
+		
 		$this->include_js('jquery/ui/jquery.ui.core.js');
 		$this->include_js('jquery/ui/jquery.ui.widget.js');
+		$this->include_js('jquery/ui/jquery.ui.mouse.js');		
+		$this->include_js('jquery/ui/jquery.ui.position.js');		
+		$this->include_js('jquery/ui/jquery.ui.draggable.js');		
+		$this->include_js('jquery/ui/jquery.ui.dialog.js');	
 		$this->include_js('jquery/ui/jquery.ui.datepicker.js');
+		$this->include_js('jquery/ajaxupload.js');
 		$this->include_js('jquery/colorpicker/colorpicker.js');
 		$this->include_js('jquery/colorpicker/eye.js');
 		$this->include_js('jquery/colorpicker/layout.js');
@@ -37,7 +42,13 @@ class Profile extends Crank {
 		$this->include_keywords($this->params['lang']['profile'].' '.$this->params['user']['name'][$this->params['language_id']].' '.$this->params['user']['suname'][$this->params['language_id']]);
 		$this->set_description($this->params['lang']['profile'].' '.$this->params['user']['name'][$this->params['language_id']].' '.$this->params['user']['suname'][$this->params['language_id']]);									
 		
-		//$this->params['view'] = $this->load->view('profile_main_view', $this->params, true);
+		$this->params['place_types'] = $this->Crank_model->get_all_entries('sp_places_categories');
+		$this->params['scopes'] 	 = $this->Crank_model->get_all_entries('sp_scopes');
+		
+		$this->params['views']['group_modal_form'] = $this->load->view('admin/group_add_view', $this->params, true);
+		$this->params['views']['place_modal_form'] = $this->load->view('admin/place_add_view', $this->params, true);			
+		$this->params['views']['method_modal_form'] = $this->load->view('admin/methods_add_view', $this->params, true);
+		
 		$this->include_view('profile_view',$this->params);
 	}
 	

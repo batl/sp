@@ -1,4 +1,4 @@
-<form method='post'>
+<div class="form">
 	<div class='gform_heading'>
 	</div>
 	<div class='gform_body'>
@@ -88,4 +88,4 @@
 	<div class='gform_footer top_label'>
 		<input type='button' id='gform_submit_button_2' class='button save_entry' value='<?php echo $lang["save"]?>' tabindex='6'/>
 	</div>
-</form>
+</div>
