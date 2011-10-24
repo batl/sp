@@ -31,6 +31,9 @@ class User extends Crank {
 		$this->set_title($this->params['lang']['users']);
 		$this->include_keywords($this->params['lang']['users']);
 		$this->set_description($this->params['lang']['users']);				
+		
+		$this->params['views']['group_modal_form'] = $this->load->view('admin/group_add_view', $this->params, true);
+		
 		$this->include_view('user_view',$this->params);
 	}
 	

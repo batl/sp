@@ -10,7 +10,7 @@
 			<a href="javascript:void(0);" id="dictionary_grants" ><?php echo $lang['grants']?></a> |
 			<a href="javascript:void(0);" id="dictionary_organizations" ><?php echo $lang['organizations']?></a>
 		</div>
-		<h2><?php echo $lang['places']?></h2> <a href="javascript:void(0);" class="add_item"><?php echo $lang['add']?></a><div class="message display_none"></div>
+		<h2><?php echo $lang['places']?></h2> <a href="javascript:void(0);" class="add_item"><?php echo $lang['add']?></a><div id="search_switcher"></div><div class="message display_none"></div>
 		<div id="overview">
 			<div class="list">
 				<div class="items">

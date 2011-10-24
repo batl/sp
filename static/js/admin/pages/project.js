@@ -1,10 +1,14 @@
-var entry = 'project';
+var entry = 'project'; // Set current entry value
 
 $(document).ready(function(){				
+	
+	// Page load	
 	
 	var block = $('.items');
 	
 	get_items(block,entry, 0, 'id', 'asc');
+	
+	// Add new project click
 	
 	$('.add_item').click(function(){
 	
@@ -12,11 +16,15 @@ $(document).ready(function(){
 		
 	});
 	
+	// Save project updates
+	
 	$('.save_entry').live('click', function(){				
 						
 		save_entry(block, entry, $('input[name=id]').val());
 		
 	});
+	
+	// Get project edit view
 	
 	$('.edit_item').live('click', function(){
 		
@@ -26,6 +34,8 @@ $(document).ready(function(){
 		
 	});
 	
+	// Remove project
+	
 	$('.remove_item').live('click', function(){
 		
 		var id = $(this).parents('tr').find('td:first').html();								
@@ -33,6 +43,8 @@ $(document).ready(function(){
 		remove_entry(block, entry, id);
 		
 	});
+	
+	// View project stages
 	
 	$('.projects_stages').live('click', function(){
 		
@@ -46,6 +58,8 @@ $(document).ready(function(){
 		
 	});
 	
+	// View project news
+	
 	$('.projects_news').live('click', function(){
 		
 		var id = $(this).parents('tr').find('td:first').html();					
@@ -57,6 +71,8 @@ $(document).ready(function(){
 		get_items(block,entry, 0, 'id', 'asc');
 		
 	});
+	
+	// View project polls
 	
 	$('.projects_polls').live('click', function(){
 		
@@ -70,6 +86,8 @@ $(document).ready(function(){
 		
 	});
 	
+	// View poll answers
+	
 	$('.poll_answers').live('click', function(){
 		
 		var id = $(this).parents('tr').find('td:first').html();					
@@ -81,6 +99,8 @@ $(document).ready(function(){
 		get_items(block,entry, 0, 'id', 'asc');
 		
 	});	
+	
+	// View project stage partners
 	
 	$('.stage_partners').live('click', function(){
 		
@@ -94,6 +114,8 @@ $(document).ready(function(){
 		
 	});
 	
+	// View project stage joins (such as photo, video, ...)
+	
 	$('.stage_action').live('click', function (){
 		
 		var id = $(this).parents('tr').find('td:first').html();					
@@ -105,6 +127,8 @@ $(document).ready(function(){
 		get_items(block,entry, 0, 'id', 'asc');
 		
 	});
+	
+	/* Init modal forms for rojects and ideas*/
 	
 	init_modal_window('category_modal_form', 'group_projects', function(response){
 		$('select[name=category_id]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
@@ -159,6 +183,7 @@ $(document).ready(function(){
 	
 	$("#create_place_type").live('click', function(){				
 		$("#place_type_modal_form").dialog( "open" );
-	});		
-		
+	});
+	
+	/* End init modal forms for projects and ideas*/	
 });

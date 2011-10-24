@@ -3,7 +3,7 @@
 		<div id="sub_menu">
 			<a href="javascript:void(0);" id="page" class="selected"><?php echo $lang['pages']?></a>
 		</div>
-		<h2><?php echo $lang['pages']?></h2> <a href="javascript:void(0);" class="add_item"><?php echo $lang['add']?></a><div class="message display_none"></div>
+		<h2><?php echo $lang['pages']?></h2> <a href="javascript:void(0);" class="add_item"><?php echo $lang['add']?></a><div id="search_switcher"></div><div class="message display_none"></div>
 		<div id="overview">
 			<div class="list">
 				<div class="items">

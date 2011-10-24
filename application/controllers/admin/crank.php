@@ -103,15 +103,83 @@ class Crank extends CI_Controller {
 		
 		if (!empty($array))
 		{
-			$sortable ? $html = '<table class="gen_table" id="sortable" cellpadding="0" cellspacing="0">' : $html = '<table class="gen_table" cellpadding="0" cellspacing="0">';
+			$titles = array_keys($array[0]);
 			
-			$titles = array_keys($array[0]);						
+			$sort_field = $this->input->post('sort');
+			
+			$html  = '<div id="search">';
+			
+			$html .= '<table class="gen_table" id="search_table" cellpadding="0" cellspacing="0">';
+			
+			$html .= '<tr>';
+			
+			foreach ($titles as $title)
+			{																							
+				
+				empty($this->params['lang'][$title]) ? $field_title = $title : $field_title = $this->params['lang'][$title];
+				
+				if (!empty($fields_types[$title])):
+					
+					switch ($fields_types[$title])
+					{
+						case 'hidden':						
+							break;
+						default:
+							$html .= '<td>'.$field_title.'</td>';
+							break;
+					}
+				
+				else:
+				
+					if ($title != 'logo') $html .= '<td>'.$field_title.'</td>';
+					
+				endif;
+				
+			}
+			
+			$html .= '</tr><tr>';
+			
+			foreach ($titles as $title)
+			{																							
+				
+				empty($this->params['lang'][$title]) ? $field_title = $title : $field_title = $this->params['lang'][$title];
+				
+				if (!empty($fields_types[$title])):
+					
+					switch ($fields_types[$title])
+					{
+						case 'hidden':						
+							break;
+						case 'date':
+							$html .= '<td><input type="text" class="picker"/></td>';
+							break;
+						case 'bool':
+							$html .= '<td><input type="checkbox"/></td>';
+							break;
+						default:
+							$html .= '<td><input type="text" /></td>';
+							break;
+					}
+				
+				else:
+				
+					if ($title != 'logo') $html .= '<td><input type="text" /></td>';
+					
+				endif;
+				
+			}
+			
+			$html .= '</tr>';
+			
+			$html .= '</table>';
+
+			$html .= '<a href="javascript:void(0);" class="search_btn">'.$this->params['lang']['search'].'</a></div>';
+			
+			$sortable ? $html .= '<table class="gen_table" id="sortable" cellpadding="0" cellspacing="0">' : $html .= '<table class="gen_table" cellpadding="0" cellspacing="0">';						
 			
 			$html .= '<tr class="t_title">';	
 				
-			$html .= '<td style="cursor:default; color:#ccc; text-decoration:underline;">№</td>';
-			
-			$sort_field = $this->input->post('sort');
+			$html .= '<td style="cursor:default; color:#ccc; text-decoration:underline;">№</td>';						
 			
 			foreach ($titles as $title)
 			{			

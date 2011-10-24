@@ -13,6 +13,10 @@ $(document).ready(function(){
 	
 	$('form[id$=modal_form]').find('.save_entry').remove();
 	
+	$('#search_switcher').click(function(){
+		$('#search').slideToggle('slow');
+	});
+	
 	$('#limit a').click(function(){
 		limit = parseInt($(this).html());
 		$('#limit a').removeClass('selected');
@@ -229,6 +233,8 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 		}								
 		
 		transform_pagination(data.curent_page, data.total);
+		
+		if ($('.picker').length) $('.picker').datepicker({ dateFormat: 'yy-mm-dd' });
 		
 		if ($("#sortable").length)
 		{
@@ -692,25 +698,4 @@ function removeDuplicateElement(arrayName)
 		newArray[newArray.length] = arrayName[i];
 	}
 	return newArray;
-}
-
-function checkLength( o, n, min, max ) {
-	if ( o.val().length > max || o.val().length < min ) {
-		o.addClass( "ui-state-error" );
-		updateTips( "Length of " + n + " must be between " +
-			min + " and " + max + "." );
-		return false;
-	} else {
-		return true;
-	}
-}
-
-function checkRegexp( o, regexp, n ) {
-	if ( !( regexp.test( o.val() ) ) ) {
-		o.addClass( "ui-state-error" );
-		updateTips( n );
-		return false;
-	} else {
-		return true;
-	}
 }
