@@ -1243,6 +1243,7 @@ display:none;
 #search{
 position:relative;
 display:none;
+overflow:hidden;
 }
 
 #search_table{
@@ -1262,4 +1263,8 @@ height:15px;
 padding:0px;
 font-size:11px;
 font-family:Verdana;
+}
+
+.apply_filter{
+display:block;
 }

@@ -177,14 +177,14 @@ class Crank_model extends CI_Model {
 						
 					}
 				}
-				
+								
 				if (!empty($like))
 				{
 					$status = false;
 					
 					foreach ($like as $key=>$value)
-					{						
-						if (!empty($row[$key]) && strpos(strtolower($row[$key]), strtolower($value))!==false) $status = true;
+					{									
+						if ($value != "" && !empty($row[$key]) && strpos(mb_strtolower((string)$row[$key]), mb_strtolower((string)$value))!==false) $status = true;
 					}
 					
 					$status ? array_push($response, $row) : '';

@@ -105,75 +105,7 @@ class Crank extends CI_Controller {
 		{
 			$titles = array_keys($array[0]);
 			
-			$sort_field = $this->input->post('sort');
-			
-			$html  = '<div id="search">';
-			
-			$html .= '<table class="gen_table" id="search_table" cellpadding="0" cellspacing="0">';
-			
-			$html .= '<tr>';
-			
-			foreach ($titles as $title)
-			{																							
-				
-				empty($this->params['lang'][$title]) ? $field_title = $title : $field_title = $this->params['lang'][$title];
-				
-				if (!empty($fields_types[$title])):
-					
-					switch ($fields_types[$title])
-					{
-						case 'hidden':						
-							break;
-						default:
-							$html .= '<td>'.$field_title.'</td>';
-							break;
-					}
-				
-				else:
-				
-					if ($title != 'logo') $html .= '<td>'.$field_title.'</td>';
-					
-				endif;
-				
-			}
-			
-			$html .= '</tr><tr>';
-			
-			foreach ($titles as $title)
-			{																							
-				
-				empty($this->params['lang'][$title]) ? $field_title = $title : $field_title = $this->params['lang'][$title];
-				
-				if (!empty($fields_types[$title])):
-					
-					switch ($fields_types[$title])
-					{
-						case 'hidden':						
-							break;
-						case 'date':
-							$html .= '<td><input type="text" class="picker"/></td>';
-							break;
-						case 'bool':
-							$html .= '<td><input type="checkbox"/></td>';
-							break;
-						default:
-							$html .= '<td><input type="text" /></td>';
-							break;
-					}
-				
-				else:
-				
-					if ($title != 'logo') $html .= '<td><input type="text" /></td>';
-					
-				endif;
-				
-			}
-			
-			$html .= '</tr>';
-			
-			$html .= '</table>';
-
-			$html .= '<a href="javascript:void(0);" class="search_btn">'.$this->params['lang']['search'].'</a></div>';
+			$sort_field = $this->input->post('sort');						
 			
 			$sortable ? $html .= '<table class="gen_table" id="sortable" cellpadding="0" cellspacing="0">' : $html .= '<table class="gen_table" cellpadding="0" cellspacing="0">';						
 			
@@ -347,14 +279,36 @@ class Crank extends CI_Controller {
 		$sort  		= $this->input->post('sort');
 		$sort_type 	= $this->input->post('sort_type');
 		$limit 		= $this->input->post('limit');
+		$search_fields = $this->input->post('fields');
+		$search_values = $this->input->post('values');
+		$filter_fields = $this->input->post('filter_fields');
+		$filter_values = $this->input->post('filter_values');
+		
+		$like = array();
+		
+		if (!empty($search_fields))
+		{
+			foreach ($search_fields as $key=>$search_field)
+			{
+				if (!empty($search_values[$key])) $like[$search_field] = $search_values[$key];
+			}
+		}
+		
+		if (!empty($filter_fields))
+		{
+			foreach ($filter_fields as $key => $filter)
+			{
+				if (!empty($filter_values[$key])) $where[$filter] = $filter_values[$key];
+			}
+		}
 		
 		empty($sort) ? $sort = 'id': '';
 		empty($sort_type) ? $sort_type = 'asc': '';
 			
 		
-		$items_array = $this->Crank_model->get_all_entries($table_name, $where ,$start, $limit, $sort, $sort_type, $fields, $joins);
+		$items_array = $this->Crank_model->get_all_entries($table_name, $where ,$start, $limit, $sort, $sort_type, $fields, $joins, false, $like);
 		
-		$items_count = count($this->Crank_model->get_all_entries($table_name, $where, 0, false, 'id', 'asc', $fields, $joins));
+		$items_count = count($this->Crank_model->get_all_entries($table_name, $where, 0, false, 'id', 'asc', $fields, $joins, false, $like));
 		
 		if (!empty($items_array))
 		{
@@ -372,17 +326,118 @@ class Crank extends CI_Controller {
 			
 			$lang_fields = $this->Crank_model->get_lang_fields($table_name);
 		
-			$data['response'] = $this->html_table($items_array, $fields_types, $lang_fields, $disabled_actions, $sortable);
+			$data['response'] = $this->get_search_block($fields, $fields_types).$this->html_table($items_array, $fields_types, $lang_fields, $disabled_actions, $sortable);
 			
 		}
 		else
 		{
 			$data['result']   = false;
-			$data['response'] = '<p>'.$this->params['lang']['no_records'].'</p>';			
+			$data['response'] = $this->get_search_block($fields, $fields_types).'<p>'.$this->params['lang']['no_records'].'</p>';			
 		}
 		
 		echo json_encode($data);
 		
+	}
+	
+	protected function get_search_block($fields, $fields_types)
+	{
+	
+		$titles = array();
+		
+		foreach ($fields as $key => $value)
+		{
+			foreach ($value as $val)
+			{
+				$sub_title = explode(" ", $val);
+				if (!empty($sub_title[2])) array_push($titles, $sub_title[2]); else array_push($titles, $sub_title[0]);
+			}
+		}
+		
+		$html = '';							
+		
+		$html  = '<div id="search">';
+		
+		$html .= '<table class="gen_table" id="search_table" cellpadding="0" cellspacing="0">';
+		
+		$html .= '<tr>';
+		
+		foreach ($titles as $title)
+		{																																
+			
+			empty($this->params['lang'][$title]) ? $field_title = $title : $field_title = $this->params['lang'][$title];
+			
+			if (!empty($fields_types[$title])):
+				
+				switch ($fields_types[$title])
+				{
+					case 'hidden':						
+						break;
+					default:
+						$html .= '<td>'.$field_title.'</td>';
+						break;
+				}
+			
+			else:
+			
+				if ($title != 'logo' && $title != 'thumb') $html .= '<td>'.$field_title.'</td>';
+				
+			endif;
+			
+		}
+		
+		$html .= '</tr><tr>';
+		
+		foreach ($titles as $title)
+		{																							
+			
+			empty($this->params['lang'][$title]) ? $field_title = $title : $field_title = $this->params['lang'][$title];
+			
+			if (!empty($fields_types[$title])):
+				
+				if (!is_array($fields_types[$title]))
+				{
+					switch ($fields_types[$title])
+					{
+						case 'hidden':						
+							break;
+						case 'date':
+							$html .= '<td><input type="text" name="'.$title.'" class="picker" value=""/></td>';
+							break;
+						case 'bool':
+							$html .= '<td><input class="filter" name="'.$title.'" type="checkbox"/><a href="javascript:void(0);" class="apply_filter" val="0" rel="'.$this->params['lang']['cancel'].'">'.$this->params['lang']['apply'].'</a></td>';
+							break;						
+						default:
+							$html .= '<td><input name="'.$title.'" type="text" value=""/></td>';
+							break;
+					}
+				}
+				else{
+					$html .= '<td><select class="filter" name="'.$title.'">';
+					
+					$html .= '<option value="0" selected="selected">'.$this->params['lang']['all'].'</option>';
+					
+					foreach ($fields_types[$title] as $option)
+					{							
+						$html .= '<option value="'.$option['id'].'">'.$option['name'].'</option>';
+					}
+					
+					$html .= '</select></td>';
+				}
+			else:
+			
+				if ($title != 'logo' && $title != 'thumb') $html .= '<td><input name="'.$title.'" type="text" /></td>';
+				
+			endif;
+			
+		}
+		
+		$html .= '</tr>';
+		
+		$html .= '</table>';
+
+		$html .= '<a href="javascript:void(0);" class="search_btn">'.$this->params['lang']['search'].'</a></div>';
+		
+		return $html;
 	}
 	
 	protected function get_view($data = array(), $table_name = false, $custom_view = false, $custom_data = array())

@@ -50,6 +50,7 @@ class User extends Crank {
 			),		// joins
 			array(
 				'confirmed' => 'bool',
+				'group_name' => $this->Crank_model->get_all_entries('sp_groups'),
 				'id' => 'hidden'
 			)		// fields types (bool, price)
 		);
