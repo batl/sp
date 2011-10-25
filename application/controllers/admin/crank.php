@@ -292,7 +292,7 @@ class Crank extends CI_Controller {
 			{
 				if (!empty($search_values[$key])) $like[$search_field] = $search_values[$key];
 			}
-		}
+		}				
 		
 		if (!empty($filter_fields))
 		{
@@ -302,7 +302,32 @@ class Crank extends CI_Controller {
 				{
 					switch ($filter)
 					{
-						case 'group_name': $filter = 'group_id'; break;					
+						case 'group_name':
+							switch ($table_name)
+							{
+								case 'sp_users':
+									$filter = 'group_id'; 
+									break;
+								case 'sp_goods':
+									$filter = 'type'; 
+									break;
+								case 'sp_projects':
+									$filter = 'category_id'; 
+									break;
+								case 'sp_places':
+									$filter = 'place_type'; 
+									break;
+							}							
+							break;					
+						case 'supplier_name':
+							$filter = 'supplier'; 
+							break;
+						case 'project_name':
+							$filter = 'project_result'; 
+							break;
+						case 'public_email':
+							$filter = 'user_id'; 
+							break;
 					}										
 					
 					$where[$filter] = $filter_values[$key];
@@ -422,11 +447,12 @@ class Crank extends CI_Controller {
 				else{
 					$html .= '<td><select class="filter" name="'.$title.'">';
 					
-					$html .= '<option value="all">'.$this->params['lang']['all'].'</option>';
+					$html .= '<option value="all">'.$this->params['lang']['all'].'</option>';										
 					
 					foreach ($fields_types[$title] as $option)
 					{							
-						$html .= '<option value="'.$option['id'].'">'.$option['name'].'</option>';
+						$a_option = array_values($option);
+						$html .= '<option value="'.$a_option[0].'">'.$a_option[1].'</option>';
 					}
 					
 					$html .= '</select></td>';

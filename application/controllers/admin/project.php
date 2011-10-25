@@ -56,7 +56,7 @@ class Project extends Crank {
 		parent::get_items(
 			false, 
 			array(
-				'sp_projects' => array('id','name','logo','date_start', 'date_end'),
+				'sp_projects' => array('id','name','logo','date_start', 'date_end', 'user_id'),
 				'sp_projects_categories' => array('name as group_name'),
 				'sp_users' => array('email as public_email')
 			), 
@@ -68,7 +68,10 @@ class Project extends Crank {
 				'date_start' => 'date',
 				'date_end' => 'date',
 				'in_process' => 'bool',
-				'id' => 'hidden'
+				'id' => 'hidden',
+				'user_id' => 'hidden',
+				'group_name' => $this->Crank_model->get_all_entries('sp_projects_categories'),
+				'public_email' => $this->Crank_model->get_all_entries('sp_users', array(), 0, false, 'id', 'asc', array('sp_users' => array('id', 'email as nick')))
 			)
 		);
 	}		

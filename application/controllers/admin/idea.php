@@ -44,7 +44,8 @@ class Idea extends Crank {
 				'sp_scopes'=>'scope'
 			),
 			array(
-				'id' => 'hidden'
+				'id' => 'hidden',
+				'scope' => $this->Crank_model->get_all_entries('sp_scopes')
 			)
 		);
 	}		

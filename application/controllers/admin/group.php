@@ -20,7 +20,7 @@ class Group extends Crank {
 	public function get_items($table)
 	{
 		if ($table != 'undefined') { in_array($table, $this->params['tables'])?$table = "sp_".$table:$table = "sp_".$table."_categories";} else $table = false;
-		parent::get_items($table, array(), array(), array('id' => 'hidden'));
+		parent::get_items($table, array($table => array('id', 'name')), array(), array('id' => 'hidden'));
 	}		
 	
 	public function get_view($table)

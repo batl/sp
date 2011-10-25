@@ -51,7 +51,13 @@ class Event extends Crank {
 				'sp_users'  => array('email as public_email')
 			), 
 			array('sp_places'=>'place', 'sp_users'=>'user_id'),			
-			array('date_start' => 'date', 'date_end' => 'date', 'id' => 'hidden')
+			array(
+				'date_start' 	 => 'date', 
+				'date_end' 		 => 'date', 
+				'id' 			 => 'hidden',
+				'place'			 => $this->Crank_model->get_all_entries('sp_places', array(), 0, false, 'id', 'asc', array('sp_places' => array('id', 'name'))),
+				'public_email' 	 => $this->Crank_model->get_all_entries('sp_users', array(), 0, false, 'id', 'asc', array('sp_users' => array('id', 'email as nick')))
+			)
 		);
 	}		
 	

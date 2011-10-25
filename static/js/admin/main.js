@@ -171,7 +171,11 @@ $(document).ready(function(){
 	});
 	
 	$('#sub_menu a').click(function(event){
-		event.preventDefault();		
+		event.preventDefault();
+		fields = new Array();
+		values = new Array();
+		filter_fields = new Array();
+		filter_values = new Array();
 		$('#sub_menu a').removeClass('selected');
 		$(this).addClass('selected');
 		$('#content h2:first').html($(this).html());

@@ -41,7 +41,10 @@ class Service extends Crank {
 			),		// joins
 			array(
 				'price' => 'price',
-				'id' => 'hidden'
+				'id' => 'hidden',
+				'group_name' 	=> $this->Crank_model->get_all_entries('sp_services_categories'),
+				'supplier_name' => $this->Crank_model->get_all_entries('sp_organizations', array(), 0, false, 'id', 'asc', array('sp_organizations' => array('id', 'name'))),
+				'project_name' 	=> $this->Crank_model->get_all_entries('sp_projects', array(), 0, false, 'id', 'asc', array('sp_projects' => array('id', 'name')))
 			)		// fields types (bool, price)
 		);
 	}		

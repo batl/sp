@@ -47,6 +47,7 @@ class Dictionary extends Crank {
 		if ($table != 'undefined') $table = "sp_".$table; else $table = false;
 		$data  = array();
 		$joins = array();
+		$fields_types = array('id' => 'hidden');
 		switch ($table)
 		{
 			case false:
@@ -57,26 +58,31 @@ class Dictionary extends Crank {
 				$joins = array(
 					'sp_places_categories'=>'place_type'
 				);
+				$fields_types['group_name'] = $this->Crank_model->get_all_entries('sp_places_categories');
 				break;
 			case 'sp_methods':
 				$data = array(
 					'sp_methods' => array('id','name','author'),
-					'sp_scopes' => array('name as group_name')
+					'sp_scopes' => array('name as scope')
 				);
 				$joins = array(
 					'sp_scopes'=>'scope'
 				);
+				$fields_types['scope'] = $this->Crank_model->get_all_entries('sp_scopes');
 				break;
 			case 'sp_grants':
 				$data = array(
-					'sp_grants' => array('id','name','deadline','grantor'),
-					'sp_scopes' => array('name as group_name'),
+					'sp_grants' => array('id','name','deadline'),
+					'sp_scopes' => array('name as scope'),
 					'sp_organizations' => array('name as grantor')
 				);
 				$joins = array(
 					'sp_scopes'=>'scope',
 					'sp_organizations'=>'grantor'
 				);
+				$fields_types['deadline'] = 'date';
+				$fields_types['scope'] = $this->Crank_model->get_all_entries('sp_scopes');
+				$fields_types['grantor'] = $this->Crank_model->get_all_entries('sp_organizations', array(), 0, false, 'id', 'asc', array('sp_organizations' => array('id', 'name')));
 				break;
 			case 'sp_organizations':
 				$data = array(
@@ -84,7 +90,7 @@ class Dictionary extends Crank {
 				);				
 				break;
 		}
-		parent::get_items($table,$data,$joins, array('id' => 'hidden'));
+		parent::get_items($table,$data,$joins, $fields_types);
 	}		
 	
 	public function get_view($view)

@@ -48,19 +48,22 @@ class Goods extends Crank {
 		parent::get_items(
 			false,  // table name (false = default controller table)
 			array(
-				'sp_goods' => array('id','thumb','name','price'),
-				'sp_goods_categories' => array('name as group_name'),
-				'sp_organizations' => array('name as supplier_name'),
-				'sp_projects' => array('name as project_name')
+				'sp_goods' 				=> array('id','thumb','name','price'),
+				'sp_goods_categories' 	=> array('name as group_name'),
+				'sp_organizations' 		=> array('name as supplier_name'),
+				'sp_projects' 			=> array('name as project_name')
 			), 		// get fields
 			array(
-				'sp_goods_categories'=>'type', 
-				'sp_organizations'=>'supplier', 
-				'sp_projects'=>'project_result'
+				'sp_goods_categories'	=>'type', 
+				'sp_organizations'		=>'supplier', 
+				'sp_projects'			=>'project_result'
 			),		// joins
 			array(
-				'price' => 'price',
-				'id'	=> 'hidden'
+				'price' 		=> 'price',
+				'id'			=> 'hidden',
+				'group_name' 	=> $this->Crank_model->get_all_entries('sp_goods_categories'),
+				'supplier_name' => $this->Crank_model->get_all_entries('sp_organizations', array(), 0, false, 'id', 'asc', array('sp_organizations' => array('id', 'name'))),
+				'project_name' 	=> $this->Crank_model->get_all_entries('sp_projects', array(), 0, false, 'id', 'asc', array('sp_projects' => array('id', 'name')))
 			)		 // fields types (bool, price)
 		);
 	}		

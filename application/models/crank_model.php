@@ -37,7 +37,7 @@ class Crank_model extends CI_Model {
 		'sp_videos'					=> array(),
 		'sp_poll'					=> array('name'),
 		'sp_poll_answers'			=> array('name'),
-		'as_fields'					=> array('group_name','place', 'name', 'territory', 'supplier_name', 'project_name', 'your_name', 'partner_name')
+		'as_fields'					=> array('group_name','place', 'name', 'territory', 'supplier_name', 'project_name', 'your_name', 'partner_name', 'scope')
 	);
 	
 /* --------------------------------------------------------------------------------- */	
@@ -180,14 +180,18 @@ class Crank_model extends CI_Model {
 								
 				if (!empty($like))
 				{
-					$status = false;
+					$status = 0;
+					
+					$this->firephp->log($like);
 					
 					foreach ($like as $key=>$value)
-					{									
-						if ($value != "" && !empty($row[$key]) && strpos(mb_strtolower((string)$row[$key]), mb_strtolower((string)$value))!==false) $status = true;
+					{															
+						if ($value != "" && !empty($row[$key]) && strpos(mb_strtolower((string)$row[$key]), mb_strtolower((string)$value))!==false) $status++;
 					}
 					
-					$status ? array_push($response, $row) : '';
+					$this->firephp->log($status, count($like));
+					
+					($status == count($like)) ? array_push($response, $row) : '';
 				} 
 				else array_push($response, $row);
 			}
