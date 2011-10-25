@@ -44,35 +44,35 @@ $(document).ready(function(){
 				if (parseInt($(this).parents('td').find('.apply_filter').attr('val')))
 				{					
 					filter_fields.push($(this).attr('name'));
-					if ($(this).is(':checked')) filter_values.push(1); else filter_values.push(0);
+					if ($(this).is(':checked')) filter_values.push('1'); else filter_values.push('0');
 				}
 			}
 			else
 			{
 				filter_fields.push($(this).attr('name'));
-				filter_values.push(parseInt($(this).val()));
+				filter_values.push($(this).val());
 			}
 		});		
 	});
 	
 	$('.apply_filter').live('click', function(){
 		var rel = $(this).attr('rel');
-		if (parseInt($(this).attr('val'))) $(this).attr('val', 0).attr('rel', $(this).html()).html(rel); else $(this).attr('val',1).attr('rel', $(this).html()).html(rel);										
+		if (parseInt($(this).attr('val'))) $(this).attr('val', '0').attr('rel', $(this).html()).html(rel); else $(this).attr('val','1').attr('rel', $(this).html()).html(rel);
 		filter_fields = new Array();
 		filter_values = new Array();
 		$('.filter').each(function(){
 			if ($(this).is(':checkbox'))
-			{								
+			{
 				if (parseInt($(this).parents('td').find('.apply_filter').attr('val')))
 				{					
 					filter_fields.push($(this).attr('name'));
-					if ($(this).is(':checked')) filter_values.push(1); else filter_values.push(0);
+					if ($(this).is(':checked')) filter_values.push('1'); else filter_values.push('0');
 				}
 			}
 			else
 			{
 				filter_fields.push($(this).attr('name'));
-				filter_values.push(parseInt($(this).val()));
+				filter_values.push($(this).val());
 			}
 		});
 	});
@@ -267,7 +267,7 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 		
 	$('.world_preloader').show();
 		
-	var URL = base_url + entry.split('_')[0] + '/get_items/' + entry.split('_')[1];
+	var URL = base_url + entry.split('_')[0] + '/get_items/' + entry.split('_')[1];		
 	
 	$.post(URL, {"sort":sort, "start":start, "sort_type":sort_type, "limit":limit, "fields":fields, "values":values, "filter_fields":filter_fields, "filter_values":filter_values}, function(data)
 	{
@@ -301,21 +301,23 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 				
 				if (checkbox.length)
 				{
-					checkbox.parents('td').find('.apply_filter').attr('val',1).html(checkbox.parents('td').find('.apply_filter').attr('rel'));										
+					var rel = checkbox.parents('td').find('.apply_filter').attr('rel');
 					
-					if (filter_values[i])
+					checkbox.parents('td').find('.apply_filter').attr('val','1').attr('rel',checkbox.parents('td').find('.apply_filter').html()).html(rel);
+					
+					if (parseInt(filter_values[i]))
 					{
 						checkbox.attr('checked', 'checked');
 					}
 					else
 					{
-						checkbox.attr('checked', '');
+						checkbox.removeAttr('checked');
 					}
 				}
 				else
 				{
-					$('#search').find('select[name='+filter_fields[i]+'] option').each(function(){
-						if (parseInt($(this).val()) == filter_values[i]) $(this).attr('selected', 'selected'); else $(this).attr('selected', '');
+					$('#search').find('select[name='+filter_fields[i]+'] option').removeAttr('selected').each(function(){
+						if ($(this).val() == filter_values[i]) $(this).attr('selected', 'selected');
 					});
 				}
 			}

@@ -297,8 +297,16 @@ class Crank extends CI_Controller {
 		if (!empty($filter_fields))
 		{
 			foreach ($filter_fields as $key => $filter)
-			{
-				if (!empty($filter_values[$key])) $where[$filter] = $filter_values[$key];
+			{					
+				if ($filter_values[$key] != "all")
+				{
+					switch ($filter)
+					{
+						case 'group_name': $filter = 'group_id'; break;					
+					}										
+					
+					$where[$filter] = $filter_values[$key];
+				}
 			}
 		}
 		
@@ -414,7 +422,7 @@ class Crank extends CI_Controller {
 				else{
 					$html .= '<td><select class="filter" name="'.$title.'">';
 					
-					$html .= '<option value="0" selected="selected">'.$this->params['lang']['all'].'</option>';
+					$html .= '<option value="all">'.$this->params['lang']['all'].'</option>';
 					
 					foreach ($fields_types[$title] as $option)
 					{							

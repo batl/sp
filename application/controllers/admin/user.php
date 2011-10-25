@@ -42,16 +42,17 @@ class User extends Crank {
 		parent::get_items(
 			false, 	// table name (false = default controller table)
 			array(
-				'sp_users'  => array('id','thumb', 'name as your_name','suname','email','phone','confirmed'),
+				'sp_users'  => array('id','thumb', 'name as your_name','suname','email','phone','confirmed', 'group_id'),
 				'sp_groups' => array('name as group_name')
 			), 		// get fields
 			array(
 				'sp_groups' => 'group_id'
 			),		// joins
 			array(
-				'confirmed' => 'bool',
+				'confirmed' => 'bool',				
 				'group_name' => $this->Crank_model->get_all_entries('sp_groups'),
-				'id' => 'hidden'
+				'id' => 'hidden',
+				'group_id' => 'hidden'
 			)		// fields types (bool, price)
 		);
 	}		
