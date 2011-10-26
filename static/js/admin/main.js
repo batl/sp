@@ -55,6 +55,10 @@ $(document).ready(function(){
 		});		
 	});
 	
+	$('.reset_search_btn').live('click', function(){
+		$('#search').find('input[type=text]').val('');
+	});
+	
 	$('.apply_filter').live('click', function(){
 		var rel = $(this).attr('rel');
 		if (parseInt($(this).attr('val'))) $(this).attr('val', '0').attr('rel', $(this).html()).html(rel); else $(this).attr('val','1').attr('rel', $(this).html()).html(rel);
@@ -125,7 +129,12 @@ $(document).ready(function(){
 		}
 						
 		$('#content h2:first').html(title);				
-				
+		
+		fields = new Array();
+		values = new Array();
+		filter_fields = new Array();
+		filter_values = new Array();
+			
 	})
 	
 	$('#languages a').click(function(){
@@ -265,13 +274,13 @@ function transform_pagination(curent_page, total)
 
 function get_items(block, entry, start, sort, sort_type, clear_history)
 {
-	$('.pagination, #limit').show();
+	$('.pagination, #limit, #search_switcher').show();
 	
 	block.html('<div class="world_preloader"></div>');
-		
+	
 	$('.world_preloader').show();
-		
-	var URL = base_url + entry.split('_')[0] + '/get_items/' + entry.split('_')[1];		
+	
+	var URL = base_url + entry.split('_')[0] + '/get_items/' + entry.split('_')[1];
 	
 	$.post(URL, {"sort":sort, "start":start, "sort_type":sort_type, "limit":limit, "fields":fields, "values":values, "filter_fields":filter_fields, "filter_values":filter_values}, function(data)
 	{
@@ -413,7 +422,7 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 
 function get_view(block, entry, action, id, clear_history)
 {
-	$('.pagination, #limit').hide();
+	$('.pagination, #limit, #search_switcher').hide();
 
 	block.html('<div class="world_preloader"></div>');
 		

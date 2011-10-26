@@ -1048,7 +1048,7 @@ background-position:64px 9px;
 width:82px;
 }
 
-.add_item, .search_btn{
+.add_item, .search_btn, .reset_search_btn{
 background: none repeat scroll 0 0 #CDE9F4;
 display: block;
 float: left;
@@ -1067,7 +1067,12 @@ border-radius: 5px;
 -webkit-box-shadow: 0px 0px 3px #ccc; 
 box-shadow: 0px 0px 3px #ccc;
 }
-.add_item:hover, .search_btn:hover{
+
+.reset_search_btn{
+width:100px;
+}
+
+.add_item:hover, .search_btn:hover, .reset_search_btn:hover{
 background:#469ABF;
 color:#fff;
 }

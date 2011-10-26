@@ -469,7 +469,7 @@ class Crank extends CI_Controller {
 		
 		$html .= '</table>';
 
-		$html .= '<a href="javascript:void(0);" class="search_btn">'.$this->params['lang']['search'].'</a></div>';
+		$html .= '<a href="javascript:void(0);" class="search_btn">'.$this->params['lang']['search'].'</a><a href="javascript:void(0);" class="reset_search_btn">'.$this->params['lang']['reset_search'].'</a></div>';
 		
 		return $html;
 	}

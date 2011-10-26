@@ -299,6 +299,7 @@ $lang["create_new_territory"]	= "Создать новую территорию"
 $lang["create_new_record"]		= "Создать новую запись";
 $lang["apply"]					= "Применить";
 $lang["cancel"]					= "Сбросить";
+$lang["reset_search"]			= "Сбросить поля";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";
