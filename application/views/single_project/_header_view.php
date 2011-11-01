@@ -29,7 +29,7 @@
 <span id="menu_font" style="display:none;"><?php echo $project['menu_font']?></span>
 <span id="purpose_color" style="display:none;"><?php echo $project['purpose_color']?></span>
 	
-<div id="header" <?php if ($project['bg_header_image']) echo "style='background: url(".$base.$project['bg_header_image'].") no-repeat scroll 50% 50% transparent'"; ?>>
+<div id="header" <?php if ($project['bg_header_image']) echo "style='background: url(".$base.$project['bg_header_image'].") no-repeat scroll 50% 37px transparent'"; ?>>
 	<div id="languages" >
 		<div id="links">
 			<a href="<?php echo $base;?>"><img src="<?php echo $base_img?>folder_home.png" style="height:25px;"/></a>
