@@ -5,8 +5,19 @@ var group = 0;
 var search = '';
 var story = new Array();
 var titles = new Array();
+var monthes = new Array();
 
 $(document).ready(function(){			
+	
+	$.post(base_url + 'main/get_monthes', function(data)
+	{
+		var i = 1;
+		for(month in data.response)
+		{
+			if (i<10) monthes["0"+i] = data.response[month]; else monthes[i] = data.response[month];
+			i++;
+		}						
+	},'json');
 	
 	$('form[id$=modal_form]').find('.save_entry').remove();
 	
@@ -111,9 +122,8 @@ $(document).ready(function(){
 		$(this).addClass('selected');
 		$('#sub-hdr h3').html($(this).html());
 		var start = 0;
-		var block = $('.items');		
-		group = 0;
-		entry = $(this).attr('id');
+		var block = $('.items');
+		entry = $(this).attr('id');						
 		get_items(block, entry, start, sort, sort_type, true);
 	});
 	
@@ -177,10 +187,12 @@ $(document).ready(function(){
 	});
 	
 	//GROUP FILTER
-	$('.groups').change(function(){
-		group = $(this).val();
+	$('.groups').click(function(){
+		group = $(this).attr('rel');
+		$('.groups').removeClass('selected');
+		$(this).addClass('selected');
 		var start = 0;
-		var block = $('.items');
+		var block = $('.items');						
 		get_items(block, entry, start, sort, sort_type, 'ignore');
 	});
 	
@@ -222,6 +234,8 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 	block.html('<div class="world_preloader"></div>');
 		
 	$('.world_preloader').show();
+	
+	$('#date_start, #date_end').val('');	
 		
 	var URL = base_url + 'page/get_items/' + entry;
 	
@@ -668,9 +682,9 @@ function tiny_init()
 			theme : "advanced",
 			plugins : "table,inlinepopups",
 			
-			theme_advanced_buttons1 : "bullist,indent,outdent,copy,paste,cut,undo,redo,charmap,link,unlink",
-			theme_advanced_buttons2 : "bold, italic, underline, image, hr, justifyleft, justifycenter, justifyright, justifyfull, styleselect, formatselect",
-			theme_advanced_buttons3 : "",
+			theme_advanced_buttons1 : "bullist, numlist,indent,outdent,copy,paste,cut,undo,redo,charmap,link,unlink,code",
+			theme_advanced_buttons2 : "bold, italic, underline, image, hr, justifyleft, justifycenter, justifyright, justifyfull, styleselect, formatselect, fontselect, fontsizeselect",
+			theme_advanced_buttons3 : "forecolor, backcolor",
 
 			theme_advanced_toolbar_location : "top",
 			theme_advanced_toolbar_align : "left",

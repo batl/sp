@@ -25,6 +25,10 @@ $(document).ready(function(){
 
 	}		
 	
+	$('#project_banner').click(function(){
+		$('#about').click();
+	});
+	
 	$('.b-menu__layout-l a, .b-menu__layout-c a, .b-menu__layout-r a').live('click', function(){
 		
 		var URL = base_url + 'project/page/' + $(this).attr('id');								
@@ -34,7 +38,7 @@ $(document).ready(function(){
 		if ($(this).attr('id') == 'map')
 		{
 			if ($('input[name=map]').val() == '') $('#map_canvas').css({'height':'50px'}); else $('#map_canvas').css({'height':'300px'});
-			$('#news-container').slideUp('slow');
+			$('#news-container, .b-sub-header').slideUp('slow');
 			$('#single_content').slideUp('slow',function(){$('#map_canvas').slideDown('slow')});
 			
 		} 
@@ -43,7 +47,7 @@ $(document).ready(function(){
 			$('#single_content').slideUp('slow');
 			$('#map_canvas').slideUp('slow', function(){
 				$('#single_content').slideDown('slow', function(){
-					if (ths.attr('id') == 'about') $('#news-container').slideDown('slow'); else $('#news-container').slideUp('slow');
+					if (ths.attr('id') == 'about') $('#news-container, .b-sub-header').slideDown('slow'); else $('#news-container, .b-sub-header').slideUp('slow');
 				});
 			});
 			

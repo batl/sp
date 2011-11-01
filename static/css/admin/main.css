@@ -1273,3 +1273,34 @@ font-family:Verdana;
 .apply_filter{
 display:block;
 }
+
+#js_disabled{
+width:960px;
+margin:0px auto;
+padding:20px 0px;
+background:#fff;
+}
+
+#js_disabled h2{
+font-style:normal;
+color:red !important;
+}
+
+#project_bg{
+margin-bottom:20px;
+overflow:hidden;
+}
+
+#project_bg_preview{
+height:200px;
+width:100%;
+margin:10px 0px;
+}
+
+.project_bg{
+height:49px;
+width:49px;
+float:left;
+margin:3px;
+cursor:pointer;
+}

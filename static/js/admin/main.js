@@ -626,7 +626,7 @@ function save_entry(block, entry, id, single, parent_block, after_save)
 		
 		if (after_save != undefined) after_save(response);
 		
-		$('.save_entry').scrollTo({top:'0px', left:'0px'}, 800);
+		$.scrollTo({top:'0px', left:'0px'}, 800);
 		
 	},"json");
 }
@@ -790,9 +790,9 @@ function tiny_init()
 			theme : "advanced",
 			plugins : "table,inlinepopups",
 			
-			theme_advanced_buttons1 : "bullist,indent,outdent,copy,paste,cut,undo,redo,charmap,link,unlink",
-			theme_advanced_buttons2 : "bold, italic, underline, image, hr, justifyleft, justifycenter, justifyright, justifyfull, styleselect, formatselect",
-			theme_advanced_buttons3 : "",
+			theme_advanced_buttons1 : "bullist, numlist,indent,outdent,copy,paste,cut,undo,redo,charmap,link,unlink,code",
+			theme_advanced_buttons2 : "bold, italic, underline, image, hr, justifyleft, justifycenter, justifyright, justifyfull, styleselect, formatselect, fontselect, fontsizeselect",
+			theme_advanced_buttons3 : "forecolor, backcolor",
 
 			theme_advanced_toolbar_location : "top",
 			theme_advanced_toolbar_align : "left",
@@ -823,6 +823,7 @@ function tiny_init()
 					customformat : {inline : 'span', styles : {color : '#00ff00', fontSize : '20px'}, attributes : {title : 'My custom format'}}
 			}
 	});
+	
 }
 
 function removeDuplicateElement(arrayName)

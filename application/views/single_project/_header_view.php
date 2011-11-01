@@ -12,7 +12,7 @@
 	
 	<?php foreach ($include_css as $key=>$item){echo $item;}?>
 </head>
-<body <?php echo "style='background:".$project['bg_color']." url(".$base.$project['bg_image'].") 50% 0 no-repeat'"?>>
+<body <?php if ((int)$project['apply_bg']) echo "style='background: url(".$base.'static/images/background/'.$project['bg_image'].")'"; else echo "style='background: ".$project['bg_color']."'";?>>
 
 	<!-- PNG FIX for IE6 -->
 	<!--[if lte IE 6]>
@@ -26,7 +26,7 @@
 		var project_id  = '<?php echo $project['id'];?>';
     </script>
 	
-<div id="header">
+<div id="header" <?php if ($project['bg_header_image']) echo "style='background: url(".$base.$project['bg_header_image'].") no-repeat scroll 50% 50% transparent'"; ?>>
 	<div id="languages" >
 		<div id="links">
 			<a href="<?php echo $base;?>"><img src="<?php echo $base_img?>folder_home.png" style="height:25px;"/></a>
@@ -58,31 +58,28 @@
 		<table class="b-header__layout">
 			<tbody>
 				<tr>
-					<td class="b-header__layout-l1">
-						<div class="b-header__layout-i">
-						<div class="b-logo">
-							<?php if ($project['logo']):?><img width="100px" src="<?php echo $base.$project['logo']?>"/><?php endif;?>
-						</div>
-						</div>						
-					</td>
-					<td class="b-header__layout-l2">
-						<div class="b-header__layout-i">
-							<div class="b-dates">
-								<i class="b-dates__ill"></i>
-								<div class="b-dates__dates">
-									<span class="b-dates__date"><?php echo date("d", strtotime($project['date_start']));?></span>
-									<span class="b-dates__month"><?php echo $lang['month'][strtolower(date('M', strtotime($project['date_start'])))].' '.date("Y", strtotime($project['date_start']))?></span>
-								</div>
-							</div>
-							<div class="b-strapline">
-								<h1 class="b-strapline__title">
-								<span class="b-strapline__title-i"><?php echo $project['name']?><br><span style="font-size:11px;"><?php echo $lang['group'].': '.$project['group_name']?></span></span>								
-								<div class="b-strapline__location">
-                                        <?php echo $project['place'];?>
+					<?php if (!empty($project['banner'])):?>
+					<td class="b-sub-header__layout-r">
+						<div class="b-sub-header__layout-i">
+							<div class="b-mini-artist b-block b-round">
+								<div class="b-artist">
+									<div class="b-artist__photo">
+										<a href="javascript:void(0);" id="project_banner"><img src="<?php echo $base.$project['banner'];?>" class="b-artist__img"/></a>
+										<div class="b-mini-artist__date">
+											<span class="b-mini-artist__num"><?php echo date('d', strtotime($project['date_start']))?></span>
+											<span class="b-mini-artist__month"><?php echo $lang['month'][strtolower(date('M', strtotime($project['date_start'])))]?></span>
+											<span class="b-mini-artist__num"><?php echo date('Y', strtotime($project['date_start']))?></span>
+										</div>
+									</div>
+									<div class="g-line">
+										<!--<h2 class="b-mini-artist__name"><a href="/program/artists/367/">БГ &amp; АКВАРИУМ</a></h2>
+										<div class="b-mini-artist__scene">22:00. NuJazz</div>-->
+									</div>
 								</div>
 							</div>
 						</div>
 					</td>
+					<?php endif;?>
 					<td class="b-header__layout-l3">
 						<div class="b-menu b-round">
 							<table class="b-menu__layout">
@@ -93,8 +90,7 @@
 												<li class="b-menu__item"><a href="javascript:void(0);" class="selected" id="about"><?php echo $lang['project_about']?></a></li>
 												<li class="b-menu__item"><a href="javascript:void(0);" id="plan"><?php echo $lang['project_plan']?></a></li>
 												<li class="b-menu__item"><a href="javascript:void(0);" id="map"><?php echo $lang['project_map']?></a></li>
-												<li class="b-menu__item"><a href="javascript:void(0);" id="products"><?php echo $lang['project_products']?></a></li>												
-												<!--<li class="b-menu__item"><a href="javascript:void(0);" id="steps"><?php echo $lang['project_steps']?></a></li>-->
+												<li class="b-menu__item"><a href="javascript:void(0);" id="products"><?php echo $lang['project_products']?></a></li>																								
 											</ul>
 										</td>
 										<td class="b-menu__layout-c">
@@ -103,9 +99,6 @@
 												<li class="b-menu__item"><a href="javascript:void(0);" id="contacts"><?php echo $lang['project_contacts']?></a></li>
 												<li class="b-menu__item"><a href="javascript:void(0);" id="photoreport"><?php echo $lang['project_photoreport']?></a></li>
 												<li class="b-menu__item"><a href="javascript:void(0);" id="videoreport"><?php echo $lang['project_videoreport']?></a></li>
-												
-												<!--<li class="b-menu__item"><a href="javascript:void(0);" id="media"><?php echo $lang['project_media']?></a></li>												
-												<li class="b-menu__item"><a href="javascript:void(0);" id="links"><?php echo $lang['project_links']?></a></li>-->
 											</ul>
 										</td>
 										<td class="b-menu__layout-r">
@@ -139,31 +132,10 @@
                                 </div>								
 							</div>
 						</div>
-					</td>
-					<?php if (!empty($project['banner'])):?>
-					<td class="b-sub-header__layout-r">
-						<div class="b-sub-header__layout-i">
-							<div class="b-mini-artist b-block b-round">
-								<div class="b-artist">
-									<div class="b-artist__photo">
-										<img src="<?php echo $base.$project['banner'];?>" class="b-artist__img"/>
-										<div class="b-mini-artist__date">
-											<span class="b-mini-artist__num"><?php echo date('d', strtotime($project['date_start']))?></span>
-											<span class="b-mini-artist__month"><?php echo $lang['month'][strtolower(date('M', strtotime($project['date_start'])))]?></span>
-											<span class="b-mini-artist__num"><?php echo date('Y', strtotime($project['date_start']))?></span>
-										</div>
-									</div>
-									<div class="g-line">
-										<!--<h2 class="b-mini-artist__name"><a href="/program/artists/367/">БГ &amp; АКВАРИУМ</a></h2>
-										<div class="b-mini-artist__scene">22:00. NuJazz</div>-->
-									</div>
-								</div>
-							</div>
-						</div>
-					</td>
-					<?php endif;?>
+					</td>					
 				</tr>
 			</tbody>
 		</table>
 	</div>
 </div><!--  #header -->
+<noscript><div id="js_disabled"><h2><?php echo $lang['js_disabled']?></h2><p><?php echo $lang['js_enable']?></p></div></noscript>

@@ -5,24 +5,18 @@
 		</div>
 		<div class="project-item-content">
 			<a href="javascript:void(0);" class="single" id="events/0/<?php echo $event['id']?>"><?php echo $event['name']?></a><br />			
-			<?php 
-				echo $lang['date_range'].': '.$lang['from'].' ';
+			<?php 				
 				if (!empty($event['date_start']) && $event['date_start'] != '0000-00-00')
 				{
 					$date = explode(" ",date("j M Y",strtotime($event['date_start'])));
-					echo $date[0].' '.$lang['month'][strtolower($date[1])].' '.$date[2];	
-				}
-				else echo $lang['no_data'];
-			?>			
-			<?php 
-				echo $lang['to'].' ';
-				if (!empty($event['date_end']) && $event['date_end'] != '0000-00-00')
-				{
-					$date = explode(" ",date("j M Y",strtotime($event['date_end'])));
-					echo $date[0].' '.$lang['month'][strtolower($date[1])].' '.$date[2];	
-				}
-				else echo $lang['no_data'];
-			?>
+					echo $lang['date_range'].': '.$lang['from'].' '.$date[0].' '.$lang['month'][strtolower($date[1])].' '.$date[2];	
+					if (!empty($event['date_end']) && $event['date_end'] != '0000-00-00')
+					{
+						$date = explode(" ",date("j M Y",strtotime($event['date_end'])));
+						echo $lang['to'].' '.$date[0].' '.$lang['month'][strtolower($date[1])].' '.$date[2];	
+					}
+				}				
+			?>						
 			<br/><br/>
 			<?php
 				echo $lang['place'].': '; echo !(empty($event['place'])) ? $event['place'] : $lang['no_data'];

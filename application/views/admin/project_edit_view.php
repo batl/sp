@@ -47,20 +47,22 @@
 				<div class='ginput_container'>
 					<input name='slug' language="no" type='text' value='<?php echo $entry['slug']?>' class='medium' tabindex='3' disabled="disabled"/>
 				</div>
-			</li>
-			<img id="foto_img" name="logo" big="<?php echo $entry['logo']?>" small="<?php echo $entry['thumb']?>" src="<?php echo $front_url.$entry['thumb']?>"/>
-			<li class='gfield'><label class='gfield_label'><?php echo $lang["foto"]?><span class='gfield_required'>*</span>:</label>
+			</li>			
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["logo"]?><span class='gfield_required'>*</span>:</label>
+				<img id="foto_img" name="logo" big="<?php echo $entry['logo']?>" small="<?php echo $entry['thumb']?>" src="<?php echo $front_url.$entry['thumb']?>"/>
 				<div class='ginput_container'>
 					<input name='userfile' id="foto" type='file' value='' class='medium' tabindex='3'/>					
 				</div>
+				<a href="javascript:void(0);" class="remove_image"><?php echo $lang['remove_image']?></a>
 			</li>
-			<li class='gfield'><label class='gfield_label'><?php echo $lang['banner']?><span class='gfield_required'>*</span></label>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang['project_banner']?><span class='gfield_required'>*</span></label>
 				<div id="photo-preview">
 					<img id="project_banner" language="no" name="banner" big="<?php echo $entry['banner']?>" style="max-height:100px; max-width:100px;" src="<?php echo $front_url.$entry['banner']?>"/>
 				</div>
 				<div class='ginput_container'>
 					<input name='userfile' language="no" id='banner' type='file' value='' class='upload' tabindex='3'/>
 				</div>
+				<a href="javascript:void(0);" class="remove_image"><?php echo $lang['remove_image']?></a>
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["terms"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>					
@@ -187,7 +189,7 @@
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang['site_background']?><span class='gfield_required'>*</span></label>
 				<div id="photo-preview">
-					<img id="site_background" language="no" name="bg_image" big="<?php echo $entry['bg_image']?>" style="max-height:100px; max-width:100px;" src="<?php echo $front_url.$entry['bg_image']?>"/>
+					<img id="site_background" language="no" name="bg_header_image" big="<?php echo $entry['bg_header_image']?>" style="max-height:100px; max-width:100px;" src="<?php echo $front_url.$entry['bg_header_image']?>"/>
 				</div>
 				<div class='ginput_container'>
 					<input name='userfile' language="no" id='background' type='file' value='' class='upload' tabindex='3'/>
@@ -202,8 +204,33 @@
 					<input name='bg_color' type='hidden' value='<?php echo $entry['bg_color']?>' class='medium' tabindex='4' />
 				</div>
 			</li>
-		</ul>
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["apply_background"]?>:</label>
+				<div class='ginput_container'>
+					<input name='apply_bg' type='checkbox' class='medium' tabindex='4' <?php if ($entry['apply_bg']) echo 'checked="checked"'?>/>
+				</div>
+			</li>
+			<li class='gfield'>
+				<div class='ginput_container'>
+					<div id="project_bg">
+						<div id="project_bg_preview" style="background:url('<?php echo $front_url?>static/images/background/<?php echo $entry['bg_image']?>');"></div>
+						<input name='bg_image' type='hidden' value='<?php echo $entry['bg_image']?>' class='medium' tabindex='4' />
+						<?php											
+							foreach ($backgrounds as $key => $type)
+							{							
+								foreach ($type as $background)
+								{								
+									?>
+									<div class="project_bg" rel="<?php echo $key?>/<?php echo $background?>" style="background:url('<?php echo $front_url?>static/images/background/<?php echo $key?>/<?php echo $background?>');"/>
+									<?php
+								}
+							}
+						?>
+					</div>
+				</div>
+			</li>
+		</ul>		
 	</div>
+	<div class="clear"></div>
 	<div class='gform_footer top_label'>
 		<input type='button' id='gform_submit_button_2' class='button save_entry' value='<?php echo $lang["save"]?>' tabindex='6'/>
 		<div id="translates">

@@ -16,6 +16,28 @@
 							<input name='usefile' id="foto" type='file' class='medium' tabindex='3'/>
 						</div>
 					</li>
+					<li class='gfield'><label class='gfield_label'><?php echo $lang["note"]?><span class='gfield_required'>*</span>:</label>
+						<div class='ginput_container'>					
+							<?php 						
+								foreach ($languages as $language):
+									?>
+									<input name='description' language="<?php echo $language['id'];?>" type='text' value='' class='medium' tabindex='3'/>
+									<?php								
+								endforeach;						
+							?>
+						</div>
+					</li>
+					<div class='gform_footer top_label'>						
+						<div id="translates">
+							<?php
+								foreach ($languages as $item):
+								?>
+									<a href="javascript:void(0);" id="<?php echo $item['id']?>" class="translate <?php if ($language_id == $item['id']) echo 'activ_translate';?>"><img src="<?php echo $base_img?>countries/<?php echo $item['flag']?>"/></a>
+								<?php
+								endforeach;
+							?>
+						</div>
+					</div>
 					<?php
 					break;
 				case 'videos_id':
@@ -25,6 +47,28 @@
 							<input name='url' language="no" type='text' class='medium' tabindex='3'/>						
 						</div>
 					</li>
+					<li class='gfield'><label class='gfield_label'><?php echo $lang["note"]?><span class='gfield_required'>*</span>:</label>
+						<div class='ginput_container'>					
+							<?php 						
+								foreach ($languages as $language):
+									?>
+									<input name='description' language="<?php echo $language['id'];?>" type='text' value='' class='medium' tabindex='3'/>
+									<?php								
+								endforeach;						
+							?>
+						</div>
+					</li>
+					<div class='gform_footer top_label'>						
+						<div id="translates">
+							<?php
+								foreach ($languages as $item):
+								?>
+									<a href="javascript:void(0);" id="<?php echo $item['id']?>" class="translate <?php if ($language_id == $item['id']) echo 'activ_translate';?>"><img src="<?php echo $base_img?>countries/<?php echo $item['flag']?>"/></a>
+								<?php
+								endforeach;
+							?>
+						</div>
+					</div>
 					<?php
 					break;
 				case 'methods_id':

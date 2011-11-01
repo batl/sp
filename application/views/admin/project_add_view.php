@@ -50,12 +50,12 @@
 				</div>
 			</li>			
 			<img id="foto_img" name="logo" big="" small="" src=""/>
-			<li class='gfield'><label class='gfield_label'><?php echo $lang["foto"]?><span class='gfield_required'>*</span>:</label>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["logo"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
 					<input name='userfile' id="foto" type='file' value='' class='medium' tabindex='3'/>					
 				</div>
 			</li>
-			<li class='gfield'><label class='gfield_label'><?php echo $lang['banner']?><span class='gfield_required'>*</span></label>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang['project_banner']?><span class='gfield_required'>*</span></label>
 				<div id="photo-preview">
 					<img id="project_banner" language="no" name="banner" big="" style="max-height:100px; max-width:100px;" src=""/>
 				</div>
@@ -200,6 +200,30 @@
 						<div style="background-color: rgb(24, 24, 46);"></div>
 					</div>
 					<input name='bg_color' type='hidden' value='#fff' class='medium' tabindex='4' />
+				</div>
+			</li>
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["apply_background"]?>:</label>
+				<div class='ginput_container'>
+					<input name='apply_bg' type='checkbox' class='medium' tabindex='4' <?php if ($entry['apply_bg']) echo 'checked="checked"'?>/>
+				</div>
+			</li>
+			<li class='gfield'>
+				<div class='ginput_container'>
+					<div id="project_bg">
+						<div id="project_bg_preview" style="background:url('<?php echo $front_url?>static/images/background/<?php echo $entry['bg_image']?>');"></div>
+						<input name='bg_image' type='hidden' value='<?php echo $entry['bg_image']?>' class='medium' tabindex='4' />
+						<?php											
+							foreach ($backgrounds as $key => $type)
+							{							
+								foreach ($type as $background)
+								{								
+									?>
+									<div class="project_bg" rel="<?php echo $key?>/<?php echo $background?>" style="background:url('<?php echo $front_url?>static/images/background/<?php echo $key?>/<?php echo $background?>');"/>
+									<?php
+								}
+							}
+						?>
+					</div>
 				</div>
 			</li>
 		</ul>

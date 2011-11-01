@@ -19,6 +19,8 @@ class Joins extends Crank {
 		
 		$table_name = "sp_".implode('_',array($join[0], $join[1]));
 		
+		$disabled = array('edit');
+		
 		if (!empty($join[4])) 
 		{
 			$select = array(
@@ -35,17 +37,19 @@ class Joins extends Crank {
 			{
 				case 'photos':
 					$select = array(
-						$table_name    => array('id','thumb as photo')
+						$table_name    => array('id','thumb as photo','description')
 					);
 					$types = array('id' => 'hidden');
 					$joins = array();
+					$disabled = array();
 					break;
 				case 'videos':
 					$select = array(
-						$table_name    => array('id','url as video')
+						$table_name    => array('id','url as video', 'description')
 					);
 					$types = array('video' => 'video', 'id' => 'hidden');
 					$joins = array();
+					$disabled = array();
 					break;
 				default:
 					$select = array(
@@ -53,7 +57,7 @@ class Joins extends Crank {
 						'sp_'.$join[2] => array('id', 'name')
 					);
 					$types = array('id' => 'hidden');
-					$joins = array('sp_'.$join[2] => $join[2]."_id");
+					$joins = array('sp_'.$join[2] => $join[2]."_id");					
 					break;
 			}			
 		}
@@ -65,10 +69,8 @@ class Joins extends Crank {
 			$types,			// fields types
 			array(
 				'entry_id'=> $join[3]
-			),	// where
-			array(
-				'edit'
-			)	// disabled actions
+			),				// where
+			$disabled		// disabled actions
 		);
 	}		
 	
@@ -79,13 +81,17 @@ class Joins extends Crank {
 		
 		empty($input[4])?$type = false:$type = true;
 		
+		$table_name = true;
+		
 		switch ($input[2])
 		{
 			case 'photos':
 				$get_entries = array();
+				$table_name = "sp_photos_report";
 				break;
 			case 'videos':
 				$get_entries = array();
+				$table_name = "sp_videos_report";
 				break;
 			default:
 				$get_entries = array(				
@@ -96,7 +102,7 @@ class Joins extends Crank {
 			
 		parent::get_view(
 			$get_entries,   // get all item from tables
-			true,  			// table
+			$table_name,  	// table
 			'join',			// custom view
 			array(
 				'entry_id'   => $input[3],

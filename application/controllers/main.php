@@ -146,6 +146,11 @@ class Main extends Crank {
 		echo json_encode(array('response' => $response, 'hidden' => $hidden));
 	}
 	
+	function get_monthes()
+	{
+		echo json_encode(array('response' => $this->params['lang']['month']));
+	}
+	
 	function check_email()
 	{
 		$data = array(

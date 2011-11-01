@@ -31,7 +31,7 @@ class Crank_model extends CI_Model {
 		'sp_events_organizes'		=> array(),
 		'sp_events_methods'			=> array(),
 		'sp_projectsstages_partners'=> array(),
-		'sp_photos_report'			=> array(),
+		'sp_photos_report'			=> array('description'),
 		'sp_videos_report'			=> array(),
 		'sp_photos'					=> array(),
 		'sp_videos'					=> array(),
@@ -109,17 +109,15 @@ class Crank_model extends CI_Model {
 			}
 		}				
 		
-		if (!$custom_where):
-		
-			if (!empty($where))
+		if (!empty($where))
+		{
+			foreach ($where as $key=>$value)
 			{
-				foreach ($where as $key=>$value)
-				{
-					if ($value !== '') (strpos($key, 'IS NULL') !== false) ? $this->db->where($table_name.'.'.$key, $value, false) : $this->db->where($table_name.'.'.$key, $value);
-				}
-			};									
-			
-		else:
+				if ($value !== '') $this->db->where($table_name.'.'.$key, $value);
+			}
+		};
+		
+		if ($custom_where):
 		
 			$this->db->where($custom_where);
 		
