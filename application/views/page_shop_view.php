@@ -71,7 +71,7 @@
 						<div class="clear_search"></div><input id="search" type="text" value="" style="height:18px; width:200px; float:left;"/>
 						<div id="search_btn"></div>&nbsp;
 						<strong><?php echo $lang['group']?></strong>
-						<select class="groups" rel="goods">
+						<select class="shop_groups" rel="goods">
 							<option value="0"><?php echo $lang['all']?></option>
 						<?php
 							foreach ($goods_categories as $category)
@@ -82,7 +82,7 @@
 							}
 						?>
 						</select>
-						<select class="groups hidden" rel="services">
+						<select class="shop_groups hidden" rel="services">
 							<option value="0"><?php echo $lang['all']?></option>
 							<?php
 								foreach ($services_categories as $category)

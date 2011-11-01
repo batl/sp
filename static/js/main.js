@@ -196,6 +196,13 @@ $(document).ready(function(){
 		get_items(block, entry, start, sort, sort_type, 'ignore');
 	});
 	
+	$('.shop_groups').change(function(){
+		group = $(this).val();
+		var start = 0;
+		var block = $('.items');						
+		get_items(block, entry, start, sort, sort_type, 'ignore');
+	});
+	
 	//SEARCH FILTER
 	$('#search_btn').click(function(){		
 		var start = 0;
