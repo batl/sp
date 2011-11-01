@@ -5,24 +5,18 @@
 		</div>
 		<div class="project-item-content">
 			<a href="<?php echo $base.'project/'.$project['slug']?>" target="_blanck"><?php echo $project['name']?> <?php if ($project['in_process']) echo '<span style="color:red; font-size:11px;">('.$lang['in_process'].')</span>'?></a><br />			
-			<?php 
-				echo $lang['date_range'].': '.$lang['from'].' ';
+			<?php 				
 				if (!empty($project['date_start']) && $project['date_start'] != '0000-00-00')
 				{
 					$date = explode(" ",date("j M Y",strtotime($project['date_start'])));
-					echo $date[0].' '.$lang['month'][strtolower($date[1])].' '.$date[2];	
-				}
-				else echo $lang['no_data'];
-			?>			
-			<?php 
-				echo $lang['to'].' ';
-				if (!empty($project['date_end']) && $project['date_end'] != '0000-00-00')
-				{
-					$date = explode(" ",date("j M Y",strtotime($project['date_end'])));
-					echo $date[0].' '.$lang['month'][strtolower($date[1])].' '.$date[2];	
-				}
-				else echo $lang['no_data'];
-			?>
+					echo $lang['date_range'].': '.$lang['from'].' '.$date[0].' '.$lang['month'][strtolower($date[1])].' '.$date[2];	
+					if (!empty($project['date_end']) && $project['date_end'] != '0000-00-00')
+					{
+						$date = explode(" ",date("j M Y",strtotime($project['date_end'])));
+						echo $lang['to'].' '.$date[0].' '.$lang['month'][strtolower($date[1])].' '.$date[2];	
+					}
+				}				
+			?>						
 			<br/><br/>
 			<?php
 				echo $lang['place'].': '; echo !(empty($project['place'])) ? $project['place'] : $lang['no_data'];

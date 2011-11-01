@@ -28,7 +28,7 @@ $(document).ready(function(){
 	
 	$('.edit_item').live('click', function(){
 		
-		var id = $(this).parents('tr').find('td:first').html();				
+		var id = $(this).parents('tr').find('td:first').html();								
 		
 		get_view(block, entry, 'edit', id);
 		
@@ -186,4 +186,9 @@ $(document).ready(function(){
 	});
 	
 	/* End init modal forms for projects and ideas*/	
+	
+	$('.project_bg').live('click', function(){
+		$('input[name=bg_image]').val($(this).attr('rel'));
+		$('#project_bg_preview').css({'background':'url("'+front_url+'static/images/background/'+$(this).attr('rel')+'")'});
+	});
 });

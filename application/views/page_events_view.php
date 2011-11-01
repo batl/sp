@@ -29,20 +29,19 @@
 					<h3><?php echo $lang['events']?></h3>
 					<div style="float:right; padding:6px;">						
 						<div class="clear_search"></div><input id="search" type="text" value="" style="height:18px; width:200px; float:left;"/>
-						<div id="search_btn"></div>&nbsp;
-						<strong><?php echo $lang['group']?></strong>
-						<select class="groups">
-							<option value="0"><?php echo $lang['all']?></option>
-						<?php
-							foreach ($categories as $category)
-							{
-							?>
-							<option value="<?php echo $category['id']?>"><?php echo $category['name']?></option>
-							<?php
-							}
-						?>
-						</select>
+						<div id="search_btn"></div>
 					</div>
+				</div>
+				<div id="filters">					
+					<a class="groups selected" rel="0"><?php echo $lang['all_categories']?></a>
+					<?php
+						foreach ($categories as $category)
+						{
+						?>
+						&nbsp;|&nbsp;<a class="groups" rel="<?php echo $category['id']?>"><?php echo $category['name']?></a>
+						<?php
+						}
+					?>					
 				</div>
 				<div id="items" class="items">
 					

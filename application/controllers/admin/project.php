@@ -46,8 +46,8 @@ class Project extends Crank {
 		$this->params['scopes'] 	 = $this->Crank_model->get_all_entries('sp_scopes');
 			
 		$this->params['views']['group_modal_form'] = $this->load->view('admin/group_add_view', $this->params, true);
-		$this->params['views']['place_modal_form'] = $this->load->view('admin/place_add_view', $this->params, true);			
-			
+		$this->params['views']['place_modal_form'] = $this->load->view('admin/place_add_view', $this->params, true);								
+		
 		$this->include_view('project_view',$this->params);
 	}
 	
@@ -78,7 +78,25 @@ class Project extends Crank {
 	
 	public function get_view()
 	{		
-		parent::get_view(array('groups' => 'sp_projects_categories', 'places' => 'sp_places'));
+		$bg = array();
+		
+		$background_directories = scandir('static/images/background');
+		array_shift($background_directories);
+		array_shift($background_directories);
+				
+		foreach ($background_directories as $directory)
+		{
+			$bg[$directory] = scandir('static/images/background/'.$directory);
+			array_shift($bg[$directory]);
+			array_shift($bg[$directory]);
+		}
+		
+		parent::get_view(
+			array('groups' => 'sp_projects_categories', 'places' => 'sp_places'),
+			false,
+			false,
+			array('backgrounds' => $bg)
+		);
 	}
 	
 	public function save_entry()

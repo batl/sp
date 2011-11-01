@@ -10,8 +10,20 @@ $(document).ready(function(){
 	
 	$('#date_search').click(function(){
 		
-		get_items(block, 'projects/date_filter/'+$('#date_start').val()+'v'+$('#date_end').val(), 0, 'id', 'asc', 'ignore');
+		var start_date = $('#date_start').val().split('-');
+		var end_date   = $('#date_end').val().split('-');												
 		
+		if (start_date.length > 1 && end_date.length > 1)
+			$('#sub-hdr h3').html(start_date[2]+' '+monthes[start_date[1]]+' '+start_date[0]+' '+end_date[2]+' '+monthes[end_date[1]]+' '+end_date[0]);
+		else if (start_date.length > 1)
+			$('#sub-hdr h3').html(start_date[2]+' '+monthes[start_date[1]]+' '+start_date[0]);
+		else if (end_date.length > 1)
+			$('#sub-hdr h3').html(end_date[2]+' '+monthes[end_date[1]]+' '+end_date[0]);
+		
+		entry = 'projects/date_filter/'+$('#date_start').val()+'v'+$('#date_end').val();
+		
+		get_items(block, entry, 0, 'id', 'asc', 'ignore');
+				
 	});
 	
 	$('#calendar th a').live('click', function(event){
@@ -34,15 +46,19 @@ $(document).ready(function(){
 		
 		$('#sub-hdr h3').html($(this).html()+' '+$('th[colspan=5]').attr('padej')+' '+$('th[colspan=5]').html().split('&nbsp;')[1]);
 		
-		get_items(block, $(this).attr('href'), 0, 'id', 'asc');
+		entry = $(this).attr('href');
+		
+		get_items(block, entry, 0, 'id', 'asc');
 		
 	});
 	
 	$('th[colspan=5]').live('click', function(){
 		
 		$('#sub-hdr h3').html($(this).html());
-						
-		get_items(block, 'projects/'+$(this).html().split('&nbsp;')[1]+'/'+$(this).attr('slug')+'/no', 0, 'id', 'asc');
+		
+		entry = 'projects/'+$(this).html().split('&nbsp;')[1]+'/'+$(this).attr('slug')+'/no';
+		
+		get_items(block, entry, 0, 'id', 'asc');
 		
 	});
 	

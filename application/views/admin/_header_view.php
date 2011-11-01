@@ -62,3 +62,4 @@
 
 	</div><!--  #wrapper-header -->	
 </div><!--  #header -->
+<noscript><div id="js_disabled"><h2><?php echo $lang['js_disabled']?></h2><p><?php echo $lang['js_enable']?></p></div></noscript>

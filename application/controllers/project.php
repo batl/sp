@@ -28,7 +28,7 @@ class Project extends Crank {
 			'id',
 			'asc',
 			array(
-				'sp_projects' => array('id','user_id','logo','name','date_start','date_end','short_description','slug','purpose','poster','banner','note', 'tags', 'bg_image', 'bg_color', 'map', 'map_description', 'contacts', 'facebook_link', 'twitter_link', 'vkontakte_link'),
+				'sp_projects' => array('id','user_id','logo','name','date_start','date_end','short_description','slug','purpose','poster','banner','note', 'tags', 'bg_image', 'bg_color', 'map', 'map_description', 'contacts', 'facebook_link', 'twitter_link', 'vkontakte_link', 'apply_bg', 'bg_header_image'),
 				'sp_places' => array('name as place'),
 				'sp_projects_categories' => array('name as group_name')
 			),
@@ -118,6 +118,7 @@ class Project extends Crank {
 				
 				break;
 			case 'links':
+			case 'plan':
 			case 'photoreport':
 			case 'videoreport':
 			case 'products':

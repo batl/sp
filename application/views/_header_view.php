@@ -23,8 +23,7 @@
         var base_url = '<?php echo $base; ?>';		
 		var admin_url = '<?php echo $base.'admin/'; ?>';
 		var language_id  = '<?php echo $language_id;?>';
-    </script>
-	
+    </script>	
 <div id="header">
 	<div id="wrapper-header">	
 		<!--<div id="logo" <?php if ($current_settings['site_banner']) echo 'style="background:url('.$base.$current_settings['site_banner'].') no-repeat"';?>><a class="home-link" href="/"></a>
@@ -65,7 +64,7 @@
 						foreach ($header_pages as $page):						
 						?>
 						<li>
-							<a href="<?php echo $base;?><?php echo str_replace("_"," ",$page['slug']);?>" <?php if ($main_navi== 3 + $page['id']) echo "class='selected'" ?>><?php echo $page['name']?></a>
+							<a href="<?php echo $base;?><?php echo str_replace("_"," ",$page['slug']);?>" title="<?php echo $page['description']?>" <?php if ($main_navi== 3 + $page['id']) echo "class='selected'" ?>><?php echo $page['name']?></a>
 						</li>
 						<?php 
 						endforeach;
@@ -78,3 +77,4 @@
 		</div>
 	</div><!--  #wrapper-header -->	
 </div><!--  #header -->
+<noscript><div id="js_disabled"><h2><?php echo $lang['js_disabled']?></h2><p><?php echo $lang['js_enable']?></p></div></noscript>
