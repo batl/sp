@@ -196,12 +196,32 @@
 				</div>
 				<a href="javascript:void(0);" class="remove_image"><?php echo $lang['remove_image']?></a>
 			</li>
-			<li class='gfield'>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang['project_bg_color']?></label>
 				<div class='ginput_container'>					
 					<div id="colorSelector">
 						<div style="background-color: rgb(24, 24, 46);"></div>
 					</div>
 					<input name='bg_color' type='hidden' value='<?php echo $entry['bg_color']?>' class='medium' tabindex='4' />
+				</div>
+			</li>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["project_menu_font"]?>:</label>
+				<div class='ginput_container'>
+					<input name='menu_font' language="no" type='text' value='<?php echo $entry['menu_font']?>' class='medium' tabindex='3'/>
+				</div>
+			</li>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["project_title_color"]?>:</label>
+				<div class='ginput_container'>
+					<input name='title_color' language="no" type='text' value='<?php echo $entry['title_color']?>' class='medium' tabindex='3'/>
+				</div>
+			</li>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["project_purpose_color"]?>:</label>
+				<div class='ginput_container'>
+					<input name='purpose_color' language="no" type='text' value='<?php echo $entry['purpose_color']?>' class='medium' tabindex='3'/>
+				</div>
+			</li>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["project_banner_bg_color"]?>:</label>
+				<div class='ginput_container'>
+					<input name='banner_bg_color' language="no" type='text' value='<?php echo $entry['banner_bg_color']?>' class='medium' tabindex='3'/>
 				</div>
 			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["apply_background"]?>:</label>

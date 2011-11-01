@@ -14,17 +14,20 @@
 </head>
 <body <?php if ((int)$project['apply_bg']) echo "style='background: url(".$base.'static/images/background/'.$project['bg_image'].")'"; else echo "style='background: ".$project['bg_color']."'";?>>
 
-	<!-- PNG FIX for IE6 -->
-	<!--[if lte IE 6]>
-		<script type="text/javascript" src="/static/js/pngfix/supersleight-min.js"></script>
-	<![endif]-->
+<!-- PNG FIX for IE6 -->
+<!--[if lte IE 6]>
+	<script type="text/javascript" src="/static/js/pngfix/supersleight-min.js"></script>
+<![endif]-->
 
-	 <script type="text/javascript">
-        var base_url = '<?php echo $base; ?>';
-		var admin_url = '<?php echo $base.'admin/'; ?>';
-		var language_id  = '<?php echo $language_id;?>';
-		var project_id  = '<?php echo $project['id'];?>';
-    </script>
+ <script type="text/javascript">
+	var base_url = '<?php echo $base; ?>';
+	var admin_url = '<?php echo $base.'admin/'; ?>';
+	var language_id  = '<?php echo $language_id;?>';
+	var project_id  = '<?php echo $project['id'];?>';
+</script>
+
+<span id="menu_font" style="display:none;"><?php echo $project['menu_font']?></span>
+<span id="purpose_color" style="display:none;"><?php echo $project['purpose_color']?></span>
 	
 <div id="header" <?php if ($project['bg_header_image']) echo "style='background: url(".$base.$project['bg_header_image'].") no-repeat scroll 50% 50% transparent'"; ?>>
 	<div id="languages" >
@@ -61,14 +64,14 @@
 					<?php if (!empty($project['banner'])):?>
 					<td class="b-sub-header__layout-r">
 						<div class="b-sub-header__layout-i">
-							<div class="b-mini-artist b-block b-round">
+							<div class="b-mini-artist b-block b-round" style="background:<?php echo $project['banner_bg_color']?>">
 								<div class="b-artist">
 									<div class="b-artist__photo">
 										<a href="javascript:void(0);" id="project_banner"><img src="<?php echo $base.$project['banner'];?>" class="b-artist__img"/></a>
 										<div class="b-mini-artist__date">
-											<span class="b-mini-artist__num"><?php echo date('d', strtotime($project['date_start']))?></span>
+											<!--<span class="b-mini-artist__num"><?php echo date('d', strtotime($project['date_start']))?></span>
 											<span class="b-mini-artist__month"><?php echo $lang['month'][strtolower(date('M', strtotime($project['date_start'])))]?></span>
-											<span class="b-mini-artist__num"><?php echo date('Y', strtotime($project['date_start']))?></span>
+											<span class="b-mini-artist__num"><?php echo date('Y', strtotime($project['date_start']))?></span>-->
 										</div>
 									</div>
 									<div class="g-line">
@@ -125,7 +128,7 @@
 					<td class="b-sub-header__layout-l">
 						<div class="b-sub-header__layout-i">
 							<div class="b-head-info b-block">
-								<h2><?php echo $project['name']?> </h2>
+								<h2 style="color:<?php echo $project['title_color']?>"><?php echo $project['name']?> </h2>
 								<div class="b-block__accent">
 									<p style="font-weight:bold;"><?php echo $lang['purpose']?>:</p>
 									<?php echo $project['purpose']?>																	

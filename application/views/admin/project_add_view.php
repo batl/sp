@@ -204,14 +204,14 @@
 			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["apply_background"]?>:</label>
 				<div class='ginput_container'>
-					<input name='apply_bg' type='checkbox' class='medium' tabindex='4' <?php if ($entry['apply_bg']) echo 'checked="checked"'?>/>
+					<input name='apply_bg' type='checkbox' class='medium' tabindex='4'/>
 				</div>
 			</li>
 			<li class='gfield'>
 				<div class='ginput_container'>
 					<div id="project_bg">
-						<div id="project_bg_preview" style="background:url('<?php echo $front_url?>static/images/background/<?php echo $entry['bg_image']?>');"></div>
-						<input name='bg_image' type='hidden' value='<?php echo $entry['bg_image']?>' class='medium' tabindex='4' />
+						<div id="project_bg_preview" style="background:url('<?php echo $front_url?>static/images/background/base/<?php echo $backgrounds['base'][0]?>');"></div>
+						<input name='bg_image' type='hidden' value='' class='medium' tabindex='4' />
 						<?php											
 							foreach ($backgrounds as $key => $type)
 							{							

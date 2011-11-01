@@ -2114,6 +2114,7 @@ height:14px;
 text-align:center;
 margin:10px 0px;
 color:#999;
+font-weight:bold;
 }
 
 #filters a{
@@ -2122,5 +2123,6 @@ cursor:pointer;
 }
 
 #filters a.selected{
-color:#FF6600;
+color:#0000FF;
+font-weight:bold;
 }

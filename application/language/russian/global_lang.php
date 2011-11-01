@@ -306,7 +306,10 @@ $lang["project_banner"]			= "Основной баннер проекта";
 $lang["all_categories"]			= "Все категории";
 $lang["apply_background"]		= "Применить ниже выбранное изображение";
 $lang["project_bg_color"]		= "Цвет фона для страницы проекта";
-$lang["project_menu_font"]		= "Цвет шрифта для меню";
+$lang["project_menu_font"]		= "Цвет шрифта для меню (16й формат, пример #ffffff - белый)";
+$lang["project_title_color"]	= "Цвет шрифта для названия проекта (16й формат, пример #ffffff - белый)";
+$lang["project_purpose_color"]	= "Цвет шрифта для цели проекта (16й формат, пример #ffffff - белый)";
+$lang["project_banner_bg_color"]	= "Цвет границ баннера (16й формат, пример #ffffff - белый)";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";
