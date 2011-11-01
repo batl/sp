@@ -12,7 +12,7 @@ $(document).ready( function($){
 	
 	image_upload(entry, 'background', 'site_background');
 	//image_upload(entry, 'front_banner', 'site_banner');
-	image_upload(entry, 'back_banner', 'admin_banner');
+	//image_upload(entry, 'back_banner', 'admin_banner');
 	
 	$('.remove').live('click', function(){
 		$(this).parents('li').find('img').removeAttr('big').removeAttr('src');

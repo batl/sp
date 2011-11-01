@@ -435,7 +435,7 @@ function get_view(block, entry, action, id, clear_history)
 		$('.world_preloader').hide();
 	
 		block.html(data.response);									
-
+		
 		if ($('#foto').length) image_upload(entry);
 		if ($('#background').length) image_upload(entry, 'background', 'site_background', 960);
 		if ($('#banner').length) image_upload(entry, 'banner', 'project_banner', 450, 'width');
