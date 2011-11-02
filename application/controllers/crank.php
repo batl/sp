@@ -250,6 +250,19 @@ class Crank extends CI_Controller {
 		$group 		= $this->input->post('group');
 		$search 	= $this->input->post('search');
 		$limit 		= $this->input->post('limit');
+		$search_fields = $this->input->post('fields');
+		$search_values = $this->input->post('values');
+		
+		$like = array();
+		
+		if (!empty($search_fields))
+		{
+			foreach ($search_fields as $key=>$search_field)
+			{
+				if (!empty($search_values[$key])) $like[$search_field] = $search_values[$key];
+			}
+		}
+		
 		
 		if (!empty($group))
 		{

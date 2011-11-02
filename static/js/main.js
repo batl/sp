@@ -6,6 +6,8 @@ var search = '';
 var story = new Array();
 var titles = new Array();
 var monthes = new Array();
+var fields = new Array();
+var values = new Array();
 
 $(document).ready(function(){			
 	
@@ -186,6 +188,23 @@ $(document).ready(function(){
 		get_items(block, entry, start, sort, sort_type, 'ignore');
 	});
 	
+	$('#sort_by').change(function(){
+		var page  = parseInt($('.curent_page').html());
+		var start = (page-1)*limit;
+		sort  = $(this).val();		
+		var block = $('.items');
+		get_items(block, entry, start, sort, sort_type, 'ignore');
+	});
+	
+	$('#sort_direction').click(function(){
+		var page  = parseInt($('.curent_page').html());
+		var start = (page-1)*limit;		
+		var block = $('.items');
+		if (sort_type == 'asc') sort_type = 'desc'; else sort_type = 'asc';
+		if ($(this).attr('rel') == 'asc') $(this).attr('rel','desc').html('&nbsp;&#8593;'); else $(this).attr('rel','asc').html('&nbsp;&#8595;');		
+		get_items(block, entry, start, sort, sort_type, 'ignore');
+	});
+	
 	//GROUP FILTER
 	$('.groups').click(function(){
 		group = $(this).attr('rel');
@@ -219,6 +238,36 @@ $(document).ready(function(){
 	    }
 	});
 	
+	$('#search_block legend').click(function(){
+		if ($('#search_fields:visible').length)
+		{
+			$('#search_block').css({'border':'0px solid #ccc','borderTop':'1px solid #ccc','background':'#fff'}); 
+			$(this).css({'background':'url("/static/images/menu-collapsed.png") no-repeat 0px 4px'});
+			fields = new Array();
+			values = new Array();
+			var page  = parseInt($('.curent_page').html());
+			var start = (page-1)*limit;		
+			var block = $('.items');
+			get_items(block, entry, start, sort, sort_type, 'ignore');
+		}
+		else 
+		{
+			$(this).css({'background':'url("/static/images/menu-expanded.png") no-repeat 0px 5px'});
+			$('#search_block').css({'border':'1px solid #ccc', 'background':'#fffffa'});
+		}
+		$('#search_fields').slideToggle();		
+	});
+	
+	$('#expanded_search').click(function(){
+		$('#search_fields').find('input[type="text"]').each(function(){
+			fields.push($(this).attr('name'));
+			values.push($(this).val());
+		});
+		var start = 0;
+		var block = $('.items');
+		get_items(block, entry, start, sort, sort_type, 'ignore');
+	});
+	
 });
 
 //TAG SEARCH
@@ -250,7 +299,7 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 	
 	if ($('#search').length) search = $('#search').val();
 	
-	$.post(URL, {"sort":sort, "start":start, "sort_type":sort_type, "group":group, "search":search, "limit":limit}, function(data)
+	$.post(URL, {"sort":sort, "start":start, "sort_type":sort_type, "group":group, "search":search, "limit":limit, "fields":fields, "values":values}, function(data)
 	{
 		$('.world_preloader').hide();
 	

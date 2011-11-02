@@ -29,7 +29,12 @@
 			<?php
 				echo $lang['note'].': '; echo !(empty($project['short_description'])) ? $project['short_description'] : $lang['no_data'];
 			?>
-			<br/>
+			<p style="font-size:11px; color:#999;">
+			<?php
+				$post_date = explode(" ",date("j M Y H:i:s",strtotime($project['post_date'])));
+				echo $lang['post_date'].': '; echo $post_date[0].' '.$lang['month'][strtolower($post_date[1])].' '.$post_date[2].' '.$post_date[3];
+			?>
+			<p/>
 			<div class="actions">
 				<a href="javascript:void(0);" id="<?php echo $project['id']?>" class="edit_item"><?php echo $lang['edit']?></a>				
 				<a href="javascript:void(0);" id="<?php echo $project['id']?>" class="remove_item"><?php echo $lang['remove']?></a>

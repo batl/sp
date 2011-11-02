@@ -2130,3 +2130,54 @@ cursor:pointer;
 color:#0000FF;
 font-weight:bold;
 }
+
+#search_block{
+border-top: 1px solid #CCCCCC;
+display: block;
+margin: 0 15px;
+padding: 15px;
+}
+
+#search_block legend{
+font-weight: bold;
+padding: 0 10px;
+margin-left:15px;
+background:url("/static/images/menu-collapsed.png") no-repeat;
+background-position:0px 4px;
+cursor:pointer;
+color:#ccc;
+font-size:10px;
+}
+
+#sort_by_block{
+float:right;
+color:#ccc;
+padding-top:1px;
+}
+
+#sort_by{
+font-size:11px;
+}
+
+#sort_direction{
+color: #000000;
+cursor: pointer;
+font-size: 15px;
+font-weight: bold;
+}
+
+#search_fields{
+display:none;
+}
+
+#search_block input[type=text]{
+width:150px;
+height:18px;
+}
+
+#search_block input[type=button]{
+margin-top:5px;
+width:80px;
+height:25px;
+float:right;
+}

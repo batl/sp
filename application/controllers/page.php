@@ -428,7 +428,7 @@ class Page extends Crank {
 				$custom_view = 'profile_projects_view';
 				
 				$fields = array(
-					'sp_projects' => array('id','user_id','logo','name','date_start', 'date_end','short_description','slug','tags','in_process','bg_color'),
+					'sp_projects' => array('id','user_id','logo','name','date_start', 'date_end','short_description','slug','tags','in_process','bg_color', 'post_date'),
 					'sp_places' => array('name as place'),
 					'sp_projects_categories' => array('name as group_name')
 				); 

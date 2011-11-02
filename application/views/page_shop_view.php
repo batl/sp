@@ -68,7 +68,7 @@
 				<div id="sub-hdr">
 					<h3><?php echo $lang['goods']?></h3>
 					<div style="float:right; padding:6px;">
-						<div class="clear_search"></div><input id="search" type="text" value="" style="height:18px; width:200px; float:left;"/>
+						<div class="clear_search"></div><input id="search" type="text" value="" style="height:18px; width:150px; float:left;"/>
 						<div id="search_btn"></div>&nbsp;
 						<strong><?php echo $lang['group']?></strong>
 						<select class="shop_groups" rel="goods">

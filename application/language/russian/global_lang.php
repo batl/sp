@@ -311,6 +311,11 @@ $lang["project_title_color"]	= "Цвет шрифта для названия п
 $lang["project_purpose_color"]	= "Цвет шрифта для цели проекта (16й формат, пример #ffffff - белый)";
 $lang["project_banner_bg_color"]	= "Цвет границ баннера (16й формат, пример #ffffff - белый)";
 $lang["parent_event"]			= "Основное событие";
+$lang["expanded_search"]		= "Расширенный поиск";
+$lang["post_date"]				= "Дата публикации";
+$lang["default"]				= "По умолчанию";
+$lang["sort_by"]				= "Сортировка";
+$lang["sort_direction"]			= "Направление сортировки";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

@@ -28,9 +28,20 @@
 				<div id="sub-hdr">
 					<h3><?php echo $lang['all_projects']?></h3>
 					<div style="float:right; padding:6px;">						
-						<div class="clear_search"></div><input id="search" type="text" value="" style="height:18px; width:200px; float:left;"/>
+						<div class="clear_search"></div><input id="search" type="text" value="" style="height:18px; width:150px; float:left;"/>
 						<div id="search_btn"></div>						
-					</div>
+						<div id="sort_by_block">
+							<span><?php echo $lang['sort_by']?></span>
+							<select id="sort_by">
+								<option value="id"><?php echo $lang['default']?></option>
+								<option value="name"><?php echo $lang['name']?></option>
+								<option value="date_start"><?php echo $lang['date_start']?></option>
+								<option value="date_end"><?php echo $lang['date_end']?></option>
+								<option value="post_date"><?php echo $lang['post_date']?></option>
+							</select>
+							<a href="javascript:void(0);" title="<?php echo $lang['sort_direction']?>" id="sort_direction" rel="asc">&nbsp;&#8595;</a>
+						</div>
+					</div>					
 				</div>
 				<div id="filters">					
 					<a class="groups selected" rel="0"><?php echo $lang['all_categories']?></a>
@@ -43,6 +54,15 @@
 						}
 					?>					
 				</div>
+  			    <fieldset id="search_block">
+				   <legend><?php echo $lang['expanded_search']?></legend>
+				   <div id="search_fields"> 
+						<span><?php echo $lang['name']?>:&nbsp;</span><input name="name" type="text" value=""/>
+						<div class="clear"></div>
+						<input id="expanded_search" type="button" class="button" value="<?php echo $lang['search'];?>"/>
+				   </div>
+				</fieldset>
+
 				<div id="items" class="items">
 					
 				</div>
