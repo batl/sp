@@ -202,6 +202,26 @@
 					<input name='bg_color' type='hidden' value='#fff' class='medium' tabindex='4' />
 				</div>
 			</li>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["project_menu_font"]?>:</label>
+				<div class='ginput_container'>
+					<input name='menu_font' language="no" type='text' value='#ffffff' class='medium' tabindex='3'/>
+				</div>
+			</li>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["project_title_color"]?>:</label>
+				<div class='ginput_container'>
+					<input name='title_color' language="no" type='text' value='#ffffff' class='medium' tabindex='3'/>
+				</div>
+			</li>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["project_purpose_color"]?>:</label>
+				<div class='ginput_container'>
+					<input name='purpose_color' language="no" type='text' value='#ffffff' class='medium' tabindex='3'/>
+				</div>
+			</li>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["project_banner_bg_color"]?>:</label>
+				<div class='ginput_container'>
+					<input name='banner_bg_color' language="no" type='text' value='#000000' class='medium' tabindex='3'/>
+				</div>
+			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["apply_background"]?>:</label>
 				<div class='ginput_container'>
 					<input name='apply_bg' type='checkbox' class='medium' tabindex='4'/>

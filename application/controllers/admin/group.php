@@ -19,25 +19,27 @@ class Group extends Crank {
 	
 	public function get_items($table)
 	{
-		if ($table != 'undefined') { in_array($table, $this->params['tables'])?$table = "sp_".$table:$table = "sp_".$table."_categories";} else $table = false;
+	
+		
+		if ($table != 'undefined') {in_array($table, $this->params['tables'])?$table = "sp_".$table:$table = "sp_".$table."_categories";} else $table = $this->params['table_name'];
 		parent::get_items($table, array($table => array('id', 'name')), array(), array('id' => 'hidden'));
 	}		
 	
 	public function get_view($table)
 	{		
-		if ($table != 'undefined') { in_array($table, $this->params['tables'])?$table = "sp_".$table:$table = "sp_".$table."_categories";} else $table = false;
+		if ($table != 'undefined') { in_array($table, $this->params['tables'])?$table = "sp_".$table:$table = "sp_".$table."_categories";} else $table = $this->params['table_name'];
 		parent::get_view(null, $table);
 	}
 	
 	public function save_entry($table)
 	{
-		if ($table != 'undefined') { in_array($table, $this->params['tables'])?$table = "sp_".$table:$table = "sp_".$table."_categories";} else $table = false;
+		if ($table != 'undefined') { in_array($table, $this->params['tables'])?$table = "sp_".$table:$table = "sp_".$table."_categories";} else $table = $this->params['table_name'];
 		parent::save_entry($table);
 	}
 	
 	public function remove_entry($table)
 	{
-		if ($table != 'undefined') { in_array($table, $this->params['tables'])?$table = "sp_".$table:$table = "sp_".$table."_categories";} else $table = false;
+		if ($table != 'undefined') { in_array($table, $this->params['tables'])?$table = "sp_".$table:$table = "sp_".$table."_categories";} else $table = $this->params['table_name'];
 		parent::remove_entry($table);
 	}
 	
