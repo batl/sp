@@ -110,7 +110,14 @@ $(document).ready(function(){
 	setTimeout(function () {$('#content, #footer').fadeIn('slow');}, 100);
 	
 	$('a.single').live('click', function(event){
-		event.preventDefault();				
+		event.preventDefault();		
+		$('#search_fields').slideUp();
+		$('#search_fields').find('input[type="text"]').val('');
+		$('#search_block').css({'border':'0px solid #ccc','borderTop':'1px solid #ccc','background':'#fff'}); 
+		$('#search_block legend').css({'background':'url("/static/images/menu-collapsed.png") no-repeat 0px 4px'});
+		fields = new Array();
+		values = new Array();
+			
 		$('#sub-hdr h3').html($(this).html());
 		var start = 0;
 		var block = $('.items');		
@@ -241,6 +248,7 @@ $(document).ready(function(){
 	$('#search_block legend').click(function(){
 		if ($('#search_fields:visible').length)
 		{
+			$('#search_fields').find('input[type="text"]').val('');
 			$('#search_block').css({'border':'0px solid #ccc','borderTop':'1px solid #ccc','background':'#fff'}); 
 			$(this).css({'background':'url("/static/images/menu-collapsed.png") no-repeat 0px 4px'});
 			fields = new Array();
