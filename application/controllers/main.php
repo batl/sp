@@ -120,24 +120,34 @@ class Main extends Crank {
 			true
 		);
 		
+		$tags_arr = array();
+		
 		$response = "<tags>";				
 		$hidden = "<span style='display:none;'>";
 		
 		if (!empty($tags))
-		{
-			$i = 0;
+		{			
 			foreach ($tags as $tag)
 			{
 				foreach ($tag as $localtag)
 				{
 					$parse_tags = explode(',', $localtag);
 					foreach ($parse_tags as $parse_tag)
-					{						
-						$response .= "<a href='javascript:tag_search($i);' class='tag_search'>".trim($parse_tag)."</a>";
-						$hidden .= "<span id='$i' class='tag_search'>".trim($parse_tag)."</span>";
-						$i++;
+					{		
+						array_push($tags_arr, trim($parse_tag));
 					}					
 				}				
+			}						
+			
+			$tags_arr = array_unique($tags_arr);						
+			
+			$i = 0;
+			
+			foreach ($tags_arr as $tag)
+			{
+				$response .= "<a href='javascript:tag_search($i);' class='tag_search'>".$tag."</a>";
+				$hidden .= "<span id='$i' class='tag_search'>".$tag."</span>";
+				$i++;
 			}
 		}
 		$hidden .= "</span>";

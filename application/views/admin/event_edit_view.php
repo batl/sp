@@ -22,6 +22,21 @@
 					<input name='userfile' id="foto" type='file' value='' class='medium' tabindex='3'/>					
 				</div>
 			</li>
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["parent_event"]?><span class='gfield_required'>*</span>:</label>
+				<div class='ginput_container'>
+					<select name="type">
+						<option value="0"><?php echo $lang["no_event"]?></option>
+						<?php
+						foreach ($events as $event)
+						{
+						?>
+						<option value="<?php echo $event['id']?>" <?php if ($event['id'] == $entry['event_id']) echo 'selected="selected"';?>><?php echo $event['name']?></option>
+						<?php
+						}
+						?>
+					</select>
+				</div>
+			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["group"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
 					<select name="type">

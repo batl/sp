@@ -213,7 +213,7 @@ class Crank extends CI_Controller {
 									break;
 								case 'hidden':
 									if ($key == 'id') $html .= '<td class="hidden">'.$cell.'</td><td>'.($row_key + $start + 1).'</td>';	 else $html .= '<td class="hidden">'.$cell.'</td>';
-									break;
+									break;								
 								default:
 									$html .= '<td>'.$cell.'</td>';	
 									break;

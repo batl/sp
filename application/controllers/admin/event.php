@@ -54,7 +54,7 @@ class Event extends Crank {
 			array(
 				'date_start' 	 => 'date', 
 				'date_end' 		 => 'date', 
-				'id' 			 => 'hidden',
+				'id' 			 => 'hidden',				
 				'place'			 => $this->Crank_model->get_all_entries('sp_places', array(), 0, false, 'id', 'asc', array('sp_places' => array('id', 'name'))),
 				'public_email' 	 => $this->Crank_model->get_all_entries('sp_users', array(), 0, false, 'id', 'asc', array('sp_users' => array('id', 'email as nick')))
 			)
@@ -65,6 +65,7 @@ class Event extends Crank {
 	{		
 		parent::get_view(
 			array(
+				'events' => 'sp_events',
 				'groups' => 'sp_events_categories', 
 				'places' => 'sp_places',
 				'projects' => 'sp_projects'

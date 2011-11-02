@@ -178,16 +178,12 @@ class Crank_model extends CI_Model {
 								
 				if (!empty($like))
 				{
-					$status = 0;
-					
-					$this->firephp->log($like);
+					$status = 0;										
 					
 					foreach ($like as $key=>$value)
 					{															
 						if ($value != "" && !empty($row[$key]) && strpos(mb_strtolower((string)$row[$key]), mb_strtolower((string)$value))!==false) $status++;
-					}
-					
-					$this->firephp->log($status, count($like));
+					}										
 					
 					($status == count($like)) ? array_push($response, $row) : '';
 				} 
