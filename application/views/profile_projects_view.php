@@ -13,7 +13,7 @@
 					if (!empty($project['date_end']) && $project['date_end'] != '0000-00-00')
 					{
 						$date = explode(" ",date("j M Y",strtotime($project['date_end'])));
-						echo $lang['to'].' '.$date[0].' '.$lang['month'][strtolower($date[1])].' '.$date[2];	
+						echo ' '.$lang['to'].' '.$date[0].' '.$lang['month'][strtolower($date[1])].' '.$date[2];	
 					}
 				}				
 			?>						

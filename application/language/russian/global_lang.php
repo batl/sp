@@ -30,7 +30,7 @@ $lang["month"]["aug"]			= "Августа";
 $lang["month"]["sep"]			= "Сентября";
 $lang["month"]["oct"]			= "Октября";
 $lang["month"]["nov"]			= "Ноября";
-$lang["month"]["deс"]			= "Декабря";
+$lang["month"]["dec"]			= "Декабря";
 
 $lang["learn_more"]				= "Подробнее";
 $lang["help"]					= "Помощь";
