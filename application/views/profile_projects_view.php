@@ -15,9 +15,10 @@
 						$date = explode(" ",date("j M Y",strtotime($project['date_end'])));
 						echo ' '.$lang['to'].' '.$date[0].' '.$lang['month'][strtolower($date[1])].' '.$date[2];	
 					}
+					echo '<br/>';
 				}				
-			?>						
-			<br/><br/>
+			?>	
+			<br/>
 			<?php
 				echo $lang['place'].': '; echo !(empty($project['place'])) ? $project['place'] : $lang['no_data'];
 			?>

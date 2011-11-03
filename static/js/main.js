@@ -1,6 +1,6 @@
 var sort_type = 'asc';
 var sort = 'id';
-var limit = 10;
+var limit = 5;
 var group = 0;
 var search = '';
 var story = new Array();
