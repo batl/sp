@@ -4,13 +4,13 @@
 			<div style="float:right; width:300px;">
 				<div id="anonses-container">
 					<div class="sub-hdr"><h3><?php echo $lang['anonses']?></h3></div>
-					<div id="s1" style="height:350px; margin-left:5px; overflow:hidden;">
+					<div id="s1" style="height:275px; margin-left:5px; overflow:hidden;">
 						<?php
 							foreach ($anonses as $anons)
 							{
 							?>	
 								<div>
-									<img width="290px" src="<?php echo $base.$anons['image']?>" />	
+									<a href="<?php echo $anons['link']?>" target="_blank"><img width="290px" src="<?php echo $base.$anons['image']?>" /></a>
 									<div style="text-align:center;">
 										<h1><?php echo $anons['name']?></h1>
 										<?php echo $anons['description']?>

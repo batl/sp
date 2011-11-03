@@ -233,6 +233,12 @@ $(document).ready(function(){
 		var block = $(this).parents('.list div:first');
 		get_items(block, entry, start, sort, sort_type, 'ignore');
 	});
+	
+	$("body").ajaxError(
+	  function(e, xhr, settings, exept){
+		alert("При выполнении ajax-запроса страницы " + settings.url + " произошла ошибка.");
+	  }
+	);
 });
 
 function focus_input()

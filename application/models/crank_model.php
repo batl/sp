@@ -178,14 +178,32 @@ class Crank_model extends CI_Model {
 								
 				if (!empty($like))
 				{
-					$status = 0;										
+					$status = 0;
+					
+					$tags = false;
 					
 					foreach ($like as $key=>$value)
-					{															
-						if ($value != "" && !empty($row[$key]) && strpos(mb_strtolower((string)$row[$key]), mb_strtolower((string)$value))!==false) $status++;
-					}										
+					{												
+						if ($value != "" && !empty($row[$key]) && strpos(mb_strtolower((string)$row[$key]), mb_strtolower((string)$value))!==false)
+						{
+							if ($key == 'tags') 
+							{
+								$tags = true;
+								break;
+							}
+							
+							$status++;
+						}
+					}																				
 					
-					($status == count($like)) ? array_push($response, $row) : '';
+					if ($tags)
+					{
+						array_push($response, $row);
+					}
+					else
+					{
+						($status == count($like)) ? array_push($response, $row) : '';
+					}
 				} 
 				else array_push($response, $row);
 			}

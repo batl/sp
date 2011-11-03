@@ -134,12 +134,12 @@ class Main extends Crank {
 					$parse_tags = explode(',', $localtag);
 					foreach ($parse_tags as $parse_tag)
 					{		
-						array_push($tags_arr, trim($parse_tag));
+						if (!empty($parse_tag)) array_push($tags_arr, trim($parse_tag));
 					}					
 				}				
-			}						
+			}											
 			
-			$tags_arr = array_unique($tags_arr);						
+			$tags_arr = $this->rec_assoc_shuffle(array_unique($tags_arr));
 			
 			$i = 0;
 			
@@ -147,13 +147,27 @@ class Main extends Crank {
 			{
 				$response .= "<a href='javascript:tag_search($i);' class='tag_search'>".$tag."</a>";
 				$hidden .= "<span id='$i' class='tag_search'>".$tag."</span>";
-				$i++;
+				if ($i > 15) break; else $i++;
 			}
 		}
 		$hidden .= "</span>";
 		$response .= "</tags>";
 		
 		echo json_encode(array('response' => $response, 'hidden' => $hidden));
+	}
+	
+	function rec_assoc_shuffle($array)
+	{
+	  $ary_keys = array_keys($array);
+	  $ary_values = array_values($array);
+	  shuffle($ary_values);
+	  foreach($ary_keys as $key => $value) {
+		if (is_array($ary_values[$key]) AND $ary_values[$key] != NULL) {
+		  $ary_values[$key] = rec_assoc_shuffle($ary_values[$key]);
+		}
+		$new[$value] = $ary_values[$key];
+	  }
+	  return $new;
 	}
 	
 	function get_monthes()
