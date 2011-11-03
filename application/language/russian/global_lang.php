@@ -326,6 +326,11 @@ $lang["investors"]				= "Инвесторы";
 $lang["creatives"]				= "Креативщики";
 $lang["creative"]				= "Креативщик";
 $lang["fiz_people"]				= "Физ.лица";
+$lang["education"]				= "Обучение";
+$lang["classes"]				= "Занятия";
+$lang["methodics"]				= "Методики";
+$lang["couches"]				= "Тренеры";
+$lang["couche"]					= "Тренер";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

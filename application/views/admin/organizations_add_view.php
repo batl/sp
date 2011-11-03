@@ -122,7 +122,26 @@
 					<input name='individual' type='checkbox' value='' class='medium' tabindex='4'/>
 				</div>
 			</li>
-				
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["developer"]?>:</label>
+				<div class='ginput_container'>
+					<input name='developer' type='checkbox' value='' class='medium' tabindex='4'/>
+				</div>
+			</li>
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["sponsor"]?>:</label>
+				<div class='ginput_container'>
+					<input name='sponsor' type='checkbox' value='' class='medium' tabindex='4'/>
+				</div>
+			</li>
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["creative"]?>:</label>
+				<div class='ginput_container'>
+					<input name='creative' type='checkbox' value='' class='medium' tabindex='4'/>
+				</div>
+			</li>
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["couche"]?>:</label>
+				<div class='ginput_container'>
+					<input name='couche' type='checkbox' value='' class='medium' tabindex='4'/>
+				</div>
+			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["note"]?>:</label>
 				<div class='ginput_container'>
 					<?php 							

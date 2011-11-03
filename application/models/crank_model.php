@@ -17,7 +17,7 @@ class Crank_model extends CI_Model {
 		'sp_pages' 				 	=> array('name', 'body', 'meta', 'description'),
 		'sp_organizations' 			=> array('name', 'address', 'boss', 'description'),
 		'sp_news' 					=> array('name', 'short_description', 'description'),
-		'sp_methods' 				=> array('name', 'author', 'description'),
+		'sp_methods' 				=> array('name', 'author', 'description', 'links'),
 		'sp_ideas' 					=> array('name', 'author', 'description', 'tags'),
 		'sp_groups' 				=> array('name'),
 		'sp_grants' 				=> array('name', 'description'),

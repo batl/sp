@@ -87,6 +87,12 @@ class Page extends Crank {
 						$this->include_css('pages/organizations.css');
 						
 						break;
+					case 'education':
+																		
+						$this->include_js('pages/education.js');						
+						$this->include_css('pages/education.css');
+						
+						break;
 					case 'blog':
 												
 						$this->include_js('pages/news.js');				
@@ -539,6 +545,78 @@ class Page extends Crank {
 				}				
 				
 				$table_name = "sp_organizations";
+				
+				break;
+			case 'education':
+				
+				$fields = array(
+					'sp_methods' => array('id','name','author','description','links'),
+					'sp_scopes' => array('name as scope')
+				);
+				$joins = array(					
+					'sp_scopes' => 'scope'
+				);
+				$table_name = "sp_methods";
+				$custom_view = 'methodics_view';
+				
+				$single = false;				
+				
+				if (!empty($entry[1]))
+				{
+					switch ($entry[1])
+					{
+						case 'type':
+							switch ($entry[2])
+							{								
+								case 'couches':
+									$fields = array(
+										'sp_organizations' => array('id','name','logo','phone','email','sites', 'description', 'grantor', 'investor', 'individual', 'developer', 'sponsor', 'creative'),
+										'sp_places' => array('name as place'),
+										'sp_scopes' => array('name as scope'),
+										'sp_activities' => array('name as activity')
+									);
+									$joins = array(
+										'sp_places'=> 'place',
+										'sp_scopes' => 'scope',
+										'sp_activities' => 'activities'
+									);	
+									$table_name = "sp_organizations";
+									$custom_view = 'organizations_view';
+									$where = array(
+										'couche' => 1
+									);
+									break;
+							}							
+							break;
+						default:
+							switch ($entry[1])
+							{
+								case 'methodics':									
+									$custom_view = 'methodics_single_view';
+									break;
+								case 'couches':	
+									$fields = array(
+										'sp_organizations' => array('id','name','logo','phone','email','sites', 'description', 'grantor', 'investor', 'individual', 'developer', 'sponsor', 'creative'),
+										'sp_places' => array('name as place'),
+										'sp_scopes' => array('name as scope'),
+										'sp_activities' => array('name as activity')
+									);
+									$joins = array(
+										'sp_places'=> 'place',
+										'sp_scopes' => 'scope',
+										'sp_activities' => 'activities'
+									);	
+									$table_name = "sp_organizations";
+									$custom_view = 'organizations_single_view';
+									break;
+							}
+							$where = array(
+								'id' => $entry[2]
+							);
+							$single = true;							
+							break;
+					}
+				}												
 				
 				break;
 			case 'joins':

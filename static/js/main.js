@@ -371,7 +371,39 @@ function get_items(block, entry, start, sort, sort_type, clear_history, after_ge
 					$('#filters').show();
 					$('#tag_search').show();
 				}
- 				break;							
+ 				break;			
+			case 'organization':
+				if (sub_entry[1] == 'type' || sub_entry[1] == undefined) 
+				{
+					transform_pagination(data.curent_page, data.total);
+					$('#search_block').show();
+					$('#filters').show();
+					$('#tag_search').show();
+				}
+				else 
+				{
+					$('#paging, #limit').hide();
+					$('#search_block').hide();
+					$('#filters').hide();
+					$('#tag_search').hide();
+				}
+				break;
+			case 'education':
+				if (!parseInt(sub_entry[2])) 
+				{
+					transform_pagination(data.curent_page, data.total);
+					$('#search_block').show();
+					$('#filters').show();
+					$('#tag_search').show();
+				}
+				else 
+				{
+					$('#paging, #limit').hide();
+					$('#search_block').hide();
+					$('#filters').hide();
+					$('#tag_search').hide();
+				}
+				break;
 			default:
 				if (sub_entry[1] == undefined || sub_entry[1] == '0')
 				{
