@@ -24,7 +24,7 @@
 			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["parent_event"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
-					<select name="type">
+					<select name="event_id">
 						<option value="0"><?php echo $lang["no_event"]?></option>
 						<?php
 						foreach ($evnts as $event)

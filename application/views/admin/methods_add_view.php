@@ -56,10 +56,18 @@
 				</div>
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["links"]?>: </label>
-				<div class='ginput_container'>
-					<input name='links' language="no" type='text' value='' class='medium' tabindex='3'/>					
+				<div class='ginput_container'>					
+					<?php 							
+						foreach ($languages as $language):
+							?>
+							<div class="textarea" name='links' language="<?php echo $language['id'];?>">
+								<textarea class='textarea small' tabindex='5' rows='10' cols='50'></textarea>
+							</div>
+							<?php								
+						endforeach;							
+					?>
 				</div>
-			</li>
+			</li>			
 		</ul>
 	</div>
 	<div class='gform_footer top_label'>

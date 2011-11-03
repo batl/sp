@@ -109,7 +109,7 @@ class Page extends Crank {
 						
 						break;
 					case 'events':
-					case 'projects':
+					case 'projects':												
 						
 						$this->params['categories'] = $this->Crank_model->get_all_entries(
 							"sp_".$slug."_categories"
@@ -210,7 +210,7 @@ class Page extends Crank {
 	
 	/* ---------------------------------------------------------------------- */
 	
-	public function get_items($entry, $custom_view = false, $fields = array(), $joins = array(), $where = array(), $single = false, $types = array(), $disabled_actions = array(), $or_where = array(), $custom_where = false)
+	public function get_items($entry, $custom_view = false, $fields = array(), $joins = array(), $where = array(), $single = false, $types = array(), $disabled_actions = array(), $or_where = array(), $custom_where = false, $custom_data = array())
 	{		
 		$table_name = '';		
 		switch ($entry[0])
@@ -302,10 +302,12 @@ class Page extends Crank {
 				$custom_view = 'profile_events_view';
 				
 				$fields = array(
-					'sp_events' => array('id','user_id','logo','name','date_start', 'date_end','tags','in_process'),
+					'sp_events' => array('id','user_id','logo','name','date_start', 'date_end','tags','in_process','event_id'),
 					'sp_places' => array('name as place'),
 					'sp_events_categories' => array('name as group_name')
 				);
+				
+				$custom_data['events'] = $this->Crank_model->get_all_entries("sp_events");
 				
 				if (!empty($entry[1]))
 				{
@@ -339,7 +341,7 @@ class Page extends Crank {
 					{
 						
 						$fields = array(
-							'sp_events' => array('id','user_id','logo','name','date_start', 'date_end','tags','in_process', 'schedule', 'price','description'),
+							'sp_events' => array('id','user_id','logo','name','date_start', 'date_end','tags','in_process', 'schedule', 'price','description','event_id'),
 							'sp_places' => array('name as place'),
 							'sp_events_categories' => array('name as group_name')
 						);
@@ -665,7 +667,7 @@ class Page extends Crank {
 				break;
 		}				
 		
-		parent::get_items($table_name, $custom_view, $fields, $joins, $where, $single, $types, $disabled_actions, array(), $custom_where);
+		parent::get_items($table_name, $custom_view, $fields, $joins, $where, $single, $types, $disabled_actions, array(), $custom_where, $custom_data);
 			
 	}
 	
@@ -675,13 +677,27 @@ class Page extends Crank {
 		switch ($entry[0])
 		{
 			case 'project':
+				$bg = array();
+		
+				$background_directories = scandir('static/images/background');
+				array_shift($background_directories);
+				array_shift($background_directories);
+						
+				foreach ($background_directories as $directory)
+				{
+					$bg[$directory] = scandir('static/images/background/'.$directory);
+					array_shift($bg[$directory]);
+					array_shift($bg[$directory]);
+				}
+				
 				$table_name = 'sp_projects';
 				$data 		= array('groups' => 'sp_projects_categories', 'places' => 'sp_places');
 				$custom_view = 'admin/project';
+				$custom_data = array('backgrounds' => $bg);
 				break;
 			case 'event':
 				$table_name = 'sp_events';
-				$data 		= array('groups' => 'sp_events_categories', 'places' => 'sp_places');
+				$data 		= array('groups' => 'sp_events_categories', 'places' => 'sp_places', 'projects' => 'sp_projects', 'events' => 'sp_events');
 				$custom_view = 'admin/event';
 				break;
 			case 'moreproject':

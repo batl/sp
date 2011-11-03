@@ -41,7 +41,7 @@ $(document).ready(function(){
 		if ($(this).attr('id') == 'map')
 		{
 			if ($('input[name=map]').val() == '') $('#map_canvas').css({'height':'50px'}); else $('#map_canvas').css({'height':'300px'});
-			$('#news-container, .b-sub-header').slideUp('slow');
+			$('#news-container, #poll-container, .b-sub-header').slideUp('slow');
 			$('#single_content').slideUp('slow',function(){$('#map_canvas').slideDown('slow')});
 			
 		} 
@@ -50,7 +50,7 @@ $(document).ready(function(){
 			$('#single_content').slideUp('slow');
 			$('#map_canvas').slideUp('slow', function(){
 				$('#single_content').slideDown('slow', function(){
-					if (ths.attr('id') == 'about') $('#news-container, .b-sub-header').slideDown('slow'); else $('#news-container, .b-sub-header').slideUp('slow');
+					if (ths.attr('id') == 'about') $('#news-container, #poll-container, .b-sub-header').slideDown('slow'); else $('#news-container, #poll-container, .b-sub-header').slideUp('slow');
 				});
 			});
 			

@@ -3,17 +3,10 @@
 			<h2><?php echo $lang['overview'];?></h2>
 			<div id="overview">
 				<div id="dealer-info">
-					<!--<h3>Membership Level</h3>
-					<p>Diamond - Commission Rate: 30%</p>	
-					<h3>Your AnyArt Dealer Referral ID</h3>
-					<p>johnconnor</p>
-					<h3>Your Anyart Web URL</h3>
-					<p><a href="">www.anyart.com/johnconnor</a></p>
-					<h3>Your Website Traffic (# of Hits)</h3>
-					<p><div id="site-stats">1,200,000</div></p>							-->
+					
 				</div><!--  #dealer-info -->
 				<div id="total-commission"><?php echo $lang['count_projects'];?> <span><?php echo $statistics['projects']['count']?></span></div><!--  #total-commission -->
-				<div id="stats-box">
+				<div id="stats-box" style="width:380px;">
 					<h3><?php echo $lang['new_projects'];?></h3>
 					<?php 
 					if (!empty($statistics['projects']['new'])):
@@ -31,7 +24,7 @@
 					endif;
 					?>										
 				</div>
-				<div id="stats-box">
+				<div id="stats-box" style="width:160px; margin-left:10px;">
 					<h3><?php echo $lang['stats_projects'];?></h3>
 					<span class="stats"><?php echo $statistics['projects']['count_today']?></span><span class="stats-label"><?php echo $lang['for_today']?></span>					
 					<div class="clear"></div>

@@ -236,7 +236,7 @@ class Crank extends CI_Controller {
 		return $html;		
 	}
 	
-	public function get_items($table_name = false, $custom_view = false, $fields = array(), $joins = array(), $where = array(), $single = false, $fields_types = array(), $disabled_actions = array(), $like = array(), $custom_where = false)
+	public function get_items($table_name = false, $custom_view = false, $fields = array(), $joins = array(), $where = array(), $single = false, $fields_types = array(), $disabled_actions = array(), $like = array(), $custom_where = false, $custom_data = array())
 	{
 		$data = array(
 			'result' => true			
@@ -292,6 +292,14 @@ class Crank extends CI_Controller {
 		
 		empty($sort) ? $sort = 'id': '';
 		empty($sort_type) ? $sort_type = 'asc': '';						
+		
+		if (!empty($custom_data)) 
+		{
+			foreach ($custom_data as $key => $value)
+			{
+				$this->params[$key] = $value;
+			}
+		}
 		
 		$this->params['items_array'] = $this->Crank_model->get_all_entries($table_name, $where ,$start, $limit, $sort, $sort_type, $fields, $joins, $single, $like, false, $custom_where);
 		

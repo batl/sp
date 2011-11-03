@@ -4,8 +4,17 @@
 			<img src="<?php if (!empty($event['logo']) && file_exists($event['logo'])) echo $base.$event['logo']; else echo $base.'static/images/no_image.jpg';?>" />
 		</div>
 		<div class="project-item-content">
-			<a href="javascript:void(0);" class="single" id="events/0/<?php echo $event['id']?>"><?php echo $event['name']?></a><br />			
-			<?php 				
+			<a href="javascript:void(0);" class="single" id="events/0/<?php echo $event['id']?>"><?php echo $event['name']?></a>
+			<?php
+				if (!empty($event['event_id'])):
+					foreach ($events as $value)
+					{
+						if ($value['id'] == $event['event_id']) echo '&nbsp;('.$lang['parent_event'].' <strong><span style="color:red;">"'.$value['name'].'"</span></strong>)';
+					}
+				endif;
+			?>
+			<br/>
+			<?php
 				if (!empty($event['date_start']) && $event['date_start'] != '0000-00-00')
 				{
 					$date = explode(" ",date("j M Y",strtotime($event['date_start'])));

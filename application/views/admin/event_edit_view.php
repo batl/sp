@@ -24,14 +24,16 @@
 			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["parent_event"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
-					<select name="type">
+					<select name="event_id">
 						<option value="0"><?php echo $lang["no_event"]?></option>
 						<?php
 						foreach ($events as $event)
 						{
-						?>
-						<option value="<?php echo $event['id']?>" <?php if ($event['id'] == $entry['event_id']) echo 'selected="selected"';?>><?php echo $event['name']?></option>
-						<?php
+							if ($event['id'] != $entry['id']):
+							?>
+							<option value="<?php echo $event['id']?>" <?php if ($event['id'] == $entry['event_id']) echo 'selected="selected"';?>><?php echo $event['name']?></option>
+							<?php
+							endif;
 						}
 						?>
 					</select>

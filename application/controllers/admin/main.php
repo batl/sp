@@ -45,6 +45,13 @@ class Main extends Crank {
 			
 			);
 			
+			if (!empty($this->params['statistics']['projects']['new']))
+			{
+				foreach ($this->params['statistics']['projects']['new'] as $key => $value)
+				{
+					$this->params['statistics']['projects']['new'][$key]['short_description'] = $this->sub_text($this->params['statistics']['projects']['new'][$key]['short_description'], 10, 55);
+				}
+			}
 			
 			/* End statistics data */
 			
@@ -56,6 +63,22 @@ class Main extends Crank {
 	{
 		$this->session->unset_userdata('admin_id');
 		redirect($this->params['base']);
+	}
+	
+	function sub_text($text,$maxwords = 5, $maxchar = 25) {
+		
+		$words = explode(' ',$text);
+		$text='';
+		foreach ($words as $word) {
+			if (mb_strlen($text.' '.$word)<$maxchar) {
+				$text.=' '.$word;
+			}
+			else {
+				$text.='...';
+				break;
+			}
+		}
+		return $text;
 	}
 	
 	public function update_weight()

@@ -379,7 +379,7 @@ width:180px;
 float:left;
 margin-left:20px;
 margin-top:20px;
-width:550px;
+width:560px;
 font-size:1.8em;
 color:#fff;
 font-weight:bold;
@@ -415,7 +415,7 @@ font-size:1.2em;
 
 .stats {
 float:right;
-width:65px;
+width:50px;
 display:block;
 padding:10px 5px;
 font-weight:bold;
@@ -645,7 +645,7 @@ margin-right:9px;
 background: #069 url(/static/images/admin/alert-overlay.png) repeat-x;
 display: inline-block;
 padding: 5px 10px 6px;
-color: #fff;
+color: #fff !important;
 text-decoration: none;
 font-weight: bold;
 line-height: 1;
@@ -661,7 +661,7 @@ cursor: pointer;
 -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
 border-bottom: 1px solid rgba(0,0,0,0.25);
-font-size:.9em;
+font-size:.8em;
 }
 
 

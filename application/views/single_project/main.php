@@ -1,6 +1,6 @@
 <div id="wrapper">
 	<div>
-		<div style="float:right; width:300px;">				
+		<div id="poll-container" style="float:right; width:300px;">				
 			<?php
 				if (!empty($poll)):
 				?>

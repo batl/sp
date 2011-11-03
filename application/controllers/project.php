@@ -37,7 +37,7 @@ class Project extends Crank {
 				'sp_projects_categories' => 'category_id'
 			),
 			true
-		);
+		);				
 		
 		$this->params['poll'] = $this->Crank_model->get_all_entries(
 			"sp_poll", 							
@@ -56,9 +56,7 @@ class Project extends Crank {
 			true,	 // single
 			array(), // like
 			false    // distinct
-		);
-		
-		$this->firephp->log($this->params['poll']);
+		);				
 		
 		if (!empty($this->params['poll']))
 		{
@@ -170,7 +168,50 @@ class Project extends Crank {
 					endforeach;
 				endif;
 				
-				break;																		
+				if ($view[0] == 'products'):
+					
+					$this->params['project_products'] = $this->Crank_model->get_all_entries(
+						"sp_goods", 
+						array(
+							'project_result' => $this->session->userdata('project')
+						), 
+						0, 
+						false, 
+						'id', 
+						'asc', 
+						array(							
+							'sp_goods' => array('id','foto', 'thumb','name','price'),
+							'sp_goods_categories' => array('name as group_name')
+						),
+						array(
+							'sp_goods_categories'=>'type'
+						)
+					);
+					
+					$this->firephp->log($this->params['project_products']);
+					
+					$this->params['project_services'] = $this->Crank_model->get_all_entries(
+						"sp_services", 
+						array(
+							'project_result' => $this->session->userdata('project')
+						), 
+						0, 
+						false, 
+						'id', 
+						'asc', 
+						array(							
+							'sp_services' => array('id','foto', 'thumb','name','price','terms'),
+							'sp_services_categories' => array('name as group_name')
+						),
+						array(
+							'sp_services_categories'=>'type'
+						)
+					);
+					
+				endif;				
+				
+				break;
+			
 		}
 
 		$data = array(

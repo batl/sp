@@ -55,40 +55,13 @@ class Profile extends Crank {
 	public function page()
 	{
 		$view = $this->input->post('page');
+								
+		$data = array(
+			'response' => $this->load->view('profile_'.$view, $this->params, true)
+		);
 		
-		switch ($view)
-		{
-			case 'projects':
+		echo json_encode($data);
 				
-				$fields = array(
-					'sp_projects' => array('id','thumb','name','date','short_description','slug'),
-					'sp_places' => array('name as place'),
-					'sp_projects_categories' => array('name as group_name')
-				); 
-				$joins = array(
-					'sp_places'=>'place', 
-					'sp_projects_categories' => 'category_id'
-				);
-				$where = array(
-					'user_id' => $this->session->userdata('user_id')
-				);
-				
-				parent::get_items('sp_projects', 'profile_projects_view', $fields, $joins, $where);
-				
-				break;
-			case 'events':
-			
-				break;
-			default:
-				
-				$data = array(
-					'response' => $this->load->view('profile_'.$view, $this->params, true)
-				);
-				
-				echo json_encode($data);
-				
-				break;
-		}				
 	}
 	
 	public function update()
