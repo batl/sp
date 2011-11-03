@@ -153,3 +153,11 @@ width:950px;
 #single_content{
 width:950px;
 }
+
+span.single_view{
+cursor:pointer;
+}
+
+span.single_view:hover{
+color:#F1B90C;
+}

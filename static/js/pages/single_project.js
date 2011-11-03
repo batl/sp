@@ -80,5 +80,24 @@ $(document).ready(function(){
 		$(this).parents('.switcher_parent').find('.switcher_content').slideToggle('slow');
 		
 	});
-	
+		
+	$('span.single_view').live('click', function(event){
+		event.preventDefault();		
+		$('#single_view').attr('title', '');
+		var title = $(this).html();		
+		var block = $('#single_view');
+		entry = $(this).attr('id');
+		get_items(block, entry, 0, 'id', 'asc', 'ignore', function(response){
+			$('#dialog:ui-dialog').dialog( "destroy" );
+			$('#single_view').attr('title', title);
+			$('#single_view').dialog({
+				modal: true,
+				buttons: {
+					Close: function() {
+						$( this ).dialog( "close" );
+					}
+				}
+			});
+		});
+	});
 });

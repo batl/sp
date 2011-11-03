@@ -332,6 +332,8 @@ $lang["methodics"]				= "Методики";
 $lang["couches"]				= "Тренеры";
 $lang["couche"]					= "Тренер";
 $lang["parent_event"]			= "В рамках события";
+$lang["no_goods"]				= "Товары отсутствуют";
+$lang["no_services"]			= "Услуги отсутствуют";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

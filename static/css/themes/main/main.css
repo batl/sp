@@ -701,12 +701,12 @@ float:left;
 max-width:100px;
 }
 
-.buy-btn {
+.buy-btn , button{
 margin-right:9px;
 background: #069 url(/static/images/themes/main/alert-overlay.png) repeat-x;
 display: inline-block;
 padding: 5px 10px 6px;
-color: #fff;
+color: #fff !important;
 text-decoration: none;
 font-weight: bold;
 line-height: 1;
@@ -721,10 +721,17 @@ cursor: pointer;
 -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
 text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
-border-bottom: 1px solid rgba(0,0,0,0.25);
+border: none;
 font-size:.9em;
 }
 
+button{
+background:#CFD6E1;
+}
+
+button:hover{
+background:#FF0000;
+}
 
 /*
 -------------------------LAYOUT: Reports------------------------------

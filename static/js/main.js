@@ -276,6 +276,11 @@ $(document).ready(function(){
 		get_items(block, entry, start, sort, sort_type, 'ignore');
 	});
 	
+	$("body").ajaxError(
+	  function(e, xhr, settings, exept){
+		alert("При выполнении ajax-запроса страницы " + settings.url + " произошла ошибка.");
+	  }
+	);
 });
 
 //TAG SEARCH

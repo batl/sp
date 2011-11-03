@@ -8,7 +8,7 @@
 					?>				
 					<div class="store-item">
 						<div class="store-item-img"><a class="lightbox" href="<?php echo $base.$product['foto']?>"><img src="<?php echo $base.$product['thumb']?>" /></a></div>
-						<h3><?php echo $product['name'] ?></h3>
+						<h3><span class="single_view" id="goods/<?php echo $product['id']?>"><?php echo $product['name'] ?></span></h3>
 						<p style="font-size:10px;"><?php echo $lang['group']?>:  <?php echo $product['group_name']?></p>
 						<p><?php echo $lang['price']?>:  <?php echo $product['price']?> грн. </p>
 						<a class="buy-btn" href="javascript:void(0);"><?php echo $lang['buy_now']?></a>
@@ -36,9 +36,7 @@
 								<img src="<?php echo $base.$service['thumb']?>" />
 							</a>
 						</div>
-						<h3>
-							<?php echo $service['name'] ?>
-						</h3>
+						<h3><span class="single_view" id="services/<?php echo $service['id']?>"><?php echo $service['name'] ?></span></h3>
 						<p style="font-size:10px;"><?php echo $lang['group']?>:  <?php echo $service['group_name']?></p>
 						<p><?php echo $lang['price']?>:  <?php echo $service['price']?> грн. </p>
 						<a class="buy-btn" href="javascript:void(0);"><?php echo $lang['buy_now']?></a>
@@ -76,3 +74,4 @@
 		</fieldset>
 	</div>
 </div>
+<div id="single_view" title="" style="display:none;"></div>
