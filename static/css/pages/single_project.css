@@ -161,3 +161,7 @@ cursor:pointer;
 span.single_view:hover{
 color:#F1B90C;
 }
+
+#dealer-content ul li{
+list-style: disc inside none;
+}
