@@ -81,6 +81,12 @@ class Page extends Crank {
 						$this->include_css('lightbox.css');				
 						
 						break;
+					case 'organization':
+																		
+						$this->include_js('pages/organizations.js');						
+						$this->include_css('pages/organizations.css');
+						
+						break;
 					case 'blog':
 												
 						$this->include_js('pages/news.js');				
@@ -498,6 +504,42 @@ class Page extends Crank {
 				);
 				$table_name = "sp_projectsstages";
 				$single = false;
+				break;
+			case 'organization':
+				$fields = array(
+					'sp_organizations' => array('id','name','logo','phone','email','sites', 'description', 'grantor', 'investor', 'individual', 'developer', 'sponsor', 'creative'),
+					'sp_places' => array('name as place'),
+					'sp_scopes' => array('name as scope'),
+					'sp_activities' => array('name as activity')
+				);
+				$joins = array(
+					'sp_places'=> 'place',
+					'sp_scopes' => 'scope',
+					'sp_activities' => 'activities'
+				);	
+				$single = false;
+				$custom_view = 'organizations_view';
+				if (!empty($entry[1]))
+				{
+					switch ($entry[1])
+					{
+						case 'type':
+							$where = array(
+								$entry[2] => 1
+							);
+							break;
+						default:
+							$where = array(
+								'id' => $entry[1]
+							);
+							$single = true;
+							$custom_view = 'organizations_single_view';
+							break;
+					}
+				}				
+				
+				$table_name = "sp_organizations";
+				
 				break;
 			case 'joins':
 				$table_name = "sp_".implode('_',array($entry[1], $entry[2]));

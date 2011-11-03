@@ -43,8 +43,9 @@
 						</div>
 					</div>					
 				</div>
-				<div id="filters">					
-					<a class="groups selected" rel="0"><?php echo $lang['all_categories']?></a>
+				<div id="filters">
+					<span style="color:#000;"><?php echo $lang['groups']?>:&nbsp;</span>
+					<a class="groups selected" rel="0"><?php echo $lang['all']?></a>
 					<?php
 						foreach ($categories as $category)
 						{

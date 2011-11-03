@@ -8,7 +8,7 @@ $(document).ready(function(){
 	
 	sort_type = 'desc';
 	
-	get_items(block, entry, 0, sort, sort_type);
+	get_items(block, entry, 0, sort, sort_type, undefined, function(data){ if (!data.result) $('#news-container').remove();});
 	
 	if ($('input[name=map]').val() != '')
 	{

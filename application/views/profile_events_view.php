@@ -1,7 +1,7 @@
 <?php foreach ($items_array as $event):?>
 	<div class="project-item">
 		<div class="anons_thumb">
-			<img src="<?php echo $base.$event['logo']?>" />
+			<img src="<?php if (!empty($event['logo']) && file_exists($event['logo'])) echo $base.$event['logo']; else echo $base.'static/images/no_image.jpg';?>" />
 		</div>
 		<div class="project-item-content">
 			<a href="javascript:void(0);" class="single" id="events/0/<?php echo $event['id']?>"><?php echo $event['name']?></a><br />			

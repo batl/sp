@@ -1,7 +1,7 @@
 <div class="news-home" style="width:100%">	
 	<span class="history" href="javascript:void(0);"></span>
 	<div class="anons_thumb">
-		<img src="<?php echo $base.$items_array['logo']?>" />
+		<img src="<?php if (!empty($items_array['logo']) && file_exists($items_array['logo'])) echo $base.$items_array['logo']; else echo $base.'static/images/no_image.jpg';?>" />		
 	</div>
 	<div class="event_content">		
 		<?php 

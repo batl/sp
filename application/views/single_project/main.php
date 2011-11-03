@@ -80,7 +80,7 @@
 						<img src="/static/images/btn_page_end.png" />
 					</a>
 				</div>
-				<div id="limit"><span><?php echo $lang['records_per_page']?>:</span>&nbsp;<a href="javascript:void(0);">5</a><a href="javascript:void(0);" class="selected">10</a><a href="javascript:void(0);">20</a><a href="javascript:void(0);">30</a></div>		
+				<div id="limit"><span><?php echo $lang['records_per_page']?>:</span>&nbsp;<a href="javascript:void(0);" class="selected">5</a><a href="javascript:void(0);">10</a><a href="javascript:void(0);">20</a><a href="javascript:void(0);">30</a></div>		
 			</div>
 		</div><!--  #content-container -->
 		<div id="map_canvas" style="height:300px;display:none;"><h3><?php echo $lang['no_project_map']?></h3></div>
@@ -90,14 +90,17 @@
 	<div id="single_content">	
 		<div class="sub-hdr"><h3><?php echo $lang['about_project']?></h3></div>
 		<div id="dealer-content">
-			<div class="h_section">
-				<h2><?php echo $lang['poster']?></h2>			
+			<h2 style="color:<?php echo $project['title_color']?>"><?php echo $project['name']?> </h2>
+			<fieldset>
+				 <legend><?php echo $lang['purpose']?></legend>
+				<?php echo $project['purpose']?>																	
+			</fieldset>
+			<div class="h_section">						
 				<div class="h_section_content">
 					<?php echo $project['poster']?>
 				</div>
 			</div>
-			<div class="h_section">
-				<h2><?php echo $lang['note']?></h2>
+			<div class="h_section">				
 				<div class="h_section_content">
 					<?php echo $project['note']?>
 				</div>

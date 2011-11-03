@@ -55,12 +55,10 @@ class Project extends Crank {
 			array(), // joins	
 			true,	 // single
 			array(), // like
-			false,   // distinct
-			array(
-				'date_end IS NULL' => NULL,
-				'date_end' => '0000-00-00'
-			)	     // or_where
+			false    // distinct
 		);
+		
+		$this->firephp->log($this->params['poll']);
 		
 		if (!empty($this->params['poll']))
 		{
@@ -105,7 +103,7 @@ class Project extends Crank {
 					'id',
 					'asc',
 					array(
-						'sp_projects' => array('id','user_id','thumb','name','date_start', 'date_end','short_description','slug','purpose','poster','banner','note', 'tags', 'contacts'),
+						'sp_projects' => array('id','user_id','thumb','name','date_start', 'date_end','short_description','slug','purpose','poster','banner','note', 'tags', 'contacts', 'title_color'),
 						'sp_places' => array('name as place'),
 						'sp_projects_categories' => array('name as group_name')
 					),

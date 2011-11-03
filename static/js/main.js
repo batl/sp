@@ -117,7 +117,7 @@ $(document).ready(function(){
 		$('#search_block legend').css({'background':'url("/static/images/menu-collapsed.png") no-repeat 0px 4px'});
 		fields = new Array();
 		values = new Array();
-			
+		
 		$('#sub-hdr h3').html($(this).html());
 		var start = 0;
 		var block = $('.items');		
@@ -292,7 +292,7 @@ function focus_input()
 	$('#'+this.id).css("background-color","white");
 }
 
-function get_items(block, entry, start, sort, sort_type, clear_history)
+function get_items(block, entry, start, sort, sort_type, clear_history, after_get)
 {	
 	
 	block.html('<div class="world_preloader"></div>');
@@ -357,12 +357,40 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 				break;
 			case 'events':
 			case 'event':
-				if (sub_entry[1] == '0') $('#paging, #limit').hide(); else transform_pagination(data.curent_page, data.total);
+				if (sub_entry[1] == '0') 
+				{
+					$('#paging, #limit').hide(); 
+					$('#search_block').hide();
+					$('#filters').hide();
+					$('#tag_search').hide();
+				}
+				else 
+				{
+					transform_pagination(data.curent_page, data.total);
+					$('#search_block').show();
+					$('#filters').show();
+					$('#tag_search').show();
+				}
  				break;							
 			default:
-				if (sub_entry[1] == undefined || sub_entry[1] == '0') transform_pagination(data.curent_page, data.total); else $('#paging, #limit').hide();
+				if (sub_entry[1] == undefined || sub_entry[1] == '0')
+				{
+					transform_pagination(data.curent_page, data.total);
+					$('#search_block').show();
+					$('#filters').show();
+					$('#tag_search').show();
+				}
+				else 
+				{
+					$('#paging, #limit').hide();
+					$('#search_block').hide();
+					$('#filters').hide();
+					$('#tag_search').hide();
+				}
 				break;
-		}	
+		}
+
+		if (after_get != undefined) after_get(data);
 		
 	},"json");
 }

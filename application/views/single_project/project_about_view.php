@@ -1,11 +1,14 @@
-<div class="h_section">
-	<h2><?php echo $lang['poster']?></h2>			
+<h2 style="color:<?php echo $project['title_color']?>"><?php echo $project['name']?> </h2>
+<fieldset>
+	 <legend><?php echo $lang['purpose']?></legend>
+	<?php echo $project['purpose']?>																	
+</fieldset>
+<div class="h_section">						
 	<div class="h_section_content">
 		<?php echo $project['poster']?>
 	</div>
 </div>
-<div class="h_section">
-	<h2><?php echo $lang['note']?></h2>
+<div class="h_section">				
 	<div class="h_section_content">
 		<?php echo $project['note']?>
 	</div>

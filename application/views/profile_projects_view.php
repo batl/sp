@@ -1,7 +1,7 @@
 <?php foreach ($items_array as $project):?>
 	<div class="project-item">
 		<div class="anons_thumb">
-			<img src="<?php echo $base.$project['logo']?>" />
+			<img src="<?php if (!empty($project['logo']) && file_exists($project['logo'])) echo $base.$project['logo']; else echo $base.'static/images/no_image.jpg'?>" />
 		</div>
 		<div class="project-item-content">
 			<a href="<?php echo $base.'project/'.$project['slug']?>" target="_blanck"><?php echo $project['name']?> <?php if ($project['in_process']) echo '<span style="color:red; font-size:11px;">('.$lang['in_process'].')</span>'?></a><br />			

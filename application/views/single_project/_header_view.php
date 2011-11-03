@@ -120,25 +120,6 @@
 				</tr>
 			</tbody>
 		</table>
-	</div>
-	<div class="b-sub-header">
-		<table class="b-sub-header__layout">
-			<tbody>
-				<tr>
-					<td class="b-sub-header__layout-l">
-						<div class="b-sub-header__layout-i">
-							<div class="b-head-info b-block">
-								<h2 style="color:<?php echo $project['title_color']?>"><?php echo $project['name']?> </h2>
-								<div class="b-block__accent">
-									<p style="font-weight:bold;"><?php echo $lang['purpose']?>:</p>
-									<?php echo $project['purpose']?>																	
-                                </div>								
-							</div>
-						</div>
-					</td>					
-				</tr>
-			</tbody>
-		</table>
-	</div>
+	</div>	
 </div><!--  #header -->
 <noscript><div id="js_disabled"><h2><?php echo $lang['js_disabled']?></h2><p><?php echo $lang['js_enable']?></p></div></noscript>

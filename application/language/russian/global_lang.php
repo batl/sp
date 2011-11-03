@@ -316,6 +316,16 @@ $lang["post_date"]				= "Дата публикации";
 $lang["default"]				= "По умолчанию";
 $lang["sort_by"]				= "Сортировка";
 $lang["sort_direction"]			= "Направление сортировки";
+$lang["goods_links"]			= "Ссылки на продукты";
+$lang["no_links"]				= "Ссылки не указаны";
+$lang["developer"]				= "Разработчик";
+$lang["developers"]				= "Разработчики";
+$lang["grantories"]				= "Грантодатели";
+$lang["sponsors"]				= "Спонсоры";
+$lang["investors"]				= "Инвесторы";
+$lang["creatives"]				= "Креативщики";
+$lang["creative"]				= "Креативщик";
+$lang["fiz_people"]				= "Физ.лица";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";
