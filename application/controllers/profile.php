@@ -30,7 +30,18 @@ class Profile extends Crank {
 		$this->include_css('ui/jquery.ui.all.css');				
 		$this->include_js('tiny_mce/tiny_mce.js');
 		
-		($this->config->item('env_type') == 'dev') ? $this->include_js('http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAA6yP--2v-CDoEpX6OnpY-sxRUJ1hqatF4AoZmN6zEkqgOyqwRlxTq-Alw-c5cQL1BzkQ16NsKaqBY6w', true) :  $this->include_js('http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAA6yP--2v-CDoEpX6OnpY-sxT8FfoTSPNSCinLNsksAZkths46yxSraikQy6QrFI22T_VOWK_S7Eud3g', true);
+		switch ($this->config->item('env_type'))
+		{
+			case 'dev':
+				$this->include_js('http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAA6yP--2v-CDoEpX6OnpY-sxRUJ1hqatF4AoZmN6zEkqgOyqwRlxTq-Alw-c5cQL1BzkQ16NsKaqBY6w', true);
+				break;
+			case 'devmax':
+				$this->include_js('http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAA6yP--2v-CDoEpX6OnpY-sxQ_XhwsaFE8QWbhjrQXcNpGHT4T3xQbEuuvb8nMFIwjCs15e_OMHD7eoA', true);
+				break;
+			default:
+				$this->include_js('http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAA6yP--2v-CDoEpX6OnpY-sxT8FfoTSPNSCinLNsksAZkths46yxSraikQy6QrFI22T_VOWK_S7Eud3g', true);
+				break;
+		}						
 		
 		$this->include_js('pages/profile.js');
 		$this->params['user'] = $this->Crank_model->get_entry_by_data("sp_users", true, 'all', array('id' => $this->session->userdata('user_id')));
