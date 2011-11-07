@@ -54,7 +54,7 @@ $(document).ready(function(){
 		
 	});
 	
-	$('#languages a').click(function(){
+	$('#flags a').click(function(){
 		
 		var URL = base_url + 'main/set_language'
 		
