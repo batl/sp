@@ -64,7 +64,7 @@
 					<?php if (!empty($project['banner'])):?>
 					<td class="b-sub-header__layout-r">
 						<div class="b-sub-header__layout-i">
-							<div class="b-mini-artist b-block b-round" style="background:<?php echo $project['banner_bg_color']?>">
+							<div class="b-mini-artist b-block b-round" <!--style="background:<?php echo $project['banner_bg_color']?>"-->>
 								<div class="b-artist">
 									<div class="b-artist__photo">
 										<a href="javascript:void(0);" id="project_banner"><img src="<?php echo $base.$project['banner'];?>" class="b-artist__img"/></a>
