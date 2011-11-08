@@ -188,8 +188,9 @@ $(document).ready(function(){
 		$('#sub_menu a').removeClass('selected');
 		$(this).addClass('selected');
 		$('#content h2:first').html($(this).html());
-		var start = 0;
+		var start = 0;		
 		var block = $(this).parents('.list div:first');		
+		sort = 'id';		
 		entry = $(this).attr('id');
 		get_items(block, entry, start, sort, sort_type, true);
 	});

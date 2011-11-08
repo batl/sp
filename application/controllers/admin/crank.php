@@ -335,7 +335,42 @@ class Crank extends CI_Controller {
 			}
 		}
 		
-		empty($sort) ? $sort = 'id': '';
+		if (empty($sort))
+		{
+			$sort = 'id';
+		}
+		else
+		{
+			switch ($sort)
+			{
+				case 'group_name':
+					switch ($table_name)
+					{
+						case 'sp_users':
+							$sort = 'group_id'; 
+							break;
+						case 'sp_goods':
+							$sort = 'type'; 
+							break;
+						case 'sp_projects':
+							$sort = 'category_id'; 
+							break;
+						case 'sp_places':
+							$sort = 'place_type'; 
+							break;
+					}							
+					break;					
+				case 'supplier_name':
+					$sort = 'supplier'; 
+					break;
+				case 'project_name':
+					$sort = 'project_result'; 
+					break;
+				case 'public_email':
+					$sort = 'user_id'; 
+					break;
+			}
+		}
 		empty($sort_type) ? $sort_type = 'asc': '';
 			
 		

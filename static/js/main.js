@@ -121,6 +121,7 @@ $(document).ready(function(){
 		$('#sub-hdr h3').html($(this).html());
 		var start = 0;
 		var block = $('.items');		
+		sort = 'id';
 		entry = $(this).attr('id');
 		get_items(block, entry, start, sort, sort_type);
 	});

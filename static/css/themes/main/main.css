@@ -725,12 +725,8 @@ border: none;
 font-size:.9em;
 }
 
-button{
-background:#CFD6E1;
-}
-
 button:hover{
-background:#FF0000;
+background:#069fff;
 }
 
 /*
@@ -2091,7 +2087,6 @@ background: url("/static/images/add.png") repeat scroll 0 0 transparent;
 cursor: pointer;
 float: right;
 height: 16px;
-margin-right: 35%;
 width: 16px;
 margin-top:5px;
 }

@@ -852,7 +852,7 @@ height:auto;
 margin: 20px 0;
 }
 
-.button {
+.button, .ui-dialog-buttonset button {
 margin-right:9px;
 background: #069 url(/static/images/admin/alert-overlay.png) repeat-x;
 display: inline-block;
@@ -876,8 +876,14 @@ border-bottom: 1px solid rgba(0,0,0,0.25);
 font-size:1em;
 }
 
+.ui-dialog-buttonset button{
+border:none;
+height:30px;
+}
 
-
+.ui-dialog-buttonset button:hover{
+background:#069fff;
+}
 
 /**
 * Footer
@@ -1229,7 +1235,6 @@ background: url("/static/images/add.png") repeat scroll 0 0 transparent;
 cursor: pointer;
 float: right;
 height: 16px;
-margin-right: 35%;
 width: 16px;
 }
 
