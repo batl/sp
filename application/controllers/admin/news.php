@@ -14,6 +14,8 @@ class News extends Crank {
 		$this->include_js('jquery/ajaxupload.js');
 		$this->include_js('jquery/ui/jquery.ui.core.js');
 		$this->include_js('jquery/ui/jquery.ui.widget.js');
+		$this->include_js('jquery/ui/jquery.ui.dialog.js');	
+		$this->include_js('jquery/ui/jquery.ui.position.js');
 		$this->include_js('jquery/ui/jquery.ui.datepicker.js');
 		$this->include_js('admin/pages/news.js');
 		$this->include_js('tiny_mce/tiny_mce.js');

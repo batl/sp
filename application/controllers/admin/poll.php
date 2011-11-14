@@ -14,6 +14,8 @@ class Poll extends Crank {
 		$this->include_js('jquery/ajaxupload.js');		
 		$this->include_js('jquery/ui/jquery.ui.core.js');
 		$this->include_js('jquery/ui/jquery.ui.widget.js');
+		$this->include_js('jquery/ui/jquery.ui.dialog.js');		
+		$this->include_js('jquery/ui/jquery.ui.position.js');
 		$this->include_js('jquery/ui/jquery.ui.datepicker.js');
 		$this->include_js('admin/pages/poll.js');		
 		$this->include_css('ui/jquery.ui.all.css');	

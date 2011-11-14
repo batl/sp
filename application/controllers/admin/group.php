@@ -8,11 +8,7 @@ class Group extends Crank {
 		parent::__construct();	
 		
 		if (empty($this->params['admin_id'])) redirect($this->params['base']);
-
-		$this->include_js('admin/pages/user.js');
-		$this->include_js('tiny_mce/tiny_mce.js');
-		$this->include_css('admin/pages/user.css');
-		
+				
 		$this->params['table_name'] = 'sp_groups';
 		$this->params['tables'] = array('activities','scopes','territories');
 	}		

@@ -649,31 +649,42 @@ function save_entry(block, entry, id, single, parent_block, after_save)
 
 function remove_entry(block, entry, id)
 {
-		
-	if (confirm('Are you sure?'))
-	{
-		block.html('<div class="world_preloader"></div>');
+	
+	$( "#dialog:ui-dialog" ).dialog( "destroy" );
+	
+	$( "#dialog-confirm" ).dialog({
+		resizable: false,
+		height:140,
+		modal: true,
+		buttons: {
+			"Delete": function() {
+				block.html('<div class="world_preloader"></div>');
 			
-		$('.world_preloader').show();		
-		
-		var URL = base_url + entry.split('_')[0] + '/remove_entry/' + entry.split('_')[1];
-		
-		$.post(URL, {"id":id}, function(response)
-		{
-			$('.world_preloader').hide();
-			
-			$('.message').html(response.message).show();
-					setTimeout(function(){
-						$('.message').fadeOut('fast');
-					},3000);
+				$('.world_preloader').show();		
+				
+				var URL = base_url + entry.split('_')[0] + '/remove_entry/' + entry.split('_')[1];
+				
+				$.post(URL, {"id":id}, function(response)
+				{
+					$('.world_preloader').hide();
 					
-			var page  = parseInt($('.curent_page span').html());
-			var start = (page-1)*12;
-		
-			get_items(block, entry, start, sort, sort_type, true);
-			
-		},"json");
-	}			
+					$('.message').html(response.message).show();
+							setTimeout(function(){
+								$('.message').fadeOut('fast');
+							},3000);
+							
+					var page  = parseInt($('.curent_page span').html());
+					var start = (page-1)*12;
+				
+					get_items(block, entry, start, sort, sort_type, true);
+					
+				},"json");
+			},
+			Cancel: function() {
+				$( this ).dialog( "close" );
+			}
+		}
+	});			
 	
 }
 

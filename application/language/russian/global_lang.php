@@ -334,6 +334,8 @@ $lang["couche"]					= "Тренер";
 $lang["parent_event"]			= "В рамках события";
 $lang["no_goods"]				= "Товары отсутствуют";
 $lang["no_services"]			= "Услуги отсутствуют";
+$lang["permanently_removed"]	= "Запись будет удалена навсегда. Вы уверены?";
+$lang["record_removing"]		= "Удаление записи!";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

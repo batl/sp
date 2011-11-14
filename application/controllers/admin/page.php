@@ -10,9 +10,11 @@ class Page extends Crank {
 		if (empty($this->params['admin_id'])) redirect($this->params['base']);
 						
 		$this->params['main_navi'] = 3;			
-		
-		$this->include_js('jquery/ui/jquery-ui-1.8.16.custom.js');
+				
 		$this->include_js('jquery/ui/jquery.ui.core.js');
+		$this->include_js('jquery/ui/jquery.ui.widget.js');
+		$this->include_js('jquery/ui/jquery.ui.dialog.js');		
+		$this->include_js('jquery/ui/jquery.ui.position.js');
 		$this->include_js('jquery/ui/jquery.ui.sortable.js');
 		$this->include_js('jquery/ui/jquery.ui.mouse.js');
 		$this->include_js('jquery/ui/jquery.ui.draggable.js');
@@ -20,6 +22,7 @@ class Page extends Crank {
 		
 		$this->include_js('admin/pages/page.js');
 		$this->include_js('tiny_mce/tiny_mce.js');
+		$this->include_css('ui/jquery.ui.all.css');		
 		$this->include_css('admin/pages/page.css');
 		
 		$this->params['table_name'] = 'sp_pages';

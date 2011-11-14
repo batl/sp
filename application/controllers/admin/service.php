@@ -11,9 +11,14 @@ class Service extends Crank {
 				
 		$this->params['main_navi'] = 4;		
 		
+		$this->include_js('jquery/ui/jquery.ui.core.js');
+		$this->include_js('jquery/ui/jquery.ui.widget.js');
+		$this->include_js('jquery/ui/jquery.ui.dialog.js');		
+		$this->include_js('jquery/ui/jquery.ui.position.js');
 		$this->include_js('jquery/ajaxupload.js');
 		$this->include_js('admin/pages/goods.js');
 		$this->include_js('tiny_mce/tiny_mce.js');
+		$this->include_css('ui/jquery.ui.all.css');		
 		$this->include_css('admin/pages/goods.css');
 		
 		$this->params['table_name'] = 'sp_services';
