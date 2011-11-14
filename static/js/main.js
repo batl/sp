@@ -598,7 +598,7 @@ function save_entry(block, entry, id, single, parent_block, after_save)
 	parent_block.find('input[name=password][language=no], input[type=hidden][name!=id]').each(function(){
 		keys.push($(this).attr('name'));
 		data.push($(this).val());
-	});
+	});	
 	
 	parent_block.find('input[type=checkbox]').each(function(){
 		if (!$(this).parents('#map_canvas').length)

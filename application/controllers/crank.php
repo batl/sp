@@ -269,7 +269,7 @@ class Crank extends CI_Controller {
 			switch ($table_name)
 			{
 				case 'sp_projects':
-					$where['category_id'] = $group;
+					$like['category_id'] = "\"".$group."\"";
 					break;
 				case 'sp_users':
 					$where['group_id'] = $group;
@@ -284,6 +284,7 @@ class Crank extends CI_Controller {
 					break;
 			}
 		}
+		
 		if (!empty($search))
 		{
 			$like['tags'] = $search;

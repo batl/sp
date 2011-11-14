@@ -90,20 +90,19 @@
 					<input name='date_end' language="no" type='text' value='<?php if (!empty($entry['date_end']) && $entry['date_end'] != '0000-00-00') echo $entry['date_end']?>' class='medium picker' tabindex='3'/>
 				</div>
 			</li>
-			<li class='gfield'><label class='checkbox_label'><?php echo $lang["group"]?><span class='gfield_required'>*</span>:</label>
-				<div class='ginput_container'>
-					<select name="category_id">
-						<option value="0"><?php echo $lang["no_group"]?></option>
-						<?php
-						foreach ($groups as $group)
-						{
-						?>
-						<option value="<?php echo $group['id']?>" <?php if ($group['id'] == $entry['category_id']) echo 'selected="selected"';?>><?php echo $group['name']?></option>
-						<?php
-						}
-						?>
-					</select>	
-					<span id="create_category" class="create_new"></span>
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["group"]?><span class='gfield_required'>*</span>:</label><br/>
+				<div class='ginput_container array' name="category_id">
+					<?php
+					$project_categories = json_decode($entry['category_id'], true);					
+					
+					foreach ($groups as $group)
+					{							
+						?>							
+						<br/>						
+						<span style="display:block; width:300px; float:left;"><?php echo $group['name']?></span><input type="checkbox" rel="array" value="<?php echo $group['id']?>" <?php if (!empty($project_categories) && is_array($project_categories) && in_array($group['id'], $project_categories)) echo 'checked="checked"';?>/>
+						<?php							
+					}
+					?>					
 				</div>
 			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["place"]?><span class='gfield_required'>*</span>:</label>

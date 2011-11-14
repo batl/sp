@@ -90,19 +90,16 @@
 				</div>
 			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["group"]?><span class='gfield_required'>*</span>:</label>
-				<div class='ginput_container'>
-					<select name="category_id">
-						<option value="0"><?php echo $lang["no_group"]?></option>
-						<?php
-						foreach ($groups as $group)
-						{
+				<div class='ginput_container array' name="category_id">					
+					<?php
+					foreach ($groups as $group)
+					{
 						?>
-						<option value="<?php echo $group['id']?>"><?php echo $group['name']?></option>
+						<br/>
+						<span style="display:block; width:300px; float:left;"><?php echo $group['name']?></span><input type="checkbox" rel="array" value="<?php echo $group['id']?>"/>
 						<?php
-						}
-						?>
-					</select>	
-					<span id="create_category" class="create_new"></span>
+					}
+					?>
 				</div>
 			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["place"]?><span class='gfield_required'>*</span>:</label>

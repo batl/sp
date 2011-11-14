@@ -557,9 +557,18 @@ function save_entry(block, entry, id, single, parent_block, after_save)
 	parent_block.find('input[name=password][language=no], input[type=hidden][name!=id]').each(function(){
 		keys.push($(this).attr('name'));
 		data.push($(this).val());
+	});		
+	
+	parent_block.find('div.array').each(function(){
+		keys.push($(this).attr('name'));
+		var data_array = new Array();
+		$(this).find('input[type=checkbox]').each(function(){			
+			if ($(this).is(':checked')) data_array.push($(this).val());
+		});
+		data.push(JSON.stringify(data_array));
 	});
 	
-	parent_block.find('input[type=checkbox]:visible').each(function(){
+	parent_block.find('input[type=checkbox][rel!=array]:visible').each(function(){
 		if (!$(this).parents('#map_canvas').length)
 		{
 			keys.push($(this).attr('name'));		

@@ -65,15 +65,15 @@ class Project extends Crank {
 	public function get_items()
 	{
 		parent::get_items(
-			false, 
+			false,
 			array(
 				'sp_projects' => array('id','name','logo','date_start', 'date_end', 'user_id'),
-				'sp_projects_categories' => array('name as group_name'),
+				//'sp_projects_categories' => array('name as group_name'),
 				'sp_users' => array('email as public_email')
-			), 
+			),
 			array(
-				'sp_users'=>'user_id', 
-				'sp_projects_categories' => 'category_id'
+				'sp_users'=>'user_id'
+				//'sp_projects_categories' => 'category_id'
 			),
 			array(
 				'date_start' => 'date',

@@ -278,6 +278,7 @@ class Crank extends CI_Controller {
 		$start 		= $this->input->post('start');
 		$sort  		= $this->input->post('sort');
 		$sort_type 	= $this->input->post('sort_type');
+		$group 		= $this->input->post('group');
 		$limit 		= $this->input->post('limit');
 		$search_fields = $this->input->post('fields');
 		$search_values = $this->input->post('values');
@@ -293,6 +294,27 @@ class Crank extends CI_Controller {
 				if (!empty($search_values[$key])) $like[$search_field] = $search_values[$key];
 			}
 		}				
+		
+		if (!empty($group))
+		{
+			switch ($table_name)
+			{
+				case 'sp_projects':
+					$like['category_id'] = "\"".$group."\"";
+					break;
+				case 'sp_users':
+					$where['group_id'] = $group;
+					break;
+				case 'sp_goods':
+				case 'sp_services':
+				case 'sp_events':
+					$where['type'] = $group;
+					break;
+				default:
+					$where['group'] = $group;
+					break;
+			}
+		}
 		
 		if (!empty($filter_fields))
 		{
@@ -408,8 +430,7 @@ class Crank extends CI_Controller {
 	}
 	
 	protected function get_search_block($fields, $fields_types)
-	{
-	
+	{	
 		$titles = array();
 		
 		foreach ($fields as $key => $value)
@@ -466,7 +487,7 @@ class Crank extends CI_Controller {
 				{
 					switch ($fields_types[$title])
 					{
-						case 'hidden':						
+						case 'hidden':		 				
 							break;
 						case 'date':
 							$html .= '<td><input type="text" name="'.$title.'" class="picker" value=""/></td>';

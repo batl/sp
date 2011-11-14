@@ -180,7 +180,7 @@ class Crank_model extends CI_Model {
 				{
 					$status = 0;
 					
-					$tags = false;
+					$tags = false;										
 					
 					foreach ($like as $key=>$value)
 					{												
@@ -201,7 +201,7 @@ class Crank_model extends CI_Model {
 						array_push($response, $row);
 					}
 					else
-					{
+					{						
 						($status == count($like)) ? array_push($response, $row) : '';
 					}
 				} 
