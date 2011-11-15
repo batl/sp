@@ -191,4 +191,5 @@ $(document).ready(function(){
 		$('input[name=bg_image]').val($(this).attr('rel'));
 		$('#project_bg_preview').css({'background':'url("'+front_url+'static/images/background/'+$(this).attr('rel')+'")'});
 	});
+		
 });

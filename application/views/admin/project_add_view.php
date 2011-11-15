@@ -224,6 +224,11 @@
 					<input name='apply_bg' type='checkbox' class='medium' tabindex='4'/>
 				</div>
 			</li>
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["active"]?>:</label>
+				<div class='ginput_container'>
+					<input name='active' type='checkbox' class='medium' tabindex='4'/>
+				</div>
+			</li>
 			<li class='gfield'>
 				<div class='ginput_container'>
 					<div id="project_bg">

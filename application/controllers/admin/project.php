@@ -17,7 +17,7 @@ class Project extends Crank {
 		$this->include_js('jquery/ui/jquery.ui.position.js');		
 		$this->include_js('jquery/ui/jquery.ui.draggable.js');		
 		$this->include_js('jquery/ui/jquery.ui.dialog.js');	
-		$this->include_js('jquery/ui/jquery.ui.datepicker.js');
+		$this->include_js('jquery/ui/jquery.ui.datepicker.js');		
 		$this->include_js('jquery/ajaxupload.js');		
 		$this->include_js('jquery/colorpicker/colorpicker.js');
 		$this->include_js('jquery/colorpicker/eye.js');

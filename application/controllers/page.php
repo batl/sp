@@ -422,21 +422,29 @@ class Page extends Crank {
 						
 							if (!empty($dates[0]) && !empty($dates[1]))
 							{
-								$custom_where = "((date_start<='".date("Y-m-d", strtotime($dates[1]))."' AND (date_end='0000-00-00' OR date_end IS NULL)) OR (((date_start<='".date("Y-m-d", strtotime($dates[1]))."' OR (date_end>='".date("Y-m-d", strtotime($dates[0]))."' AND date_end<='".date("Y-m-d", strtotime($dates[1]))."')) AND date_end!='0000-00-00' AND date_end IS NOT NULL)) AND in_process=0)";
+								$custom_where = "((date_start<='".date("Y-m-d", strtotime($dates[1]))."' AND (date_end='0000-00-00' OR date_end IS NULL) AND in_process=0 AND active=1 AND basket=0) OR (((date_start<='".date("Y-m-d", strtotime($dates[1]))."' OR (date_end>='".date("Y-m-d", strtotime($dates[0]))."' AND date_end<='".date("Y-m-d", strtotime($dates[1]))."')) AND date_end!='0000-00-00' AND date_end IS NOT NULL)) AND in_process=0 AND active=1 AND basket=0)";
 							}
 							elseif (!empty($dates[0]))
 							{							
-								$custom_where = "(date_start>='".date("Y-m-d", strtotime($dates[0]))."' AND in_process=0)";
+								$custom_where = "(date_start>='".date("Y-m-d", strtotime($dates[0]))."' AND in_process=0 AND active=1 AND basket=0)";
 							}
 							elseif (!empty($dates[1]))
 							{															
-								$custom_where = "(date_end<='".date("Y-m-d", strtotime($dates[1]))."' OR date_end='0000-00-00' OR date_end IS NULL AND in_process=0)";
+								$custom_where = "((date_end<='".date("Y-m-d", strtotime($dates[1]))."' OR date_end='0000-00-00' OR date_end IS NULL) AND in_process=0 AND active=1 AND basket=0)";
 							}							
 							
 							$day = NULL;
 							
 							break;
 					}					
+				}
+				else
+				{
+					$where = array(
+						'in_process' => 0,
+						'active'	 => 1,
+						'basket'	 => 0
+					);
 				}
 				
 				$custom_view = 'profile_projects_view';
@@ -456,38 +464,40 @@ class Page extends Crank {
 					{
 						case 'no': // В определенный месяц "Октябрь"
 							
-							$custom_where = "((date_start>='".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01'))."' AND date_start<'".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month'))."' AND in_process=0 AND (date_end='0000-00-00' OR date_end IS NULL)) OR ((date_start>='".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01'))."' AND date_start<'".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month'))."' AND in_process=0)) OR (date_end>='".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01'))."' AND date_end<'".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month'))."' AND in_process=0))";
+							$custom_where = "((date_start>='".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01'))."' AND date_start<'".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month'))."' AND in_process=0 AND (date_end='0000-00-00' OR date_end IS NULL)  AND in_process=0 AND active=1 AND basket=0) OR ((date_start>='".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01'))."' AND date_start<'".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month'))."' AND in_process=0 AND active=1 AND basket=0)) OR (date_end>='".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01'))."' AND date_end<'".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month'))."' AND in_process=0 AND active=1 AND basket=0))";
 							
 							break;
 							
 						case 'next': // Текущие							
 							
-							$custom_where = "((date_start<='".date("Y-m-d")."' AND date_end>='".date("Y-m-d")."' AND in_process=0) OR (date_start<='".date("Y-m-d")."' AND (date_end IS NULL OR date_end='0000-00-00') AND in_process=0))";														
+							$custom_where = "((date_start<='".date("Y-m-d")."' AND date_end>='".date("Y-m-d")."' AND in_process=0 AND active=1 AND basket=0) OR (date_start<='".date("Y-m-d")."' AND (date_end IS NULL OR date_end='0000-00-00') AND in_process=0 AND active=1 AND basket=0))";														
 							
 							break;
 							
 						case 'prev': // Прошедшие
 
-							$custom_where = "(date_end<'".date("Y-m-d")."' AND in_process=0 AND date_end!='0000-00-00' AND date_end IS NOT NULL)";
+							$custom_where = "(date_end<'".date("Y-m-d")."' AND in_process=0 AND date_end!='0000-00-00' AND date_end IS NOT NULL AND active=1 AND basket=0)";
 							
 							break;
 						
 						case 'future': // Будущие
 
-							$custom_where = "(date_start>'".date("Y-m-d")."' AND in_process=0)";
+							$custom_where = "(date_start>'".date("Y-m-d")."' AND in_process=0 AND active=1 AND basket=0)";
 							
 							break;
 							
 						case 'in_process': // Помечен как "В процессе"
 							$where = array(
-								'in_process' => 1
+								'in_process' => 1,
+								'active'	 => 1,
+								'basket'	 => 0
 							);
 							
 							break;
 							
 						default: // Попадает в определенный день
 						
-							$custom_where = "(date_start<='".$entry[1].'-'.$entry[2].'-'.$day."' AND (date_end>='".$entry[1].'-'.$entry[2].'-'.$day."' OR date_end='0000-00-00' OR date_end IS NULL))";
+							$custom_where = "(date_start<='".$entry[1].'-'.$entry[2].'-'.$day."' AND (date_end>='".$entry[1].'-'.$entry[2].'-'.$day."' OR date_end='0000-00-00' OR date_end IS NULL)  AND active=1 AND basket=0 AND in_process=0)";
 														
 							break;
 					}						

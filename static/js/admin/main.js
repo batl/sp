@@ -423,7 +423,7 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 				}
 			});
 		}
-		
+				
 	},"json");
 }
 

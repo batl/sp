@@ -8,7 +8,7 @@
 		<h2><?php echo $lang['projects']?></h2> <a href="javascript:void(0);" class="add_item"><?php echo $lang['add']?></a><div id="search_switcher"></div><div class="message display_none"></div>
 		<div id="overview">
 			<div class="list">
-				<div class="items">
+				<div class="items sortable">
 													
 				</div>
 				<div class="pagination">
