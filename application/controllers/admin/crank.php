@@ -238,10 +238,10 @@ class Crank extends CI_Controller {
 							(!$confirmed) ? $html .= '<a href="javascript:void(0);" class="confirm_user">'.$this->params['lang']['confirm_user'].'</a>': '';
 							break;
 						case "sp_projects":
-							$html .= '<a href="javascript:void(0);" class="projects_stages"><img src="'.$this->params['lang']['stages_ico'].'" title="'.$this->params['lang']['stages'].'"/></a>';
+							$html .= '<a href="javascript:void(0);" class="project_more"><img src="'.$this->params['lang']['stages_ico'].'" title="'.$this->params['lang']['stages'].'"/></a>';
 							$html .= '<a href="javascript:void(0);" class="projects_news"><img src="'.$this->params['lang']['news_ico'].'" title="'.$this->params['lang']['news'].'"/></a>';
 							$html .= '<a href="javascript:void(0);" class="projects_polls"><img src="'.$this->params['lang']['poll_ico'].'" title="'.$this->params['lang']['poll_title'].'"/></a>';
-							$html .= '<a href="javascript:void(0);" id="projectsstages-partners-organizations" class="stage_partners"><img src="'.$this->params['lang']['parthners_ico'].'" title="'.$this->params['lang']['partners'].'"/></a>';
+							$html .= '<a href="javascript:void(0);" id="projects-partners-organizations" class="stage_partners"><img src="'.$this->params['lang']['parthners_ico'].'" title="'.$this->params['lang']['partners'].'"/></a>';
 							$html .= '<a href="javascript:void(0);" id="photos-report-photos" class="stage_action"><img src="'.$this->params['lang']['photos_ico'].'" title="'.$this->params['lang']['photos'].'"/></a>';
 							$html .= '<a href="javascript:void(0);" id="videos-report-videos" class="stage_action"><img src="'.$this->params['lang']['videos_ico'].'" title="'.$this->params['lang']['videos'].'"/></a>';
 							break;

@@ -20,7 +20,7 @@ $(document).ready(function(){
 	
 	$('.save_entry').live('click', function(){				
 						
-		save_entry(block, entry, $('input[name=id]').val());
+		save_entry(block, entry, $('input[name=id]').val(), true);
 		
 	});
 	
@@ -46,7 +46,7 @@ $(document).ready(function(){
 	
 	// View project stages
 	
-	$('.projects_stages').live('click', function(){
+	$('.project_more').live('click', function(){
 		
 		var id = $(this).parents('tr').find('td:first').html();					
 		
@@ -54,7 +54,7 @@ $(document).ready(function(){
 		
 		entry = 'moreproject_'+id;
 		
-		get_items(block,entry, 0, 'id', 'asc');
+		get_view(block, entry, 'edit', id, true);
 		
 	});
 	

@@ -2,24 +2,8 @@
 	<div class='gform_heading'>
 	</div>
 	<div class='gform_body'>
-		<input type='hidden' class='gform_hidden' name='id' value='<?php echo $entry['id']?>'/>
-		<input type="hidden" class='gform_hidden' name='projects_id' value='<?php echo $project_id?>'/>
-		<ul class='gform_fields top_label'>
-			<li class='gfield'><label class='checkbox_label'><?php echo $lang["event"]?><span class='gfield_required'>*</span>:</label>
-				<div class='ginput_container'>
-					<select name="top_event">
-						<option value="0"><?php echo $lang["no_event"]?></option>
-						<?php
-						foreach ($events as $event)
-						{
-						?>
-						<option value="<?php echo $event['id']?>" <?php if ($event['id'] == $entry['top_event']) echo 'selected="selected"';?>><?php echo $event['name']?></option>
-						<?php
-						}
-						?>
-					</select>	
-				</div>
-			</li>
+		<input type='hidden' class='gform_hidden' name='id' value='<?php echo $entry['id']?>'/>		
+		<ul class='gform_fields top_label'>			
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["resourses"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
 					<input id='resourses' type='file' value='' class='medium document' tabindex='3'/>
@@ -103,19 +87,6 @@
 					endif;
 					?>
 					<input name='scheme_budget' type='hidden' value='<?php echo $entry['scheme_budget']?>'/>
-				</div>
-			</li>
-			<li class='gfield'><label class='gfield_label'><?php echo $lang["note"]?>: </label>
-				<div class='ginput_container'>					
-					<?php 						
-						foreach ($languages as $language):
-							?>
-							<div class="textarea" name='description' language="<?php echo $language['id'];?>">
-								<textarea class='textarea small' tabindex='5' rows='10' cols='50'><?php echo $entry['description'][$language['id']];?></textarea>		
-							</div>
-							<?php								
-						endforeach;						
-					?>
 				</div>
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["report"]?>: </label>
