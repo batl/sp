@@ -241,17 +241,15 @@ class Crank extends CI_Controller {
 							$html .= '<a href="javascript:void(0);" class="projects_stages"><img src="'.$this->params['lang']['stages_ico'].'" title="'.$this->params['lang']['stages'].'"/></a>';
 							$html .= '<a href="javascript:void(0);" class="projects_news"><img src="'.$this->params['lang']['news_ico'].'" title="'.$this->params['lang']['news'].'"/></a>';
 							$html .= '<a href="javascript:void(0);" class="projects_polls"><img src="'.$this->params['lang']['poll_ico'].'" title="'.$this->params['lang']['poll_title'].'"/></a>';
+							$html .= '<a href="javascript:void(0);" id="projectsstages-partners-organizations" class="stage_partners"><img src="'.$this->params['lang']['parthners_ico'].'" title="'.$this->params['lang']['partners'].'"/></a>';
+							$html .= '<a href="javascript:void(0);" id="photos-report-photos" class="stage_action"><img src="'.$this->params['lang']['photos_ico'].'" title="'.$this->params['lang']['photos'].'"/></a>';
+							$html .= '<a href="javascript:void(0);" id="videos-report-videos" class="stage_action"><img src="'.$this->params['lang']['videos_ico'].'" title="'.$this->params['lang']['videos'].'"/></a>';
 							break;
 						case "sp_events":
 							$html .= '<a href="javascript:void(0);" id="events-curators-organizations" class="event_action">'.$this->params['lang']['curators'].'</a>';
 							$html .= '<a href="javascript:void(0);" id="events-methods-methods" class="event_action">'.$this->params['lang']['methods'].'</a>';
 							$html .= '<a href="javascript:void(0);" id="events-organizes-organizations" class="event_action">'.$this->params['lang']['organizators'].'</a>';
-							break;
-						case "sp_projectsstages":
-							$html .= '<a href="javascript:void(0);" id="projectsstages-partners-organizations" class="stage_partners">'.$this->params['lang']['partners'].'</a>';
-							$html .= '<a href="javascript:void(0);" id="photos-report-photos" class="stage_action">'.$this->params['lang']['photos'].'</a>';
-							$html .= '<a href="javascript:void(0);" id="videos-report-videos" class="stage_action">'.$this->params['lang']['video'].'</a>';
-							break;
+							break;						
 						case "sp_poll":
 							$html .= '<a href="javascript:void(0);" class="poll_answers">'.$this->params['lang']['poll_answers'].'</a>';							
 							break;

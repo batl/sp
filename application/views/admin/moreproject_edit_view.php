@@ -4,34 +4,7 @@
 	<div class='gform_body'>
 		<input type='hidden' class='gform_hidden' name='id' value='<?php echo $entry['id']?>'/>
 		<input type="hidden" class='gform_hidden' name='projects_id' value='<?php echo $project_id?>'/>
-		<ul class='gform_fields top_label'>			
-			<li class='gfield'><label class='gfield_label'><?php echo $lang["title"]?><span class='gfield_required'>*</span>:</label>
-				<div class='ginput_container'>					
-					<?php 						
-						foreach ($languages as $language):
-							?>
-							<input name='name' language="<?php echo $language['id'];?>" type='text' value='<?php echo $entry['name'][$language['id']];?>' class='medium' tabindex='3'/>
-							<?php								
-						endforeach;						
-					?>
-				</div>
-			</li>			
-			<li class='gfield'><label class='checkbox_label'><?php echo $lang["territory"]?><span class='gfield_required'>*</span>:</label>
-				<div class='ginput_container'>
-					<select name="territory">	
-						<option value="0"><?php echo $lang["no_territory"]?></option>
-						<?php
-						foreach ($territories as $territory)
-						{
-						?>
-						<option value="<?php echo $territory['id']?>" <?php if ($territory['id'] == $entry['territory']) echo 'selected="selected"';?>><?php echo $territory['name']?></option>
-						<?php
-						}
-						?>
-					</select>	
-					<span id="create_territory" class="create_new"></span>
-				</div>
-			</li>
+		<ul class='gform_fields top_label'>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["event"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
 					<select name="top_event">

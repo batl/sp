@@ -30,7 +30,7 @@ class Crank_model extends CI_Model {
 		'sp_events_curators'		=> array(),
 		'sp_events_organizes'		=> array(),
 		'sp_events_methods'			=> array(),
-		'sp_projectsstages_partners'=> array(),
+		'sp_projects_partners'=> array(),
 		'sp_photos_report'			=> array('description'),
 		'sp_videos_report'			=> array(),
 		'sp_photos'					=> array(),

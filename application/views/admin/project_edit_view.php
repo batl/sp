@@ -148,20 +148,7 @@
 						endforeach;						
 					?>
 				</div>
-			</li>
-			<li class='gfield'><label class='gfield_label'><?php echo $lang["poster"]?>: </label>
-				<div class='ginput_container'>					
-					<?php 						
-						foreach ($languages as $language):
-							?>
-							<div class="textarea" name='poster' language="<?php echo $language['id'];?>">
-								<textarea class='textarea small' tabindex='5' rows='10' cols='50'><?php echo $entry['poster'][$language['id']];?></textarea>		
-							</div>
-							<?php								
-						endforeach;						
-					?>
-				</div>
-			</li>
+			</li>			
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["short_description"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>					 
 					<?php 						

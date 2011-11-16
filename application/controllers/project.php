@@ -166,7 +166,7 @@ class Project extends Crank {
 						);
 						
 						$this->params['project_more'][$key]['partners'] = $this->Crank_model->get_all_entries(
-							"sp_projectsstages_partners", 
+							"sp_projects_partners", 
 							array(
 								'entry_id' => $value['id']
 							), 
@@ -175,7 +175,7 @@ class Project extends Crank {
 							'id', 
 							'asc', 
 							array(
-								'sp_projectsstages_partners' => array('type'),
+								'sp_projects_partners' => array('type'),
 								'sp_organizations' => array('name as partner_name')
 							),
 							array(
