@@ -46,8 +46,7 @@ class Event extends Crank {
 		parent::get_items(
 			false, 
 			array(
-				'sp_events' => array('id','name','logo','date_start', 'date_end'),
-				'sp_places' => array('name as place'),
+				'sp_events' => array('id','name','logo','date_start', 'date_end'),				
 				'sp_users'  => array('email as public_email')
 			), 
 			array('sp_places'=>'place', 'sp_users'=>'user_id'),			

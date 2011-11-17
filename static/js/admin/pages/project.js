@@ -19,8 +19,12 @@ $(document).ready(function(){
 	// Save project updates
 	
 	$('.save_entry').live('click', function(){				
-						
-		save_entry(block, entry, $('input[name=id]').val(), true);
+					
+		var reload;
+		
+		(entry.split('_')[0] == 'moreproject') ? reload = true: reload = false;
+		
+		save_entry(block, entry, $('input[name=id]').val(), reload);
 		
 	});
 	

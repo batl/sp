@@ -92,7 +92,7 @@
 			</li>
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["group"]?><span class='gfield_required'>*</span>:</label><br/>
 				<div class='ginput_container array' name="category_id">
-					<?php
+					<?php					
 					$project_categories = json_decode($entry['category_id'], true);					
 					
 					foreach ($groups as $group)
@@ -105,22 +105,21 @@
 					?>					
 				</div>
 			</li>
-			<li class='gfield'><label class='checkbox_label'><?php echo $lang["place"]?><span class='gfield_required'>*</span>:</label>
-				<div class='ginput_container'>
-					<select name="place">
-						<option value="0"><?php echo $lang["no_place"]?></option>
-						<?php
-						foreach ($places as $place)
-						{
-						?>
-						<option value="<?php echo $place['id']?>" <?php if ($place['id'] == $entry['place']) echo 'selected="selected"';?>><?php echo $place['name']?></option>
-						<?php
-						}
-						?>
-					</select>	
-					<span id="create_place" class="create_new"></span>
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["place"]?><span class='gfield_required'>*</span>:</label><br/>
+				<div class='ginput_container array' name="place">
+					<?php					
+					$project_places = json_decode($entry['place'], true);					
+					
+					foreach ($places as $place)
+					{							
+						?>							
+						<br/>						
+						<span style="display:block; width:300px; float:left;"><?php echo $place['name']?></span><input type="checkbox" rel="array" value="<?php echo $place['id']?>" <?php if (!empty($project_places) && is_array($project_places) && in_array($place['id'], $project_places)) echo 'checked="checked"';?>/>
+						<?php							
+					}
+					?>					
 				</div>
-			</li>
+			</li>			
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["facebook_link"]?>:</label>
 				<div class='ginput_container'>
 					<input name='facebook_link' language="no" type='text' value='<?php echo $entry['facebook_link']?>' class='medium' tabindex='3'/>
