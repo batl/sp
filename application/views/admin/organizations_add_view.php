@@ -75,38 +75,51 @@
 					<input name='sites' language="no" type='text' value='' class='medium' tabindex='3'/>
 				</div>
 			</li>
-			<li class='gfield'><label class='checkbox_label'><?php echo $lang["scope"]?>:</label>
-				<div class='ginput_container'>
-					<select name="scope">
-						<option value="0"><?php echo $lang["no_scope"]?></option>
-						<?php
-						foreach ($scopes as $scope)
-						{
-						?>
-						<option value="<?php echo $scope['id']?>"><?php echo $scope['name']?></option>
-						<?php
-						}
-						?>
-					</select>					
-					<span id="create_scope" class="create_new"></span>
+			
+			<!-- Scope section -->
+			<fieldset>
+				<legend><?php echo $lang['scope']?></legend>
+				<div class="expanded">
+					
+					<!-- Organization scopes -->
+					<li class='gfield'>
+						<div class='ginput_container array' name="scope">
+							<?php																							
+							foreach ($scopes as $scope)
+							{							
+								?>							
+								<br/>						
+								<span class="check_item"><?php echo $scope['name']?></span><input type="checkbox" rel="array" value="<?php echo $scope['id']?>" />
+								<?php							
+							}
+							?>					
+						</div>
+					</li>	
 				</div>
-			</li>
-			<li class='gfield'><label class='checkbox_label'><?php echo $lang["activities"]?>:</label>
-				<div class='ginput_container'>
-					<select name="activities">
-						<option value="0"><?php echo $lang["no_activities"]?></option>
-						<?php
-						foreach ($activities as $activity)
-						{
-						?>
-						<option value="<?php echo $activity['id']?>"><?php echo $activity['name']?></option>
-						<?php
-						}
-						?>
-					</select>
-					<span id="create_activity" class="create_new"></span>
+			</fieldset>
+			
+			<!-- Activities section -->
+			<fieldset>
+				<legend><?php echo $lang['activities']?></legend>
+				<div class="expanded">
+					
+					<!-- Organization activities -->
+					<li class='gfield'>
+						<div class='ginput_container array' name="activities">
+							<?php																						
+							foreach ($activities as $activity)
+							{							
+								?>							
+								<br/>						
+								<span class="check_item"><?php echo $activity['name']?></span><input type="checkbox" rel="array" value="<?php echo $activity['id']?>" />
+								<?php							
+							}
+							?>					
+						</div>
+					</li>	
 				</div>
-			</li>			
+			</fieldset>
+			
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["grantor"]?>:</label>
 				<div class='ginput_container'>
 					<input name='grantor' type='checkbox' value='' class='medium' tabindex='4'/>

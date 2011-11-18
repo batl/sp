@@ -6,11 +6,11 @@ class Crank_model extends CI_Model {
 		'sp_users' 					=> array('name', 'suname', 'about'),
 		'sp_territories' 			=> array('name'),
 		'sp_services_categories' 	=> array('name'),
-		'sp_services' 				=> array('name', 'terms', 'condition', 'note'),
+		'sp_services' 				=> array('name', 'terms', 'condition', 'note', 'tags'),
 		'sp_settings' 				=> array('site_name', 'logo', 'thumb', 'copy_text', 'keywords', 'description'),
 		'sp_scopes'   				=> array('name'),		
 		'sp_projects_categories' 	=> array('name'),
-		'sp_projects' 				=> array('name', 'boss', 'purpose', 'short_description', 'tags', 'poster', 'note', 'map_description', 'contacts', 'report','product_links','feedback_links','workgroups_links','social_links', 'paper'),
+		'sp_projects' 				=> array('name', 'boss', 'purpose', 'short_description', 'tags', 'poster', 'note', 'map_description', 'contacts', 'report','product_links','feedback_links','workgroups_links', 'paper'),
 		'sp_places_categories' 		=> array('name'),
 		'sp_places' 				=> array('name', 'address', 'note'),
 		'sp_pages' 				 	=> array('name', 'body', 'meta', 'description'),
@@ -23,7 +23,7 @@ class Crank_model extends CI_Model {
 		'sp_goods_categories' 		=> array('name'),
 		'sp_goods' 					=> array('name'),
 		'sp_events_categories' 		=> array('name'),
-		'sp_events' 				=> array('name', 'schedule', 'poster', 'description', 'price', 'tags'),
+		'sp_events' 				=> array('name', 'schedule', 'poster', 'description', 'price', 'tags', 'report'),
 		'sp_anonses' 				=> array('name', 'description'),
 		'sp_activities' 			=> array('name'),
 		'sp_events_curators'		=> array(),
@@ -164,8 +164,8 @@ class Crank_model extends CI_Model {
 						switch ($lang)
 						{
 							case 'current':
-								$field_lang = json_decode($value, true);								
-								$row[$key]  = $field_lang[$this->session->userdata('lang_id')];
+								$field_lang = json_decode($value, true);									
+								(!empty($field_lang[$this->session->userdata('lang_id')])) ? $row[$key]  = $field_lang[$this->session->userdata('lang_id')] : $row[$key] = '';
 								break;
 							case 'all':
 								$row[$key]  = json_decode($value, true);

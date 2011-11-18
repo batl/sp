@@ -266,6 +266,30 @@
 						</div>
 					</li>
 					
+					<!-- Territory section -->
+					<fieldset>
+						<legend><?php echo $lang['project_territory']?></legend>
+						<div class="expanded">
+							
+							<!-- Project Territories -->
+							<li class='gfield'>
+								<div class='ginput_container array' name="territory">
+									<?php					
+									$project_territories = json_decode($entry['territory'], true);					
+									
+									foreach ($territories as $territory)
+									{							
+										?>							
+										<br/>						
+										<span class="check_item"><?php echo $territory['name']?></span><input type="checkbox" rel="array" value="<?php echo $territory['id']?>" <?php if (!empty($project_territories) && is_array($project_territories) && in_array($territory['id'], $project_territories)) echo 'checked="checked"';?>/>
+										<?php							
+									}
+									?>					
+								</div>
+							</li>	
+						</div>
+					</fieldset>
+					
 					<!-- Contacts -->
 					<li class='gfield'><label class='gfield_label'><?php echo $lang["contacts"]?>: </label>
 						<div class='ginput_container'>					

@@ -72,7 +72,7 @@ class Goods extends Crank {
 	{		
 		parent::get_view(
 			array(
-				'groups' 		=> 'sp_goods_categories', 
+				'groups' 		=> 'sp_goods_categories',
 				'organizations' => 'sp_organizations', 
 				'projects'      => 'sp_projects'
 			)

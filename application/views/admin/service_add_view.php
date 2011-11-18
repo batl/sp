@@ -21,12 +21,12 @@
 					<input name='userfile' id="foto" type='file' value='' class='medium' tabindex='3'/>					
 				</div>
 			</li>
-			<li class='gfield'><label class='gfield_label'><?php echo $lang["terms"]?><span class='gfield_required'>*</span>:</label>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["tags"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>					
 					<?php 						
 						foreach ($languages as $language):
 							?>
-							<input name='terms' language="<?php echo $language['id']?>" type='text' class='medium' tabindex='3'/>
+							<input name='tags' language="<?php echo $language['id']?>" type='text' class='medium' tabindex='3'/>
 							<?php								
 						endforeach;						
 					?>
@@ -40,7 +40,7 @@
 						foreach ($organizations as $organization)
 						{
 						?>
-						<option value="<?php $organization['id']?>"><?php echo $organization['name']?></option>
+						<option value="<?php echo $organization['id']?>"><?php echo $organization['name']?></option>
 						<?php
 						}
 						?>
@@ -61,7 +61,7 @@
 						foreach ($groups as $group)
 						{
 						?>
-						<option value="<?php $group['id']?>"><?php echo $group['name']?></option>
+						<option value="<?php echo $group['id']?>"><?php echo $group['name']?></option>
 						<?php
 						}
 						?>
@@ -77,7 +77,7 @@
 						foreach ($projects as $project)
 						{
 						?>
-						<option value="<?php $project['id']?>"><?php echo $project['name']?></option>
+						<option value="<?php echo $project['id']?>"><?php echo $project['name']?></option>
 						<?php
 						}
 						?>
@@ -90,6 +90,19 @@
 						foreach ($languages as $language):
 							?>
 							<div class="textarea" name='condition' language="<?php echo $language['id'];?>">
+								<textarea type='text' class='medium' tabindex='3'/></textarea>
+							</div>
+							<?php								
+						endforeach;						
+					?>
+				</div>
+			</li>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["terms_of_service"]?>:</label>
+				<div class='ginput_container'>					
+					<?php 						
+						foreach ($languages as $language):
+							?>
+							<div class="textarea" name='terms' language="<?php echo $language['id'];?>">
 								<textarea type='text' class='medium' tabindex='3'/></textarea>
 							</div>
 							<?php								

@@ -105,7 +105,7 @@ $lang["no_photos"]				= "Нет фотографий";
 $lang["project_result"]			= "Результат проекта";
 $lang["project_name"]			= "Результат проекта";
 $lang["note"]					= "Описание";
-$lang["condition"]				= "Состояние";
+$lang["condition"]				= "Сроки";
 $lang["terms"]					= "Теги";
 $lang["price"]					= "Цена";
 $lang["supplier"]				= "Поставщик";
@@ -354,6 +354,8 @@ $lang["project_initiators"]		= "Инициаторы проекта";
 $lang["project_organizators"]	= "Организаторы проекта";
 $lang["project_top_event"]		= "Топовое событие проекта";
 $lang["no_events"]				= "Нет события";
+$lang["project_territory"]		= "Зоны охвата";
+$lang["terms_of_service"]		= "Условия оказания услуги";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

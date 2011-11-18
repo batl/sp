@@ -247,9 +247,9 @@ class Crank extends CI_Controller {
 							$html .= '<a href="javascript:void(0);" id="videos-report-videos" class="stage_action"><img src="'.$this->params['lang']['videos_ico'].'" title="'.$this->params['lang']['videos'].'"/></a>';
 							break;
 						case "sp_events":
+							$html .= '<a href="javascript:void(0);" id="events-organizes-organizations" class="event_action"><img src="'.$this->params['lang']['parthners_ico'].'" title="'.$this->params['lang']['organizations'].'"/></a>';
 							$html .= '<a href="javascript:void(0);" id="events-curators-organizations" class="event_action">'.$this->params['lang']['curators'].'</a>';
-							$html .= '<a href="javascript:void(0);" id="events-methods-methods" class="event_action">'.$this->params['lang']['methods'].'</a>';
-							$html .= '<a href="javascript:void(0);" id="events-organizes-organizations" class="event_action">'.$this->params['lang']['organizators'].'</a>';
+							$html .= '<a href="javascript:void(0);" id="events-methods-methods" class="event_action">'.$this->params['lang']['methods'].'</a>';							
 							break;						
 						case "sp_poll":
 							$html .= '<a href="javascript:void(0);" class="poll_answers">'.$this->params['lang']['poll_answers'].'</a>';							

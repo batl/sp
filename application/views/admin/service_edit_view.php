@@ -26,7 +26,7 @@
 					<?php 						
 						foreach ($languages as $language):
 							?>
-							<input name='terms' language="<?php echo $language['id'];?>" type='text' value='<?php echo $entry['terms'][$language['id']];?>' class='medium' tabindex='3'/>
+							<input name='tags' language="<?php echo $language['id'];?>" type='text' value='<?php echo $entry['terms'][$language['id']];?>' class='medium' tabindex='3'/>
 							<?php								
 						endforeach;						
 					?>
@@ -91,6 +91,19 @@
 							?>
 							<div class="textarea" name='condition' language="<?php echo $language['id'];?>">
 								<textarea class='textarea small' tabindex='5' rows='10' cols='50'><?php echo $entry['condition'][$language['id']];?></textarea>		
+							</div>
+							<?php								
+						endforeach;						
+					?>
+				</div>
+			</li>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["terms_of_service"]?>:</label>
+				<div class='ginput_container'>					
+					<?php 						
+						foreach ($languages as $language):
+							?>
+							<div class="textarea" name='terms' language="<?php echo $language['id'];?>">
+								<textarea class='textarea small' tabindex='5' rows='10' cols='50'><?php echo $entry['terms'][$language['id']];?></textarea>		
 							</div>
 							<?php								
 						endforeach;						
