@@ -228,9 +228,9 @@ class Crank extends CI_Controller {
 				
 				$html .= '<td class="actions">';
 					if (!in_array('edit', $disabled_actions))
-						$html .= '<a href="javascript:void(0);" class="edit_item">'.$this->params['lang']['edit'].'</a>';
+						$html .= '<a href="javascript:void(0);" class="edit_item" title="'.$this->params['lang']['edit_title'].'">'.$this->params['lang']['edit'].'</a>';
 					if (!in_array('remove', $disabled_actions))
-						$html .= '<a href="javascript:void(0);" class="remove_item">'.$this->params['lang']['remove'].'</a>';
+						$html .= '<a href="javascript:void(0);" class="remove_item" title="'.$this->params['lang']['remove_title'].'">'.$this->params['lang']['remove'].'</a>';
 					
 					switch ($this->params['table_name'])
 					{
@@ -238,8 +238,9 @@ class Crank extends CI_Controller {
 							(!$confirmed) ? $html .= '<a href="javascript:void(0);" class="confirm_user">'.$this->params['lang']['confirm_user'].'</a>': '';
 							break;
 						case "sp_projects":
-							$html .= '<a href="javascript:void(0);" class="project_more"><img src="'.$this->params['lang']['stages_ico'].'" title="'.$this->params['lang']['stages'].'"/></a>';
+							$html .= '<a href="javascript:void(0);" class="project_more"><img src="'.$this->params['lang']['stages_ico'].'" title="'.$this->params['lang']['more'].'"/></a>';
 							$html .= '<a href="javascript:void(0);" class="projects_news"><img src="'.$this->params['lang']['news_ico'].'" title="'.$this->params['lang']['news'].'"/></a>';
+							$html .= '<a href="javascript:void(0);" class="projects_events"><img src="'.$this->params['lang']['event_ico'].'" title="'.$this->params['lang']['event'].'"/></a>';
 							$html .= '<a href="javascript:void(0);" class="projects_polls"><img src="'.$this->params['lang']['poll_ico'].'" title="'.$this->params['lang']['poll_title'].'"/></a>';
 							$html .= '<a href="javascript:void(0);" id="projects-partners-organizations" class="stage_partners"><img src="'.$this->params['lang']['parthners_ico'].'" title="'.$this->params['lang']['partners'].'"/></a>';
 							$html .= '<a href="javascript:void(0);" id="photos-report-photos" class="stage_action"><img src="'.$this->params['lang']['photos_ico'].'" title="'.$this->params['lang']['photos'].'"/></a>';

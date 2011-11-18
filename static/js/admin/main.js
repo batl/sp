@@ -11,6 +11,22 @@ var filter_values = new Array();
 
 $(document).ready(function(){							
 	
+	$('legend').live('click', function(){
+		if ($(this).next('.expanded:visible').length)
+		{
+			$(this).removeClass('active');
+			$(this).css({'background':'url("/static/images/menu-collapsed.png") no-repeat 0px 4px'});
+			$(this).parent('fieldset').css({'border':'0px solid #ccc','borderTop':'1px solid #ccc','background':'#fff'}); 
+		}
+		else
+		{
+			$(this).addClass('active');
+			$(this).css({'background':'url("/static/images/menu-expanded.png") no-repeat 0px 5px'});
+			$(this).parent('fieldset').css({'border':'1px solid #ccc', 'background':'#fffffa'});
+		}
+		$(this).next('.expanded').slideToggle('fast');
+	});
+	
 	$('.remove_image').live('click', function(){
 		$(this).parents('li').find('img').attr({'small':'', 'big':'', 'src':''});
 	});
@@ -446,6 +462,7 @@ function get_view(block, entry, action, id, clear_history)
 		if ($('#foto').length) image_upload(entry);
 		if ($('#background').length) image_upload(entry, 'background', 'site_background', 960);
 		if ($('#banner').length) image_upload(entry, 'banner', 'project_banner', 450, 'width');
+		if ($('#map_img').length) image_upload(entry, 'map_img', 'project_map_img', 450, 'width');
 		if ($('.document').length)
 		{
 			$('.document').each(function(){ document_upload($(this).attr('id')); });
@@ -520,9 +537,12 @@ function get_view(block, entry, action, id, clear_history)
 						});
 					}
 				});						
-			}
-						
+			}						
 		}
+
+		if ($( "#tabs" ).length) $( "#tabs" ).tabs();
+		
+		setTimeout(function () {$('.expanded').hide();}, 500);
 		
 	},"json");
 }
@@ -568,7 +588,7 @@ function save_entry(block, entry, id, single, parent_block, after_save)
 		data.push(JSON.stringify(data_array));
 	});
 	
-	parent_block.find('input[type=checkbox][rel!=array]:visible').each(function(){
+	parent_block.find('input[type=checkbox][rel!=array]').each(function(){
 		if (!$(this).parents('#map_canvas').length)
 		{
 			keys.push($(this).attr('name'));		
@@ -602,6 +622,11 @@ function save_entry(block, entry, id, single, parent_block, after_save)
 	if (parent_block.find('#site_banner').length){
 		keys.push($('#site_banner').attr('name'));
 		data.push($('#site_banner').attr('big'));
+	}
+	
+	if (parent_block.find('#project_map_img').length){
+		keys.push($('#project_map_img').attr('name'));
+		data.push($('#project_map_img').attr('big'));
 	}
 	
 	if (parent_block.find('#project_banner').length){
@@ -817,9 +842,9 @@ function tiny_init()
 			theme : "advanced",
 			plugins : "table,inlinepopups",
 			
-			theme_advanced_buttons1 : "bullist, numlist,indent,outdent,copy,paste,cut,undo,redo,charmap,link,unlink,code",
+			theme_advanced_buttons1 : "forecolor, backcolor, bullist, numlist,indent,outdent,copy,paste,cut,undo,redo,charmap,link,unlink,code",
 			theme_advanced_buttons2 : "bold, italic, underline, image, hr, justifyleft, justifycenter, justifyright, justifyfull, styleselect, formatselect, fontselect, fontsizeselect",
-			theme_advanced_buttons3 : "forecolor, backcolor",
+			theme_advanced_buttons3 : "",
 
 			theme_advanced_toolbar_location : "top",
 			theme_advanced_toolbar_align : "left",

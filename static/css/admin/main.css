@@ -817,9 +817,10 @@ border:1px solid #ccc;
 -webkit-border-radius: 5px;
 -khtml-border-radius: 5px;
 border-radius: 5px;
-height:30px;
+height:25px;
 padding-left:5px;
-width:100%;
+margin-top:5px;
+width:98%;
 }
 
 textarea{
@@ -844,6 +845,10 @@ height:10px;
 
 input[type="file"]  {
 border:0;
+}
+
+select{
+width:150px;
 }
 
 .gfield {
@@ -1309,4 +1314,37 @@ width:49px;
 float:left;
 margin:3px;
 cursor:pointer;
+}
+
+fieldset{
+border-top: 1px solid #CCCCCC;
+padding: 5px 15px;
+margin:10px;
+}
+
+fieldset legend{
+font-weight: bold;
+padding: 0 10px;
+margin-left:15px;
+background:url("/static/images/menu-collapsed.png") no-repeat;
+background-position:0px 4px;
+cursor:pointer;
+color:#ccc;
+}
+
+fieldset legend.active{
+color:#000;
+}
+
+fieldset legend:hover{
+color:#3B89B1;
+}
+
+.check_item{
+border-bottom: 1px dashed #CCCCCC;
+clear: both;
+display: block;
+float: left;
+padding: 1px;
+width: 90%;
 }

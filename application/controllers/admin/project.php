@@ -103,7 +103,7 @@ class Project extends Crank {
 		}
 		
 		parent::get_view(
-			array('groups' => 'sp_projects_categories', 'places' => 'sp_places'),
+			array('groups' => 'sp_projects_categories', 'places' => 'sp_places', 'organizations' => 'sp_organizations', 'projects' => 'sp_projects', 'events' => 'sp_events'),
 			false,
 			false,
 			array('backgrounds' => $bg)

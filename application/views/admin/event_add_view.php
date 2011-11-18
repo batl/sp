@@ -3,6 +3,7 @@
 	</div>
 	<div class='gform_body'>
 		<input type='hidden' class='gform_hidden' name='id' value='0'/>
+		<input type="hidden" class='gform_hidden' name='project_id' value='<?php echo $project_id?>'/>
 		<input type='hidden' class='gform_hidden' name='user_id' value='<?php echo $admin_info['id']?>'/>
 		<ul class='gform_fields top_label'>								
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["title"]?><span class='gfield_required'>*</span>:</label>
@@ -52,22 +53,7 @@
 					</select>	
 					<span id="create_type" class="create_new"></span>
 				</div>
-			</li>
-			<li class='gfield'><label class='checkbox_label'><?php echo $lang["project"]?><span class='gfield_required'>*</span>:</label>
-				<div class='ginput_container'>
-					<select name="project_id">
-						<option value="0"><?php echo $lang["no_project"]?></option>
-						<?php
-						foreach ($projects as $project)
-						{
-						?>
-						<option value="<?php echo $project['id']?>"><?php echo $project['name']?></option>
-						<?php
-						}
-						?>
-					</select>	
-				</div>
-			</li>
+			</li>			
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["place"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
 					<select name="place">
@@ -102,12 +88,12 @@
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["date_start"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
-					<input name='date_start' language="no" type='text' value='<?php echo date("m/d/Y");?>' class='medium picker' tabindex='3'/>
+					<input name='date_start' language="no" type='text' value='' class='medium picker' tabindex='3'/>
 				</div>
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["date_end"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
-					<input name='date_end' language="no" type='text' value='<?php echo date("m/d/Y");?>' class='medium picker' tabindex='3'/>
+					<input name='date_end' language="no" type='text' value='' class='medium picker' tabindex='3'/>
 				</div>
 			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["number_of_sessions"]?><span class='gfield_required'>*</span>:</label>

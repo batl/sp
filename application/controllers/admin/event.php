@@ -41,7 +41,7 @@ class Event extends Crank {
 		$this->include_view('event_view',$this->params);
 	}
 	
-	public function get_items()
+	public function get_items($id = 0)
 	{
 		parent::get_items(
 			false, 
@@ -56,11 +56,12 @@ class Event extends Crank {
 				'id' 			 => 'hidden',				
 				'place'			 => $this->Crank_model->get_all_entries('sp_places', array(), 0, false, 'id', 'asc', array('sp_places' => array('id', 'name'))),
 				'public_email' 	 => $this->Crank_model->get_all_entries('sp_users', array(), 0, false, 'id', 'asc', array('sp_users' => array('id', 'email as nick')))
-			)
+			),
+			array('project_id' => $id) // where			
 		);
 	}		
 	
-	public function get_view()
+	public function get_view($id = 0)
 	{		
 		parent::get_view(
 			array(
@@ -68,7 +69,10 @@ class Event extends Crank {
 				'groups' => 'sp_events_categories', 
 				'places' => 'sp_places',
 				'projects' => 'sp_projects'
-			)
+			),
+			false,
+			false,
+			array('project_id' => $id) // where
 		);
 	}
 	

@@ -22,7 +22,7 @@ $(document).ready(function(){
 					
 		var reload;
 		
-		(entry.split('_')[0] == 'moreproject') ? reload = true: reload = false;
+		(entry.split('_')[0] == 'moreproject') ? reload = true: reload = undefined;				
 		
 		save_entry(block, entry, $('input[name=id]').val(), reload);
 		
@@ -71,6 +71,20 @@ $(document).ready(function(){
 		$('#content h2:first').html($(this).html()+" "+$(this).parents('tr').find('td').eq(2).html());
 		
 		entry = 'news_'+id;
+		
+		get_items(block,entry, 0, 'id', 'asc');
+		
+	});
+	
+	// View project events
+	
+	$('.projects_events').live('click', function(){
+		
+		var id = $(this).parents('tr').find('td:first').html();					
+		
+		$('#content h2:first').html($(this).html()+" "+$(this).parents('tr').find('td').eq(2).html());
+		
+		entry = 'event_'+id;
 		
 		get_items(block,entry, 0, 'id', 'asc');
 		
