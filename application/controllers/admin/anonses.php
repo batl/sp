@@ -27,7 +27,7 @@ class Anonses extends Crank {
 		$this->include_view('news_view',$this->params);
 	}
 	
-	public function get_items()
+	public function get_items($id = 0)
 	{
 		parent::get_items(
 			false, 	// table name (false = default controller table)
@@ -35,13 +35,14 @@ class Anonses extends Crank {
 				'sp_anonses' => array('id', 'thumb', 'name','link')
 			),
 			array(),
-			array('id' => 'hidden')
+			array('id' => 'hidden'),
+			array('project_id' => $id) // where
 		);
 	}		
 	
-	public function get_view()
+	public function get_view($id = 0)
 	{		
-		parent::get_view();					
+		parent::get_view(array(), false, false, array('project_id' => $id));					
 	}
 	
 	public function save_entry()

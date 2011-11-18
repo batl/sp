@@ -288,6 +288,7 @@ $lang["public_email"] 			= "Опубликовал";
 $lang["in_social_networks"] 	= "в социальных сетях";
 $lang["stages_ico"]				= "/static/images/steps.png";
 $lang["news_ico"]				= "/static/images/news.png";
+$lang["anons_ico"]				= "/static/images/anons_ico.png";
 $lang["poll_ico"]				= "/static/images/poll.png";
 $lang["parthners_ico"]			= "/static/images/parthners.png";
 $lang["photos_ico"]				= "/static/images/photos.png";

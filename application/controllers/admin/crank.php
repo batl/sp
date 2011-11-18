@@ -240,6 +240,7 @@ class Crank extends CI_Controller {
 						case "sp_projects":
 							$html .= '<a href="javascript:void(0);" class="project_more"><img src="'.$this->params['lang']['stages_ico'].'" title="'.$this->params['lang']['more'].'"/></a>';
 							$html .= '<a href="javascript:void(0);" class="projects_news"><img src="'.$this->params['lang']['news_ico'].'" title="'.$this->params['lang']['news'].'"/></a>';
+							$html .= '<a href="javascript:void(0);" class="projects_anonses"><img src="'.$this->params['lang']['anons_ico'].'" title="'.$this->params['lang']['anonses'].'"/></a>';
 							$html .= '<a href="javascript:void(0);" class="projects_events"><img src="'.$this->params['lang']['event_ico'].'" title="'.$this->params['lang']['event'].'"/></a>';
 							$html .= '<a href="javascript:void(0);" class="projects_polls"><img src="'.$this->params['lang']['poll_ico'].'" title="'.$this->params['lang']['poll_title'].'"/></a>';
 							$html .= '<a href="javascript:void(0);" id="projects-partners-organizations" class="stage_partners"><img src="'.$this->params['lang']['parthners_ico'].'" title="'.$this->params['lang']['partners'].'"/></a>';

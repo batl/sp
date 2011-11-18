@@ -90,6 +90,20 @@ $(document).ready(function(){
 		
 	});
 	
+	// View project anonses
+	
+	$('.projects_anonses').live('click', function(){
+		
+		var id = $(this).parents('tr').find('td:first').html();					
+		
+		$('#content h2:first').html($(this).html()+" "+$(this).parents('tr').find('td').eq(2).html());
+		
+		entry = 'anonses_'+id;
+		
+		get_items(block,entry, 0, 'id', 'asc');
+		
+	});
+	
 	// View project polls
 	
 	$('.projects_polls').live('click', function(){
