@@ -90,7 +90,7 @@
 						foreach ($languages as $language):
 							?>
 							<div class="textarea" name='condition' language="<?php echo $language['id'];?>">
-								<textarea class='textarea small' tabindex='5' rows='10' cols='50'><?php echo $entry['condition'][$language['id']];?></textarea>		
+								<textarea class='textarea small mceEditor' tabindex='5' rows='10' cols='50'><?php echo $entry['condition'][$language['id']];?></textarea>		
 							</div>
 							<?php								
 						endforeach;						
@@ -116,7 +116,7 @@
 						foreach ($languages as $language):
 							?>
 							<div class="textarea" name='note' language="<?php echo $language['id'];?>">
-								<textarea class='textarea small' tabindex='5' rows='10' cols='50'><?php echo $entry['note'][$language['id']];?></textarea>		
+								<textarea class='textarea small mceEditor' tabindex='5' rows='10' cols='50'><?php echo $entry['note'][$language['id']];?></textarea>		
 							</div>
 							<?php								
 						endforeach;						

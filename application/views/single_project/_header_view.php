@@ -12,7 +12,7 @@
 	
 	<?php foreach ($include_css as $key=>$item){echo $item;}?>
 </head>
-<body <?php if ((int)$project['apply_bg']) echo "style='background: url(".$base.'static/images/background/'.$project['bg_image'].")'"; else echo "style='background: ".$project['bg_color']."'";?>>
+<body <?php if ((int)$project['apply_bg']) echo "style='background: url(".$base.'static/images/background/'.$project['bg_image'].")'"; else if ($project['bg_header_image']) echo "style='background: url(".$base.$project['bg_header_image'].")'"; else echo "style='background: ".$project['bg_color']."'";?>>
 
 <!-- PNG FIX for IE6 -->
 <!--[if lte IE 6]>
@@ -29,7 +29,7 @@
 <span id="menu_font" style="display:none;"><?php echo $project['menu_font']?></span>
 <span id="purpose_color" style="display:none;"><?php echo $project['purpose_color']?></span>
 	
-<div id="header" <?php if ($project['bg_header_image']) echo "style='background: url(".$base.$project['bg_header_image'].") no-repeat scroll 50% 37px transparent'"; ?>>
+<div id="header">
 	<div id="languages" >
 		<div id="links">
 			<a href="<?php echo $base;?>"><img src="<?php echo $base_img?>folder_home.png" style="height:25px;"/></a>

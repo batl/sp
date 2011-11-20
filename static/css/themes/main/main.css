@@ -2189,7 +2189,6 @@ float:right;
 
 .news-home fieldset{
 clear:both;
-border:1px solid #ccc;
 padding:5px;
 }
 
@@ -2225,4 +2224,48 @@ width:49px;
 float:left;
 margin:3px;
 cursor:pointer;
+}
+
+.expanded{
+display:none;
+}
+
+.fieldset fieldset{
+border-top: 1px solid #CCCCCC;
+padding: 5px 15px;
+margin:5px 10px;
+}
+
+.fieldset fieldset legend{
+font-weight: bold;
+padding: 0 10px;
+margin-left:15px;
+background:url("/static/images/menu-collapsed.png") no-repeat;
+background-position:0px 4px;
+cursor:pointer;
+color:#ccc;
+font-size:11px;
+}
+
+.fieldset fieldset legend.active{
+color:#000;
+}
+
+.fieldset fieldset legend:hover{
+color:#3B89B1;
+}
+
+.do_comment{
+font-size:10px;
+color:#416F1B;
+text-decoration:underline;
+}
+
+.do_comment:hover{
+color:#11549B;
+}
+
+.comments p{
+border:1px dotted #ccc;
+padding:3px;
 }

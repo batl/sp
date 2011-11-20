@@ -10,7 +10,7 @@ class Report extends Crank {
 		if (empty($this->params['admin_id'])) redirect($this->params['base']);				
 		
 		$this->load->model("Report_model");
-		$this->params['main_navi'] = 6;		
+		$this->params['main_navi'] = 12;		
 	}	
 	
 	public function index()

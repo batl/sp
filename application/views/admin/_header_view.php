@@ -42,19 +42,19 @@
 			<div id="main-nav">
 				<ul id="menu-main-navigation" class="menu">
 					<li id="menu-item-1" <?php if ($main_navi==1) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>"><?php echo $lang['dashboard']?></a></li>
-					<li id="menu-item-2" <?php if ($main_navi==2) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>user"><?php echo $lang['users']?></a></li>
-					<li id="menu-item-3" <?php if ($main_navi==3) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>page"><?php echo $lang['pages']?></a></li>
-					<li id="menu-item-4" <?php if ($main_navi==4) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>goods"><?php echo $lang['goods'].'/'.$lang['services']?></a></li>					
-					<li id="menu-item-5" <?php if ($main_navi==5) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>project"><?php echo $lang['projects'].'/'.$lang['ideas']?></a></li>
-					<li id="menu-item-6" <?php if ($main_navi==6) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>report"><?php echo $lang['reports']?></a></li>
-					<li id="menu-item-7" <?php if ($main_navi==7) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>profile"><?php echo $lang['profile']?></a></li>					
+					<li id="menu-item-2" <?php if ($main_navi==2) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>project"><?php echo $lang['projects'].'/'.$lang['ideas']?></a></li>
+					<li id="menu-item-3" <?php if ($main_navi==3) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>event"><?php echo $lang['events']?></a></li>
+					<li id="menu-item-4" <?php if ($main_navi==4) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>news"><?php echo $lang['news'].'/'.$lang['anonses']?></a></li>
+					<li id="menu-item-5" <?php if ($main_navi==5) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>page"><?php echo $lang['pages']?></a></li>
+					<li id="menu-item-6" <?php if ($main_navi==6) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>goods"><?php echo $lang['goods'].'/'.$lang['services']?></a></li>										
+					<li id="menu-item-7" <?php if ($main_navi==7) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>poll"><?php echo $lang['polls']?></a></li>					
 				</ul>
 				<ul id="menu-main-navigation" class="menu display_none">
-					<li id="menu-item-8" <?php if ($main_navi==8) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>dictionary"><?php echo $lang['dictionary']?></a></li>
-					<li id="menu-item-9" <?php if ($main_navi==9) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>news"><?php echo $lang['news'].'/'.$lang['anonses']?></a></li>
-					<li id="menu-item-10" <?php if ($main_navi==10) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>event"><?php echo $lang['events']?></a></li>
+					<li id="menu-item-8" <?php if ($main_navi==8) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>user"><?php echo $lang['users']?></a></li>
+					<li id="menu-item-9" <?php if ($main_navi==9) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>dictionary"><?php echo $lang['dictionary']?></a></li>
+					<li id="menu-item-10" <?php if ($main_navi==10) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>profile"><?php echo $lang['profile']?></a></li>
 					<li id="menu-item-11" <?php if ($main_navi==11) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>settings"><?php echo $lang['settings']?></a></li>
-					<li id="menu-item-12" <?php if ($main_navi==12) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>poll"><?php echo $lang['polls']?></a></li>
+					<li id="menu-item-12" <?php if ($main_navi==12) echo "class='menu-item-selected'"; else echo "class='menu-item'"; ?>><a href="<?php echo $base;?>report"><?php echo $lang['reports']?></a></li>					
 				</ul>
 				<a href="javascript:void(0);" id="menu-switcher" class="down"></a>
 			</div><!-- #main-nav -->			

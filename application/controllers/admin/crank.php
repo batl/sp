@@ -248,7 +248,8 @@ class Crank extends CI_Controller {
 								$html .= '<a href="javascript:void(0);" class="projects_polls"><img src="'.$this->params['lang']['poll_ico'].'" title="'.$this->params['lang']['poll_title'].'"/></a>';
 								$html .= '<a href="javascript:void(0);" id="projects-partners-organizations" class="stage_partners"><img src="'.$this->params['lang']['parthners_ico'].'" title="'.$this->params['lang']['partners'].'"/></a>';
 								$html .= '<a href="javascript:void(0);" id="photos-report-photos" class="stage_action"><img src="'.$this->params['lang']['photos_ico'].'" title="'.$this->params['lang']['photos'].'"/></a>';
-								$html .= '<a href="javascript:void(0);" id="videos-report-videos" class="stage_action"><img src="'.$this->params['lang']['videos_ico'].'" title="'.$this->params['lang']['videos'].'"/></a>';
+								$html .= '<a href="javascript:void(0);" id="videos-report-videos" class="stage_action"><img src="'.$this->params['lang']['videos_ico'].'" title="'.$this->params['lang']['videos'].'"/></a><br/><br/>';
+								$html .= '<a href="javascript:void(0);" class="projects_comments">'.$this->params['lang']['comments'].'</a>';
 								break;
 							case "sp_events":
 								$html .= '<a href="javascript:void(0);" id="events-organizes-organizations" class="event_action"><img src="'.$this->params['lang']['parthners_ico'].'" title="'.$this->params['lang']['organizations'].'"/></a>';
@@ -257,6 +258,9 @@ class Crank extends CI_Controller {
 								break;						
 							case "sp_poll":
 								$html .= '<a href="javascript:void(0);" class="poll_answers">'.$this->params['lang']['poll_answers'].'</a>';							
+								break;
+							case "sp_projects_comments":
+								$html .= '<a href="javascript:void(0);" class="moderate_item">'.$this->params['lang']['moderate'].'</a>';
 								break;
 						}
 					}
@@ -653,6 +657,23 @@ class Crank extends CI_Controller {
 		if ($this->Crank_model->recover_entry($table_name))
 		{
 			$data['message'] = $this->params['lang']['record_was_recovered'];
+		}		
+		
+		echo json_encode($data);
+		
+	}
+
+	protected function moderate_entry($table_name = false)
+	{
+		if (!$table_name) $table_name = $this->params['table_name'];
+	
+		$data = array(
+			'message' => $this->params['lang']['unknown_error']
+		);
+		
+		if ($this->Crank_model->moderate_entry($table_name))
+		{
+			$data['message'] = $this->params['lang']['record_was_moderated'];
 		}		
 		
 		echo json_encode($data);

@@ -88,6 +88,25 @@
 				</div>				
 				<div id="limit"><span><?php echo $lang['records_per_page']?>:</span>&nbsp;<a href="javascript:void(0);" class="selected">5</a><a href="javascript:void(0);">10</a><a href="javascript:void(0);">20</a><a href="javascript:void(0);">30</a></div>		
 			</div><!--  #content-container -->
+			<div id="modal_forms">
+				<form method='post' id="comment_modal_form" title="<?php echo $lang['create_new_comment']?>">
+					<li class='gfield'><label class='gfield_label'><?php echo $lang["your_name"]?><span class='gfield_required'>*</span>:</label>
+						<div class='ginput_container'>
+							<input name='author' language="no" type='text' value='' class='medium' tabindex='3'/>
+						</div>
+					</li>
+					<li class='gfield'><label class='gfield_label'><?php echo $lang["comment"]?><span class='gfield_required'>*</span>:</label>
+						<div class='ginput_container'>
+							<input name='body' language="no" type='text' value='' class='medium' tabindex='3'/>
+						</div>
+					</li>
+					<input name='project_id' language="no" type='hidden' value='' class='medium' tabindex='3'/>
+					<input name='comment_id' language="no" type='hidden' value='0' class='medium' tabindex='3'/>
+				</form>
+			</div>
+			<div id="dialog-modal" title="<?php echo $lang['message']?>">
+				<p style="text-align:center;"><?php echo $lang['comment_on_moderation']?></p>
+			</div>
 		</div>
 	</div><!--  #content -->
 </div><!--  #wrapper -->

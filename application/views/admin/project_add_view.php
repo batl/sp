@@ -219,7 +219,7 @@
 								foreach ($languages as $language):
 									?>
 									<div class="textarea" name='note' language="<?php echo $language['id'];?>">
-										<textarea type='text' class='medium' tabindex='3'></textarea>
+										<textarea type='text' class='medium mceEditor' tabindex='3'></textarea>
 									</div>
 									<?php								
 								endforeach;						
@@ -271,7 +271,7 @@
 								foreach ($languages as $language):
 									?>
 									<div class="textarea" name='contacts' language="<?php echo $language['id'];?>">
-										<textarea type='text' class='medium' tabindex='3'></textarea>
+										<textarea type='text' class='medium mceEditor' tabindex='3'></textarea>
 									</div>
 									<?php								
 								endforeach;						

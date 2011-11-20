@@ -40,7 +40,7 @@ $(document).ready(function(){
 		
 		var action = true;
 		
-		if (entry.indexOf('trash')>=0) action = undefined;
+		if (entry.indexOf('trash')>=0 || entry.indexOf('pollanswers')>=0) action = undefined;
 		
 		remove_entry(block, entry, id, action);
 		

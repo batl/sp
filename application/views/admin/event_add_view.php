@@ -17,6 +17,14 @@
 					?>
 				</div>
 			</li>
+			
+			<!-- Active -->
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["active"]?>:</label>
+				<div class='ginput_container'>
+					<input name='active' type='checkbox' class='medium' tabindex='4'/>
+				</div>
+			</li>
+			
 			<img id="foto_img" name="logo" big="" small="" src=""/>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["foto"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
@@ -107,7 +115,7 @@
 						foreach ($languages as $language):
 							?>
 							<div class="textarea" name='schedule' language="<?php echo $language['id'];?>">
-								<textarea type='text' class='medium' tabindex='3'></textarea>
+								<textarea type='text' class='medium mceEditor' tabindex='3'></textarea>
 							</div>
 							<?php								
 						endforeach;						
@@ -120,7 +128,7 @@
 						foreach ($languages as $language):
 							?>
 							<div class="textarea" name='price' language="<?php echo $language['id'];?>">
-								<textarea type='text' class='medium' tabindex='3'></textarea>
+								<textarea type='text' class='medium mceEditor' tabindex='3'></textarea>
 							</div>
 							<?php								
 						endforeach;						
@@ -133,7 +141,7 @@
 						foreach ($languages as $language):
 							?>
 							<div class="textarea" name='poster' language="<?php echo $language['id'];?>">
-								<textarea type='text' class='medium' tabindex='3'></textarea>
+								<textarea type='text' class='medium mceEditor' tabindex='3'></textarea>
 							</div>
 							<?php								
 						endforeach;						
@@ -146,7 +154,7 @@
 						foreach ($languages as $language):
 							?>
 							<div class="textarea" name='description' language="<?php echo $language['id'];?>">
-								<textarea type='text' class='medium' tabindex='3'></textarea>
+								<textarea type='text' class='medium mceEditor' tabindex='3'></textarea>
 							</div>
 							<?php								
 						endforeach;						
@@ -159,7 +167,7 @@
 						foreach ($languages as $language):
 							?>
 							<div class="textarea" name='report' language="<?php echo $language['id'];?>">
-								<textarea type='text' class='medium' tabindex='3'></textarea>
+								<textarea type='text' class='medium mceEditor' tabindex='3'></textarea>
 							</div>
 							<?php								
 						endforeach;						

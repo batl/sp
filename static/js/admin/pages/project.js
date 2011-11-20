@@ -54,9 +54,32 @@ $(document).ready(function(){
 		
 		var action = true;
 		
-		if (entry.indexOf('trash')>=0) action = undefined;
+		if (entry.indexOf('trash')>=0 || entry.indexOf('group')>=0 || entry.indexOf('news')>=0 || entry.indexOf('anonses')>=0 || entry.indexOf('joins')>=0 || entry.indexOf('poll')>=0 || entry.indexOf('comments')>=0) action = undefined;
 		
 		remove_entry(block, entry, id, action);
+		
+	});
+	
+	// Moderate comment
+	
+	$('.moderate_item').live('click', function(){
+		
+		var id = $(this).parents('tr').find('td:first').html();												
+		
+		moderate_entry(block, entry, id);
+		
+	});
+	
+	
+	$('.event_action').live('click', function(){
+		
+		var id = $(this).parents('tr').find('td:first').html();	
+		
+		$('#content h2:first').html($(this).html()+' '+$(this).parents('tr').find('td').eq(2).html());
+		
+		entry = 'joins_'+$(this).attr('id')+'-'+id;
+		
+		get_items(block,entry, 0, 'id', 'asc');
 		
 	});
 	
@@ -139,6 +162,20 @@ $(document).ready(function(){
 		$('#content h2:first').html($(this).parents('tr').find('td').eq(2).html());
 		
 		entry = 'pollanswers_'+id;
+		
+		get_items(block,entry, 0, 'id', 'asc');
+		
+	});	
+	
+	// View project comments
+	
+	$('.projects_comments').live('click', function(){
+		
+		var id = $(this).parents('tr').find('td:first').html();					
+		
+		$('#content h2:first').html($(this).parents('tr').find('td').eq(2).html());
+		
+		entry = 'comments_'+id;
 		
 		get_items(block,entry, 0, 'id', 'asc');
 		

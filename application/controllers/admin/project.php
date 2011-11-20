@@ -9,7 +9,7 @@ class Project extends Crank {
 		
 		if (empty($this->params['admin_id'])) redirect($this->params['base']);				
 				
-		$this->params['main_navi'] = 5;		
+		$this->params['main_navi'] = 2;		
 				
 		$this->include_js('jquery/ui/jquery.ui.core.js');		
 		$this->include_js('jquery/ui/jquery.ui.widget.js');		

@@ -246,7 +246,7 @@
 								foreach ($languages as $language):
 									?>
 									<div class="textarea" name='note' language="<?php echo $language['id'];?>">
-										<textarea class='textarea small' tabindex='5' rows='10' cols='50'><?php echo $entry['note'][$language['id']];?></textarea>		
+										<textarea class='textarea small mceEditor' tabindex='5' rows='10' cols='50'><?php echo $entry['note'][$language['id']];?></textarea>		
 									</div>
 									<?php								
 								endforeach;						
@@ -298,7 +298,7 @@
 								foreach ($languages as $language):
 									?>
 									<div class="textarea" name='contacts' language="<?php echo $language['id'];?>">
-										<textarea type='text' class='medium' tabindex='3'><?php echo $entry['contacts'][$language['id']];?></textarea>
+										<textarea type='text' class='medium mceEditor' tabindex='3'><?php echo $entry['contacts'][$language['id']];?></textarea>
 									</div>
 									<?php								
 								endforeach;						
@@ -404,14 +404,12 @@
 					<!-- Project Places -->
 					<li class='gfield'>
 						<div class='ginput_container array' name="place">
-							<?php					
-							$project_places = json_decode($entry['place'], true);					
-							
+							<?php																					
 							foreach ($places as $place)
 							{							
 								?>							
 								<br/>						
-								<span class="check_item"><?php echo $place['name']?></span><input type="checkbox" rel="array" value="<?php echo $place['id']?>" <?php if (!empty($project_places) && is_array($project_places) && in_array($place['id'], $project_places)) echo 'checked="checked"';?>/>
+								<span class="check_item"><?php echo $place['name']?></span><input type="checkbox" rel="array" value="<?php echo $place['id']?>" <?php if (!empty($entry['place']) && is_array($entry['place']) && in_array($place['id'], $entry['place'])) echo 'checked="checked"';?>/>
 								<?php							
 							}
 							?>					

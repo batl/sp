@@ -28,14 +28,9 @@ class Project extends Crank {
 			'id',
 			'asc',
 			array(
-				'sp_projects' => array('id','user_id','logo','name','date_start','date_end','short_description','slug','purpose','poster','banner','note', 'tags', 'bg_image', 'bg_color', 'map', 'map_description', 'contacts', 'facebook_link', 'twitter_link', 'vkontakte_link', 'apply_bg', 'bg_header_image', 'menu_font', 'title_color', 'purpose_color', 'banner_bg_color'),
-				'sp_places' => array('name as place'),
-				'sp_projects_categories' => array('name as group_name')
+				'sp_projects' => array('id','user_id','logo','name','date_start','date_end','short_description','slug','purpose','banner','note', 'tags', 'bg_image', 'bg_color', 'map', 'map_description', 'contacts', 'facebook_link', 'twitter_link', 'vkontakte_link', 'apply_bg', 'bg_header_image', 'menu_font', 'title_color', 'purpose_color', 'banner_bg_color', 'place as places', 'category_id')
 			),
-			array(
-				'sp_places'=>'place', 
-				'sp_projects_categories' => 'category_id'
-			),
+			array(),
 			true
 		);				
 		
@@ -45,7 +40,8 @@ class Project extends Crank {
 				'active' 		=> 1,
 				'project_id' 	=> $this->params['project']['id'],
 				'date_start <=' => date("Y-m-d"),
-				'date_end >=' 	=> date("Y-m-d")
+				'date_end >=' 	=> date("Y-m-d"),
+				'basket'		=> 0
 			),		 // where
 			0,		 // start
 			false,	 // limit
@@ -112,21 +108,18 @@ class Project extends Crank {
 				$this->params['project'] = $this->Crank_model->get_all_entries(
 					"sp_projects", 
 					array(
-						'id' => $this->session->userdata('project')
+						'id' => $this->session->userdata('project'),
+						'basket' => 0,
+						'active' => 1
 					),
 					0,
 					false,
 					'id',
 					'asc',
 					array(
-						'sp_projects' => array('id','user_id','thumb','name','date_start', 'date_end','short_description','slug','purpose','poster','banner','note', 'tags', 'contacts', 'title_color'),
-						'sp_places' => array('name as place'),
-						'sp_projects_categories' => array('name as group_name')
+						'sp_projects' => array('id','user_id','thumb','name','date_start', 'date_end','short_description','slug','purpose','banner','note', 'tags', 'contacts', 'title_color', 'place as places', 'category_id')						
 					),
-					array(
-						'sp_places'=>'place', 
-						'sp_projects_categories' => 'category_id'
-					),
+					array(),
 					true
 				);
 				
@@ -142,7 +135,7 @@ class Project extends Crank {
 			case 'hidden_link':
 			case 'partners':
 				
-				$this->params['project_more'] = $this->Crank_model->get_entry_by_data("sp_projectsstages", false, 'current', array('projects_id' => $this->session->userdata('project')));
+				$this->params['project_more'] = $this->Crank_model->get_entry_by_data("sp_projects", false, 'current', array('id' => $this->session->userdata('project')));
 		
 				if (!empty($this->params['project_more'])):		
 					foreach ($this->params['project_more'] as $key => $value):			

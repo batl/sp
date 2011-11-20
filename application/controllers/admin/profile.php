@@ -9,7 +9,7 @@ class Profile extends Crank {
 		
 		if (empty($this->params['admin_id'])) redirect($this->params['base']);
 				
-		$this->params['main_navi'] = 7;		
+		$this->params['main_navi'] = 10;		
 		$this->lang->load('profile', $this->params['language']);
 		$this->params['lang'] = $this->lang->language;
 		$this->include_js('jquery/ajaxupload.js');

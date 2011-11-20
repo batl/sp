@@ -9,7 +9,7 @@ class Dictionary extends Crank {
 		
 		if (empty($this->params['admin_id'])) redirect($this->params['base']);				
 						
-		$this->params['main_navi'] = 8;			
+		$this->params['main_navi'] = 9;			
 				
 		$this->include_js('jquery/ajaxupload.js');
 		$this->include_js('jquery/ui/jquery.ui.core.js');

@@ -31,6 +31,7 @@ class Page extends Crank {
 				"sp_poll", 							
 				array(
 					'active' => 1,
+					'basket' => 0,
 					'on_page' => $this->params['page']['id'],
 					'date_start <=' => date("Y-m-d"),
 					'date_end >=' => date("Y-m-d")
@@ -133,7 +134,9 @@ class Page extends Crank {
 								"sp_".$slug, 
 								array(
 									'date_start' => date("Y").'-'.date("m").'-'.$i,
-									'in_process' => 0
+									'in_process' => 0,
+									'active'	 => 1,
+									'basket'	 => 0
 								), 
 								0, 
 								false, 
@@ -151,6 +154,10 @@ class Page extends Crank {
 
 						$this->include_js('jquery/ui/jquery.ui.core.js');
 						$this->include_js('jquery/ui/jquery.ui.widget.js');
+						$this->include_js('jquery/ui/jquery.ui.mouse.js');		
+						$this->include_js('jquery/ui/jquery.ui.position.js');		
+						$this->include_js('jquery/ui/jquery.ui.draggable.js');		
+						$this->include_js('jquery/ui/jquery.ui.dialog.js');			
 						$this->include_js('jquery/ui/jquery.ui.datepicker.js');
 						$this->include_css('ui/jquery.ui.all.css');		
 						$this->include_css('pages/'.$slug.'.css');															
@@ -191,7 +198,9 @@ class Page extends Crank {
 				"sp_".$data[0], 
 				array(
 					'date_start' => $data[1].'-'.$data[2].'-'.$i,
-					'in_process' => 0
+					'in_process' => 0,
+					'active'	 => 1,
+					'basket'	 => 0
 				), 
 				0, 
 				false, 
@@ -229,8 +238,9 @@ class Page extends Crank {
 						'sp_projects'=>'project_result'
 					);
 					$table_name = "sp_goods";
+					$where = array('basket' => 0);
 					(!empty($entry[1])) ? $single = true : $single = false;
-					(!empty($entry[1])) ? $where = array('id' => intval($entry[1])):'';
+					(!empty($entry[1])) ? $where['id'] = intval($entry[1]):'';
 				break;
 			case  'services':
 					!empty($entry[1]) ? $custom_view = 'shop_services_single' : $custom_view = 'shop_services';					
@@ -246,8 +256,9 @@ class Page extends Crank {
 						'sp_projects'=>'project_result'
 					);	
 					$table_name = "sp_services";
+					$where = array('basket' => 0);
 					(!empty($entry[1])) ? $single = true : $single = false;
-					(!empty($entry[1])) ? $where = array('id' => intval($entry[1])):'';
+					(!empty($entry[1])) ? $where['id'] = intval($entry[1]):'';
 				break;
 			case  'news':
 					if (!empty($entry[3])):
@@ -266,9 +277,10 @@ class Page extends Crank {
 					endif;
 										
 					$table_name = "sp_news";
+					$where = array('basket' => 0);
 					(!empty($entry[2])) ? $project_id = $entry[2] : $project_id = 0;
 					(!empty($entry[1])) ? $single = true : $single = false;
-					(!empty($entry[1])) ? $where = array('id' => intval($entry[1])): $where = array('project_id' => $project_id);
+					(!empty($entry[1])) ? $where['id'] = intval($entry[1]): $where['project_id'] = $project_id;
 				break;
 			case  'anonses':
 					!empty($entry[1]) ? $custom_view = 'blog_anonses_single' : $custom_view = 'blog_anonses';					
@@ -276,8 +288,9 @@ class Page extends Crank {
 						'sp_anonses' => array('id', 'thumb', 'name','link', 'description')
 					); 		// get fields
 					$table_name = "sp_anonses";
+					$where = array('basket' => 0);
 					(!empty($entry[1])) ? $single = true : $single = false;
-					(!empty($entry[1])) ? $where = array('id' => intval($entry[1])):'';
+					(!empty($entry[1])) ? $where['id'] = intval($entry[1]):'';
 				break;
 			case 'poll':
 					$table_name = "sp_poll";
@@ -285,7 +298,7 @@ class Page extends Crank {
 						'sp_poll' => array('id','name','date_start','date_end', 'active')
 					);
 					$types = array('date_start' => 'date', 'date_end' => 'date', 'active' => 'bool');
-					$where = array('project_id' => $entry[1]);
+					$where = array('project_id' => $entry[1], 'basket' => 0);
 				break;
 			case 'pollanswers':
 					$table_name = "sp_poll_answers";
@@ -306,7 +319,7 @@ class Page extends Crank {
 					'sp_places' => array('name as place'),
 					'sp_events_categories' => array('name as group_name')
 				);
-				
+				$custom_where = '';
 				$custom_data['events'] = $this->Crank_model->get_all_entries("sp_events");
 				
 				if (!empty($entry[1]))
@@ -319,15 +332,15 @@ class Page extends Crank {
 						
 							if (!empty($dates[0]) && !empty($dates[1]))
 							{
-								$custom_where = "((date_start<='".date("Y-m-d", strtotime($dates[1]))."' AND (date_end='0000-00-00' OR date_end IS NULL)) OR (((date_start<='".date("Y-m-d", strtotime($dates[1]))."' OR (date_end>='".date("Y-m-d", strtotime($dates[0]))."' AND date_end<='".date("Y-m-d", strtotime($dates[1]))."')) AND date_end!='0000-00-00' AND date_end IS NOT NULL)) AND in_process=0)";
+								$custom_where = "((date_start<='".date("Y-m-d", strtotime($dates[1]))."' AND (date_end='0000-00-00' OR date_end IS NULL)) OR (((date_start<='".date("Y-m-d", strtotime($dates[1]))."' OR (date_end>='".date("Y-m-d", strtotime($dates[0]))."' AND date_end<='".date("Y-m-d", strtotime($dates[1]))."')) AND date_end!='0000-00-00' AND date_end IS NOT NULL)) AND in_process=0 AND active=1 AND basket=0)";
 							}
 							elseif (!empty($dates[0]))
 							{							
-								$custom_where = "(date_start>='".date("Y-m-d", strtotime($dates[0]))."' AND in_process=0)";
+								$custom_where = "(date_start>='".date("Y-m-d", strtotime($dates[0]))."' AND in_process=0 AND active=1 AND basket=0)";
 							}
 							elseif (!empty($dates[1]))
 							{															
-								$custom_where = "(date_end<='".date("Y-m-d", strtotime($dates[1]))."' OR date_end='0000-00-00' OR date_end IS NULL AND in_process=0)";
+								$custom_where = "(date_end<='".date("Y-m-d", strtotime($dates[1]))."' OR date_end='0000-00-00' OR date_end IS NULL AND in_process=0 AND active=1 AND basket=0)";
 							}							
 							
 							$day = NULL;
@@ -350,7 +363,7 @@ class Page extends Crank {
 						
 						$single = true;
 						
-						$where = array('id' => $entry[2]);
+						$where = array('id' => $entry[2], 'active' => 1, 'basket' => 0);
 					}
 				};
 				
@@ -365,44 +378,46 @@ class Page extends Crank {
 					{
 						case 'no': // В определенный месяц "Октябрь"
 							
-							$custom_where = "((date_start>='".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01'))."' AND date_start<'".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month'))."' AND in_process=0 AND (date_end='0000-00-00' OR date_end IS NULL)) OR ((date_start>='".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01'))."' AND date_start<'".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month'))."' AND in_process=0)) OR (date_end>='".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01'))."' AND date_end<'".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month'))."' AND in_process=0))";
+							$custom_where = "((date_start>='".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01'))."' AND date_start<'".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month'))."' AND in_process=0 AND active=1 AND basket=0 AND (date_end='0000-00-00' OR date_end IS NULL)) OR ((date_start>='".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01'))."' AND date_start<'".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month'))."' AND in_process=0 AND active=1 AND basket=0)) OR (date_end>='".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01'))."' AND date_end<'".date("Y-m-d", strtotime($entry[1].'-'.$entry[2].'-01 +1 month'))."' AND in_process=0 AND active=1 AND basket=0))";
 							
 							break;
 							
 						case 'next': // Текущие							
 							
-							$custom_where = "((date_start<='".date("Y-m-d")."' AND date_end>='".date("Y-m-d")."' AND in_process=0) OR (date_start<='".date("Y-m-d")."' AND (date_end IS NULL OR date_end='0000-00-00') AND in_process=0))";														
+							$custom_where = "((date_start<='".date("Y-m-d")."' AND date_end>='".date("Y-m-d")."' AND in_process=0 AND active=1 AND basket=0) OR (date_start<='".date("Y-m-d")."' AND (date_end IS NULL OR date_end='0000-00-00') AND in_process=0 AND active=1 AND basket=0))";														
 							
 							break;
 							
 						case 'prev': // Прошедшие
 
-							$custom_where = "(date_end<'".date("Y-m-d")."' AND in_process=0 AND date_end!='0000-00-00' AND date_end IS NOT NULL)";
+							$custom_where = "(date_end<'".date("Y-m-d")."' AND in_process=0  AND active=1 AND basket=0 AND date_end!='0000-00-00' AND date_end IS NOT NULL)";
 							
 							break;
 						
 						case 'future': // Будущие
 
-							$custom_where = "(date_start>'".date("Y-m-d")."' AND in_process=0)";
+							$custom_where = "(date_start>'".date("Y-m-d")."' AND in_process=0 AND active=1 AND basket=0)";
 							
 							break;
 							
 						case 'in_process': // Помечен как "В процессе"
 							$where = array(
-								'in_process' => 1
+								'in_process' => 1,
+								'active'	 => 1,
+								'basket'	 => 0
 							);
 							
 							break;
 						
 						default: // Попадает в определенный день
 						
-							$custom_where = "(date_start<='".$entry[1].'-'.$entry[2].'-'.$day."' AND (date_end>='".$entry[1].'-'.$entry[2].'-'.$day."' OR date_end='0000-00-00' OR date_end IS NULL))";
+							$custom_where = "(date_start<='".$entry[1].'-'.$entry[2].'-'.$day."' AND (date_end>='".$entry[1].'-'.$entry[2].'-'.$day."' OR date_end='0000-00-00' OR date_end IS NULL)  AND in_process=0  AND active=1 AND basket=0)";
 														
 							break;
 					}						
 				}
 				
-				if ($entry[0] == 'event') $where['user_id'] = $this->session->userdata('user_id');									
+				if ($entry[0] == 'event') $where['user_id'] = $this->session->userdata('user_id'); else if ($custom_where == '') {$where['basket'] = 0; $where['active'] = 1;}
 				
 				$table_name = "sp_events";				
 				
@@ -440,8 +455,7 @@ class Page extends Crank {
 				}
 				else
 				{
-					$where = array(
-						'in_process' => 0,
+					$where = array(						
 						'active'	 => 1,
 						'basket'	 => 0
 					);
@@ -450,14 +464,15 @@ class Page extends Crank {
 				$custom_view = 'profile_projects_view';
 				
 				$fields = array(
-					'sp_projects' => array('id','user_id','logo','name','date_start', 'date_end','short_description','slug','tags','in_process','bg_color', 'post_date', 'category_id'),
-					'sp_places' => array('name as place')//,
-					//'sp_projects_categories' => array('name as group_name')
+					'sp_projects' => array('id','user_id','logo','name','date_start', 'date_end','short_description','slug','tags','in_process','bg_color', 'post_date', 'category_id', 'place as places', 'boss', 'category_id', 'initiator', 'organizer', 'project_id')
 				); 
-				$joins = array(
-					'sp_places'=>'place'//, 
-					//'sp_projects_categories' => 'category_id'
-				);
+				$custom_data = array(
+					'all_places' => $this->Crank_model->get_all_entries('sp_places'),
+					'all_categories' => $this->Crank_model->get_all_entries('sp_projects_categories'),
+					'organizations' => $this->Crank_model->get_all_entries('sp_organizations', array('basket' => 0)),
+					'projects' => $this->Crank_model->get_all_entries('sp_projects', array('basket' => 0, 'active' => 1)),
+					'comments' => $this->Crank_model->get_all_entries('sp_projects_comments', array('visible' => 1))
+				);				
 				if (!empty($day))
 				{
 					switch ($day)
@@ -509,7 +524,7 @@ class Page extends Crank {
 				
 				break;
 				
-			case 'moreproject':
+			/*case 'moreproject':
 				$fields = array(
 					'sp_projectsstages' => array('id','name'),
 					'sp_territories' => array('name as territory')			
@@ -522,7 +537,7 @@ class Page extends Crank {
 				);
 				$table_name = "sp_projectsstages";
 				$single = false;
-				break;
+				break;*/
 			case 'organization':
 				$fields = array(
 					'sp_organizations' => array('id','name','logo','phone','email','sites', 'description', 'grantor', 'investor', 'individual', 'developer', 'sponsor', 'creative'),
@@ -555,7 +570,7 @@ class Page extends Crank {
 							break;
 					}
 				}				
-				
+				$where['basket'] = 0;
 				$table_name = "sp_organizations";
 				
 				break;
@@ -595,7 +610,8 @@ class Page extends Crank {
 									$table_name = "sp_organizations";
 									$custom_view = 'organizations_view';
 									$where = array(
-										'couche' => 1
+										'couche' => 1,
+										'basket' => 0
 									);
 									break;
 							}							
@@ -605,6 +621,9 @@ class Page extends Crank {
 							{
 								case 'methodics':									
 									$custom_view = 'methodics_single_view';
+									$where = array(
+										'id' => $entry[2]
+									);
 									break;
 								case 'couches':	
 									$fields = array(
@@ -620,11 +639,12 @@ class Page extends Crank {
 									);	
 									$table_name = "sp_organizations";
 									$custom_view = 'organizations_single_view';
+									$where = array(
+										'id' => $entry[2],
+										'basket' => 0
+									);
 									break;
-							}
-							$where = array(
-								'id' => $entry[2]
-							);
+							}							
 							$single = true;							
 							break;
 					}
@@ -775,7 +795,7 @@ class Page extends Crank {
 	}
 	
 	public function save_entry($entry)
-	{
+	{		
 		switch ($entry[0])
 		{
 			case 'project':
@@ -805,7 +825,10 @@ class Page extends Crank {
 			case 'joins':
 				$table_name = "sp_".implode('_',array($entry[1], $entry[2]));
 				break;
-		}
+			case 'comments':
+				$table_name = "sp_projects_comments";
+				break;
+		}		
 		parent::save_entry($table_name);
 	}
 	

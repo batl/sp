@@ -3,10 +3,7 @@ foreach ($project_more as $step):
 	?>
 	<div class="h_section">
 		<fieldset>
-			<legend><?php echo $step['name']?></legend>
-			<div class="h_section_content">
-				<?php echo $step['description']?>
-			</div>
+			<legend><?php echo $step['name']?></legend>			
 			<?php
 			if (!empty($step['photos'])):
 			?>

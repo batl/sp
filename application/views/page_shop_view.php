@@ -64,37 +64,56 @@
 					endif;
 				?>					
 			</div>
-			<div id="content-container">
+			<div id="content-container">								
 				<div id="sub-hdr">
 					<h3><?php echo $lang['goods']?></h3>
-					<div style="float:right; padding:6px;">
+					<div id="tag_search">
 						<div class="clear_search"></div><input id="search" type="text" value="" style="height:18px; width:150px; float:left;"/>
-						<div id="search_btn"></div>&nbsp;
-						<strong><?php echo $lang['group']?></strong>
-						<select class="shop_groups" rel="goods">
-							<option value="0"><?php echo $lang['all']?></option>
+						<div id="search_btn"></div>
+						<div id="sort_by_block">
+							<span><?php echo $lang['sort_by']?></span>
+							<select id="sort_by">
+								<option value="id"><?php echo $lang['default']?></option>
+								<option value="name"><?php echo $lang['name']?></option>								
+							</select>
+							<a href="javascript:void(0);" title="<?php echo $lang['sort_direction']?>" id="sort_direction" rel="asc">&nbsp;&#8595;</a>
+						</div>
+					</div>
+				</div>
+				<div id="filters">					
+					<span style="color:#000;"><?php echo $lang['groups']?>:&nbsp;</span>
+					<span rel="goods">
+						<a class="groups selected" rel="0"><?php echo $lang['all']?></a>
 						<?php
 							foreach ($goods_categories as $category)
 							{
 							?>
-							<option value="<?php echo $category['id']?>"><?php echo $category['name']?></option>
+							&nbsp;|&nbsp;<a class="groups" rel="<?php echo $category['id']?>"><?php echo $category['name'];?></a>
+							<?php
+							}
+						?>					
+					</span>
+					<span rel="services" class="hidden">
+						<a class="groups selected" rel="0"><?php echo $lang['all']?></a>
+						<?php
+							foreach ($services_categories as $category)
+							{
+							?>
+							&nbsp;|&nbsp;<a class="groups" rel="<?php echo $category['id']?>"><?php echo $category['name'];?></a>
 							<?php
 							}
 						?>
-						</select>
-						<select class="shop_groups hidden" rel="services">
-							<option value="0"><?php echo $lang['all']?></option>
-							<?php
-								foreach ($services_categories as $category)
-								{
-								?>
-								<option value="<?php echo $category['id']?>"><?php echo $category['name']?></option>
-								<?php
-								}
-							?>
-						</select>
-					</div>
+					</span>
 				</div>
+				<fieldset id="search_block">
+				   <legend><?php echo $lang['expanded_search']?></legend>
+				   <div id="search_fields"> 
+						<span><?php echo $lang['name']?>:&nbsp;</span><input name="name" type="text" value=""/>
+						<div class="clear"></div>
+						<input id="expanded_search" type="button" class="button" value="<?php echo $lang['search'];?>"/>
+				   </div>
+				</fieldset>
+				
 				<div id="items" class="items">
 					
 				</div>

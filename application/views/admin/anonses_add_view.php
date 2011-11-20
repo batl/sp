@@ -33,7 +33,7 @@
 						foreach ($languages as $language):
 							?>
 							<div class="textarea" name='description' language="<?php echo $language['id'];?>">
-								<textarea class='textarea small' tabindex='5' rows='10' cols='50'></textarea>
+								<textarea class='textarea small mceEditor' tabindex='5' rows='10' cols='50'></textarea>
 							</div>
 							<?php								
 						endforeach;							

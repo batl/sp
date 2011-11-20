@@ -131,6 +131,9 @@ $(document).ready(function(){
 		$('#sub-nav a').removeClass('selected');
 		$(this).addClass('selected');
 		$('#sub-hdr h3').html($(this).html());
+		$('a.groups').removeClass('selected');
+		$('a.groups[rel=0]').addClass('selected');
+		group = 0;
 		var start = 0;
 		var block = $('.items');
 		entry = $(this).attr('id');						
@@ -377,7 +380,7 @@ function get_items(block, entry, start, sort, sort_type, clear_history, after_ge
 					$('#filters').show();
 					$('#tag_search').show();
 				}
- 				break;			
+ 				break;								
 			case 'organization':
 				if (sub_entry[1] == 'type' || sub_entry[1] == undefined) 
 				{

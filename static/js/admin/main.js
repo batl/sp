@@ -776,6 +776,32 @@ function recover_entry(block, entry, id)
 	
 }
 
+function moderate_entry(block, entry, id)
+{
+	block.html('<div class="world_preloader"></div>');
+
+	$('.world_preloader').show();		
+					
+	var URL = base_url + entry.split('_')[0] + '/moderate_entry/' + entry.split('_')[1];
+	
+	$.post(URL, {"id":id}, function(response)
+	{										
+		
+		$('.world_preloader').hide();
+		
+		$('.message').html(response.message).show();
+				setTimeout(function(){
+					$('.message').fadeOut('fast');
+				},3000);
+				
+		var page  = parseInt($('.curent_page span').html());
+		var start = (page-1)*12;																		
+		
+		get_items(block, entry, start, sort, sort_type, true);
+		
+	},"json");
+}
+
 function init_modal_window(form_id, entry, success_handler){
 	$("#"+form_id).dialog({
 		autoOpen: false,				
@@ -904,7 +930,8 @@ function document_upload(input_file)
 function tiny_init()
 {
 	tinyMCE.init({			
-			mode : "textareas",
+			mode : "specific_textareas",
+			editor_selector : "mceEditor",
 			theme : "advanced",
 			plugins : "table,inlinepopups",
 			

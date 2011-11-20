@@ -12,6 +12,7 @@ class Crank_model extends CI_Model {
 		'sp_projects_categories' 	=> array('name'),
 		'sp_projects' 				=> array('name', 'boss', 'purpose', 'short_description', 'tags', 'poster', 'note', 'map_description', 'contacts', 'report','product_links','feedback_links','workgroups_links', 'paper'),
 		'sp_places_categories' 		=> array('name'),
+		'sp_projects_comments' 		=> array(),
 		'sp_places' 				=> array('name', 'address', 'note'),
 		'sp_pages' 				 	=> array('name', 'body', 'meta', 'description'),
 		'sp_organizations' 			=> array('name', 'address', 'boss', 'description'),
@@ -36,7 +37,7 @@ class Crank_model extends CI_Model {
 		'sp_videos'					=> array(),
 		'sp_poll'					=> array('name'),
 		'sp_poll_answers'			=> array('name'),
-		'as_fields'					=> array('group_name', 'name', 'territory', 'supplier_name', 'project_name', 'your_name', 'partner_name', 'scope')
+		'as_fields'					=> array('group_name', 'place', 'name', 'territory', 'supplier_name', 'project_name', 'your_name', 'partner_name', 'scope')
 	);
 	
 /* --------------------------------------------------------------------------------- */	
@@ -394,6 +395,24 @@ class Crank_model extends CI_Model {
 		if ($id)
 		{						
 			if ($this->db->update($table_name, array('basket' => 0), array('id' => $id))) return true;
+		}
+		
+		return false;
+	}
+	
+/* --------------------------------------------------------------------------------- */	
+	
+	function moderate_entry($table_name, $id = false)
+	{
+		if (!$id) $id = $this->input->post('id');
+		
+		if ($id)
+		{			
+			$query = $this->db->get_where($table_name, array('id' => $id));
+			
+			$result = $query->result_array();
+			
+			if ($this->db->update($table_name, array('visible' => !$result[0]['visible']), array('id' => $id))) return true;
 		}
 		
 		return false;

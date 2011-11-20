@@ -3,11 +3,6 @@
 	 <legend><?php echo $lang['purpose']?></legend>
 	<?php echo $project['purpose']?>																	
 </fieldset>
-<div class="h_section">						
-	<div class="h_section_content">
-		<?php echo $project['poster']?>
-	</div>
-</div>
 <div class="h_section">				
 	<div class="h_section_content">
 		<?php echo $project['note']?>

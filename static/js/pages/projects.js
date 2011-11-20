@@ -83,4 +83,46 @@ $(document).ready(function(){
 		
 	},'json');	
 	
+	$('.expanded').hide();
+	
+	$('.fieldset legend').live('click', function(){
+		if ($(this).next('.expanded:visible').length)
+		{
+			$(this).removeClass('active');
+			$(this).css({'background':'url("/static/images/menu-collapsed.png") no-repeat 0px 4px'});
+			$(this).parent('fieldset').css({'border':'0px solid #ccc','borderTop':'1px solid #ccc','background':'#fff'}); 			
+		}
+		else
+		{
+			$(this).addClass('active');
+			$(this).css({'background':'url("/static/images/menu-expanded.png") no-repeat 0px 5px'});
+			$(this).parent('fieldset').css({'border':'1px solid #ccc', 'background':'#fffffa'});
+			$.scrollTo($(this).parents('.project-item'), 800);
+		}
+		$(this).next('.expanded').slideToggle('fast');
+	});
+	
+	init_modal_window('comment_modal_form', 'comments', function(response){			
+		
+		$( "#dialog:ui-dialog" ).dialog( "destroy" );
+	
+		$( "#dialog-modal" ).dialog({
+			height: 140,
+			modal: true
+		});			
+			
+		setTimeout(function(){
+			$( "#dialog-modal" ).dialog("close");
+		},2000);
+		
+		$('#comment_modal_form input').val('');
+	});
+	
+	$(".do_comment").live('click', function(){				
+		var ids = $(this).attr('id').split('_');
+		$('input[name=project_id]').val(ids[0]);
+		$('input[name=comment_id]').val(ids[1]);
+		$("#comment_modal_form").dialog( "open" );
+	});	
+	
 });

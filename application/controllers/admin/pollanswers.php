@@ -32,6 +32,9 @@ class Pollanswers extends Crank {
 			array('id' => 'hidden'),
 			array(
 				'poll_id'=> $id
+			),
+			array(
+				'recover'
 			)
 		);
 	}		
