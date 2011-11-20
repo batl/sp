@@ -19,7 +19,7 @@ class Joins extends Crank {
 		
 		$table_name = "sp_".implode('_',array($join[0], $join[1]));
 		
-		$disabled = array('edit');
+		$disabled = array('edit', 'recover');
 		
 		if (!empty($join[4])) 
 		{
@@ -41,7 +41,7 @@ class Joins extends Crank {
 					);
 					$types = array('id' => 'hidden');
 					$joins = array();
-					$disabled = array();
+					$disabled = array('recover');
 					break;
 				case 'videos':
 					$select = array(
@@ -49,7 +49,7 @@ class Joins extends Crank {
 					);
 					$types = array('video' => 'video', 'id' => 'hidden');
 					$joins = array();
-					$disabled = array();
+					$disabled = array('recover');
 					break;
 				default:
 					$select = array(

@@ -32,13 +32,26 @@ class User extends Crank {
 		$this->include_keywords($this->params['lang']['users']);
 		$this->set_description($this->params['lang']['users']);				
 		
+		$this->params['trash_users'] = count($this->Crank_model->get_all_entries('sp_users', array('basket' => 1)));
+		$this->params['count_users'] = count($this->Crank_model->get_all_entries('sp_users', array('basket' => 0)));
+		
 		$this->params['views']['group_modal_form'] = $this->load->view('admin/group_add_view', $this->params, true);
 		
 		$this->include_view('user_view',$this->params);
 	}
 	
-	public function get_items()
+	public function get_items($trash)
 	{
+		
+		$disabled_actions = array('recover');
+		
+		if ($trash == 'trash')
+		{
+			$trash = 1;
+			$disabled_actions = array('edit');
+		}
+		else $trash = 0;
+	
 		parent::get_items(
 			false, 	// table name (false = default controller table)
 			array(
@@ -53,7 +66,11 @@ class User extends Crank {
 				'group_name' => $this->Crank_model->get_all_entries('sp_groups'),
 				'id' => 'hidden',
 				'group_id' => 'hidden'
-			)		// fields types (bool, price)
+			),		// fields types (bool, price)
+			array(
+				'basket' 		=> $trash
+			),
+			$disabled_actions
 		);
 	}		
 	
@@ -70,6 +87,16 @@ class User extends Crank {
 	public function remove_entry()
 	{
 		parent::remove_entry();
+	}
+	
+	public function trash_entry()
+	{
+		parent::trash_entry();
+	}
+	
+	public function recover_entry()
+	{
+		parent::recover_entry();
 	}
 	
 }

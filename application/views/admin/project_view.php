@@ -1,9 +1,12 @@
 <div id="wrapper">
 	<div id="content">
 		<div id="sub_menu">
-			<a href="javascript:void(0);" id="project" class="selected"><?php echo $lang['projects']?></a> | 
-			<a href="javascript:void(0);" id="group_projects"><?php echo $lang['groups']?></a> |
-			<a href="javascript:void(0);" id="idea"><?php echo $lang['ideas']?></a> 			
+			[ <a href="javascript:void(0);" id="project" class="selected"><?php echo $lang['projects']?></a> (<span><?php echo $count_projects?></span>) | 
+			<a href="javascript:void(0);" id="project_trash">&nbsp;&#8594; <?php echo $lang['in_trash']?></a> (<span style="color:<?php if ($trash_projects) echo 'red'; else echo 'green';?>;"><?php echo $trash_projects?></span>) | 
+			<a href="javascript:void(0);" id="group_projects"><?php echo $lang['groups']?></a> ] [
+			<a href="javascript:void(0);" id="idea"><?php echo $lang['ideas']?></a> (<span><?php echo $count_ideas?></span>) | 			
+			<a href="javascript:void(0);" id="idea_trash">&nbsp;&#8594; <?php echo $lang['in_trash']?></a> (<span style="color:<?php if ($trash_ideas) echo 'red'; else echo 'green';?>;"><?php echo $trash_ideas?></span>)
+			]
 		</div>
 		<h2><?php echo $lang['projects']?></h2> <a href="javascript:void(0);" class="add_item"><?php echo $lang['add']?></a><div id="search_switcher"></div><div class="message display_none"></div>
 		<div id="overview">
@@ -43,7 +46,15 @@
 				<?php echo $views['group_modal_form'];?>
 			</form>
 			
+			<form method='post' id="organization_modal_form" title="<?php echo $lang['create_new_organization']?>">
+				<?php echo $views['organization_modal_form'];?>
+			</form>
+			
 			<form method='post' id="scope_modal_form" title="<?php echo $lang['create_new_scope']?>">
+				<?php echo $views['group_modal_form'];?>
+			</form>
+			
+			<form method='post' id="activity_modal_form" title="<?php echo $lang['create_new_activity']?>">
 				<?php echo $views['group_modal_form'];?>
 			</form>
 			
@@ -59,5 +70,8 @@
 				<?php echo $views['place_modal_form'];?>
 			</form>
 		</div><!-- #modal_forms -->
+		<div id="dialog-modal" title="<?php echo $lang['message']?>">
+			<p></p>
+		</div>
 	</div><!--  #content -->
 </div><!--  #wrapper -->

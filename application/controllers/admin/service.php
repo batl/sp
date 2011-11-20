@@ -29,8 +29,18 @@ class Service extends Crank {
 
 	}
 	
-	public function get_items()
+	public function get_items($trash)
 	{
+		
+		$disabled_actions = array('recover');
+		
+		if ($trash == 'trash')
+		{
+			$trash = 1;
+			$disabled_actions = array('edit');
+		}
+		else $trash = 0;
+		
 		parent::get_items(
 			false, 	// table name (false = default controller table)
 			array(
@@ -45,12 +55,16 @@ class Service extends Crank {
 				'sp_projects'=>'project_result'
 			),		// joins
 			array(
-				'price' => 'price',
-				'id' => 'hidden',
+				'price' 		=> 'price',
+				'id' 			=> 'hidden',
 				'group_name' 	=> $this->Crank_model->get_all_entries('sp_services_categories'),
 				'supplier_name' => $this->Crank_model->get_all_entries('sp_organizations', array(), 0, false, 'id', 'asc', array('sp_organizations' => array('id', 'name'))),
 				'project_name' 	=> $this->Crank_model->get_all_entries('sp_projects', array(), 0, false, 'id', 'asc', array('sp_projects' => array('id', 'name')))
-			)		// fields types (bool, price)
+			),		// fields types (bool, price)
+			array(
+				'basket' 		=> $trash
+			),
+			$disabled_actions
 		);
 	}		
 	
@@ -75,6 +89,15 @@ class Service extends Crank {
 		parent::remove_entry();
 	}
 	
+	public function trash_entry()
+	{
+		parent::trash_entry();
+	}
+	
+	public function recover_entry()
+	{
+		parent::recover_entry();
+	}
 }
 
 /* End of file service.php */

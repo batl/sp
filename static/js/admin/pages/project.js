@@ -38,13 +38,25 @@ $(document).ready(function(){
 		
 	});
 	
+	$('.recover_item').live('click', function(){
+		
+		var id = $(this).parents('tr').find('td:first').html();				
+		
+		recover_entry(block, entry, id);
+		
+	});
+	
 	// Remove project
 	
 	$('.remove_item').live('click', function(){
 		
 		var id = $(this).parents('tr').find('td:first').html();								
 		
-		remove_entry(block, entry, id);
+		var action = true;
+		
+		if (entry.indexOf('trash')>=0) action = undefined;
+		
+		remove_entry(block, entry, id, action);
 		
 	});
 	
@@ -163,24 +175,51 @@ $(document).ready(function(){
 	/* Init modal forms for rojects and ideas*/
 	
 	init_modal_window('category_modal_form', 'group_projects', function(response){
-		$('select[name=category_id]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
-		$('select[name=category_id] option').each(function(){
-			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+	
+		$('div.array[name=category_id]').append(
+			'<br/>' +
+			'<span class="check_item">'+response.entry.name+'</span>' +
+			'<input type="checkbox" checked="checked" value="'+response.entry.id+'" rel="array">'
+		);
+		
+		$( "#dialog:ui-dialog" ).dialog( "destroy" );
+	
+		$( "#dialog-modal" ).dialog({
+			height: 140,
+			modal: true
 		});
+		
+		$('#dialog-modal p').html(response.message);
+			
+		setTimeout(function(){
+			$( "#dialog-modal" ).dialog("close");
+		},1000);
+		
+		$('#category_modal_form input').val('');
 	});
 	
-	init_modal_window('scope_modal_form', 'group_scopes', function(response){
-		$('select[name=scope]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
-		$('select[name=scope] option').each(function(){
-			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
-		});
-	});
+	init_modal_window('territory_modal_form', 'group_territories', function(response){		
+		
+		$('div.array[name=territory]').append(
+			'<br/>' +
+			'<span class="check_item">'+response.entry.name+'</span>' +
+			'<input type="checkbox" checked="checked" value="'+response.entry.id+'" rel="array">'
+		);
+		
+		$( "#dialog:ui-dialog" ).dialog( "destroy" );
 	
-	init_modal_window('territory_modal_form', 'group_territories', function(response){
-		$('select[name=territory]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
-		$('select[name=territory] option').each(function(){
-			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		$( "#dialog-modal" ).dialog({
+			height: 140,
+			modal: true
 		});
+		
+		$('#dialog-modal p').html(response.message);
+			
+		setTimeout(function(){
+			$( "#dialog-modal" ).dialog("close");
+		},1000);
+		
+		$('#place_modal_form input').val('');
 	});
 	
 	init_modal_window('place_type_modal_form', 'group_places', function(response){
@@ -188,14 +227,109 @@ $(document).ready(function(){
 		$('select[name=place_type] option').each(function(){
 			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
 		});
+		
 	});
 	
 	init_modal_window('place_modal_form', 'dictionary', function(response){
-		$('select[name=place]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
-		$('select[name=place] option').each(function(){
+	
+		$('div.array[name=place]').append(
+			'<br/>' +
+			'<span class="check_item">'+response.entry.name+'</span>' +
+			'<input type="checkbox" checked="checked" value="'+response.entry.id+'" rel="array">'
+		);
+		
+		$( "#dialog:ui-dialog" ).dialog( "destroy" );
+	
+		$( "#dialog-modal" ).dialog({
+			height: 140,
+			modal: true
+		});
+		
+		$('#dialog-modal p').html(response.message);
+			
+		setTimeout(function(){
+			$( "#dialog-modal" ).dialog("close");
+		},1000);
+		
+		$('#place_modal_form input').val('');
+	});		
+	
+	init_modal_window('organization_modal_form', 'dictionary_organizations', function(response){
+		$('select[name=supplier]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
+		$('select[name=supplier] option').each(function(){
 			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
 		});
-	});		
+		
+		$('div.array[name=initiator], div.array[name=organizer]').append(
+			'<br/>' +
+			'<span class="check_item">'+response.entry.name+'</span>' +
+			'<input type="checkbox" checked="checked" value="'+response.entry.id+'" rel="array">'
+		);
+		
+		$( "#dialog:ui-dialog" ).dialog( "destroy" );
+	
+		$( "#dialog-modal" ).dialog({
+			height: 140,
+			modal: true
+		});
+		
+		$('#dialog-modal p').html(response.message);
+			
+		setTimeout(function(){
+			$( "#dialog-modal" ).dialog("close");
+		},1000);
+		
+		$('#organization_modal_form input').val('');
+		
+	});
+	
+	init_modal_window('scope_modal_form', 'group_scopes', function(response){
+		
+		$('div.array[name=scope]').append(
+			'<br/>' +
+			'<span class="check_item">'+response.entry.name+'</span>' +
+			'<input type="checkbox" checked="checked" value="'+response.entry.id+'" rel="array">'
+		);
+		
+		$( "#dialog:ui-dialog" ).dialog( "destroy" );
+	
+		$( "#dialog-modal" ).dialog({
+			height: 140,
+			modal: true
+		});
+		
+		$('#dialog-modal p').html(response.message);
+			
+		setTimeout(function(){
+			$( "#dialog-modal" ).dialog("close");
+		},1000);
+		
+		$('#scope_modal_form input').val('');
+	});
+	
+	init_modal_window('activity_modal_form', 'group_activities', function(response){
+		
+		$('div.array[name=activities]').append(
+			'<br/>' +
+			'<span class="check_item">'+response.entry.name+'</span>' +
+			'<input type="checkbox" checked="checked" value="'+response.entry.id+'" rel="array">'
+		);
+		
+		$( "#dialog:ui-dialog" ).dialog( "destroy" );
+	
+		$( "#dialog-modal" ).dialog({
+			height: 140,
+			modal: true
+		});
+		
+		$('#dialog-modal p').html(response.message);
+			
+		setTimeout(function(){
+			$( "#dialog-modal" ).dialog("close");
+		},1000);
+		
+		$('#activity_modal_form input').val('');
+	});
 	
 	$("#create_category").live('click', function(){				
 		$("#category_modal_form").dialog( "open" );
@@ -209,12 +343,20 @@ $(document).ready(function(){
 		$("#scope_modal_form").dialog( "open" );
 	});	
 	
+	$("#create_activity").live('click', function(){				
+		$("#activity_modal_form").dialog( "open" );
+	});
+	
 	$("#create_territory").live('click', function(){				
 		$("#territory_modal_form").dialog( "open" );
 	});
 	
 	$("#create_place_type").live('click', function(){				
 		$("#place_type_modal_form").dialog( "open" );
+	});
+	
+	$("#create_organizator, #create_initiator").live('click', function(){				
+		$("#organization_modal_form").dialog( "open" );
 	});
 	
 	/* End init modal forms for projects and ideas*/	

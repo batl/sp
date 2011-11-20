@@ -1,7 +1,8 @@
 <div id="wrapper">
 	<div id="content">
 		<div id="sub_menu">
-			<a href="javascript:void(0);" id="event" class="selected"><?php echo $lang['events']?></a> | 
+			<a href="javascript:void(0);" id="event" class="selected"><?php echo $lang['events']?></a> (<span><?php echo $count_events?></span>) | 
+			<a href="javascript:void(0);" id="event_trash">&nbsp;&#8594; <?php echo $lang['in_trash']?></a> (<span style="color:<?php if ($trash_events) echo 'red'; else echo 'green';?>;"><?php echo $trash_events?></span>) |
 			<a href="javascript:void(0);" id="group_events"><?php echo $lang['groups']?></a>			
 		</div>
 		<h2><?php echo $lang['events']?></h2> <a href="javascript:void(0);" class="add_item"><?php echo $lang['add']?></a><div id="search_switcher"></div><div class="message display_none"></div>

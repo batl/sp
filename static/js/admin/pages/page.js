@@ -28,11 +28,23 @@ $(document).ready(function(){
 		
 	});
 	
+	$('.recover_item').live('click', function(){
+		
+		var id = $(this).parents('tr').find('td:first').html();				
+		
+		recover_entry(block, entry, id);
+		
+	});
+	
 	$('.remove_item').live('click', function(){
 		
 		var id = $(this).parents('tr').find('td:first').html();								
 		
-		check_system(block, entry, id, 'remove_entry');
+		var action = 'trash_entry';
+		
+		if (entry.indexOf('trash')>=0) action = 'remove_entry';
+		
+		check_system(block, entry, id, action);
 		
 	});
 

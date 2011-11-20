@@ -32,13 +32,27 @@ class Page extends Crank {
 	{			
 		$this->set_title($this->params['lang']['pages']);
 		$this->include_keywords($this->params['lang']['pages']);
-		$this->set_description($this->params['lang']['pages']);				
+		$this->set_description($this->params['lang']['pages']);	
+
+		$this->params['trash_pages'] = count($this->Crank_model->get_all_entries('sp_pages', array('basket' => 1)));
+		$this->params['count_pages'] = count($this->Crank_model->get_all_entries('sp_pages', array('basket' => 0)));
+			
 		$this->include_view('page_view',$this->params);
 	}
 	
 	// request for items html table view
-	public function get_items()
+	public function get_items($trash)
 	{
+		
+		$disabled_actions = array('recover');
+		
+		if ($trash == 'trash')
+		{
+			$trash = 1;
+			$disabled_actions = array('edit');
+		}
+		else $trash = 0;
+	
 		parent::get_items(
 			false,   // table name (false = default controller table)
 			array(
@@ -51,8 +65,10 @@ class Page extends Crank {
 				'weight' => 'hidden',
 				'id'=> 'hidden'
 			),		// fields types (bool, price)
-			array(),
-			array(),
+			array(
+				'basket' 		=> $trash
+			),
+			$disabled_actions,
 			true
 		);
 	}		
@@ -76,6 +92,16 @@ class Page extends Crank {
 	public function check_system()
 	{
 		parent::check_system();
+	}
+	
+	public function trash_entry()
+	{
+		parent::trash_entry();
+	}
+	
+	public function recover_entry()
+	{
+		parent::recover_entry();
 	}
 }
 

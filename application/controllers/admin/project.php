@@ -52,18 +52,35 @@ class Project extends Crank {
 		$this->set_title($this->params['lang']['projects']);
 		$this->include_keywords($this->params['lang']['projects']);
 		$this->set_description($this->params['lang']['projects']);		
-
+		
+		$this->params['trash_projects'] = count($this->Crank_model->get_all_entries('sp_projects', array('basket' => 1)));
+		$this->params['count_projects'] = count($this->Crank_model->get_all_entries('sp_projects', array('basket' => 0)));
+		$this->params['trash_ideas'] = count($this->Crank_model->get_all_entries('sp_ideas', array('basket' => 1)));
+		$this->params['count_ideas'] = count($this->Crank_model->get_all_entries('sp_ideas', array('basket' => 0)));
+		
 		$this->params['place_types'] = $this->Crank_model->get_all_entries('sp_places_categories');
 		$this->params['scopes'] 	 = $this->Crank_model->get_all_entries('sp_scopes');
-			
+		$this->params['activities']  = $this->Crank_model->get_all_entries('sp_activities');
+		$this->params['places'] 	= $this->Crank_model->get_all_entries('sp_places');
+		
 		$this->params['views']['group_modal_form'] = $this->load->view('admin/group_add_view', $this->params, true);
 		$this->params['views']['place_modal_form'] = $this->load->view('admin/place_add_view', $this->params, true);								
+		$this->params['views']['organization_modal_form'] = $this->load->view('admin/organizations_add_view', $this->params, true);
 		
 		$this->include_view('project_view',$this->params);
 	}
 	
-	public function get_items()
+	public function get_items($trash)
 	{
+		$disabled_actions = array('recover');
+		
+		if ($trash == 'trash')
+		{
+			$trash = 1;
+			$disabled_actions = array('edit');
+		}
+		else $trash = 0;
+		
 		parent::get_items(
 			false,
 			array(
@@ -83,7 +100,11 @@ class Project extends Crank {
 				'user_id' => 'hidden',
 				'group_name' => $this->Crank_model->get_all_entries('sp_projects_categories'),
 				'public_email' => $this->Crank_model->get_all_entries('sp_users', array(), 0, false, 'id', 'asc', array('sp_users' => array('id', 'email as nick')))
-			)
+			),
+			array(
+				'basket' 		=> $trash
+			),
+			$disabled_actions
 		);
 	}		
 	
@@ -118,6 +139,16 @@ class Project extends Crank {
 	public function remove_entry()
 	{
 		parent::remove_entry();
+	}
+	
+	public function trash_entry()
+	{
+		parent::trash_entry();
+	}
+	
+	public function recover_entry()
+	{
+		parent::recover_entry();
 	}
 }
 

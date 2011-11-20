@@ -103,6 +103,7 @@
 									?>					
 								</div>
 							</li>	
+							<span id="create_initiator" class="add_new"><?php echo $lang['add_new_record']?></span>
 						</div>
 					</fieldset>
 					
@@ -123,6 +124,7 @@
 									?>					
 								</div>
 							</li>
+							<span id="create_organizator" class="add_new"><?php echo $lang['add_new_record']?></span>
 						</div>
 					</fieldset>
 					
@@ -238,6 +240,29 @@
 							<input name='date_end' language="no" type='text' value='' class='medium picker' tabindex='3'/>
 						</div>
 					</li>
+					
+					<!-- Territory section -->
+					<fieldset>
+						<legend><?php echo $lang['project_territory']?></legend>
+						<div class="expanded">
+							
+							<!-- Project Territories -->
+							<li class='gfield'>
+								<div class='ginput_container array' name="territory">
+									<?php																									
+									foreach ($territories as $territory)
+									{							
+										?>							
+										<br/>						
+										<span class="check_item"><?php echo $territory['name']?></span><input type="checkbox" rel="array" value="<?php echo $territory['id']?>" />
+										<?php							
+									}
+									?>					
+								</div>
+							</li>	
+							<span id="create_territory" class="add_new"><?php echo $lang['add_new_record']?></span>
+						</div>
+					</fieldset>
 					
 					<!-- Contacts -->
 					<li class='gfield'><label class='gfield_label'><?php echo $lang["contacts"]?>: </label>
@@ -361,6 +386,7 @@
 							?>							
 						</div>
 					</li>
+					<span id="create_place" class="add_new"><?php echo $lang['add_new_record']?></span>
 				</div>
 			</fieldset>		
 			
@@ -383,6 +409,7 @@
 							?>
 						</div>
 					</li>
+					<span id="create_category" class="add_new"><?php echo $lang['add_new_record']?></span>
 				</div>
 			</fieldset>								
 			

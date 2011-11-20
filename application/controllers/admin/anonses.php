@@ -27,8 +27,17 @@ class Anonses extends Crank {
 		$this->include_view('news_view',$this->params);
 	}
 	
-	public function get_items($id = 0)
+	public function get_items($project_id)
 	{
+		$disabled_actions = array('recover');
+		
+		if ($project_id == 'trash')
+		{
+			$trash = 1;
+			$disabled_actions = array('edit');
+		}
+		else $trash = 0;
+		
 		parent::get_items(
 			false, 	// table name (false = default controller table)
 			array(
@@ -36,7 +45,8 @@ class Anonses extends Crank {
 			),
 			array(),
 			array('id' => 'hidden'),
-			array('project_id' => $id) // where
+			array('project_id' => $project_id, 'basket' => $trash), // where
+			$disabled_actions
 		);
 	}		
 	
@@ -53,6 +63,16 @@ class Anonses extends Crank {
 	public function remove_entry()
 	{
 		parent::remove_entry();
+	}
+	
+	public function trash_entry()
+	{
+		parent::trash_entry();
+	}
+	
+	public function recover_entry()
+	{
+		parent::recover_entry();
 	}
 	
 }

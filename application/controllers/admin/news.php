@@ -29,12 +29,27 @@ class News extends Crank {
 	{
 		$this->set_title($this->params['lang']['news']);
 		$this->include_keywords($this->params['lang']['news']);
-		$this->set_description($this->params['lang']['news']);				
+		$this->set_description($this->params['lang']['news']);	
+	
+		$this->params['trash_news'] = count($this->Crank_model->get_all_entries('sp_news', array('basket' => 1, 'project_id' => 0)));
+		$this->params['count_news'] = count($this->Crank_model->get_all_entries('sp_news', array('basket' => 0, 'project_id' => 0)));
+		$this->params['trash_anonses'] = count($this->Crank_model->get_all_entries('sp_anonses', array('basket' => 1, 'project_id' => 0)));
+		$this->params['count_anonses'] = count($this->Crank_model->get_all_entries('sp_anonses', array('basket' => 0, 'project_id' => 0)));
+		
 		$this->include_view('news_view',$this->params);
 	}
 	
-	public function get_items($id = 0)
+	public function get_items($project_id)
 	{
+		$disabled_actions = array('recover');
+		
+		if ($project_id == 'trash')
+		{
+			$trash = 1;
+			$disabled_actions = array('edit');
+		}
+		else $trash = 0;
+		
 		parent::get_items(
 			false,  // table name (false = default controller table)
 			array(
@@ -42,7 +57,8 @@ class News extends Crank {
 			),// fields
 			array(),	// joins		
 			array('date' => 'date', 'id' => 'hidden'), //types
-			array('project_id' => $id) // where
+			array('project_id' => $project_id, 'basket' => $trash), // where
+			$disabled_actions
 		);
 	}		
 	
@@ -61,6 +77,15 @@ class News extends Crank {
 		parent::remove_entry();
 	}
 	
+	public function trash_entry()
+	{
+		parent::trash_entry();
+	}
+	
+	public function recover_entry()
+	{
+		parent::recover_entry();
+	}
 }
 
 /* End of file news.php */

@@ -1,7 +1,8 @@
 <div id="wrapper">
 	<div id="content">
 		<div id="sub_menu">
-			<a href="javascript:void(0);" id="poll" class="selected"><?php echo $lang['polls']?></a>
+			<a href="javascript:void(0);" id="poll" class="selected"><?php echo $lang['polls']?></a> (<span><?php echo $count_polls?></span>) |
+			<a href="javascript:void(0);" id="poll_trash">&nbsp;&#8594; <?php echo $lang['in_trash']?></a> (<span style="color:<?php if ($trash_polls) echo 'red'; else echo 'green';?>;"><?php echo $trash_polls?></span>)
 		</div>
 		<h2><?php echo $lang['polls']?></h2><a href="javascript:void(0);" class="add_item"><?php echo $lang['add']?></a><div id="search_switcher"></div><div class="message display_none"></div>
 		<div id="overview">

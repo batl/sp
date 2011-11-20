@@ -547,7 +547,7 @@ function get_view(block, entry, action, id, clear_history)
 	},"json");
 }
 
-function save_entry(block, entry, id, single, parent_block, after_save)
+function save_entry(block, entry, id, single, parent_block, after_save, scroll)
 {	
 	if (parent_block == undefined) parent_block = $('#wrapper');
 	
@@ -667,30 +667,39 @@ function save_entry(block, entry, id, single, parent_block, after_save)
 		
 		if (after_save != undefined) after_save(response);
 		
-		$.scrollTo({top:'0px', left:'0px'}, 800);
+		if (scroll == undefined) $.scrollTo({top:'0px', left:'0px'}, 800);
 		
 	},"json");
 }
 
-function remove_entry(block, entry, id)
+function remove_entry(block, entry, id, trash)
 {
 	
 	$( "#dialog:ui-dialog" ).dialog( "destroy" );
 	
-	$( "#dialog-confirm" ).dialog({
+	var user_dialog = 'remove';
+				
+	if (trash != undefined) user_dialog = 'trash';
+	
+	$( "#dialog-" + user_dialog ).dialog({
 		resizable: false,
 		height:140,
 		modal: true,
 		buttons: {
-			"Delete": function() {
+			"Yes": function() {
 				block.html('<div class="world_preloader"></div>');
 			
 				$('.world_preloader').show();		
 				
-				var URL = base_url + entry.split('_')[0] + '/remove_entry/' + entry.split('_')[1];
+				var action = 'remove_entry';
+				
+				if (trash != undefined) action = 'trash_entry';
+				
+				var URL = base_url + entry.split('_')[0] + '/' + action + '/' + entry.split('_')[1];
 				
 				$.post(URL, {"id":id}, function(response)
-				{
+				{										
+					
 					$('.world_preloader').hide();
 					
 					$('.message').html(response.message).show();
@@ -699,11 +708,65 @@ function remove_entry(block, entry, id)
 							},3000);
 							
 					var page  = parseInt($('.curent_page span').html());
-					var start = (page-1)*12;
-				
+					var start = (page-1)*12;										
+					
+					$('a#' + entry).next('span').html(parseInt($('a#' + entry).next('span').html()) - 1);
+					if (trash != undefined) $('a[id^='+entry+'][id$=trash]').next('span').html(parseInt($('a[id^='+entry+'][id$=trash]').next('span').html()) + 1);
+					
 					get_items(block, entry, start, sort, sort_type, true);
 					
 				},"json");
+				
+				$( this ).dialog( "close" );
+				
+			},
+			Cancel: function() {
+				$( this ).dialog( "close" );
+			}
+		}
+	});			
+	
+}
+
+function recover_entry(block, entry, id)
+{
+	
+	$( "#dialog:ui-dialog" ).dialog( "destroy" );
+		
+	$( "#dialog-recover" ).dialog({
+		resizable: false,
+		height:140,
+		modal: true,
+		buttons: {
+			"Yes": function() {
+				block.html('<div class="world_preloader"></div>');
+			
+				$('.world_preloader').show();		
+								
+				var URL = base_url + entry.split('_')[0] + '/recover_entry/' + entry.split('_')[1];
+				
+				$.post(URL, {"id":id}, function(response)
+				{										
+					
+					$('.world_preloader').hide();
+					
+					$('.message').html(response.message).show();
+							setTimeout(function(){
+								$('.message').fadeOut('fast');
+							},3000);
+							
+					var page  = parseInt($('.curent_page span').html());
+					var start = (page-1)*12;									
+					
+					$('a#' + entry).next('span').html(parseInt($('a#' + entry).next('span').html()) - 1);
+					$('a#' + entry).prev('span').html(parseInt($('a#' +entry).prev('span').html()) + 1);					
+					
+					get_items(block, entry, start, sort, sort_type, true);
+					
+				},"json");
+				
+				$( this ).dialog( "close" );
+				
 			},
 			Cancel: function() {
 				$( this ).dialog( "close" );
@@ -726,7 +789,7 @@ function init_modal_window(form_id, entry, success_handler){
 
 					success_handler(response);
 					
-				});
+				}, false);
 				
 				$( this ).dialog( "close" );				
 			},
@@ -757,6 +820,9 @@ function check_system(block, entry, id, action)
 			{
 				case 'remove_entry':
 					remove_entry(block, entry, id);
+					break;
+				case 'trash_entry':
+					remove_entry(block, entry, id, true);
 					break;
 			}			
 		}

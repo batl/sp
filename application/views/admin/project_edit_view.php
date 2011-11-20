@@ -127,6 +127,7 @@
 									?>					
 								</div>
 							</li>	
+							<span id="create_initiator" class="add_new"><?php echo $lang['add_new_record']?></span>
 						</div>
 					</fieldset>
 					
@@ -149,6 +150,7 @@
 									?>					
 								</div>
 							</li>
+							<span id="create_organizator" class="add_new"><?php echo $lang['add_new_record']?></span>
 						</div>
 					</fieldset>
 					
@@ -274,19 +276,18 @@
 							<!-- Project Territories -->
 							<li class='gfield'>
 								<div class='ginput_container array' name="territory">
-									<?php					
-									$project_territories = json_decode($entry['territory'], true);					
-									
+									<?php																									
 									foreach ($territories as $territory)
 									{							
 										?>							
 										<br/>						
-										<span class="check_item"><?php echo $territory['name']?></span><input type="checkbox" rel="array" value="<?php echo $territory['id']?>" <?php if (!empty($project_territories) && is_array($project_territories) && in_array($territory['id'], $project_territories)) echo 'checked="checked"';?>/>
+										<span class="check_item"><?php echo $territory['name']?></span><input type="checkbox" rel="array" value="<?php echo $territory['id']?>" <?php if (!empty($entry['territory']) && is_array($entry['territory']) && in_array($territory['id'], $entry['territory'])) echo 'checked="checked"';?>/>
 										<?php							
 									}
 									?>					
 								</div>
 							</li>	
+							<span id="create_territory" class="add_new"><?php echo $lang['add_new_record']?></span>
 						</div>
 					</fieldset>
 					
@@ -416,6 +417,7 @@
 							?>					
 						</div>
 					</li>	
+					<span id="create_place" class="add_new"><?php echo $lang['add_new_record']?></span>
 				</div>
 			</fieldset>
 			
@@ -440,6 +442,7 @@
 							?>					
 						</div>
 					</li>
+					<span id="create_category" class="add_new"><?php echo $lang['add_new_record']?></span>
 				</div>
 			</fieldset>
 			

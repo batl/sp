@@ -30,11 +30,21 @@ class Dictionary extends Crank {
 		$this->set_title($this->params['lang']['dictionary']);
 		$this->include_keywords($this->params['lang']['dictionary']);
 		$this->set_description($this->params['lang']['dictionary']);
-				
-		$this->params['grantors'] 		= $this->Crank_model->get_all_entries('sp_organizations');
+		
+		$this->params['grantors'] 		= $this->Crank_model->get_all_entries('sp_organizations', array('basket' => 0));
 		$this->params['places'] 		= $this->Crank_model->get_all_entries('sp_places');
 		$this->params['place_types'] 	= $this->Crank_model->get_all_entries('sp_places_categories');
 		$this->params['scopes'] 	 	= $this->Crank_model->get_all_entries('sp_scopes');
+		
+		$this->params['trash_organizations'] = count($this->Crank_model->get_all_entries('sp_organizations', array('basket' => 1)));
+		$this->params['count_organizations'] = count($this->params['grantors']);				
+		$this->params['count_places'] = count($this->params['places']);				
+		$this->params['count_place_types'] = count($this->params['place_types']);				
+		$this->params['count_scopes'] = count($this->params['scopes']);				
+		$this->params['count_territories'] = count($this->Crank_model->get_all_entries('sp_territories'));				
+		$this->params['count_activities'] = count($this->Crank_model->get_all_entries('sp_activities'));				
+		$this->params['count_methods'] = count($this->Crank_model->get_all_entries('sp_methods'));				
+		$this->params['count_grants'] = count($this->Crank_model->get_all_entries('sp_grants'));				
 		
 		$this->params['views']['group_modal_form']  = $this->load->view('admin/group_add_view', $this->params, true);
 		$this->params['views']['place_modal_form']  = $this->load->view('admin/place_add_view', $this->params, true);		
@@ -47,6 +57,8 @@ class Dictionary extends Crank {
 		if ($table != 'undefined') $table = "sp_".$table; else $table = false;
 		$data  = array();
 		$joins = array();
+		$where = array();
+		$disabled_actions = array('recover');
 		$fields_types = array('id' => 'hidden');
 		switch ($table)
 		{
@@ -88,9 +100,22 @@ class Dictionary extends Crank {
 				$data = array(
 					'sp_organizations' => array('id','thumb','name','address','boss')
 				);				
+				$where = array(
+					'basket' => 0
+				);
+				break;
+			case 'sp_organizations-trash':
+				$table = 'sp_organizations';
+				$data = array(
+					'sp_organizations' => array('id','thumb','name','address','boss')
+				);				
+				$where = array(
+					'basket' => 1
+				);
+				$disabled_actions = array('edit');
 				break;
 		}
-		parent::get_items($table,$data,$joins, $fields_types);
+		parent::get_items($table,$data,$joins, $fields_types, $where, $disabled_actions);
 	}		
 	
 	public function get_view($view)
@@ -135,10 +160,21 @@ class Dictionary extends Crank {
 	
 	public function remove_entry($table)
 	{
-		if ($table != 'undefined') $table = "sp_".$table."_categories"; else $table = false;
+		if ($table != 'undefined') $table = "sp_".$table; else $table = false;
 		parent::remove_entry($table);
 	}
 	
+	public function trash_entry($table)
+	{
+		if ($table != 'undefined') $table = "sp_".$table; else $table = false;
+		parent::trash_entry($table);
+	}
+	
+	public function recover_entry($table)
+	{
+		if ($table == 'organizations-trash') $table = "sp_organizations"; else $table = false;
+		parent::recover_entry($table);
+	}
 }
 
 /* End of file dictionary.php */

@@ -231,30 +231,34 @@ class Crank extends CI_Controller {
 						$html .= '<a href="javascript:void(0);" class="edit_item" title="'.$this->params['lang']['edit_title'].'">'.$this->params['lang']['edit'].'</a>';
 					if (!in_array('remove', $disabled_actions))
 						$html .= '<a href="javascript:void(0);" class="remove_item" title="'.$this->params['lang']['remove_title'].'">'.$this->params['lang']['remove'].'</a>';
-					
-					switch ($this->params['table_name'])
+					if (!in_array('recover', $disabled_actions))
+						$html .= '<a href="javascript:void(0);" class="recover_item" title="'.$this->params['lang']['recover_title'].'">'.$this->params['lang']['recover'].'</a>';
+					else
 					{
-						case "sp_users":							
-							(!$confirmed) ? $html .= '<a href="javascript:void(0);" class="confirm_user">'.$this->params['lang']['confirm_user'].'</a>': '';
-							break;
-						case "sp_projects":
-							$html .= '<a href="javascript:void(0);" class="project_more"><img src="'.$this->params['lang']['stages_ico'].'" title="'.$this->params['lang']['more'].'"/></a>';
-							$html .= '<a href="javascript:void(0);" class="projects_news"><img src="'.$this->params['lang']['news_ico'].'" title="'.$this->params['lang']['news'].'"/></a>';
-							$html .= '<a href="javascript:void(0);" class="projects_anonses"><img src="'.$this->params['lang']['anons_ico'].'" title="'.$this->params['lang']['anonses'].'"/></a>';
-							$html .= '<a href="javascript:void(0);" class="projects_events"><img src="'.$this->params['lang']['event_ico'].'" title="'.$this->params['lang']['event'].'"/></a>';
-							$html .= '<a href="javascript:void(0);" class="projects_polls"><img src="'.$this->params['lang']['poll_ico'].'" title="'.$this->params['lang']['poll_title'].'"/></a>';
-							$html .= '<a href="javascript:void(0);" id="projects-partners-organizations" class="stage_partners"><img src="'.$this->params['lang']['parthners_ico'].'" title="'.$this->params['lang']['partners'].'"/></a>';
-							$html .= '<a href="javascript:void(0);" id="photos-report-photos" class="stage_action"><img src="'.$this->params['lang']['photos_ico'].'" title="'.$this->params['lang']['photos'].'"/></a>';
-							$html .= '<a href="javascript:void(0);" id="videos-report-videos" class="stage_action"><img src="'.$this->params['lang']['videos_ico'].'" title="'.$this->params['lang']['videos'].'"/></a>';
-							break;
-						case "sp_events":
-							$html .= '<a href="javascript:void(0);" id="events-organizes-organizations" class="event_action"><img src="'.$this->params['lang']['parthners_ico'].'" title="'.$this->params['lang']['organizations'].'"/></a>';
-							$html .= '<a href="javascript:void(0);" id="events-curators-organizations" class="event_action">'.$this->params['lang']['curators'].'</a>';
-							$html .= '<a href="javascript:void(0);" id="events-methods-methods" class="event_action">'.$this->params['lang']['methods'].'</a>';							
-							break;						
-						case "sp_poll":
-							$html .= '<a href="javascript:void(0);" class="poll_answers">'.$this->params['lang']['poll_answers'].'</a>';							
-							break;
+						switch ($this->params['table_name'])
+						{
+							case "sp_users":							
+								(!$confirmed) ? $html .= '<a href="javascript:void(0);" class="confirm_user">'.$this->params['lang']['confirm_user'].'</a>': '';
+								break;
+							case "sp_projects":
+								$html .= '<a href="javascript:void(0);" class="project_more"><img src="'.$this->params['lang']['stages_ico'].'" title="'.$this->params['lang']['more'].'"/></a>';
+								$html .= '<a href="javascript:void(0);" class="projects_news"><img src="'.$this->params['lang']['news_ico'].'" title="'.$this->params['lang']['news'].'"/></a>';
+								$html .= '<a href="javascript:void(0);" class="projects_anonses"><img src="'.$this->params['lang']['anons_ico'].'" title="'.$this->params['lang']['anonses'].'"/></a>';
+								$html .= '<a href="javascript:void(0);" class="projects_events"><img src="'.$this->params['lang']['event_ico'].'" title="'.$this->params['lang']['event'].'"/></a>';
+								$html .= '<a href="javascript:void(0);" class="projects_polls"><img src="'.$this->params['lang']['poll_ico'].'" title="'.$this->params['lang']['poll_title'].'"/></a>';
+								$html .= '<a href="javascript:void(0);" id="projects-partners-organizations" class="stage_partners"><img src="'.$this->params['lang']['parthners_ico'].'" title="'.$this->params['lang']['partners'].'"/></a>';
+								$html .= '<a href="javascript:void(0);" id="photos-report-photos" class="stage_action"><img src="'.$this->params['lang']['photos_ico'].'" title="'.$this->params['lang']['photos'].'"/></a>';
+								$html .= '<a href="javascript:void(0);" id="videos-report-videos" class="stage_action"><img src="'.$this->params['lang']['videos_ico'].'" title="'.$this->params['lang']['videos'].'"/></a>';
+								break;
+							case "sp_events":
+								$html .= '<a href="javascript:void(0);" id="events-organizes-organizations" class="event_action"><img src="'.$this->params['lang']['parthners_ico'].'" title="'.$this->params['lang']['organizations'].'"/></a>';
+								$html .= '<a href="javascript:void(0);" id="events-curators-organizations" class="event_action">'.$this->params['lang']['curators'].'</a>';
+								$html .= '<a href="javascript:void(0);" id="events-methods-methods" class="event_action">'.$this->params['lang']['methods'].'</a>';							
+								break;						
+							case "sp_poll":
+								$html .= '<a href="javascript:void(0);" class="poll_answers">'.$this->params['lang']['poll_answers'].'</a>';							
+								break;
+						}
 					}
 					
 				$html .= '</td>';
@@ -615,6 +619,40 @@ class Crank extends CI_Controller {
 		if ($this->Crank_model->remove_entry($table_name))
 		{
 			$data['message'] = $this->params['lang']['success_removed'];
+		}		
+		
+		echo json_encode($data);
+		
+	}
+	
+	protected function trash_entry($table_name = false)
+	{
+		if (!$table_name) $table_name = $this->params['table_name'];
+	
+		$data = array(
+			'message' => $this->params['lang']['unknown_error']
+		);
+		
+		if ($this->Crank_model->trash_entry($table_name))
+		{
+			$data['message'] = $this->params['lang']['record_in_trash'];
+		}		
+		
+		echo json_encode($data);
+		
+	}
+	
+	protected function recover_entry($table_name = false)
+	{
+		if (!$table_name) $table_name = $this->params['table_name'];
+	
+		$data = array(
+			'message' => $this->params['lang']['unknown_error']
+		);
+		
+		if ($this->Crank_model->recover_entry($table_name))
+		{
+			$data['message'] = $this->params['lang']['record_was_recovered'];
 		}		
 		
 		echo json_encode($data);

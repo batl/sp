@@ -26,11 +26,23 @@ $(document).ready(function(){
 		
 	});
 	
+	$('.recover_item').live('click', function(){
+		
+		var id = $(this).parents('tr').find('td:first').html();				
+		
+		recover_entry(block, entry, id);
+		
+	});
+	
 	$('.remove_item').live('click', function(){
 		
 		var id = $(this).parents('tr').find('td:first').html();				
 		
-		remove_entry(block, entry, id);
+		var action = true;
+		
+		if (entry.indexOf('trash')>=0) action = undefined;
+		
+		remove_entry(block, entry, id, action);
 		
 	});
 	
@@ -42,17 +54,49 @@ $(document).ready(function(){
 	});
 	
 	init_modal_window('scope_modal_form', 'group_scopes', function(response){
-		$('select[name=scope]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
-		$('select[name=scope] option').each(function(){
-			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		$('div.array[name=scope]').append(
+			'<br/>' +
+			'<span class="check_item">'+response.entry.name+'</span>' +
+			'<input type="checkbox" checked="checked" value="'+response.entry.id+'" rel="array">'
+		);
+		
+		$( "#dialog:ui-dialog" ).dialog( "destroy" );
+	
+		$( "#dialog-modal" ).dialog({
+			height: 140,
+			modal: true
 		});
+		
+		$('#dialog-modal p').html(response.message);
+			
+		setTimeout(function(){
+			$( "#dialog-modal" ).dialog("close");
+		},1000);
+		
+		$('#scope_modal_form input').val('');
 	});
 	
 	init_modal_window('activity_modal_form', 'group_activities', function(response){
-		$('select[name=activities]').append('<option value="'+response.entry.id+'">'+response.entry.name+'</option>');					
-		$('select[name=activities] option').each(function(){
-			if (parseInt($(this).val()) != parseInt(response.entry.id)) $(this).attr('selected', ''); else $(this).attr('selected', 'selected');
+		$('div.array[name=activities]').append(
+			'<br/>' +
+			'<span class="check_item">'+response.entry.name+'</span>' +
+			'<input type="checkbox" checked="checked" value="'+response.entry.id+'" rel="array">'
+		);
+		
+		$( "#dialog:ui-dialog" ).dialog( "destroy" );
+	
+		$( "#dialog-modal" ).dialog({
+			height: 140,
+			modal: true
 		});
+		
+		$('#dialog-modal p').html(response.message);
+			
+		setTimeout(function(){
+			$( "#dialog-modal" ).dialog("close");
+		},1000);
+		
+		$('#activity_modal_form input').val('');
 	});
 	
 	init_modal_window('place_modal_form', 'dictionary', function(response){

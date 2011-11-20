@@ -31,6 +31,9 @@ class Event extends Crank {
 		$this->include_keywords($this->params['lang']['events']);
 		$this->set_description($this->params['lang']['events']);	
 		
+		$this->params['trash_events'] = count($this->Crank_model->get_all_entries('sp_events', array('basket' => 1, 'project_id' => 0)));
+		$this->params['count_events'] = count($this->Crank_model->get_all_entries('sp_events', array('basket' => 0, 'project_id' => 0)));
+		
 		$this->params['place_types'] = $this->Crank_model->get_all_entries('sp_places_categories');
 		$this->params['scopes'] 	 = $this->Crank_model->get_all_entries('sp_scopes');
 		
@@ -41,8 +44,17 @@ class Event extends Crank {
 		$this->include_view('event_view',$this->params);
 	}
 	
-	public function get_items($id = 0)
+	public function get_items($project_id)
 	{
+		$disabled_actions = array('recover');
+		
+		if ($project_id == 'trash')
+		{
+			$trash = 1;
+			$disabled_actions = array('edit');
+		}
+		else $trash = 0;
+		
 		parent::get_items(
 			false, 
 			array(
@@ -57,7 +69,8 @@ class Event extends Crank {
 				'place'			 => $this->Crank_model->get_all_entries('sp_places', array(), 0, false, 'id', 'asc', array('sp_places' => array('id', 'name'))),
 				'public_email' 	 => $this->Crank_model->get_all_entries('sp_users', array(), 0, false, 'id', 'asc', array('sp_users' => array('id', 'email as nick')))
 			),
-			array('project_id' => $id) // where			
+			array('project_id' => $project_id, 'basket' => $trash), // where
+			$disabled_actions
 		);
 	}		
 	
@@ -72,7 +85,7 @@ class Event extends Crank {
 			),
 			false,
 			false,
-			array('project_id' => $id) // where
+			array('project_id' => $id, 'basket' => 0) // where
 		);
 	}
 	
@@ -84,6 +97,16 @@ class Event extends Crank {
 	public function remove_entry()
 	{
 		parent::remove_entry();
+	}
+	
+	public function trash_entry()
+	{
+		parent::trash_entry();
+	}
+	
+	public function recover_entry()
+	{
+		parent::recover_entry();
 	}
 }
 

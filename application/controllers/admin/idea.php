@@ -32,8 +32,18 @@ class Idea extends Crank {
 		$this->include_view('project_view',$this->params);
 	}
 	
-	public function get_items()
+	public function get_items($trash)
 	{
+	
+		$disabled_actions = array('recover');
+		
+		if ($trash == 'trash')
+		{
+			$trash = 1;
+			$disabled_actions = array('edit');
+		}
+		else $trash = 0;
+		
 		parent::get_items(
 			false, 
 			array(
@@ -46,7 +56,11 @@ class Idea extends Crank {
 			array(
 				'id' => 'hidden',
 				'scope' => $this->Crank_model->get_all_entries('sp_scopes')
-			)
+			),
+			array(
+				'basket' 		=> $trash
+			),
+			$disabled_actions
 		);
 	}		
 	
@@ -63,6 +77,16 @@ class Idea extends Crank {
 	public function remove_entry()
 	{
 		parent::remove_entry();
+	}
+	
+	public function trash_entry()
+	{
+		parent::trash_entry();
+	}
+	
+	public function recover_entry()
+	{
+		parent::recover_entry();
 	}
 }
 

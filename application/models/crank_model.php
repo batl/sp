@@ -370,6 +370,34 @@ class Crank_model extends CI_Model {
 		
 		return false;
 	}
+	
+/* --------------------------------------------------------------------------------- */	
+	
+	function trash_entry($table_name, $id = false)
+	{
+		if (!$id) $id = $this->input->post('id');
+		
+		if ($id)
+		{						
+			if ($this->db->update($table_name, array('basket' => 1), array('id' => $id))) return true;
+		}
+		
+		return false;
+	}
+	
+/* --------------------------------------------------------------------------------- */	
+	
+	function recover_entry($table_name, $id = false)
+	{
+		if (!$id) $id = $this->input->post('id');
+		
+		if ($id)
+		{						
+			if ($this->db->update($table_name, array('basket' => 0), array('id' => $id))) return true;
+		}
+		
+		return false;
+	}
 
 /* --------------------------------------------------------------------------------- */	
 	

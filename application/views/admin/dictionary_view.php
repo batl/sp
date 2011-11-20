@@ -1,14 +1,15 @@
 <div id="wrapper">
 	<div id="content">	
 		<div id="sub_menu">
-			<a href="javascript:void(0);" id="dictionary" class="selected"><?php echo $lang['places']?></a>	|		
-			<a href="javascript:void(0);" id="group_places"><?php echo $lang['groups']?></a> |		
-			<a href="javascript:void(0);" id="group_territories"><?php echo $lang['territories']?></a>	|		
-			<a href="javascript:void(0);" id="group_scopes" ><?php echo $lang['scopes']?></a>	|
-			<a href="javascript:void(0);" id="group_activities" ><?php echo $lang['activities']?></a>	|
-			<a href="javascript:void(0);" id="dictionary_methods" ><?php echo $lang['methods']?></a>	|		
-			<a href="javascript:void(0);" id="dictionary_grants" ><?php echo $lang['grants']?></a> |
-			<a href="javascript:void(0);" id="dictionary_organizations" ><?php echo $lang['organizations']?></a>
+			<a href="javascript:void(0);" id="dictionary" class="selected"><?php echo $lang['places']?></a>	(<span><?php echo $count_places?></span>) |		
+			<a href="javascript:void(0);" id="group_places"><?php echo $lang['groups']?></a> (<span><?php echo $count_place_types?></span>) |		
+			<a href="javascript:void(0);" id="group_territories"><?php echo $lang['territories']?></a> (<span><?php echo $count_territories?></span>) |		
+			<a href="javascript:void(0);" id="group_scopes" ><?php echo $lang['scopes']?></a> (<span><?php echo $count_scopes?></span>) |
+			<a href="javascript:void(0);" id="group_activities" ><?php echo $lang['activities']?></a> (<span><?php echo $count_activities?></span>) |
+			<a href="javascript:void(0);" id="dictionary_methods" ><?php echo $lang['methods']?></a> (<span><?php echo $count_methods?></span>) |		
+			<a href="javascript:void(0);" id="dictionary_grants" ><?php echo $lang['grants']?></a> (<span><?php echo $count_grants?></span>) |
+			<a href="javascript:void(0);" id="dictionary_organizations" ><?php echo $lang['organizations']?></a> (<span><?php echo $count_organizations?></span>) |
+			<a href="javascript:void(0);" id="dictionary_organizations-trash" >&nbsp;&#8594; <?php echo $lang['in_trash']?></a> (<span style="color:<?php if ($trash_organizations) echo 'red'; else echo 'green';?>;"><?php echo $trash_organizations?></span>)</a>
 		</div>
 		<h2><?php echo $lang['places']?></h2> <a href="javascript:void(0);" class="add_item"><?php echo $lang['add']?></a><div id="search_switcher"></div><div class="message display_none"></div>
 		<div id="overview">

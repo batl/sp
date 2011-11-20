@@ -1348,3 +1348,16 @@ float: left;
 padding: 1px;
 width: 90%;
 }
+
+.add_new{
+cursor: pointer;
+display: block;
+height: 16px;
+margin-bottom: 10px;
+font-weight:bold;
+text-decoration:underline;
+}
+
+.add_new:hover{
+color:#3B89B1;
+}

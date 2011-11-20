@@ -27,12 +27,25 @@ class Poll extends Crank {
 	{
 		$this->set_title($this->params['lang']['poll']);
 		$this->include_keywords($this->params['lang']['poll']);
-		$this->set_description($this->params['lang']['poll']);				
+		$this->set_description($this->params['lang']['poll']);	
+		
+		$this->params['trash_polls'] = count($this->Crank_model->get_all_entries('sp_poll', array('basket' => 1, 'project_id' => 0)));
+		$this->params['count_polls'] = count($this->Crank_model->get_all_entries('sp_poll', array('basket' => 0, 'project_id' => 0)));
+		
 		$this->include_view('poll_view',$this->params);
 	}
 	
-	public function get_items($id = 0)
+	public function get_items($project_id)
 	{
+		$disabled_actions = array('recover');
+		
+		if ($project_id == 'trash')
+		{
+			$trash = 1;
+			$disabled_actions = array('edit');
+		}
+		else $trash = 0;
+		
 		parent::get_items(
 			false,  // table name (false = default controller table)
 			array(
@@ -40,7 +53,8 @@ class Poll extends Crank {
 			),// fields
 			array(),	// joins		
 			array('date_start' => 'date', 'date_end' => 'date', 'active' => 'bool', 'id' => 'hidden'), // types
-			array('project_id' => $id) // where
+			array('project_id' => $project_id, 'basket' => $trash), // where
+			$disabled_actions
 		);
 	}		
 	
@@ -57,6 +71,16 @@ class Poll extends Crank {
 	public function remove_entry()
 	{
 		parent::remove_entry();
+	}
+	
+	public function trash_entry()
+	{
+		parent::trash_entry();
+	}
+	
+	public function recover_entry()
+	{
+		parent::recover_entry();
 	}
 }
 

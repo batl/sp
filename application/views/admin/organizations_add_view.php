@@ -95,6 +95,7 @@
 							?>					
 						</div>
 					</li>	
+					<span id="create_scope" class="add_new"><?php echo $lang['add_new_record']?></span>
 				</div>
 			</fieldset>
 			
@@ -117,6 +118,7 @@
 							?>					
 						</div>
 					</li>	
+					<span id="create_activity" class="add_new"><?php echo $lang['add_new_record']?></span>
 				</div>
 			</fieldset>
 			

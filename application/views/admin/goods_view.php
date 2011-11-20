@@ -1,10 +1,13 @@
 <div id="wrapper">
 	<div id="content">
 		<div id="sub_menu">
-			<a href="javascript:void(0);" id="goods" class="selected"><?php echo $lang['goods']?></a> | 
-			<a href="javascript:void(0);" id="group_goods"><?php echo $lang['groups']?></a> |
-			<a href="javascript:void(0);" id="service"><?php echo $lang['services']?></a> |			
+			[ <a href="javascript:void(0);" id="goods" class="selected"><?php echo $lang['goods']?></a> (<span><?php echo $count_goods?></span>) | 
+			<a href="javascript:void(0);" id="goods_trash">&nbsp;&#8594; <?php echo $lang['in_trash']?></a> (<span style="color:<?php if ($trash_goods) echo 'red'; else echo 'green';?>;"><?php echo $trash_goods?></span>) | 
+			<a href="javascript:void(0);" id="group_goods"><?php echo $lang['groups']?></a> ] [
+			<a href="javascript:void(0);" id="service"><?php echo $lang['services']?></a> (<span><?php echo $count_services?></span>) |			
+			<a href="javascript:void(0);" id="service_trash">&nbsp;&#8594; <?php echo $lang['in_trash']?></a> (<span style="color:<?php if ($trash_services) echo 'red'; else echo 'green';?>;"><?php echo $trash_services?></span>) | 
 			<a href="javascript:void(0);" id="group_services"><?php echo $lang['groups']?></a>
+			]
 		</div>
 		<h2><?php echo $lang['goods']?></h2> <a href="javascript:void(0);" class="add_item"><?php echo $lang['add']?></a><div id="search_switcher"></div><div class="message display_none"></div>
 		<div id="overview">

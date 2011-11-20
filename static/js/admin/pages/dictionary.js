@@ -26,11 +26,23 @@ $(document).ready(function(){
 		
 	});
 	
+	$('.recover_item').live('click', function(){
+		
+		var id = $(this).parents('tr').find('td:first').html();				
+		
+		recover_entry(block, entry, id);
+		
+	});
+	
 	$('.remove_item').live('click', function(){
 		
 		var id = $(this).parents('tr').find('td:first').html();								
 		
-		remove_entry(block, entry, id);
+		var action = undefined;
+		
+		if (entry == 'dictionary_organizations') action = true;
+		
+		remove_entry(block, entry, id, action);
 		
 	});
 	
