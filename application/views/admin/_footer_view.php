@@ -9,6 +9,9 @@
 	<div id="dialog-recover" title="<?php echo $lang['recover']?>" style="display:none;">
 		<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span><?php echo $lang['record_recover']?></p>
 	</div>	
+	<div id="dialog-modal" title="<?php echo $lang['message']?>">
+		<p></p>
+	</div>	
 	<div id="wrapper-footer">
 		<div id="footer-content">
 			<div id="footer-logo"></div>

@@ -26,7 +26,15 @@ class Main extends Crank {
 			$this->set_title($this->params['lang']['menu_home']);
 			$this->include_keywords($this->params['lang']['menu_home']);
 			$this->set_description($this->params['lang']['menu_home']);
-			
+
+			$this->include_js('jquery/ui/jquery.ui.core.js');		
+			$this->include_js('jquery/ui/jquery.ui.widget.js');		
+			$this->include_js('jquery/ui/jquery.ui.mouse.js');		
+			$this->include_js('jquery/ui/jquery.ui.position.js');		
+			$this->include_js('jquery/ui/jquery.ui.draggable.js');		
+			$this->include_js('jquery/ui/jquery.ui.dialog.js');			
+			$this->include_js('admin/pages/panel.js');
+			$this->include_css('ui/jquery.ui.all.css');		
 			/* Set statistics data */
 			
 			$this->params['statistics'] = array(
@@ -51,7 +59,7 @@ class Main extends Crank {
 				{
 					$this->params['statistics']['projects']['new'][$key]['short_description'] = $this->sub_text($this->params['statistics']['projects']['new'][$key]['short_description'], 10, 55);
 				}
-			}
+			}						
 			
 			/* End statistics data */
 			
@@ -79,6 +87,49 @@ class Main extends Crank {
 			}
 		}
 		return $text;
+	}
+	
+	public function get_last_comments(){
+		$this->params['comments'] = $this->Crank_model->get_all_entries(
+			'sp_projects_comments',
+			array(), 
+			0, 
+			5, 
+			'date', 
+			'desc', 
+			array(
+				'sp_projects_comments' => array('id', 'author', 'date', 'body', 'visible'),
+				'sp_projects' => array('name')
+			),
+			array(
+				'sp_projects' => 'project_id'
+			)
+		);
+		$html = '';
+		if (!empty($this->params['comments']))
+		{			
+			foreach ($this->params['comments'] as $key => $value)
+			{
+				$this->params['comments'][$key]['name'] = $this->sub_text($this->params['comments'][$key]['name'], 10, 55);
+				$this->params['comments'][$key]['body'] = $this->sub_text($this->params['comments'][$key]['body'], 10, 55);
+				$post_date = explode(" ",date("j M Y H:i:s",strtotime($this->params['comments'][$key]['date'])));				
+				
+				($this->params['comments'][$key]['visible'])?$color = 'green':$color = 'red';
+				
+				$html .= '<p class="single_comment" rel="'.$this->params['comments'][$key]['visible'].'" id="'.$this->params['comments'][$key]['id'].'" style="background:'.$color.'; position:relative;">
+				<span>'.$this->params['comments'][$key]['name'].' - '.$post_date[0].' '.$this->params['lang']['month'][strtolower($post_date[1])].' '.$post_date[2].' '.$post_date[3].'"</span><br/>
+				<span>#"'.$this->params['comments'][$key]['id'].' '.$this->params['comments'][$key]['author'].'"</span><br/>
+				<span>'.$this->params['comments'][$key]['body'].'</span><br/>
+				<span class="comments_actions">
+					<span href="javascript:void(0);" class="moderate_comment" style="position:absolute; right:3px; bottom:3px;">'.$this->params['lang']['moderate'].'</span>
+					<span href="javascript:void(0);" class="remove_comment" style="position:absolute; right:3px; top:3px;">'.$this->params['lang']['remove'].'</span>
+				</span>
+				</p>';
+			}
+		}
+		else $html = $this->params['lang']['no_data'];		
+		
+		echo json_encode(array('html' => $html));
 	}
 	
 	public function update_weight()

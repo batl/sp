@@ -377,6 +377,7 @@ $lang["visible"]				= "Видимость";
 $lang["moderate"]				= "Модерировать";
 $lang["record_moderate"]		= "Запись будет отмодерирована. Вы уверены?";
 $lang["record_was_moderated"]	= "Запись успешно отмодерирована.";
+$lang["last_comments"]			= "Свежие комментарии";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

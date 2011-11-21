@@ -92,19 +92,19 @@
 				<form method='post' id="comment_modal_form" title="<?php echo $lang['create_new_comment']?>">
 					<li class='gfield'><label class='gfield_label'><?php echo $lang["your_name"]?><span class='gfield_required'>*</span>:</label>
 						<div class='ginput_container'>
-							<input name='author' language="no" type='text' value='' class='medium' tabindex='3'/>
+							<input name='author' language="no" type='text' value='' class='medium required' tabindex='3'/>
 						</div>
 					</li>
 					<li class='gfield'><label class='gfield_label'><?php echo $lang["comment"]?><span class='gfield_required'>*</span>:</label>
 						<div class='ginput_container'>
-							<input name='body' language="no" type='text' value='' class='medium' tabindex='3'/>
+							<input name='body' language="no" type='text' value='' class='medium required' tabindex='3'/>
 						</div>
 					</li>
 					<input name='project_id' language="no" type='hidden' value='' class='medium' tabindex='3'/>
 					<input name='comment_id' language="no" type='hidden' value='0' class='medium' tabindex='3'/>
 				</form>
 			</div>
-			<div id="dialog-modal" title="<?php echo $lang['message']?>">
+			<div id="dialog-modal" title="<?php echo $lang['message']?>" style="display:none;">
 				<p style="text-align:center;"><?php echo $lang['comment_on_moderation']?></p>
 			</div>
 		</div>

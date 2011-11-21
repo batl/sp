@@ -547,6 +547,8 @@ function get_view(block, entry, action, id, clear_history)
 	},"json");
 }
 
+var status = true;
+
 function save_entry(block, entry, id, single, parent_block, after_save, scroll)
 {	
 	if (parent_block == undefined) parent_block = $('#wrapper');
@@ -559,9 +561,11 @@ function save_entry(block, entry, id, single, parent_block, after_save, scroll)
 	var lang_keys = new Array();
 	var lang_data = new Array();
 	
+	status = true;
+	
 	parent_block.find('input[type=text][language!=no]').each(function(){
 		lang_keys.push($(this).attr('name'));
-		lang_data.push($(this).val());
+		lang_data.push($(this).val());		
 	});	
 
 	parent_block.find('div.textarea').each(function(){
@@ -572,6 +576,7 @@ function save_entry(block, entry, id, single, parent_block, after_save, scroll)
 	parent_block.find('input[type=text][language=no], select').each(function(){
 		keys.push($(this).attr('name'));
 		data.push($(this).val());
+		validate($(this));
 	});
 	
 	parent_block.find('input[name=password][language=no], input[type=hidden][name!=id]').each(function(){
@@ -639,37 +644,53 @@ function save_entry(block, entry, id, single, parent_block, after_save, scroll)
 		data.push($('#admin_banner').attr('big'));
 	}
 	
-	if (single == undefined)
+	if (status)
 	{
-		block.html('<div class="world_preloader"></div>');
-		
-		$('.world_preloader').show();		
-	}
-	
-	var URL = base_url + entry.split('_')[0] + '/save_entry/' + entry.split('_')[1];
-	
-	$.post(URL, {"keys":keys, "data":data, "lang_keys":lang_keys, "lang_data":lang_data, "id":id}, function(response)
-	{
-		$('.world_preloader').hide();
-		
-		$('.message').html(response.message).show();
-				setTimeout(function(){
-					$('.message').fadeOut('fast');
-				},3000);
-		
 		if (single == undefined)
 		{
-			var page  = parseInt($('.curent_page span').html());
-			var start = (page-1)*12;
-				
-			get_items(block, entry, start, sort, sort_type, 'ignore');
+			block.html('<div class="world_preloader"></div>');
+			
+			$('.world_preloader').show();		
 		}
 		
-		if (after_save != undefined) after_save(response);
+		var URL = base_url + entry.split('_')[0] + '/save_entry/' + entry.split('_')[1];
 		
-		if (scroll == undefined) $.scrollTo({top:'0px', left:'0px'}, 800);
-		
-	},"json");
+		$.post(URL, {"keys":keys, "data":data, "lang_keys":lang_keys, "lang_data":lang_data, "id":id}, function(response)
+		{
+			$('.world_preloader').hide();
+			
+			$('.message').html(response.message).show();
+					setTimeout(function(){
+						$('.message').fadeOut('fast');
+					},3000);
+			
+			if (single == undefined)
+			{
+				var page  = parseInt($('.curent_page span').html());
+				var start = (page-1)*12;
+					
+				get_items(block, entry, start, sort, sort_type, 'ignore');
+			}
+			
+			if (after_save != undefined) after_save(response);
+			
+			if (scroll == undefined) $.scrollTo({top:'0px', left:'0px'}, 800);
+			
+		},"json");
+	}
+}
+
+function validate(obj)
+{	
+	if (obj.hasClass('required'))
+	{
+		if (obj.val() == '')
+		{
+			obj.css({'background':'#FCECEC'}); 
+			obj.focus(function(){obj.css("background-color","white");});
+			status = false;
+		}
+	}	
 }
 
 function remove_entry(block, entry, id, trash)
@@ -776,28 +797,36 @@ function recover_entry(block, entry, id)
 	
 }
 
-function moderate_entry(block, entry, id)
+function moderate_entry(block, entry, id, handler)
 {
-	block.html('<div class="world_preloader"></div>');
+	if (block)
+	{
+		block.html('<div class="world_preloader"></div>');
 
-	$('.world_preloader').show();		
+		$('.world_preloader').show();		
+	}
 					
 	var URL = base_url + entry.split('_')[0] + '/moderate_entry/' + entry.split('_')[1];
 	
 	$.post(URL, {"id":id}, function(response)
 	{										
 		
-		$('.world_preloader').hide();
-		
-		$('.message').html(response.message).show();
+		if (block) $('.world_preloader').hide();				
+				
+		if (handler == undefined)
+		{
+			
+			$('.message').html(response.message).show();
 				setTimeout(function(){
 					$('.message').fadeOut('fast');
 				},3000);
-				
-		var page  = parseInt($('.curent_page span').html());
-		var start = (page-1)*12;																		
+			
+			var page  = parseInt($('.curent_page span').html());
+			var start = (page-1)*12;																		
 		
-		get_items(block, entry, start, sort, sort_type, true);
+			get_items(block, entry, start, sort, sort_type, true);
+		}
+		else handler(response);
 		
 	},"json");
 }

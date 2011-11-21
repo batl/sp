@@ -69,9 +69,6 @@
 			<form method='post' id="place_modal_form" title="<?php echo $lang['create_new_place']?>">
 				<?php echo $views['place_modal_form'];?>
 			</form>
-		</div><!-- #modal_forms -->
-		<div id="dialog-modal" title="<?php echo $lang['message']?>">
-			<p></p>
-		</div>
+		</div><!-- #modal_forms -->		
 	</div><!--  #content -->
 </div><!--  #wrapper -->

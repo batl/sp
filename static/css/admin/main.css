@@ -1361,3 +1361,27 @@ text-decoration:underline;
 .add_new:hover{
 color:#3B89B1;
 }
+
+.single_comment{
+padding:3px;
+margin:5px 5px 0px 0px;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+-khtml-border-radius: 5px;
+border-radius: 5px;
+color:#fff;
+cursor:pointer;
+}
+
+.single_comment:hover{
+background-color:#669900 !important;
+}
+
+.comments_actions{
+display:none;
+}
+
+.moderate_comment:hover{
+color:#FF9900;
+text-decoration:underline;
+}

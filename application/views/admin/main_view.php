@@ -2,8 +2,11 @@
 		<div id="content">		
 			<h2><?php echo $lang['overview'];?></h2>
 			<div id="overview">
-				<div id="dealer-info">
+				<div id="dealer-info" style="font-size:11px;">
+					<h3><?php echo $lang['last_comments']?></h3>
+					<div id="comments_content">
 					
+					</div>
 				</div><!--  #dealer-info -->
 				<div id="total-commission"><?php echo $lang['count_projects'];?> <span><?php echo $statistics['projects']['count']?></span></div><!--  #total-commission -->
 				<div id="stats-box" style="width:380px;">
@@ -85,4 +88,4 @@
 			</div>
 							
 		</div><!--  #content -->
-	</div><!--  #wrapper -->
+	</div><!--  #wrapper -->	
