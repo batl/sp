@@ -66,7 +66,7 @@ class Idea extends Crank {
 	
 	public function get_view()
 	{		
-		parent::get_view(array('scopes' => 'sp_scopes'));
+		parent::get_view(array('scopes' => 'sp_scopes', 'groups' => 'sp_ideas_categories'));
 	}
 	
 	public function save_entry()

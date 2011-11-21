@@ -14,9 +14,7 @@ class Group extends Crank {
 	}		
 	
 	public function get_items($table)
-	{
-	
-		
+	{			
 		if ($table != 'undefined') {in_array($table, $this->params['tables'])?$table = "sp_".$table:$table = "sp_".$table."_categories";} else $table = $this->params['table_name'];
 		parent::get_items($table, array($table => array('id', 'name')), array(), array('id' => 'hidden'), array(), array('recover'));
 	}		

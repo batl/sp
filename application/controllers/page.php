@@ -88,6 +88,14 @@ class Page extends Crank {
 						$this->include_css('pages/organizations.css');
 						
 						break;
+					case 'ideas':
+						$this->params['all_categories'] = $this->Crank_model->get_all_entries(
+							"sp_ideas_categories"
+						);												
+						$this->include_js('pages/ideas.js');						
+						$this->include_css('pages/ideas.css');
+						
+						break;
 					case 'education':
 																		
 						$this->include_js('pages/education.js');						
@@ -574,6 +582,31 @@ class Page extends Crank {
 				$table_name = "sp_organizations";
 				
 				break;
+			case 'ideas':
+				$fields = array(
+					'sp_ideas' => array('id','name','description','author', 'category_ids'),					
+					'sp_scopes' => array('name as scope')
+				);
+				$joins = array(					
+					'sp_scopes' => 'scope'					
+				);	
+				$single = false;
+				$custom_view = 'ideas_view';
+				if (!empty($entry[1]))
+				{					
+					$where = array(
+						'id' => $entry[1]
+					);
+					$single = true;
+					$custom_view = 'idea_single_view';							
+				};				
+				$custom_data = array(					
+					'all_categories' => $this->Crank_model->get_all_entries('sp_ideas_categories')					
+				);				
+				$where['basket'] = 0;
+				$table_name = "sp_ideas";
+				
+				break;
 			case 'education':
 				
 				$fields = array(
@@ -695,7 +728,7 @@ class Page extends Crank {
 				$where = array('entry_id'=> $entry[4]);
 				$disabled_actions = array('edit');
 				break;
-		}				
+		}								
 		
 		parent::get_items($table_name, $custom_view, $fields, $joins, $where, $single, $types, $disabled_actions, array(), $custom_where, $custom_data);
 			

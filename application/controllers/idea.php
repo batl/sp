@@ -6,8 +6,7 @@ class Idea extends Crank {
 	public function __construct()
 	{
 		parent::__construct();	
-		$this->load->model("Idea_model");
-		$this->params['main_navi']=3;		
+		$this->load->model("Idea_model");		
 	}
 	
 	public function index()

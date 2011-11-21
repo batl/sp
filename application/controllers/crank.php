@@ -271,6 +271,9 @@ class Crank extends CI_Controller {
 				case 'sp_projects':
 					$like['category_id'] = "\"".$group."\"";
 					break;
+				case 'sp_ideas':
+					$like['category_ids'] = "\"".$group."\"";
+					break;
 				case 'sp_users':
 					$where['group_id'] = $group;
 					break;

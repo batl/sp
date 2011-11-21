@@ -117,8 +117,8 @@ class Main extends Crank {
 				($this->params['comments'][$key]['visible'])?$color = 'green':$color = 'red';
 				
 				$html .= '<p class="single_comment" rel="'.$this->params['comments'][$key]['visible'].'" id="'.$this->params['comments'][$key]['id'].'" style="background:'.$color.'; position:relative;">
-				<span>'.$this->params['comments'][$key]['name'].' - '.$post_date[0].' '.$this->params['lang']['month'][strtolower($post_date[1])].' '.$post_date[2].' '.$post_date[3].'"</span><br/>
-				<span>#"'.$this->params['comments'][$key]['id'].' '.$this->params['comments'][$key]['author'].'"</span><br/>
+				<span>'.$this->params['comments'][$key]['name'].' - '.$post_date[0].' '.$this->params['lang']['month'][strtolower($post_date[1])].' '.$post_date[2].' '.$post_date[3].'</span><br/>
+				<span>'.$this->params['comments'][$key]['author'].'</span><br/>
 				<span>'.$this->params['comments'][$key]['body'].'</span><br/>
 				<span class="comments_actions">
 					<span href="javascript:void(0);" class="moderate_comment" style="position:absolute; right:3px; bottom:3px;">'.$this->params['lang']['moderate'].'</span>

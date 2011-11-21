@@ -41,7 +41,33 @@
 					</select>	
 					<span id="create_scope" class="create_new"></span>
 				</div>
-			</li>						
+			</li>			
+
+			<!-- Categories section -->
+			<fieldset>
+				<legend><?php echo $lang['idea_categories']?></legend>
+				<div class="expanded">
+				
+					<!-- Project Categories -->
+					<li class='gfield'>
+						<div class='ginput_container array' name="category_ids">
+							<?php					
+							$idea_categories = json_decode($entry['category_ids'], true);					
+							
+							foreach ($groups as $group)
+							{							
+								?>							
+								<br/>						
+								<span class="check_item"><?php echo $group['name']?></span><input type="checkbox" rel="array" value="<?php echo $group['id']?>" <?php if (!empty($idea_categories) && is_array($idea_categories) && in_array($group['id'], $idea_categories)) echo 'checked="checked"';?>/>
+								<?php							
+							}
+							?>					
+						</div>
+					</li>
+					<span id="create_category" class="add_new"><?php echo $lang['add_new_record']?></span>
+				</div>
+			</fieldset>
+			
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["note"]?>: </label>
 				<div class='ginput_container'>					
 					<?php 						

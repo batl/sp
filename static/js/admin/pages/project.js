@@ -235,6 +235,30 @@ $(document).ready(function(){
 		$('#category_modal_form input').val('');
 	});
 	
+	init_modal_window('idea_category_modal_form', 'group_ideas', function(response){
+	
+		$('div.array[name=category_ids]').append(
+			'<br/>' +
+			'<span class="check_item">'+response.entry.name+'</span>' +
+			'<input type="checkbox" checked="checked" value="'+response.entry.id+'" rel="array">'
+		);
+		
+		$( "#dialog:ui-dialog" ).dialog( "destroy" );
+	
+		$( "#dialog-modal" ).dialog({
+			height: 140,
+			modal: true
+		});
+		
+		$('#dialog-modal p').html(response.message);
+			
+		setTimeout(function(){
+			$( "#dialog-modal" ).dialog("close");
+		},1000);
+		
+		$('#idea_category_modal_form input').val('');
+	});
+	
 	init_modal_window('territory_modal_form', 'group_territories', function(response){		
 		
 		$('div.array[name=territory]').append(
@@ -370,6 +394,10 @@ $(document).ready(function(){
 	
 	$("#create_category").live('click', function(){				
 		$("#category_modal_form").dialog( "open" );
+	});
+	
+	$("#create_idea_category").live('click', function(){				
+		$("#idea_category_modal_form").dialog( "open" );
 	});	
 	
 	$("#create_place").live('click', function(){				

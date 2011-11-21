@@ -5,7 +5,8 @@
 			<a href="javascript:void(0);" id="project_trash">&nbsp;&#8594; <?php echo $lang['in_trash']?></a> (<span style="color:<?php if ($trash_projects) echo 'red'; else echo 'green';?>;"><?php echo $trash_projects?></span>) | 
 			<a href="javascript:void(0);" id="group_projects"><?php echo $lang['groups']?></a> ] [
 			<a href="javascript:void(0);" id="idea"><?php echo $lang['ideas']?></a> (<span><?php echo $count_ideas?></span>) | 			
-			<a href="javascript:void(0);" id="idea_trash">&nbsp;&#8594; <?php echo $lang['in_trash']?></a> (<span style="color:<?php if ($trash_ideas) echo 'red'; else echo 'green';?>;"><?php echo $trash_ideas?></span>)
+			<a href="javascript:void(0);" id="idea_trash">&nbsp;&#8594; <?php echo $lang['in_trash']?></a> (<span style="color:<?php if ($trash_ideas) echo 'red'; else echo 'green';?>;"><?php echo $trash_ideas?></span>) |
+			<a href="javascript:void(0);" id="group_ideas"><?php echo $lang['groups']?></a>
 			]
 		</div>
 		<h2><?php echo $lang['projects']?></h2> <a href="javascript:void(0);" class="add_item"><?php echo $lang['add']?></a><div id="search_switcher"></div><div class="message display_none"></div>
@@ -63,6 +64,10 @@
 			</form>
 			
 			<form method='post' id="place_type_modal_form" title="<?php echo $lang['create_new_place_type']?>">
+				<?php echo $views['group_modal_form'];?>
+			</form>
+			
+			<form method='post' id="idea_category_modal_form" title="<?php echo $lang['create_new_idea_category']?>">
 				<?php echo $views['group_modal_form'];?>
 			</form>
 			

@@ -97,7 +97,7 @@
 									{							
 										?>							
 										<br/>						
-										<span style="display:block; width:300px; float:left; clear:both;"><?php echo $organization['name']?></span><input type="checkbox" rel="array" value="<?php echo $organization['id']?>" />
+										<span class="check_item"><?php echo $organization['name']?></span><input type="checkbox" rel="array" value="<?php echo $organization['id']?>" />
 										<?php							
 									}
 									?>					
@@ -118,7 +118,7 @@
 									{							
 										?>							
 										<br/>						
-										<span style="display:block; width:300px; float:left; clear:both;"><?php echo $organization['name']?></span><input type="checkbox" rel="array" value="<?php echo $organization['id']?>"/>
+										<span class="check_item"><?php echo $organization['name']?></span><input type="checkbox" rel="array" value="<?php echo $organization['id']?>"/>
 										<?php							
 									}
 									?>					
@@ -380,7 +380,7 @@
 							{
 								?>
 								<br/>
-								<span style="display:block; width:300px; float:left;"><?php echo $place['name']?></span><input type="checkbox" rel="array" value="<?php echo $place['id']?>"/>
+								<span class="check_item"><?php echo $place['name']?></span><input type="checkbox" rel="array" value="<?php echo $place['id']?>"/>
 								<?php
 							}
 							?>							
@@ -403,7 +403,7 @@
 							{
 								?>
 								<br/>
-								<span style="display:block; width:300px; float:left;"><?php echo $group['name']?></span><input type="checkbox" rel="array" value="<?php echo $group['id']?>"/>
+								<span class="check_item"><?php echo $group['name']?></span><input type="checkbox" rel="array" value="<?php echo $group['id']?>"/>
 								<?php
 							}
 							?>

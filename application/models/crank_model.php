@@ -12,6 +12,7 @@ class Crank_model extends CI_Model {
 		'sp_projects_categories' 	=> array('name'),
 		'sp_projects' 				=> array('name', 'boss', 'purpose', 'short_description', 'tags', 'poster', 'note', 'map_description', 'contacts', 'report','product_links','feedback_links','workgroups_links', 'paper'),
 		'sp_places_categories' 		=> array('name'),
+		'sp_ideas_categories' 		=> array('name'),
 		'sp_projects_comments' 		=> array(),
 		'sp_places' 				=> array('name', 'address', 'note'),
 		'sp_pages' 				 	=> array('name', 'body', 'meta', 'description'),

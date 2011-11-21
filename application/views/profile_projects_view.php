@@ -136,7 +136,7 @@
 				echo $lang['post_date'].': '; echo $post_date[0].' '.$lang['month'][strtolower($post_date[1])].' '.$post_date[2].' '.$post_date[3];
 			?>
 			<p/>
-			<!-- Initiators section -->
+			<!-- Comments section -->
 			<div class="fieldset">
 				<fieldset>
 					<?php						
@@ -159,8 +159,7 @@
 								{										
 									$comment_date = explode(" ",date("j M Y H:i:s",strtotime($comment['date'])));
 									?>							
-									<p>
-									#<?php echo $comment['id']?>
+									<p>									
 										<?php
 											if ($comment['comment_id'])
 											{
