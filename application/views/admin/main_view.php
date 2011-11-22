@@ -69,22 +69,10 @@
 				</div>
 			</div>
 			<div id="blog-view">
-				<!--<div id="sub-hdr"><h3>Recent Blog News</h3></div>
-				<div class="news-home">
-					<a href="">Autumn by Jean McConnell</a><br />
-					Tue, 12 Apr 2011 11:09:00<br />
-					Take a look at a painting sent in for June's painting project on abstracting nature. 
+				<div id="sub-hdr"><h3><?php echo $lang['new_ideas']?></h3></div>
+				<div id="ideas_content">
+					
 				</div>
-				<div class="news-home">
-					<a href="">Geometric Abstracts Project</a><br />
-					Mon, 11 Apr 2011 11:44:00 +0100<br />
-					Join in this painting project, the challenge of which is to paint a geometric abstract, using something in nature as a source of inspiration if it makes it easier. 
-				</div>
-				<div class="news-home">
-					<a href="">Different Rules of Thirds</a><br />
-					Tue, 12 Apr 2011 01:05:00 +0100<br />
-					When I think of the Rule of Thirds, I'm thinking of it as the composition rule that makes it easy to decide where to put the focus of a painting.... 
-				</div>-->
 			</div>
 							
 		</div><!--  #content -->

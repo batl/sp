@@ -47,7 +47,7 @@ class Idea extends Crank {
 		parent::get_items(
 			false, 
 			array(
-				'sp_ideas' => array('id','name'),
+				'sp_ideas' => array('id','name', 'visible'),
 				'sp_scopes' => array('name as scope')			
 			), 
 			array(
@@ -55,6 +55,7 @@ class Idea extends Crank {
 			),
 			array(
 				'id' => 'hidden',
+				'visible' => 'bool',
 				'scope' => $this->Crank_model->get_all_entries('sp_scopes')
 			),
 			array(
@@ -87,6 +88,11 @@ class Idea extends Crank {
 	public function recover_entry()
 	{
 		parent::recover_entry();
+	}
+	
+	public function moderate_entry()
+	{
+		parent::moderate_entry();
 	}
 }
 

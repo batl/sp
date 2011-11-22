@@ -377,9 +377,10 @@ $lang["visible"]				= "Видимость";
 $lang["moderate"]				= "Модерировать";
 $lang["record_moderate"]		= "Запись будет отмодерирована. Вы уверены?";
 $lang["record_was_moderated"]	= "Запись успешно отмодерирована.";
-$lang["last_comments"]			= "Свежие комментарии";
+$lang["last_comments"]			= "Свежие комментарии проектов";
 $lang["idea_categories"]		= "Категории идеи";
 $lang["create_new_idea_category"]		= "Создать новую категории идей";
+$lang["new_ideas"]				= "Новые идеи";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

@@ -132,6 +132,45 @@ class Main extends Crank {
 		echo json_encode(array('html' => $html));
 	}
 	
+	public function get_last_ideas(){
+		$this->params['ideas'] = $this->Crank_model->get_all_entries(
+			'sp_ideas',
+			array(), 
+			0, 
+			3, 
+			'post_date', 
+			'desc', 
+			array(
+				'sp_ideas' => array('id', 'name', 'author', 'post_date', 'description', 'visible')				
+			)
+		);
+		$html = '';
+		if (!empty($this->params['ideas']))
+		{			
+			foreach ($this->params['ideas'] as $key => $value)
+			{
+				$this->params['ideas'][$key]['description'] = $this->sub_text($this->params['ideas'][$key]['description'], 10, 55);				
+				$post_date = explode(" ",date("j M Y H:i:s",strtotime($this->params['ideas'][$key]['post_date'])));				
+				
+				($this->params['ideas'][$key]['visible'])?$color = 'green':$color = 'red';
+				$this->firephp->log($post_date);
+				$html .= '
+				<div class="news-home single_idea">
+					<a href="">'.$this->params['ideas'][$key]['name'].'</a><br />
+					'.$this->params['ideas'][$key]['author'].' - '.$post_date[0].' '.$this->params['lang']['month'][strtolower($post_date[1])].' '.$post_date[2].' '.$post_date[3].'<br />
+					'.$this->params['ideas'][$key]['description'].'<br/>
+					<span class="idea_actions">
+						<span href="javascript:void(0);" class="moderate_idea" style="position:absolute; right:3px; bottom:3px;">'.$this->params['lang']['moderate'].'</span>
+						<span href="javascript:void(0);" class="remove_idea" style="position:absolute; right:3px; top:3px;">'.$this->params['lang']['remove'].'</span>
+					</span>
+				</div>';									
+			}
+		}
+		else $html = $this->params['lang']['no_data'];		
+		
+		echo json_encode(array('html' => $html));
+	}
+	
 	public function update_weight()
 	{
 		$ids    = $this->input->post('ids');

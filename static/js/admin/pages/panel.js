@@ -20,6 +20,26 @@ $(document).ready(function(){
 		
 	},"json");
 	
+	var URL = base_url + 'main/get_last_ideas';
+	
+	$('#ideas_content').html('<div class="world_preloader"></div>');
+			
+	$('.world_preloader').show();		
+	
+	$.post(URL, {}, function(response)
+	{
+		$('.world_preloader').hide();
+		
+		$('#ideas_content').html(response.html);
+		
+		$('.single_idea').hover(function(){
+			$(this).find('.idea_actions').show();
+		}, function(){
+			$(this).find('.idea_actions').hide();
+		});
+		
+	},"json");
+	
 	// Moderate comment
 	
 	$('.moderate_comment').live('click', function(){

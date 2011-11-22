@@ -264,6 +264,9 @@ class Crank extends CI_Controller {
 							case "sp_projects_comments":
 								$html .= '<a href="javascript:void(0);" class="moderate_item">'.$this->params['lang']['moderate'].'</a>';
 								break;
+							case "sp_ideas":
+								$html .= '<a href="javascript:void(0);" class="moderate_item">'.$this->params['lang']['moderate'].'</a>';
+								break;
 						}
 					}
 					

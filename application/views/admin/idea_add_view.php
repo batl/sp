@@ -15,6 +15,17 @@
 					?>
 				</div>
 			</li>
+			<li class='gfield'><label class='gfield_label'><?php echo $lang["author"]?><span class='gfield_required'>*</span>:</label>
+				<div class='ginput_container'>					
+					<?php 						
+						foreach ($languages as $language):
+							?>
+							<input name='author' language="<?php echo $language['id']?>" type='text' class='medium' tabindex='3'/>
+							<?php								
+						endforeach;						
+					?>
+				</div>
+			</li>
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["terms"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>					
 					<?php 						
@@ -42,6 +53,13 @@
 					<span id="create_scope" class="create_new"></span>
 				</div>
 			</li>			
+			
+			<!-- Visible -->
+			<li class='gfield'><label class='checkbox_label'><?php echo $lang["active"]?>:</label>
+				<div class='ginput_container'>
+					<input name='visible' type='checkbox' class='medium' tabindex='4'/>
+				</div>
+			</li>
 			
 			<!-- Categories section -->
 			<fieldset>

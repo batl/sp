@@ -1362,6 +1362,16 @@ text-decoration:underline;
 color:#3B89B1;
 }
 
+.single_idea{
+position:relative;
+width:95%;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+-khtml-border-radius: 5px;
+border-radius: 5px;
+padding:3px;
+}
+
 .single_comment{
 padding:3px;
 margin:5px 5px 0px 0px;
@@ -1370,18 +1380,18 @@ margin:5px 5px 0px 0px;
 -khtml-border-radius: 5px;
 border-radius: 5px;
 color:#fff;
-cursor:pointer;
 }
 
-.single_comment:hover{
+.single_comment:hover, .single_idea:hover{
 background-color:#669900 !important;
 }
 
-.comments_actions{
+.comments_actions, .idea_actions{
 display:none;
+cursor:pointer;
 }
 
-.moderate_comment:hover{
+.moderate_comment:hover, .moderate_idea:hover{
 color:#FF9900;
 text-decoration:underline;
 }

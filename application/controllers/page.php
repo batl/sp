@@ -604,6 +604,7 @@ class Page extends Crank {
 					'all_categories' => $this->Crank_model->get_all_entries('sp_ideas_categories')					
 				);				
 				$where['basket'] = 0;
+				$where['visible'] = 1;
 				$table_name = "sp_ideas";
 				
 				break;
