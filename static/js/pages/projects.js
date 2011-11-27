@@ -81,26 +81,7 @@ $(document).ready(function(){
 		so.write("3dcloud_block");
 		$('body').append(data.hidden);
 		
-	},'json');	
-	
-	$('.expanded').hide();
-	
-	$('.fieldset legend').live('click', function(){
-		if ($(this).next('.expanded:visible').length)
-		{
-			$(this).removeClass('active');
-			$(this).css({'background':'url("/static/images/menu-collapsed.png") no-repeat 0px 4px'});
-			$(this).parent('fieldset').css({'border':'0px solid #ccc','borderTop':'1px solid #ccc','background':'#fff'}); 			
-		}
-		else
-		{
-			$(this).addClass('active');
-			$(this).css({'background':'url("/static/images/menu-expanded.png") no-repeat 0px 5px'});
-			$(this).parent('fieldset').css({'border':'1px solid #ccc', 'background':'#fffffa'});
-			$.scrollTo($(this).parents('.project-item'), 800);
-		}
-		$(this).next('.expanded').slideToggle('fast');
-	});
+	},'json');			
 	
 	init_modal_window('comment_modal_form', 'comments', function(response){			
 		

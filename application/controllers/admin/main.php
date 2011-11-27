@@ -116,7 +116,7 @@ class Main extends Crank {
 				
 				($this->params['comments'][$key]['visible'])?$color = 'green':$color = 'red';
 				
-				$html .= '<p class="single_comment" rel="'.$this->params['comments'][$key]['visible'].'" id="'.$this->params['comments'][$key]['id'].'" style="background:'.$color.'; position:relative;">
+				$html .= '<div class="single_comment" rel="'.$this->params['comments'][$key]['visible'].'" id="'.$this->params['comments'][$key]['id'].'" style="background:'.$color.'; position:relative;">
 				<span>'.$this->params['comments'][$key]['name'].' - '.$post_date[0].' '.$this->params['lang']['month'][strtolower($post_date[1])].' '.$post_date[2].' '.$post_date[3].'</span><br/>
 				<span>'.$this->params['comments'][$key]['author'].'</span><br/>
 				<span>'.$this->params['comments'][$key]['body'].'</span><br/>
@@ -124,7 +124,7 @@ class Main extends Crank {
 					<span href="javascript:void(0);" class="moderate_comment" style="position:absolute; right:3px; bottom:3px;">'.$this->params['lang']['moderate'].'</span>
 					<span href="javascript:void(0);" class="remove_comment" style="position:absolute; right:3px; top:3px;">'.$this->params['lang']['remove'].'</span>
 				</span>
-				</p>';
+				</div>';
 			}
 		}
 		else $html = $this->params['lang']['no_data'];		
@@ -153,9 +153,9 @@ class Main extends Crank {
 				$post_date = explode(" ",date("j M Y H:i:s",strtotime($this->params['ideas'][$key]['post_date'])));				
 				
 				($this->params['ideas'][$key]['visible'])?$color = 'green':$color = 'red';
-				$this->firephp->log($post_date);
+				
 				$html .= '
-				<div class="news-home single_idea">
+				<div class="news-home single_idea" rel="'.$this->params['ideas'][$key]['visible'].'" id="'.$this->params['ideas'][$key]['id'].'" style="background:'.$color.'; position:relative;">
 					<a href="">'.$this->params['ideas'][$key]['name'].'</a><br />
 					'.$this->params['ideas'][$key]['author'].' - '.$post_date[0].' '.$this->params['lang']['month'][strtolower($post_date[1])].' '.$post_date[2].' '.$post_date[3].'<br />
 					'.$this->params['ideas'][$key]['description'].'<br/>

@@ -16,7 +16,8 @@
 	text-shadow:0px 0px 12px #fff;	
 }
 .step-item-img{
-	float: left;
+	float: none;
+	display:inline-block;
 	margin: 5px;
 	text-align: center;	
 }
@@ -117,21 +118,22 @@ width:97%;
 text-align:center;
 }
 
-fieldset{
+.field{
 clear:both;
 border:1px solid #ccc;
 padding:10px;
+margin:0px 10px;
 color:#666;
 font-family:Verdana;
 }
 
-fieldset legend{
+.field legend{
 font-weight: bold;
 margin-left: 20px;
 padding: 0 5px;
 }
 
-fieldset fieldset{
+.field fieldset{
 margin:10px;
 }
 
@@ -152,8 +154,36 @@ border-radius: 5px;
 width:950px;
 }
 
+#photos-container{
+background: none repeat scroll 0 0 #FDE5CB;
+padding-bottom: 5px;
+margin-top:10px;
+width:300px;
+float:right;
+-moz-box-shadow: 0px 0px 5px #fff; 
+-khtml-box-shadow: 0px 0px 5px #fff; 
+-webkit-box-shadow: 0px 0px 5px #fff; 
+box-shadow: 0px 0px 5px #fff;
+border:1px solid #ccc;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+-khtml-border-radius: 5px;
+border-radius: 5px;
+text-align:center;
+display:none;
+}
+
+#all_photos{
+clear: both;
+display: block;
+font-size: 11px;
+text-align: center;
+text-decoration:underline;
+}
+
 #single_content{
-width:950px;
+width:930px;
+padding:10px;
 }
 
 span.single_view{
@@ -166,4 +196,17 @@ color:#F1B90C;
 
 #dealer-content ul li{
 list-style: disc inside none;
+}
+
+#languages{
+	background:none repeat scroll 0 0 rgba(108, 53, 0, 0.24);
+	border:none;
+	-moz-box-shadow: 0px 0px 0px #fff; 
+	-khtml-box-shadow: 0px 0px 0px #fff; 
+	-webkit-box-shadow: 0px 0px 0px #fff; 
+	box-shadow: 0px 0px 0px #fff;
+}
+
+#languages #links a{
+color:#fff;
 }

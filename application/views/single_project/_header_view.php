@@ -34,7 +34,7 @@
 		<div id="links">
 			<a href="<?php echo $base;?>"><img src="<?php echo $base_img?>folder_home.png" style="height:25px;"/></a>
 			<?php if (!empty($user_id)):?>
-				<div id="log-in-welcome"><span style="float:left;"><?php echo $lang['welcome'].', '.$user_info['name'].' '.$user_info['suname'].'&nbsp;';?></span><a href="<?php echo $base;?>login/logout"><img src="<?php echo $base_img?>exit.png" style="height:21px; margin-top:3px;"/></a></div>				
+				<div id="log-in-welcome"><span style="float:left;color:#fff;font-size:11px;"><?php echo $lang['welcome'].', '.$user_info['name'].' '.$user_info['suname'].'&nbsp;';?></span><a href="<?php echo $base;?>login/logout"><img src="<?php echo $base_img?>exit.png" style="height:21px; margin-top:3px;"/></a></div>				
 			<?php endif;?>			
 			<?php if (empty($user_id)):?>
 			<ul style="float:left;">
@@ -90,8 +90,9 @@
 									<tr>
 										<td class="b-menu__layout-l">
 											<ul class="b-menu__list">
-												<li class="b-menu__item"><a href="javascript:void(0);" class="selected" id="about"><?php echo $lang['project_about']?></a></li>
-												<li class="b-menu__item"><a href="javascript:void(0);" id="plan"><?php echo $lang['project_plan']?></a></li>
+												<li class="b-menu__item" style="display:none;"><a href="javascript:void(0);" class="selected" id="home"></a></li>
+												<li class="b-menu__item"><a href="javascript:void(0);" id="about"><?php echo $lang['project_about']?></a></li>
+												<li class="b-menu__item"><a href="javascript:void(0);" id="events"><?php echo $lang['events']?></a></li>
 												<li class="b-menu__item"><a href="javascript:void(0);" id="map"><?php echo $lang['project_map']?></a></li>
 												<li class="b-menu__item"><a href="javascript:void(0);" id="products"><?php echo $lang['project_products']?></a></li>																								
 											</ul>

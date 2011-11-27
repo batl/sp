@@ -8,7 +8,7 @@ $(document).ready(function(){
 	
 	sort_type = 'desc';
 	
-	get_items(block, entry, 0, sort, sort_type, undefined, function(data){ if (!data.result) $('#news-container').remove();});
+	get_items(block, entry, 0, sort, sort_type, undefined, function(data){ if (!data.result) $('#news-container').remove(); else $('#news-container').show(); $('#photos-container').show();});
 	
 	if ($('input[name=map]').val() != '')
 	{
@@ -29,8 +29,12 @@ $(document).ready(function(){
 	$('.b-block__accent p').css({'color':$('#purpose_color').html()});
 	
 	$('#project_banner').click(function(){
-		$('#about').click();
+		$('#home').click();
 	});
+	
+	$('#all_photos').click(function(){
+		$('#photoreport').click();
+	});		
 	
 	$('.b-menu__layout-l a, .b-menu__layout-c a, .b-menu__layout-r a').live('click', function(){
 		
@@ -41,16 +45,16 @@ $(document).ready(function(){
 		if ($(this).attr('id') == 'map')
 		{
 			if ($('input[name=map]').val() == '') $('#map_canvas').css({'height':'50px'}); else $('#map_canvas').css({'height':'300px'});
-			$('#news-container, #poll-container, .b-sub-header').slideUp('slow');
-			$('#single_content').slideUp('slow',function(){$('#map_canvas').slideDown('slow')});
+			$('#news-container, #poll-container, #photos-container, .b-sub-header').hide();
+			$('#single_content').hide('fast',function(){$('#map_canvas').show('fast')});
 			
 		} 
 		else
 		{
-			$('#single_content').slideUp('slow');
-			$('#map_canvas').slideUp('slow', function(){
-				$('#single_content').slideDown('slow', function(){
-					if (ths.attr('id') == 'about') $('#news-container, #poll-container, .b-sub-header').slideDown('slow'); else $('#news-container, #poll-container, .b-sub-header').slideUp('slow');
+			$('#single_content').slideUp('fast');
+			$('#map_canvas').slideUp('fast', function(){
+				$('#single_content').slideDown('fast', function(){
+					if (ths.attr('id') == 'home') $('#news-container, #photos-container, #poll-container, .b-sub-header').show(); else $('#news-container, #photos-container, #poll-container, .b-sub-header').hide();
 				});
 			});
 			
@@ -60,9 +64,18 @@ $(document).ready(function(){
 			$.post(URL, {}, function(data)
 			{          
 				
-				$('#dealer-content').html(data.response);																										
+				$('#single_content').html(data.response);																										
 				
 				if ($("a.lightbox").length) $("a.lightbox").lightBox();
+				
+				if ($('#single_content').find('.p_comments').length)
+				{
+					//2696942
+					VK.init({apiId: 2696932, onlyWidgets: true});
+					$('#single_content').find('.p_comments').each(function(){
+						VK.Widgets.Comments($(this).attr('id'), {limit: 5}, $(this).attr('id'));				
+					});								
+				}
 				
 			},"json");
 		}
@@ -72,6 +85,8 @@ $(document).ready(function(){
 		$(this).addClass('selected');				
 		
 	});	
+	
+	$('#home').trigger('click');
 	
 	$('.switcher').live('click', function(){
 		

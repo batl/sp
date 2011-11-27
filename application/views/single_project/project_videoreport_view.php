@@ -1,8 +1,7 @@
 <?php
-foreach ($project_more as $step):	
 	
-	if (!empty($step['videos'])):
-		foreach ($step['videos'] as $video):			
+	if (!empty($project_more['videos'])):
+		foreach ($project_more['videos'] as $video):			
 			$video = explode('/',$video['url']);
 			?>
 			<div class="step-item-video">
@@ -13,5 +12,4 @@ foreach ($project_more as $step):
 		endforeach;
 	endif;		
 	
-endforeach;
 ?>

@@ -249,9 +249,9 @@ class Crank extends CI_Controller {
 								$html .= '<a href="javascript:void(0);" id="projects-partners-organizations" class="stage_partners"><img src="'.$this->params['lang']['parthners_ico'].'" title="'.$this->params['lang']['partners'].'"/></a>';
 								$html .= '<a href="javascript:void(0);" id="photos-report-photos" class="stage_action"><img src="'.$this->params['lang']['photos_ico'].'" title="'.$this->params['lang']['photos'].'"/></a>';
 								$html .= '<a href="javascript:void(0);" id="videos-report-videos" class="stage_action"><img src="'.$this->params['lang']['videos_ico'].'" title="'.$this->params['lang']['videos'].'"/></a><br/><br/>';
-								$all_comments 	 = count($this->Crank_model->get_all_entries('sp_projects_comments', array('project_id' => $row['id'])));
-								$new_comments 	 = count($this->Crank_model->get_all_entries('sp_projects_comments', array('project_id' => $row['id'], 'visible' => 0)));
-								$html .= '<a href="javascript:void(0);" class="projects_comments">'.$this->params['lang']['comments'].' '.$all_comments.' (<span style="color:green;">'.$new_comments.'</span>)</a>';
+								//$all_comments 	 = count($this->Crank_model->get_all_entries('sp_projects_comments', array('project_id' => $row['id'])));
+								//$new_comments 	 = count($this->Crank_model->get_all_entries('sp_projects_comments', array('project_id' => $row['id'], 'visible' => 0)));
+								//$html .= '<a href="javascript:void(0);" class="projects_comments">'.$this->params['lang']['comments'].' '.$all_comments.' (<span style="color:green;">'.$new_comments.'</span>)</a>';
 								break;
 							case "sp_events":
 								$html .= '<a href="javascript:void(0);" id="events-organizes-organizations" class="event_action"><img src="'.$this->params['lang']['parthners_ico'].'" title="'.$this->params['lang']['organizations'].'"/></a>';

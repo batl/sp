@@ -381,6 +381,7 @@ $lang["last_comments"]			= "Свежие комментарии проектов
 $lang["idea_categories"]		= "Категории идеи";
 $lang["create_new_idea_category"]		= "Создать новую категории идей";
 $lang["new_ideas"]				= "Новые идеи";
+$lang["all_photos"]				= "Смотреть все фотографии ...";
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

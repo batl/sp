@@ -1,15 +1,9 @@
-<?php
-foreach ($project_more as $step):
-	?>
 	<div class="h_section partners">		
 		<?php
-		if (!empty($step['feedback_links'])):
+		if (!empty($project_more[0]['feedback_links'])):
 			
-			echo $step['feedback_links'];
+			echo $project_more[0]['feedback_links'];
 			
 		endif;
 		?>		
 	</div>
-	<?php
-endforeach;
-?>

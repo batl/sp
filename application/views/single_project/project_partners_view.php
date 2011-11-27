@@ -1,10 +1,8 @@
-<?php
-foreach ($project_more as $step):
-	?>
+
 	<div class="h_section partners">		
 		<?php
-		if (!empty($step['partners'])):		
-			foreach ($step['partners'] as $iterator => $partner):
+		if (!empty($project_more['partners'])):		
+			foreach ($project_more['partners'] as $iterator => $partner):
 			?>
 				<p><?php echo $iterator+1; echo ". ".$partner['partner_name']?> - <span><?php echo $lang[$partner['type']]?></span></p>			
 			<?php
@@ -12,6 +10,4 @@ foreach ($project_more as $step):
 		endif;
 		?>		
 	</div>
-	<?php
-endforeach;
-?>
+

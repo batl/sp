@@ -1,0 +1,1 @@
+<div id="project_<?php echo $project_more[0]['id']?>" class="p_comments"></div>

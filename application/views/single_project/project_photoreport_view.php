@@ -1,8 +1,7 @@
 <?php
-foreach ($project_more as $step):	
 
-	if (!empty($step['photos'])):
-		foreach ($step['photos'] as $photo):
+	if (!empty($project_more['photos'])):
+		foreach ($project_more['photos'] as $photo):
 		?>
 			<div class="step-item-img">
 				<a class="lightbox" href="<?php echo $base.$photo['foto']?>"><img src="<?php echo $base.$photo['thumb']?>" /></a>
@@ -12,5 +11,4 @@ foreach ($project_more as $step):
 		endforeach;
 	endif;					
 	
-endforeach;
 ?>

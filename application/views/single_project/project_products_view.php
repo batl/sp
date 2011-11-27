@@ -1,13 +1,13 @@
 <div id="hidden_links">
 	<div class="h_section partners">
-		<fieldset>
+		<fieldset class="field">
 			<legend><?php echo $lang['goods_links']?></legend>
 			<?php
 			$empty = true;
 			foreach ($project_more as $step):		
 				if (!empty($step['product_links'])):				
 					?>				
-					<fieldset>
+					<fieldset class="field">
 						<legend><?php echo '"'.$step['name'].'" '?></legend>
 						<?php
 						echo $step['product_links'];
@@ -24,7 +24,7 @@
 </div>
 <div id="hidden_links">
 	<div class="h_section partners">
-		<fieldset>
+		<fieldset class="field">
 			<legend><?php echo $lang['goods']?></legend>
 			<?php
 			if (!empty($project_products)):
@@ -48,7 +48,7 @@
 </div>
 <div id="hidden_links">
 	<div class="h_section partners">
-		<fieldset>
+		<fieldset class="field">
 			<legend><?php echo $lang['services']?></legend>
 			<?php
 			if (!empty($project_services)):

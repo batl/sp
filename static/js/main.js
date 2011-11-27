@@ -9,7 +9,25 @@ var monthes = new Array();
 var fields = new Array();
 var values = new Array();
 
-$(document).ready(function(){			
+$(document).ready(function(){	
+
+	$('.expanded').hide();
+	
+	$('.fieldset legend').live('click', function(){
+		if ($(this).next('.expanded:visible').length)
+		{
+			$(this).removeClass('active');
+			$(this).css({'background':'url("/static/images/menu-collapsed.png") no-repeat 0px 4px'});
+			$(this).parent('fieldset').css({'border':'0px solid #ccc','borderTop':'1px solid #ccc','background':'#fff'}); 			
+		}
+		else
+		{
+			$(this).addClass('active');
+			$(this).css({'background':'url("/static/images/menu-expanded.png") no-repeat 0px 5px'});
+			$(this).parent('fieldset').css({'border':'1px solid #ccc', 'background':'#fffffa'});			
+		}
+		$(this).next('.expanded').slideToggle('fast');
+	});
 	
 	$.post(base_url + 'main/get_monthes', function(data)
 	{
@@ -357,6 +375,16 @@ function get_items(block, entry, start, sort, sort_type, clear_history, after_ge
 			
 			if (story.length < 2) $('.history').remove();
 		}														
+		
+		if ($('.vk_comments').length)
+		{
+			//2696942
+			VK.init({apiId: 2696932, onlyWidgets: true});
+			$('.vk_comments').each(function(){
+				VK.Widgets.Comments($(this).attr('id'), {limit: 5}, $(this).attr('id'));				
+			});			
+			VK.Observer.subscribe('widgets.comments.new_comment', function(num, last_comment) {});			
+		}
 		
 		switch (sub_entry[0])
 		{

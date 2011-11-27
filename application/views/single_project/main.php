@@ -56,7 +56,8 @@
 			?>
 				
 		</div>
-		<div id="news-container" class="switcher_parent" <?php if (!empty($poll)):?> style="width:635px;" <?php else: ?> style="width:100%;" <?php endif;?>>
+		
+		<div id="news-container" class="switcher_parent" <?php if (!empty($poll)):?> style="width:635px; display:none;" <?php else: ?> style="width:100%;display:none;" <?php endif;?>>
 			<div id="sub-hdr"><h3><?php echo $lang['news']?></h3><span class="switcher hide_switcher"></span></div>
 			<div class="switcher_content">
 				<div id="items" class="items">
@@ -82,24 +83,31 @@
 				</div>
 				<div id="limit"><span><?php echo $lang['records_per_page']?>:</span>&nbsp;<a href="javascript:void(0);" class="selected">5</a><a href="javascript:void(0);">10</a><a href="javascript:void(0);">20</a><a href="javascript:void(0);">30</a></div>		
 			</div>
-		</div><!--  #content-container -->
+		</div><!--  #content-container -->		
+		<?php
+			if (!empty($project_photos)):?>
+			
+			<div id="photos-container">
+				<div class="sub-hdr"><h3><?php echo $lang['project_photoreport']?></h3></div>
+			<?php
+				foreach ($project_photos as $photo):
+				?>
+					<div class="step-item-img">
+						<a class="lightbox" href="<?php echo $base.$photo['foto']?>"><img src="<?php echo $base.$photo['thumb']?>" /></a>							
+					</div>
+				<?php
+				endforeach;
+				?>
+				<a href="javascript:void(0);" id="all_photos"><?php echo $lang['all_photos']?></a>
+			</div>
+			<?php
+			endif;	
+		?>					
 		<div id="map_canvas" style="height:300px;display:none;"><h3><?php echo $lang['no_project_map']?></h3></div>
 		<input type='hidden' class='gform_hidden' name='map' value='<?php echo $project['map']?>'/>
 		<input type='hidden' class='gform_hidden' name='map_description' value='<?php echo $project['map_description']?>'/>
 	</div>
 	<div id="single_content">	
-		<div class="sub-hdr"><h3><?php echo $lang['about_project']?></h3></div>
-		<div id="dealer-content">
-			<h2 style="color:<?php echo $project['title_color']?>"><?php echo $project['name']?> </h2>
-			<fieldset>
-				 <legend><?php echo $lang['purpose']?></legend>
-				<?php echo $project['purpose']?>																	
-			</fieldset>			
-			<div class="h_section">				
-				<div class="h_section_content">
-					<?php echo $project['note']?>
-				</div>
-			</div>
-		</div>
+		
 	</div><!--  #content -->
 </div><!--  #wrapper -->

@@ -140,18 +140,18 @@
 			<div class="fieldset">
 				<fieldset>
 					<?php						
-						$project_comments = array();
+						/*$project_comments = array();
 						if (!empty($comments))
 						{
 							foreach ($comments as $comment)
 							{	
 								if ($comment['project_id'] == $project['id']) array_push($project_comments, $comment);								
 							}
-						}						
+						}	*/					
 					?>
-					<legend><?php echo $lang['comments']?> (<?php echo count($project_comments);?>)</legend>
+					<legend><?php echo $lang['comments']?> <?php //echo count($project_comments);?></legend>
 					<div class="expanded"> 						
-						<div class='ginput_container comments' name="initiator">
+						<!--<div class='ginput_container comments' name="initiator">
 							<?php																							
 							if (!empty($project_comments))
 							{
@@ -183,7 +183,8 @@
 							?>					
 							<br/>
 							<a href="javascript:void(0);" class="do_comment" id="<?php echo $project['id'].'_0'?>"><?php echo $lang['commenting']?></a>
-						</div>								
+						</div>-->
+						<div id="project_<?php echo $project['id']?>" class="vk_comments"></div>
 					</div>
 				</fieldset>
 			</div>

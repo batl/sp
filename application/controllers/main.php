@@ -15,6 +15,7 @@ class Main extends Crank {
 		$this->set_title($this->params['lang']['menu_home']);
 		$this->set_description($this->params['lang']['menu_home']);
 		
+		$this->include_js('http://userapi.com/js/api/openapi.js?45', true);
 		$this->include_js('pages/news.js');
 		$this->include_js('jquery/lightbox.js');				
 		$this->include_js('jquery/cycle.js');				

@@ -34,6 +34,15 @@ class Project extends Crank {
 			true
 		);				
 		
+		$this->params['project_photos'] = $this->Crank_model->get_all_entries(
+			"sp_photos_report", 			
+			array(
+				'entry_id' => $this->params['project']['id']
+			),
+			0,
+			6
+		);
+		
 		$this->params['poll'] = $this->Crank_model->get_all_entries(
 			"sp_poll", 							
 			array(
@@ -78,7 +87,7 @@ class Project extends Crank {
 				$this->include_js('http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAA6yP--2v-CDoEpX6OnpY-sxT8FfoTSPNSCinLNsksAZkths46yxSraikQy6QrFI22T_VOWK_S7Eud3g', true);
 				break;
 		}
-		
+		$this->include_js('http://userapi.com/js/api/openapi.js?45', true);
 		$this->include_js('jquery/ui/jquery.ui.core.js');
 		$this->include_js('jquery/ui/jquery.ui.widget.js');
 		$this->include_js('jquery/ui/jquery.ui.mouse.js');		
@@ -102,7 +111,7 @@ class Project extends Crank {
 		
 		switch ($view[0])
 		{
-			case 'about':
+			case 'about':			
 			case 'contacts':			
 				
 				$this->params['project'] = $this->Crank_model->get_all_entries(
@@ -124,8 +133,9 @@ class Project extends Crank {
 				);
 				
 				break;
+			case 'home':
 			case 'links':
-			case 'plan':
+			case 'events':
 			case 'photoreport':
 			case 'videoreport':
 			case 'products':
@@ -137,31 +147,30 @@ class Project extends Crank {
 				
 				$this->params['project_more'] = $this->Crank_model->get_entry_by_data("sp_projects", false, 'current', array('id' => $this->session->userdata('project')));
 		
-				if (!empty($this->params['project_more'])):		
-					foreach ($this->params['project_more'] as $key => $value):			
+				if (!empty($this->params['project_more'])):									
 						
-						$this->params['project_more'][$key]['photos'] = $this->Crank_model->get_entry_by_data(
+						$this->params['project_more']['photos'] = $this->Crank_model->get_entry_by_data(
 							"sp_photos_report", 
 							false, 
 							'current', 
 							array(
-								'entry_id' => $value['id']
+								'entry_id' => $this->session->userdata('project')
 							)
 						);
 						
-						$this->params['project_more'][$key]['videos'] = $this->Crank_model->get_entry_by_data(
+						$this->params['project_more']['videos'] = $this->Crank_model->get_entry_by_data(
 							"sp_videos_report", 
 							false, 
 							'current', 
 							array(
-								'entry_id' => $value['id']
+								'entry_id' => $this->session->userdata('project')
 							)
 						);
 						
-						$this->params['project_more'][$key]['partners'] = $this->Crank_model->get_all_entries(
+						$this->params['project_more']['partners'] = $this->Crank_model->get_all_entries(
 							"sp_projects_partners", 
 							array(
-								'entry_id' => $value['id']
+								'entry_id' => $this->session->userdata('project')
 							), 
 							0, 
 							false, 
@@ -175,8 +184,7 @@ class Project extends Crank {
 								'sp_organizations'=>'organizations_id'
 							)
 						);
-						
-					endforeach;
+											
 				endif;
 				
 				if ($view[0] == 'products'):

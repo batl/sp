@@ -167,6 +167,7 @@ class Page extends Crank {
 						$this->include_js('jquery/ui/jquery.ui.draggable.js');		
 						$this->include_js('jquery/ui/jquery.ui.dialog.js');			
 						$this->include_js('jquery/ui/jquery.ui.datepicker.js');
+						$this->include_js('http://userapi.com/js/api/openapi.js?45', true);
 						$this->include_css('ui/jquery.ui.all.css');		
 						$this->include_css('pages/'.$slug.'.css');															
 						$this->include_js('pages/'.$slug.'.js');
