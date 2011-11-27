@@ -39,6 +39,8 @@ class Crank extends CI_Controller {
 			$this->params['user_info'] = $this->params['admin_info'] = $this->Crank_model->get_entry_by_data("sp_users", true, 'current', array('id' => $this->params['user_id']));
 		}
 		
+		$this->params['server'] = $this->config->item('env_type');
+		
 		$this->load->model("Page_model");	
 
 		$this->params['header_pages'] = $this->Page_model->get_pages('header');

@@ -23,6 +23,7 @@
         var base_url = '<?php echo $base; ?>';		
 		var admin_url = '<?php echo $base.'admin/'; ?>';
 		var language_id  = '<?php echo $language_id;?>';
+		var server  = '<?php echo $server;?>';
     </script>	
 <div id="header">
 	<div id="wrapper-header">	

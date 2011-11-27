@@ -378,8 +378,9 @@ function get_items(block, entry, start, sort, sort_type, clear_history, after_ge
 		
 		if ($('.vk_comments').length)
 		{
-			//2696942
-			VK.init({apiId: 2696932, onlyWidgets: true});
+			var api_id = 2696932;
+			if (server == 'devmax') api_id = 2696942;
+			VK.init({apiId: api_id, onlyWidgets: true});
 			$('.vk_comments').each(function(){
 				VK.Widgets.Comments($(this).attr('id'), {limit: 5}, $(this).attr('id'));				
 			});			

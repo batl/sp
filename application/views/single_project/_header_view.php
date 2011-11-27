@@ -24,6 +24,7 @@
 	var admin_url = '<?php echo $base.'admin/'; ?>';
 	var language_id  = '<?php echo $language_id;?>';
 	var project_id  = '<?php echo $project['id'];?>';
+	var server  = '<?php echo $server;?>';
 </script>
 
 <span id="menu_font" style="display:none;"><?php echo $project['menu_font']?></span>

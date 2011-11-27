@@ -70,8 +70,9 @@ $(document).ready(function(){
 				
 				if ($('#single_content').find('.p_comments').length)
 				{
-					//2696942
-					VK.init({apiId: 2696932, onlyWidgets: true});
+					var api_id = 2696932;
+					if (server == 'devmax') api_id = 2696942;
+					VK.init({apiId: api_id, onlyWidgets: true});
 					$('#single_content').find('.p_comments').each(function(){
 						VK.Widgets.Comments($(this).attr('id'), {limit: 5}, $(this).attr('id'));				
 					});								
