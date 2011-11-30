@@ -31,9 +31,11 @@ class Crank extends CI_Controller {
 		
 		$this->include_js('jquery/jquery.min.js');
 		$this->include_js('jquery/ui/jquery-ui-1.8.16.custom.js');
+		$this->include_js('jquery/jquery.betterTooltip.js');
 		$this->include_js('jquery/scroll_to.js');
 		$this->include_js('admin/main.js');				
 		$this->include_css('admin/main.css');
+		$this->include_css('tooltips/style.css');
 		
 		if (!empty($this->params['admin_id']))
 		{					

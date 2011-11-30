@@ -11,6 +11,8 @@ var filter_values = new Array();
 
 $(document).ready(function(){							
 	
+	$('.tTip:visible').betterTooltip({speed: 150, delay: 300});		
+	
 	$('legend').live('click', function(){
 		if ($(this).next('.expanded:visible').length)
 		{
@@ -181,6 +183,8 @@ $(document).ready(function(){
 		
 		$(this).parents('.form').find('input[type=text][language='+$(this).attr('id')+'], div.textarea[language='+$(this).attr('id')+']').show();
 		
+		$('.tTip:visible').betterTooltip({speed: 150, delay: 300});
+		
 	});		
 	
 	if (main_navi >= 8)
@@ -329,6 +333,8 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 			}
 		}
 		
+		$('.tTip:visible').betterTooltip({speed: 150, delay: 300});
+		
 		if (filter_fields.length)
 		{
 			for (var i = 0; i < filter_fields.length; i++)
@@ -466,7 +472,7 @@ function get_view(block, entry, action, id, clear_history)
 		if ($('.document').length)
 		{
 			$('.document').each(function(){ document_upload($(this).attr('id')); });
-		}
+		}						
 		
 		if ($('#colorSelector').length) 
 		{
@@ -494,6 +500,10 @@ function get_view(block, entry, action, id, clear_history)
 		if ($('.picker').length) $('.picker').datepicker({ dateFormat: 'yy-mm-dd' });
 		
 		if ($('textarea').length) tiny_init();				
+		
+		$('.tTip:visible').betterTooltip({speed: 150, delay: 300});
+		
+		console.log($('.tTip:visible').length);
 		
 		if ($('#map_canvas').length)
 		{

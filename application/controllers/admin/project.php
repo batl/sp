@@ -131,6 +131,26 @@ class Project extends Crank {
 		);
 	}
 	
+	public function check_slug()
+	{
+		$this->load->model("Project_model");
+		
+		$data = array(
+			'result'   => false,
+			'response' => $this->params['lang']['no_exists']
+		);
+		
+		if ($this->Project_model->check_slug()) 
+		{
+			$data = array(
+				'result'   => true,
+				'response' => $this->params['lang']['exists']
+			);
+		}
+		
+		echo json_encode($data);
+	}
+	
 	public function save_entry()
 	{
 		parent::save_entry();

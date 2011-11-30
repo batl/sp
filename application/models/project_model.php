@@ -4,10 +4,25 @@ require_once(APPPATH.'models/crank_model.php');
 
 class Project_model extends Crank_Model {
 
+	var $table_name = "sp_projects";
+
     public function __construct()
 	{
 		parent::__construct();			
 		
 	}	
+	
+	public function check_slug()
+	{
+		$query 		= $this->db->get_where($this->table_name, array('slug'=> $this->input->post('slug')));
+		
+		$res 		= $query->result_array();
+		
+		if 	(!empty($res)) 
+			return false;
+		else
+			return true;
+				
+	}
 	
 }

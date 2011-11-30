@@ -155,8 +155,8 @@ class Main extends Crank {
 				($this->params['ideas'][$key]['visible'])?$color = 'green':$color = 'red';
 				
 				$html .= '
-				<div class="news-home single_idea" rel="'.$this->params['ideas'][$key]['visible'].'" id="'.$this->params['ideas'][$key]['id'].'" style="background:'.$color.'; position:relative;">
-					<a href="">'.$this->params['ideas'][$key]['name'].'</a><br />
+				<div class="news-home single_idea" rel="'.$this->params['ideas'][$key]['visible'].'" id="'.$this->params['ideas'][$key]['id'].'">
+					<a href="" style="color:'.$color.'">'.$this->params['ideas'][$key]['name'].'</a><br />
 					'.$this->params['ideas'][$key]['author'].' - '.$post_date[0].' '.$this->params['lang']['month'][strtolower($post_date[1])].' '.$post_date[2].' '.$post_date[3].'<br />
 					'.$this->params['ideas'][$key]['description'].'<br/>
 					<span class="idea_actions">

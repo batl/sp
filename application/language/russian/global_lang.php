@@ -382,6 +382,16 @@ $lang["idea_categories"]		= "Категории идеи";
 $lang["create_new_idea_category"]		= "Создать новую категории идей";
 $lang["new_ideas"]				= "Новые идеи";
 $lang["all_photos"]				= "Смотреть все фотографии ...";
+$lang["exists"]					= "Ссылка введена корректно";
+$lang["no_exists"]				= "Введенная ссылка уже занята!";
+
+/* ToolTips */
+
+$lang["tip_project_name"]		= "Имя проекта";
+$lang["tip_prject_slug"]		= "Ссылка на проект. Должна быть уникальна.";
+$lang["tip_project_tags"]		= "Ключевые слова, разделенные запятой.";
+
+/* End ToolTips */
 
 $lang["country"] [] = "Абхазия";
 $lang["country"] [] = "Афганистан";

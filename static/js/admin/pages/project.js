@@ -16,15 +16,53 @@ $(document).ready(function(){
 		
 	});
 	
+	$('input[name=slug]').live('change', function(){
+		
+		var ths = $(this);
+		
+		var URL = base_url + 'project/check_slug';				
+		
+		$.post(URL, {'slug':ths.val()}, function(data)
+		{
+			if (data.result) ths.css({'background':'#349788'}); else ths.css({'background':'#FCECEC'});
+			
+			$('.message').html(data.response).show();
+				setTimeout(function(){
+					$('.message').fadeOut('fast');
+				},3000);									
+			
+		},'json');
+		
+	});
+	
 	// Save project updates
 	
-	$('.save_entry').live('click', function(){				
+	$('.save_entry').live('click', function(){											
+		
+		var URL = base_url + 'project/check_slug';				
+		
+		$.post(URL, {'slug':$('input[name=slug]').val()}, function(data)
+		{
+			if (data.result && $('input[name=slug]').val() != "")
+			{
+				var reload;
+						
+				(entry.split('_')[0] == 'moreproject') ? reload = true: reload = undefined;				
+				
+				save_entry(block, entry, $('input[name=id]').val(), reload);
+				
+			}
+			else
+			{
+				$('.message').html(data.response).show();
+					setTimeout(function(){
+						$('.message').fadeOut('fast');
+					},3000);
 					
-		var reload;
-		
-		(entry.split('_')[0] == 'moreproject') ? reload = true: reload = undefined;				
-		
-		save_entry(block, entry, $('input[name=id]').val(), reload);
+				$.scrollTo({top:'0px', left:'0px'}, 800);
+			}
+			
+		},'json');				
 		
 	});
 	

@@ -65,12 +65,12 @@ $(document).ready(function(){
 			if (parseInt(ths.parents('div[rel]').attr('rel'))) 
 			{
 				ths.parents('div[rel]').attr('rel','0');
-				ths.parents('div[rel]').css({'background':'red'});
+				ths.parents('div[rel]').find('a').css({'color':'red'});
 			}
 			else
 			{
 				ths.parents('div[rel]').attr('rel','1');
-				ths.parents('div[rel]').css({'background':'green'});
+				ths.parents('div[rel]').find('a').css({'color':'green'});
 			}
 			
 			setTimeout(function(){

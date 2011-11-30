@@ -332,6 +332,7 @@ DESCRIPTION: One column custom home page
 */
 
 #overview {
+position:relative;
 float:left;
 margin-left:20px;
 margin-top:-10px;
@@ -1364,7 +1365,7 @@ color:#3B89B1;
 
 .single_idea{
 position:relative;
-width:95%;
+width:93%;
 -moz-border-radius: 5px;
 -webkit-border-radius: 5px;
 -khtml-border-radius: 5px;
@@ -1383,7 +1384,7 @@ color:#fff;
 }
 
 .single_comment:hover, .single_idea:hover{
-background-color:#669900 !important;
+background-color:#ccc !important;
 }
 
 .comments_actions, .idea_actions{

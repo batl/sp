@@ -11,7 +11,7 @@
 					<?php 						
 						foreach ($languages as $language):
 							?>
-							<input name='name' language="<?php echo $language['id']?>" type='text' class='medium' tabindex='3'/>
+							<input name='name' language="<?php echo $language['id']?>" type='text' class='medium tTip' tabindex='3' title="<?php echo $lang['tip_project_name']?>"/>
 							<?php								
 						endforeach;						
 					?>
@@ -21,7 +21,7 @@
 			<!-- Slug -->
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["slug"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
-					<input name='slug' language="no" type='text' value='' class='medium' tabindex='3'/>
+					<input name='slug' language="no" type='text' value='' class='medium tTip' tabindex='3' title="<?php echo $lang['tip_prject_slug']?>"/>
 				</div>
 			</li>
 			
@@ -31,7 +31,7 @@
 					<?php 						
 						foreach ($languages as $language):
 							?>
-							<input name='tags' language="<?php echo $language['id']?>" type='text' class='medium' tabindex='3'/>
+							<input name='tags' language="<?php echo $language['id']?>" type='text' class='medium tTip' tabindex='3' title="<?php echo $lang['tip_project_tags']?>"/>
 							<?php								
 						endforeach;						
 					?>
