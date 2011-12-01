@@ -384,12 +384,17 @@ $lang["new_ideas"]				= "Новые идеи";
 $lang["all_photos"]				= "Смотреть все фотографии ...";
 $lang["exists"]					= "Ссылка введена корректно";
 $lang["no_exists"]				= "Введенная ссылка уже занята!";
+$lang["copy_this"]				= "Скопировать...";
+$lang["copied"]					= "данные скопированы...";
 
 /* ToolTips */
 
 $lang["tip_project_name"]		= "Имя проекта";
 $lang["tip_prject_slug"]		= "Ссылка на проект. Должна быть уникальна.";
 $lang["tip_project_tags"]		= "Ключевые слова, разделенные запятой.";
+$lang["tip_project_active"]		= "Показывать ли проект на сайте?";
+$lang["tip_project_in_process"]	= "Находится ли проект в разработке?";
+$lang["tip_project_project_id"]	= "Имеется ли главный проект?";
 
 /* End ToolTips */
 

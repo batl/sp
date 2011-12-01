@@ -30,8 +30,8 @@ class Crank extends CI_Controller {
 		$this->params['current_settings'] = $this->Crank_model->get_entry_by_data("sp_settings", true, 'current', array('id'=>1));
 		
 		$this->include_js('jquery/jquery.min.js');
-		$this->include_js('jquery/ui/jquery-ui-1.8.16.custom.js');
-		$this->include_js('jquery/jquery.betterTooltip.js');
+		$this->include_js('jquery/ui/jquery-ui-1.8.16.custom.js');		
+		$this->include_js('tiny_mce/jquery.tinymce.js');		
 		$this->include_js('jquery/scroll_to.js');
 		$this->include_js('admin/main.js');				
 		$this->include_css('admin/main.css');

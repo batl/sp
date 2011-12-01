@@ -837,6 +837,7 @@ label{
 font-weight:bold;
 display:block;
 clear:both;
+float:left;
 }
 
 input[type="checkbox"]{
@@ -1153,7 +1154,7 @@ background:url("/static/images/admin/title-en.png") no-repeat;
 -webkit-box-shadow: 0px 0px 5px #fff; 
 box-shadow: 0px 0px 5px #fff;
 }
-.activ_translate img{
+.activ_translate img, .activ_to_copied img{
 -moz-box-shadow: 0px 0px 10px #000; 
 -khtml-box-shadow: 0px 0px 10px #000; 
 -webkit-box-shadow: 0px 0px 10px #000; 
@@ -1162,6 +1163,13 @@ box-shadow: 0px 0px 10px #000;
 -webkit-border-radius: 15px;
 -khtml-border-radius: 15px;
 border-radius: 15px;
+}
+.to_copy{
+z-index:1;
+position:relative;
+}
+.to_copy a{
+cursor:pointer;
 }
 .translate{
 	width:30px;
@@ -1395,4 +1403,13 @@ cursor:pointer;
 .moderate_comment:hover, .moderate_idea:hover{
 color:#FF9900;
 text-decoration:underline;
+}
+
+.ginput_container{
+position:relative;
+}
+
+.copy_message{
+color:green;
+display:none;
 }

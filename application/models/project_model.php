@@ -14,14 +14,21 @@ class Project_model extends Crank_Model {
 	
 	public function check_slug()
 	{
-		$query 		= $this->db->get_where($this->table_name, array('slug'=> $this->input->post('slug')));
+		$slug = $this->input->post('slug');
 		
-		$res 		= $query->result_array();
+		if ($slug != '')
+		{
+			$query 		= $this->db->get_where($this->table_name, array('slug'=> $slug));
+			
+			$res 		= $query->result_array();
+			
+			if 	(!empty($res)) 
+				return false;
+			else
+				return true;
+		}
 		
-		if 	(!empty($res)) 
-			return false;
-		else
-			return true;
+		return false;
 				
 	}
 	

@@ -9,9 +9,7 @@ var values = new Array();
 var filter_fields = new Array();
 var filter_values = new Array();
 
-$(document).ready(function(){							
-	
-	$('.tTip:visible').betterTooltip({speed: 150, delay: 300});		
+$(document).ready(function(){									
 	
 	$('legend').live('click', function(){
 		if ($(this).next('.expanded:visible').length)
@@ -175,15 +173,17 @@ $(document).ready(function(){
 		
 		$(this).addClass('activ_translate');
 		
+		$('.to_copy a').removeClass('activ_to_copied');
+		
+		$('.to_copy a[id=' + $(this).attr('id') + ']').addClass('activ_to_copied');
+		
 		$(this).parents('form').find('input[type=text][language!=no], div.textarea').hide();
 		
 		$(this).parents('.form').find('input[type=text][language!=no], div.textarea').hide();
 		
 		$(this).parents('form').find('input[type=text][language='+$(this).attr('id')+'], div.textarea[language='+$(this).attr('id')+']').show();
 		
-		$(this).parents('.form').find('input[type=text][language='+$(this).attr('id')+'], div.textarea[language='+$(this).attr('id')+']').show();
-		
-		$('.tTip:visible').betterTooltip({speed: 150, delay: 300});
+		$(this).parents('.form').find('input[type=text][language='+$(this).attr('id')+'], div.textarea[language='+$(this).attr('id')+']').show();				
 		
 	});		
 	
@@ -260,7 +260,64 @@ $(document).ready(function(){
 		alert("При выполнении ajax-запроса страницы " + settings.url + " произошла ошибка.");
 	  }
 	);
+	
+	$('.to_copy').find('a').live('click', function(){
+		
+		if ($('textarea').length) tinyMCE.triggerSave();
+		
+		var html;
+		if ($(this).parents('li').find('input:visible').length)
+		{
+			html = $(this).parents('li').find('input:visible').val();
+			$(this).parents('li').find('input[language=' + $(this).attr('id') + ']').val(html);
+		}
+		else
+		{
+			html = $(this).parents('li').find('div.textarea:visible').find('textarea').val();
+			if ($(this).parents('li').find('div[language=' + $(this).attr('id') + ']').find('textarea').hasClass('mceEditor')) 
+				$(this).parents('li').find('div[language=' + $(this).attr('id') + ']').find('textarea').tinymce().execCommand('mceInsertContent',false, html); 
+			else 
+				$(this).parents('li').find('div[language=' + $(this).attr('id') + ']').find('textarea').val(html);
+		}
+		
+		var $this = $(this).parents('.to_copy').find('.copy_message');
+		$this.show();
+
+		setTimeout(function(){
+			$this.fadeOut('fast');
+		},1000);
+		
+	});
 });
+
+function show_tolltip(){
+	
+	$('.tip').remove();		
+		
+	$('.tTip').each(function(){
+		
+		$(this).after(
+		"<div class='tip'>" +
+			"<div class='tipMid'>"	+ $(this).attr('title') + "</div>" +
+			"<div class='tipBtm'></div>" +
+		"</div>"
+		);
+		
+		if ($(this).attr('type') == 'text') $(this).next('.tip').css({'left':0});
+				
+	});	
+
+	$('.tTip').hover(
+		function(){			
+			$(this).next('.tip').fadeIn('fast');
+		},
+		function(){
+			$(this).next('.tip').fadeOut('fast');
+		}
+	);
+	
+}
+
 
 function focus_input()
 {
@@ -333,7 +390,7 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 			}
 		}
 		
-		$('.tTip:visible').betterTooltip({speed: 150, delay: 300});
+		show_tolltip();
 		
 		if (filter_fields.length)
 		{
@@ -501,9 +558,7 @@ function get_view(block, entry, action, id, clear_history)
 		
 		if ($('textarea').length) tiny_init();				
 		
-		$('.tTip:visible').betterTooltip({speed: 150, delay: 300});
-		
-		console.log($('.tTip:visible').length);
+		show_tolltip();
 		
 		if ($('#map_canvas').length)
 		{

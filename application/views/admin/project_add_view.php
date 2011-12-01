@@ -5,8 +5,18 @@
 		<input type='hidden' class='gform_hidden' name='id' value='0'/>
 		<input type='hidden' class='gform_hidden' name='user_id' value='<?php echo $admin_info['id']?>'/>
 		<ul class='gform_fields top_label'>								
-			<!-- Name -->
+			<!-- Name -->			
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["title"]?><span class='gfield_required'>*</span>:</label>
+				<span class="to_copy">
+					<?php
+					foreach ($languages as $item):
+						?>
+							<a href="javascript:void(0);" id="<?php echo $item['id']?>" class="flag <?php if ($language == $item['name']) echo 'activ_to_copied';?>"><img language="no" src="<?php echo $base_img?>flags/<?php echo $item['flag']?>" title="<?php echo $lang['copy_this']?>"/></a>
+						<?php
+						endforeach;
+					?>&nbsp;<span class="copy_message"><?php echo $lang['copied']?></span>
+				</span>
+				<div class="clear"></div>
 				<div class='ginput_container'>					
 					<?php 						
 						foreach ($languages as $language):
@@ -27,6 +37,15 @@
 			
 			<!-- Tags -->
 			<li class='gfield'><label class='gfield_label'><?php echo $lang["terms"]?><span class='gfield_required'>*</span>:</label>
+				<span class="to_copy">
+					<?php
+					foreach ($languages as $item):
+						?>
+							<a href="javascript:void(0);" id="<?php echo $item['id']?>" class="flag <?php if ($language == $item['name']) echo 'activ_to_copied';?>"><img language="no" src="<?php echo $base_img?>flags/<?php echo $item['flag']?>" title="<?php echo $lang['copy_this']?>"/></a>
+						<?php
+						endforeach;
+					?>&nbsp;<span class="copy_message"><?php echo $lang['copied']?></span>
+				</span>
 				<div class='ginput_container'>					
 					<?php 						
 						foreach ($languages as $language):
@@ -41,21 +60,21 @@
 			<!-- Active -->
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["active"]?>:</label>
 				<div class='ginput_container'>
-					<input name='active' type='checkbox' class='medium' tabindex='4'/>
+					<input name='active' type='checkbox' class='medium tTip' title="<?php echo $lang["tip_project_active"]?>" tabindex='4'/>
 				</div>
 			</li>
 			
 			<!-- In process -->
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["in_process"]?>:</label>
 				<div class='ginput_container'>
-					<input name='in_process' type='checkbox' class='medium' tabindex='4'/>
+					<input name='in_process' type='checkbox' class='medium tTip' title="<?php echo $lang["tip_project_in_process"]?>" tabindex='4'/>
 				</div>
 			</li>
 			
 			<!-- Parent Project -->
 			<li class='gfield'><label class='checkbox_label'><?php echo $lang["parent_project"]?><span class='gfield_required'>*</span>:</label>
 				<div class='ginput_container'>
-					<select name="project_id">
+					<select name="project_id" class="tTip" title="<?php echo $lang["tip_project_project_id"]?>">
 						<option value="0"><?php echo $lang["no_project"]?></option>
 						<?php
 						foreach ($projects as $project)
@@ -75,6 +94,16 @@
 				<div class="expanded">
 					<!-- Boss -->
 					<li class='gfield'><label class='gfield_label'><?php echo $lang["boss"]?><span class='gfield_required'>*</span>:</label>
+						<span class="to_copy">
+							<?php
+							foreach ($languages as $item):
+								?>
+									<a href="javascript:void(0);" id="<?php echo $item['id']?>" class="flag <?php if ($language == $item['name']) echo 'activ_to_copied';?>"><img language="no" src="<?php echo $base_img?>flags/<?php echo $item['flag']?>" title="<?php echo $lang['copy_this']?>"/></a>
+								<?php
+								endforeach;
+							?>&nbsp;<span class="copy_message"><?php echo $lang['copied']?></span>
+						</span>
+						<div class="clear"></div>
 						<div class='ginput_container'>					 
 							<?php 						
 								foreach ($languages as $language):
@@ -156,6 +185,16 @@
 					</div>
 					
 					<li class='gfield'><label class='gfield_label'><?php echo $lang["map_description"]?>: </label>
+						<span class="to_copy">
+							<?php
+							foreach ($languages as $item):
+								?>
+									<a href="javascript:void(0);" id="<?php echo $item['id']?>" class="flag <?php if ($language == $item['name']) echo 'activ_to_copied';?>"><img language="no" src="<?php echo $base_img?>flags/<?php echo $item['flag']?>" title="<?php echo $lang['copy_this']?>"/></a>
+								<?php
+								endforeach;
+							?>&nbsp;<span class="copy_message"><?php echo $lang['copied']?></span>
+						</span>
+						<div class="clear"></div>
 						<div class='ginput_container'>					
 							<?php 						
 								foreach ($languages as $language):
@@ -186,6 +225,16 @@
 					
 					<!-- Short description -->
 					<li class='gfield'><label class='gfield_label'><?php echo $lang["short_description"]?><span class='gfield_required'>*</span>:</label>
+						<span class="to_copy">
+							<?php
+							foreach ($languages as $item):
+								?>
+									<a href="javascript:void(0);" id="<?php echo $item['id']?>" class="flag <?php if ($language == $item['name']) echo 'activ_to_copied';?>"><img language="no" src="<?php echo $base_img?>flags/<?php echo $item['flag']?>" title="<?php echo $lang['copy_this']?>"/></a>
+								<?php
+								endforeach;
+							?>&nbsp;<span class="copy_message"><?php echo $lang['copied']?></span>
+						</span>
+						<div class="clear"></div>
 						<div class='ginput_container'>					
 							<?php 						
 								foreach ($languages as $language):
@@ -199,6 +248,16 @@
 					
 					<!-- Purpose -->					
 					<li class='gfield'><label class='gfield_label'><?php echo $lang["purpose"]?>: </label>
+						<span class="to_copy">
+							<?php
+							foreach ($languages as $item):
+							?>
+								<a href="javascript:void(0);" id="<?php echo $item['id']?>" class="flag <?php if ($language == $item['name']) echo 'activ_to_copied';?>"><img language="no" src="<?php echo $base_img?>flags/<?php echo $item['flag']?>" title="<?php echo $lang['copy_this']?>"/></a>
+							<?php
+							endforeach;
+							?>&nbsp;<span class="copy_message"><?php echo $lang['copied']?></span>
+						</span>
+						<div class="clear"></div>
 						<div class='ginput_container'>					
 							<?php 						
 								foreach ($languages as $language):
@@ -214,6 +273,16 @@
 					
 					<!-- Note -->					
 					<li class='gfield'><label class='gfield_label'><?php echo $lang["note"]?>: </label>
+						<span class="to_copy">
+							<?php
+							foreach ($languages as $item):
+								?>
+									<a href="javascript:void(0);" id="<?php echo $item['id']?>" class="flag <?php if ($language == $item['name']) echo 'activ_to_copied';?>"><img language="no" src="<?php echo $base_img?>flags/<?php echo $item['flag']?>" title="<?php echo $lang['copy_this']?>"/></a>
+								<?php
+								endforeach;
+							?>&nbsp;<span class="copy_message"><?php echo $lang['copied']?></span>
+						</span>
+						<div class="clear"></div>
 						<div class='ginput_container'>					
 							<?php 						
 								foreach ($languages as $language):
@@ -266,6 +335,16 @@
 					
 					<!-- Contacts -->
 					<li class='gfield'><label class='gfield_label'><?php echo $lang["contacts"]?>: </label>
+						<span class="to_copy">
+							<?php
+							foreach ($languages as $item):
+								?>
+									<a href="javascript:void(0);" id="<?php echo $item['id']?>" class="flag <?php if ($language == $item['name']) echo 'activ_to_copied';?>"><img language="no" src="<?php echo $base_img?>flags/<?php echo $item['flag']?>" title="<?php echo $lang['copy_this']?>"/></a>
+								<?php
+								endforeach;
+							?>&nbsp;<span class="copy_message"><?php echo $lang['copied']?></span>
+						</span>
+						<div class="clear"></div>
 						<div class='ginput_container'>					
 							<?php 						
 								foreach ($languages as $language):
