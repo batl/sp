@@ -18,9 +18,9 @@
 				</span>
 				<div class='ginput_container'>					
 					<?php 						
-						foreach ($languages as $language):
+						foreach ($languages as $value):
 							?>
-							<input name='name' language="<?php echo $language['id'];?>" type='text' value='<?php echo $entry['name'][$language['id']];?>' class='medium' tabindex='3'/>
+							<input name='name' language="<?php echo $value['id'];?>" type='text' value='<?php echo $entry['name'][$value['id']];?>' class='medium' tabindex='3'/>
 							<?php								
 						endforeach;						
 					?>
@@ -47,9 +47,9 @@
 				</span>
 				<div class='ginput_container'>					
 					<?php 						
-						foreach ($languages as $language):
+						foreach ($languages as $value):
 							?>
-							<input name='tags' language="<?php echo $language['id'];?>" type='text' value='<?php echo $entry['tags'][$language['id']];?>' class='medium' tabindex='3'/>
+							<input name='tags' language="<?php echo $value['id'];?>" type='text' value='<?php echo $entry['tags'][$value['id']];?>' class='medium' tabindex='3'/>
 							<?php								
 						endforeach;						
 					?>
@@ -126,9 +126,9 @@
 						</span>
 						<div class='ginput_container'>					 
 							<?php 						
-								foreach ($languages as $language):
+								foreach ($languages as $value):
 									?>
-									<input name='boss' language="<?php echo $language['id'];?>" type='text' value='<?php echo $entry['boss'][$language['id']];?>' class='medium' tabindex='3'/>
+									<input name='boss' language="<?php echo $value['id'];?>" type='text' value='<?php echo $entry['boss'][$value['id']];?>' class='medium' tabindex='3'/>
 									<?php								
 								endforeach;						
 							?>
@@ -220,10 +220,10 @@
 						</span>
 						<div class='ginput_container'>					
 							<?php 						
-								foreach ($languages as $language):
+								foreach ($languages as $value):
 									?>
-									<div class="textarea" name='map_description' language="<?php echo $language['id'];?>">
-										<textarea type='text' class='medium' tabindex='3'><?php echo $entry['map_description'][$language['id']];?></textarea>
+									<div class="textarea" name='map_description' language="<?php echo $value['id'];?>">
+										<textarea type='text' class='medium' tabindex='3'><?php echo $entry['map_description'][$value['id']];?></textarea>
 									</div>
 									<?php								
 								endforeach;						
@@ -260,9 +260,9 @@
 						</span>
 						<div class='ginput_container'>					 
 							<?php 						
-								foreach ($languages as $language):
+								foreach ($languages as $value):
 									?>
-									<input name='short_description' language="<?php echo $language['id'];?>" type='text' value='<?php echo $entry['short_description'][$language['id']];?>' class='medium' tabindex='3'/>
+									<input name='short_description' language="<?php echo $value['id'];?>" type='text' value='<?php echo $entry['short_description'][$value['id']];?>' class='medium' tabindex='3'/>
 									<?php								
 								endforeach;						
 							?>
@@ -282,10 +282,10 @@
 						</span>
 						<div class='ginput_container'>					
 							<?php 						
-								foreach ($languages as $language):
+								foreach ($languages as $value):
 									?>
-									<div class="textarea" name='purpose' language="<?php echo $language['id'];?>">
-										<textarea class='textarea small' tabindex='5' rows='10' cols='50'><?php echo $entry['purpose'][$language['id']];?></textarea>		
+									<div class="textarea" name='purpose' language="<?php echo $value['id'];?>">
+										<textarea class='textarea small' tabindex='5' rows='10' cols='50'><?php echo $entry['purpose'][$value['id']];?></textarea>		
 									</div>
 									<?php								
 								endforeach;						
@@ -306,10 +306,10 @@
 						</span>
 						<div class='ginput_container'>					
 							<?php 						
-								foreach ($languages as $language):
+								foreach ($languages as $value):
 									?>
-									<div class="textarea" name='note' language="<?php echo $language['id'];?>">
-										<textarea class='textarea small mceEditor' tabindex='5' rows='10' cols='50'><?php echo $entry['note'][$language['id']];?></textarea>		
+									<div class="textarea" name='note' language="<?php echo $value['id'];?>">
+										<textarea class='textarea small mceEditor' tabindex='5' rows='10' cols='50'><?php echo $entry['note'][$value['id']];?></textarea>		
 									</div>
 									<?php								
 								endforeach;						
@@ -367,10 +367,10 @@
 						</span>
 						<div class='ginput_container'>					
 							<?php 						
-								foreach ($languages as $language):
+								foreach ($languages as $value):
 									?>
-									<div class="textarea" name='contacts' language="<?php echo $language['id'];?>">
-										<textarea type='text' class='medium mceEditor' tabindex='3'><?php echo $entry['contacts'][$language['id']];?></textarea>
+									<div class="textarea" name='contacts' language="<?php echo $value['id'];?>">
+										<textarea type='text' class='medium mceEditor' tabindex='3'><?php echo $entry['contacts'][$value['id']];?></textarea>
 									</div>
 									<?php								
 								endforeach;						

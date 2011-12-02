@@ -6,11 +6,13 @@
 							<div class='gform_body'>									
 								<ul class='gform_fields top_label'>																																				
 									<li class='gfield'><label class='gfield_label'><?php echo $lang['password']?></label>
+										<div class="clear"></div>
 										<div class='ginput_container'>
 											<input id='password' name="password" language="no" type='password' value='' class='medium' tabindex='4'/>
 										</div>
 									</li>										
 									<li class='gfield'><label class='gfield_label'><?php echo $lang['confirm_password']?></label>
+										<div class="clear"></div>
 										<div class='ginput_container'>
 											<input id='cpassword' name="cpassword" language="no" type='password' value='' class='medium' tabindex='4'/>
 										</div>

@@ -1413,3 +1413,7 @@ position:relative;
 color:green;
 display:none;
 }
+
+.fleft{
+float:left;
+}
