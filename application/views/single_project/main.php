@@ -107,6 +107,18 @@
 		<input type='hidden' class='gform_hidden' name='map' value='<?php echo $project['map']?>'/>
 		<input type='hidden' class='gform_hidden' name='map_description' value='<?php echo $project['map_description']?>'/>
 	</div>
+	<div id="about_project">
+		<h2 style="color:<?php echo $project['title_color']?>"><?php echo $project['name']?> </h2>
+		<fieldset class="field">
+			 <legend><?php echo $lang['purpose']?></legend>
+			<?php echo $project['purpose']?>																	
+		</fieldset>
+		<div class="h_section">				
+			<div class="h_section_content">
+				<?php echo $project['note']?>
+			</div>
+		</div>
+	</div>
 	<div id="single_content">	
 		
 	</div><!--  #content -->

@@ -210,3 +210,7 @@ list-style: disc inside none;
 #languages #links a{
 color:#fff;
 }
+
+#about_project{
+display:none;
+}

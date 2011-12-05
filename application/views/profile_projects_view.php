@@ -33,7 +33,36 @@
 			?>
 			<br/><br/>
 			<!-- Initiators section -->
-			<div class="fieldset">
+			<?php echo $lang['project_initiators']?>
+			<?php
+				$project_initiators = json_decode($project['initiator'], true);
+				$initiators = array();
+				if (!empty($project_initiators))
+				{
+					foreach ($organizations as $organization)
+					{	
+						if (!empty($project_initiators) && is_array($project_initiators) && in_array($organization['id'], $project_initiators))
+						{
+							array_push($initiators, $organization['name']);											
+						}
+					}
+				}						
+			?>
+			<div class='ginput_container' name="initiator">
+				<?php																							
+				if (!empty($initiators))
+				{
+					foreach ($initiators as $value)
+					{										
+						?>							
+						&#8226;&nbsp;<span class="check_item" style="font-size:11px;"><?php echo $value?></span><br/>
+						<?php																
+					}
+				}
+				else echo $lang['no_data'];
+				?>					
+			</div>
+			<!--<div class="fieldset">
 				<fieldset>
 					<?php
 						$project_initiators = json_decode($project['initiator'], true);
@@ -66,10 +95,39 @@
 							?>					
 						</div>								
 					</div>
-				</fieldset>
+				</fieldset> -->
 				
 				<!-- Organizators section -->
-				<fieldset>
+				<?php echo $lang['project_organizators']?>
+				<?php
+					$project_organizers = json_decode($project['organizer'], true);
+					$organizers = array();
+					if (!empty($project_organizers))
+					{
+						foreach ($organizations as $organization)
+						{			
+							if (!empty($project_organizers) && is_array($project_organizers) && in_array($organization['id'], $project_organizers))
+							{
+								array_push($organizers, $organization['name']);								
+							}
+						}
+					}						
+				?>
+				<div class='ginput_container' name="organizer">
+					<?php																			
+					if (!empty($organizers))
+					{
+						foreach ($organizers as $value)
+						{												
+							?>							
+							&#8226;&nbsp;<span class="check_item" style="font-size:11px;"><?php echo $value?></span><br/>
+							<?php									
+						}
+					}
+					else echo $lang['no_data'];
+					?>					
+				</div><br/>	
+				<!--<fieldset>
 					<?php
 						$project_organizers = json_decode($project['organizer'], true);
 						$organizers = array();
@@ -102,7 +160,7 @@
 						</div>							
 					</div>
 				</fieldset>
-			</div>			
+			</div> -->			
 			<?php
 				$places = json_decode($project['places'], true);
 				$project_places = array();
