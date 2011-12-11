@@ -80,6 +80,7 @@ $(document).ready(function(){
 				{
 					var api_id = 2696932;
 					if (server == 'devmax') api_id = 2696942;
+					if (server == 'goodpro') api_id = 2714697;
 					VK.init({apiId: api_id, onlyWidgets: true});
 					$('#single_content').find('.p_comments').each(function(){
 						VK.Widgets.Comments($(this).attr('id'), {limit: 5}, $(this).attr('id'));				

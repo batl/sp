@@ -380,6 +380,7 @@ function get_items(block, entry, start, sort, sort_type, clear_history, after_ge
 		{
 			var api_id = 2696932;
 			if (server == 'devmax') api_id = 2696942;
+			if (server == 'goodpro') api_id = 2714697;
 			VK.init({apiId: api_id, onlyWidgets: true});
 			$('.vk_comments').each(function(){
 				VK.Widgets.Comments($(this).attr('id'), {limit: 5}, $(this).attr('id'));				
