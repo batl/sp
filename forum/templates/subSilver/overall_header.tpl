@@ -5,8 +5,9 @@
 <meta http-equiv="Content-Style-Type" content="text/css">
 {META}
 {NAV_LINKS}
-<title>{SITENAME} :: {PAGE_TITLE}</title>
+<title>{SITENAME} : {PAGE_TITLE}</title>
 <!-- link rel="stylesheet" href="templates/subSilver/{T_HEAD_STYLESHEET}" type="text/css" -->
+<link rel="shortcut icon" href="templates/subSilver/images/favicon.png" type="image/x-icon" />
 <style type="text/css">
 <!--
 /*
@@ -228,7 +229,7 @@ input.liteoption {
 	<tr> 
 		<td class="bodyline"><table width="100%" cellspacing="0" cellpadding="0" border="0">
 			<tr> 
-				<td><a href="{U_INDEX}"><img src="templates/subSilver/images/logo_phpBB.gif" border="0" alt="{L_INDEX}" vspace="1" /></a></td>
+				<td><a href="{U_INDEX}"><img src="templates/subSilver/images/log_doc.jpg" border="0" alt="{L_INDEX}" vspace="1" /></a></td>
 				<td align="center" width="100%" valign="middle"><span class="maintitle">{SITENAME}</span><br /><span class="gen">{SITE_DESCRIPTION}<br />&nbsp; </span> 
 				<table cellspacing="0" cellpadding="2" border="0">
 					<tr> 

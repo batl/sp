@@ -74,6 +74,7 @@
 				<?php if (!empty($user_id)):?>
 					<li><a href="<?php echo $base;?>profile" <?php if ($main_navi == 2) echo "class='selected'" ?>><?php echo $lang['menu_profile'];?></a></li>
 				<?php endif;?>				
+				<li><a href="<?php echo $base;?>forum" target="_blank"><?php echo $lang['menu_forum'];?></a></li>
 			</ul>
 		</div>
 	</div><!--  #wrapper-header -->	
