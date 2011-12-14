@@ -23,7 +23,7 @@ $(document).ready(function(){
 			$('#map_canvas').hide('fast');
 		});
 
-	}		
+	}	
 	
 	$('.b-menu__item a').css({'color':$('#menu_font').html()});
 	$('.b-block__accent p').css({'color':$('#purpose_color').html()});

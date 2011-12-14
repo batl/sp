@@ -5,7 +5,7 @@
 				if (!empty($poll)):
 				?>
 				<div id="anonses-container" class="switcher_parent">
-					<div class="sub-hdr"><h3><?php echo $lang['poll']?></h3><span class="switcher hide_switcher"></span></div>
+					<div class="sub-hdr"><h3><?php echo $lang['poll']?></h3><!--span class="switcher hide_switcher"></span--></div>
 					<div class="switcher_content">
 						<div class="poll">
 							<p class="poll_title"><?php echo $poll['name']?></p>
@@ -58,7 +58,7 @@
 		</div>
 		
 		<div id="news-container" class="switcher_parent" <?php if (!empty($poll)):?> style="width:635px; display:none;" <?php else: ?> style="width:100%;display:none;" <?php endif;?>>
-			<div id="sub-hdr"><h3><?php echo $lang['news']?></h3><span class="switcher hide_switcher"></span></div>
+			<div id="sub-hdr"><h3><?php echo $lang['news']?></h3><!--span class="switcher hide_switcher"></span--></div>
 			<div class="switcher_content">
 				<div id="items" class="items">
 							
@@ -103,7 +103,7 @@
 			<?php
 			endif;	
 		?>					
-		<div id="map_canvas" style="height:300px;display:none;"><h3><?php echo $lang['no_project_map']?></h3></div>
+		<div id="map_canvas" style="height:300px;display:none; text-align:center;"><h3><?php if (!empty($project['map_img'])):?><img src="<?php echo $base.$project['map_img']?>"/><?php else: echo $lang['no_project_map']; endif;?></h3></div>		
 		<input type='hidden' class='gform_hidden' name='map' value='<?php echo $project['map']?>'/>
 		<input type='hidden' class='gform_hidden' name='map_description' value='<?php echo $project['map_description']?>'/>
 	</div>

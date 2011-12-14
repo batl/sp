@@ -283,7 +283,7 @@ border-radius-bottomLeft: 5px;
 border-radius-bottomRight: 5px;
 }
 
-#content-container, #content-container-100, #news-container, #anonses-container, #poll, #single_content, #map_canvas {
+#content-container, #content-container-100, #news-container, #anonses-container, #poll, #single_content, #map_canvas, #about_project {
 float:left;
 margin-left:20px;
 width:670px;
@@ -310,7 +310,7 @@ width:100%;
 margin:25px;
 }
 
-#single_content{
+#single_content, #about_project{
 margin:10px 0px;
 width:960px;
 }

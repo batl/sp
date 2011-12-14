@@ -181,7 +181,7 @@ text-align: center;
 text-decoration:underline;
 }
 
-#single_content{
+#single_content, #about_project{
 width:930px;
 padding:10px;
 }

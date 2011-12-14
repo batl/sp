@@ -39,30 +39,37 @@ $(document).ready(function(){
 	
 	$('.save_entry').live('click', function(){											
 		
-		var URL = base_url + 'project/check_slug';				
-		
-		$.post(URL, {'slug':$('input[name=slug]').val()}, function(data)
+		if ($('input[name=slug]').length && $('input[name=id]').val() == '0')
 		{
-			if (data.result && $('input[name=slug]').val() != "")
-			{
-				var reload;
-						
-				(entry.split('_')[0] == 'moreproject') ? reload = true: reload = undefined;				
-				
-				save_entry(block, entry, $('input[name=id]').val(), reload);
-				
-			}
-			else
-			{
-				$('.message').html(data.response).show();
-					setTimeout(function(){
-						$('.message').fadeOut('fast');
-					},3000);
-					
-				$.scrollTo({top:'0px', left:'0px'}, 800);
-			}
+			var URL = base_url + 'project/check_slug';				
 			
-		},'json');				
+			$.post(URL, {'slug':$('input[name=slug]').val()}, function(data)
+			{
+				if (data.result && $('input[name=slug]').val() != "")
+				{
+					var reload;
+							
+					(entry.split('_')[0] == 'moreproject') ? reload = true: reload = undefined;				
+					
+					save_entry(block, entry, $('input[name=id]').val(), reload);
+					
+				}
+				else
+				{
+					$('.message').html(data.response).show();
+						setTimeout(function(){
+							$('.message').fadeOut('fast');
+						},3000);
+						
+					$.scrollTo({top:'0px', left:'0px'}, 800);
+				}
+				
+			},'json');				
+		}
+		else
+		{
+			save_entry(block, entry, $('input[name=id]').val());
+		}
 		
 	});
 	
