@@ -6,7 +6,7 @@ $(document).ready(function(){
 	
 	$('.picker').datepicker({ dateFormat: 'yy-mm-dd' });
 	
-	get_items(block, entry, 0, 'id', 'asc');
+	get_items(block, entry, 0, 'id', 'desc');
 	
 	$('#date_search').click(function(){
 		
@@ -22,7 +22,7 @@ $(document).ready(function(){
 		
 		entry = 'events/date_filter/'+$('#date_start').val()+'v'+$('#date_end').val();
 		
-		get_items(block, entry, 0, 'id', 'asc', 'ignore');
+		get_items(block, entry, 0, 'id', 'desc', 'ignore');
 		
 	});
 	
@@ -48,7 +48,7 @@ $(document).ready(function(){
 		
 		entry = $(this).attr('href');
 		
-		get_items(block, entry, 0, 'id', 'asc');
+		get_items(block, entry, 0, 'id', 'desc');
 		
 	});
 	
@@ -58,7 +58,7 @@ $(document).ready(function(){
 		
 		entry = 'events/'+$(this).html().split('&nbsp;')[1]+'/'+$(this).attr('slug')+'/no';
 		
-		get_items(block, entry, 0, 'id', 'asc');
+		get_items(block, entry, 0, 'id', 'desc');
 		
 	});
 	

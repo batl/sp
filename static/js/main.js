@@ -1,4 +1,4 @@
-var sort_type = 'asc';
+var sort_type = 'desc';
 var sort = 'id';
 var limit = 5;
 var group = 0;

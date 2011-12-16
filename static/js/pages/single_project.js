@@ -51,9 +51,9 @@ $(document).ready(function(){
 		} 
 		else
 		{
-			$('#single_content').slideUp('fast');
-			$('#map_canvas').slideUp('fast', function(){
-				$('#single_content').slideDown('fast', function(){
+			$('#single_content').hide('fast');
+			$('#map_canvas').hide('fast', function(){
+				$('#single_content').show('fast', function(){
 					if (ths.attr('id') == 'home') 
 					{
 						$('#news-container, #photos-container, #poll-container, .b-sub-header').show(); 

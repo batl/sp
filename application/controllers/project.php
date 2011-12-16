@@ -228,7 +228,30 @@ class Project extends Crank {
 						)
 					);
 					
-				endif;				
+				endif;		
+
+				if ($view[0] == 'events'):
+					
+					$this->params['project_more']['events'] = $this->Crank_model->get_all_entries(
+						"sp_events", 
+						array(
+							'project_id' => $this->session->userdata('project')
+						), 
+						0, 
+						false, 
+						'id', 
+						'asc', 
+						array(							
+							'sp_events' => array('id','logo', 'thumb','type','name','description'),
+							'sp_events_categories' => array('name as group_name')
+						),
+						array(
+							'sp_events_categories'=>'type'
+						)
+					);
+										
+				
+				endif;
 				
 				break;
 			

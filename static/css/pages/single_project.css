@@ -16,10 +16,13 @@
 	text-shadow:0px 0px 12px #fff;	
 }
 .step-item-img{
+	display: inline-block;
 	float: none;
-	display:inline-block;
+	height: 170px;
 	margin: 5px;
-	text-align: center;	
+	text-align: center;
+	vertical-align: top;
+	width: 140px;
 }
 .more{
 	clear: both;
@@ -214,4 +217,8 @@ color:#fff;
 
 #about_project{
 display:none;
+}
+
+h2{
+margin-bottom:10px;
 }

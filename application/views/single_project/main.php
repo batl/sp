@@ -92,7 +92,7 @@
 			<?php
 				foreach ($project_photos as $photo):
 				?>
-					<div class="step-item-img">
+					<div class="step-item-img" style="width:auto; height:auto;">
 						<a class="lightbox" href="<?php echo $base.$photo['foto']?>"><img src="<?php echo $base.$photo['thumb']?>" /></a>							
 					</div>
 				<?php

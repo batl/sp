@@ -6,7 +6,7 @@ $(document).ready(function(){
 	
 	limit = 12;
 	
-	get_items(block, entry, 0, 'id', 'asc');
+	get_items(block, entry, 0, 'id', 'desc');
 	
 	$('#sub-nav a').click(function(){		
 		$('#filters').find('span[rel='+entry+']').removeClass('hidden');
