@@ -124,7 +124,7 @@ border:1px solid #ccc;
 padding:10px;
 margin:0px 10px;
 color:#666;
-font-family:Verdana;
+margin-top:10px;
 }
 
 .field legend{
@@ -152,6 +152,7 @@ border:1px solid #ccc;
 -khtml-border-radius: 5px;
 border-radius: 5px;
 width:950px;
+margin-top:10px;
 }
 
 #photos-container{

@@ -67,8 +67,15 @@ $(document).ready(function(){
 			},'json');				
 		}
 		else
-		{
-			save_entry(block, entry, $('input[name=id]').val());
+		{					
+			if (entry.indexOf('moreproject')>=0)
+			{							
+				save_entry(block, entry, $('input[name=id]').val(), false, undefined, function(){$.scrollTo({top:'0px', left:'0px'}, 800);});
+			}
+			else
+			{
+				save_entry(block, entry, $('input[name=id]').val());
+			}
 		}
 		
 	});
@@ -136,7 +143,7 @@ $(document).ready(function(){
 		
 		$('#content h2:first').html($(this).html()+" "+$(this).parents('tr').find('td').eq(2).html());
 		
-		entry = 'moreproject_'+id;
+		entry = 'moreproject_'+id;				
 		
 		get_view(block, entry, 'edit', id, true);
 		

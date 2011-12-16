@@ -838,6 +838,7 @@ font-weight:bold;
 display:block;
 clear:both;
 float:left;
+min-width:185px;
 }
 
 input[type="checkbox"]{
@@ -856,7 +857,9 @@ width:150px;
 .gfield {
 list-style:none;
 height:auto;
-margin: 20px 0;
+padding: 10px 0;
+clear:both;
+display:block;
 }
 
 .button, .ui-dialog-buttonset button {
@@ -1407,6 +1410,8 @@ text-decoration:underline;
 
 .ginput_container{
 position:relative;
+clear:both;
+
 }
 
 .copy_message{

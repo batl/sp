@@ -165,9 +165,12 @@
 				$places = json_decode($project['places'], true);
 				$project_places = array();
 				
-				foreach ($all_places as $place)
+				if (!empty($places))
 				{
-					if (in_array($place['id'], $places)) array_push($project_places, $place['name']);
+					foreach ($all_places as $place)
+					{
+						if (in_array($place['id'], $places)) array_push($project_places, $place['name']);
+					}
 				}
 				if (count($project_places)>1) echo $lang['places'].': '; else echo $lang['place'].': ';  
 				if (!empty($project_places)) echo implode(', ', $project_places); else echo $lang['no_data'];

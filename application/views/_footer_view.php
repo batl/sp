@@ -17,7 +17,19 @@
 					?>					
 				</ul>
 			</div>
-			<div id="footer_actions"><a id="admin_letter" href="<?php echo $base;?>contacts"></a></div>
+			<div id="footer_actions"><a id="admin_letter" href="<?php echo $base;?>contacts"></a>
+			<!-- Поместите этот тег туда, где должна отображаться кнопка +1. -->
+			<g:plusone annotation="inline"></g:plusone>
+
+			<!-- Поместите этот вызов функции отображения в соответствующее место. -->
+			<script type="text/javascript">
+			  (function() {
+				var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+				po.src = 'https://apis.google.com/js/plusone.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+			  })();
+			</script>
+			</div>
 			<div id="footer-newsletter">&copy;&nbsp;<?php if (!empty($current_settings['copy_text'])) echo $current_settings['copy_text'];?>&nbsp;<?php echo date("Y")?></div>
 		</div>
 	</div>

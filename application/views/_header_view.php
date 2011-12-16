@@ -9,8 +9,21 @@
 	<link rel="shortcut icon" href="<?php echo $base_img;?>favicon.png" type="image/x-icon" />	
 	<meta name="keywords" content="<?php foreach ($include_keywords as $key=>$item){echo $item;}?>" />
 	<meta name="description" content="<?php echo $include_description;?>" />
-	
+	<meta name='yandex-verification' content='4fb035038646c02e' />
 	<?php foreach ($include_css as $key=>$item){echo $item;}?>
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-27675874-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
 </head>
 <body <?php if (intval($current_settings['bgcolor_trigger'])) echo "style='background:".$current_settings['bg_color']."'"; else if (!intval($current_settings['default_background']) && !empty($current_settings['background'])) echo "style='background:url(".$base.$current_settings['background'].")'"?>>
 

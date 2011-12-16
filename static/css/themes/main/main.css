@@ -2117,6 +2117,8 @@ display:block;
 background:url("/static/images/mail.jpg");
 width:20px;
 height:14px;
+float:left;
+margin:5px 10px 0px;
 }
 
 #filters{

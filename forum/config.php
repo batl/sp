@@ -7,9 +7,9 @@
 $dbms = 'mysql4';
 
 $dbhost = 'localhost';
-$dbname = 'successfull';
-$dbuser = 'cmd_root';
-$dbpasswd = 'iKv1cDUl0l';
+$dbname = 'goodp49_sp';
+$dbuser = 'goodp49_sp';
+$dbpasswd = 'wAfU}cI&?n~{';
 
 $table_prefix = 'phpbb_';
 

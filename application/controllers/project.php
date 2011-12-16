@@ -83,6 +83,9 @@ class Project extends Crank {
 			case 'devmax':
 				$this->include_js('http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAA6yP--2v-CDoEpX6OnpY-sxQ_XhwsaFE8QWbhjrQXcNpGHT4T3xQbEuuvb8nMFIwjCs15e_OMHD7eoA', true);
 				break;
+			case 'goodpro':
+				$this->include_js('http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAA6yP--2v-CDoEpX6OnpY-sxQ8Bc5fCdX1fgOPxwM6Bz1_jX0daRQJf2hhycNAHdebITDfBq3fP0Z23w', true);
+				break;
 			default:
 				$this->include_js('http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=true&amp;key=ABQIAAAA6yP--2v-CDoEpX6OnpY-sxT8FfoTSPNSCinLNsksAZkths46yxSraikQy6QrFI22T_VOWK_S7Eud3g', true);
 				break;

@@ -95,7 +95,7 @@
 						foreach ($languages as $language):
 							?>
 							<div class="textarea" name='report' language="<?php echo $language['id'];?>">
-								<textarea class='textarea small' tabindex='5' rows='10' cols='50'><?php echo $entry['report'][$language['id']];?></textarea>		
+								<textarea class='textarea small mceEditor' tabindex='5' rows='10' cols='50'><?php echo $entry['report'][$language['id']];?></textarea>		
 							</div>
 							<?php								
 						endforeach;						
@@ -108,7 +108,7 @@
 						foreach ($languages as $language):
 							?>
 							<div class="textarea" name='product_links' language="<?php echo $language['id'];?>">
-								<textarea class='textarea small' tabindex='5' rows='10' cols='50'><?php echo $entry['product_links'][$language['id']];?></textarea>		
+								<textarea class='textarea small mceEditor' tabindex='5' rows='10' cols='50'><?php echo $entry['product_links'][$language['id']];?></textarea>		
 							</div>
 							<?php								
 						endforeach;						
@@ -121,7 +121,7 @@
 						foreach ($languages as $language):
 							?>
 							<div class="textarea" name='feedback_links' language="<?php echo $language['id'];?>">
-								<textarea class='textarea small' tabindex='5' rows='10' cols='50'><?php echo $entry['feedback_links'][$language['id']];?></textarea>		
+								<textarea class='textarea small mceEditor' tabindex='5' rows='10' cols='50'><?php echo $entry['feedback_links'][$language['id']];?></textarea>		
 							</div>
 							<?php								
 						endforeach;						
@@ -134,7 +134,7 @@
 						foreach ($languages as $language):
 							?>
 							<div class="textarea" name='workgroups_links' language="<?php echo $language['id'];?>">
-								<textarea class='textarea small' tabindex='5' rows='10' cols='50'><?php echo $entry['workgroups_links'][$language['id']];?></textarea>		
+								<textarea class='textarea small mceEditor' tabindex='5' rows='10' cols='50'><?php echo $entry['workgroups_links'][$language['id']];?></textarea>		
 							</div>
 							<?php								
 						endforeach;						
@@ -147,7 +147,7 @@
 						foreach ($languages as $language):
 							?>
 							<div class="textarea" name='paper' language="<?php echo $language['id'];?>">
-								<textarea class='textarea small' tabindex='5' rows='10' cols='50'><?php echo $entry['paper'][$language['id']];?></textarea>		
+								<textarea class='textarea small mceEditor' tabindex='5' rows='10' cols='50'><?php echo $entry['paper'][$language['id']];?></textarea>		
 							</div>
 							<?php								
 						endforeach;						

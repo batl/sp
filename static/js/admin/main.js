@@ -210,8 +210,8 @@ $(document).ready(function(){
 		$('#content h2:first').html($(this).html());
 		var start = 0;		
 		var block = $(this).parents('.list div:first');		
-		sort = 'id';		
-		entry = $(this).attr('id');
+		sort = 'id';				
+		entry = $(this).attr('id');		
 		get_items(block, entry, start, sort, sort_type, true);
 	});
 	
@@ -501,7 +501,9 @@ function get_items(block, entry, start, sort, sort_type, clear_history)
 					},"json");								
 				}
 			});
-		}
+		}	
+		
+		$('.add_item').show();
 				
 	},"json");
 }
@@ -608,6 +610,8 @@ function get_view(block, entry, action, id, clear_history)
 		if ($( "#tabs" ).length) $( "#tabs" ).tabs();
 		
 		setTimeout(function () {$('.expanded').hide();}, 500);
+		
+		if (entry.indexOf('moreproject')>=0) $('.add_item').hide(); else $('.add_item').show();
 		
 	},"json");
 }
