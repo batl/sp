@@ -210,6 +210,9 @@ list-style: disc inside none;
 	-webkit-box-shadow: 0px 0px 0px #fff; 
 	box-shadow: 0px 0px 0px #fff;
 }
+#languages #links{
+float:left;
+}
 
 #languages #links a{
 color:#fff;

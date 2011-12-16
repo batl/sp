@@ -10,7 +10,16 @@ var fields = new Array();
 var values = new Array();
 
 $(document).ready(function(){	
-
+	
+	if ($('#f-news').length)
+	{
+		$('#f-news').cycle({ 
+			fx:    'scrollDown', 
+			timeout:  8000,
+			pause:  1 
+		});
+	}
+	
 	$('.expanded').hide();
 	
 	$('.fieldset legend').live('click', function(){
@@ -125,17 +134,22 @@ $(document).ready(function(){
 		
 	});
 	
-	setTimeout(function () {$('#content, #footer').fadeIn('slow');}, 100);
+	$('.f-news').hide();
+	
+	setTimeout(function () {$('#content, #footer, .f-news').fadeIn('slow');}, 100);
 	
 	$('a.single').live('click', function(event){
 		event.preventDefault();		
-		$('#search_fields').slideUp();
+		$('#search_fields').slideUp();		
 		$('#search_fields').find('input[type="text"]').val('');
 		$('#search_block').css({'border':'0px solid #ccc','borderTop':'1px solid #ccc','background':'#fff'}); 
 		$('#search_block legend').css({'background':'url("/static/images/menu-collapsed.png") no-repeat 0px 4px'});
 		fields = new Array();
 		values = new Array();
-		
+		$('#paging, #limit').hide();
+		$('#search_block').hide();
+		$('#filters').hide();
+		$('#tag_search').hide();
 		$('#sub-hdr h3').html($(this).html());
 		var start = 0;
 		var block = $('.items');		
@@ -391,8 +405,21 @@ function get_items(block, entry, start, sort, sort_type, clear_history, after_ge
 		switch (sub_entry[0])
 		{
 			case 'projects':
-			case 'project':
-				transform_pagination(data.curent_page, data.total);
+			case 'project':				
+				if (sub_entry[1] == '0') 
+				{
+					$('#paging, #limit').hide(); 
+					$('#search_block').hide();
+					$('#filters').hide();
+					$('#tag_search').hide();
+				}
+				else 
+				{
+					transform_pagination(data.curent_page, data.total);
+					$('#search_block').show();
+					$('#filters').show();
+					$('#tag_search').show();
+				}
 				break;
 			case 'events':
 			case 'event':
@@ -442,8 +469,8 @@ function get_items(block, entry, start, sort, sort_type, clear_history, after_ge
 					$('#filters').hide();
 					$('#tag_search').hide();
 				}
-				break;
-			default:
+				break;			
+			default:				
 				if (sub_entry[1] == undefined || sub_entry[1] == '0')
 				{
 					transform_pagination(data.curent_page, data.total);

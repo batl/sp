@@ -28,6 +28,15 @@ class Main extends Crank {
 			)
 		);
 		
+		$this->params['news'] = $this->Crank_model->get_all_entries(
+			"sp_news", 
+			array(),
+			5,	
+			false,
+			'id',
+			'desc'
+		);
+		
 		$this->params['poll'] = $this->Crank_model->get_all_entries(
 			"sp_poll", 							
 			array(

@@ -45,6 +45,15 @@
 			<div id="site-description"></div>
 		</div>-->
 		<div id="languages" >
+			<div id="flags">
+			<?php
+				foreach ($languages as $item):
+				?>
+					<a href="javascript:void(0);" id="<?php echo $item['name']?>" class="flag <?php if ($language == $item['name']) echo 'activ_flag';?>"><img src="<?php echo $base_img?>flags/<?php echo $item['flag']?>"/></a>
+				<?php
+				endforeach;
+			?>	
+			</div>
 			<div id="links">
 				<a href="<?php echo $base;?>"><img src="<?php echo $base_img?>folder_home.png" style="height:25px;"/></a>
 				<?php if (!empty($user_id)):?>
@@ -56,20 +65,45 @@
 					<li><a href="<?php echo $base;?>signup" <?php if ($main_navi == 3) echo "class='selected'" ?>><?php echo $lang['signup'];?></a></li>
 				<?php endif;?>
 				</ul>
-			</div>			
-			<div id="flags">
-			<?php
-				foreach ($languages as $item):
-				?>
-					<a href="javascript:void(0);" id="<?php echo $item['name']?>" class="flag <?php if ($language == $item['name']) echo 'activ_flag';?>"><img src="<?php echo $base_img?>flags/<?php echo $item['flag']?>"/></a>
-				<?php
-				endforeach;
-			?>	
-			</div>
+			</div>						
 		</div>
 		<div id="site_info">
-			<h1 class="euphorigenic"><?php echo $current_settings['site_name']?></h1>
-			<h2><?php echo $current_settings['description']?></h2>
+			<!--<h1 class="euphorigenic"><?php echo $current_settings['site_name']?></h1>
+			<h2><?php echo $current_settings['description']?></h2>-->
+			<!-- f-news start -->
+			<?php 
+			if(!empty($news)):
+			
+			function sub_text($text, $maxwords = 10, $maxchar = 60) {		
+				$words = explode(' ',$text);
+				$text='';
+				foreach ($words as $word) {
+					if (mb_strlen($text.' '.$word)<$maxchar) {
+						$text.=' '.$word;
+					}
+					else {
+						$text.='...';
+						break;
+					}
+				}
+				return $text;
+			}
+			
+			?>
+			<div class="f-news">								
+				<ul id="f-news" style="left: 20px;">
+					<?php foreach($news as $new)
+					{ 
+						$date = explode(" ",date("j M Y",strtotime($new['date'])));
+					?>
+						<li><a id="news/<?php echo $new['id']?>" href="javascript:void(0);" class="single"><?php echo sub_text($new['name']); ?></a><br/><span><?php echo $lang['post_date'].': '.$date[0].' '.$lang['month'][strtolower($date[1])].' '.$date[2]?> </span></li>
+					<?php 
+					} 
+					?>
+				</ul>					
+			</div>
+			<?php endif;?>
+			<!-- f-news end -->
 		</div>
 		<div id="dealer-nav">
 			<ul>								

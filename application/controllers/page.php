@@ -20,7 +20,7 @@ class Page extends Crank {
 		$this->params['page'] = $this->Page_model->get_page_by_data(array('slug' => $page));
 		
 		if (!empty($this->params['page']))
-		{		
+		{			
 			$this->set_title($this->params['page']['name']);
 			$this->include_keywords($this->params['page']['meta']);
 			$this->set_description($this->params['page']['description']);
@@ -50,7 +50,7 @@ class Page extends Crank {
 					'date_end' => '0000-00-00'
 				)	     // or_where
 			);
-			
+								
 			if (!empty($this->params['poll']))
 			{
 				$this->params['poll_answers'] = $this->Crank_model->get_all_entries(
@@ -59,9 +59,18 @@ class Page extends Crank {
 						'poll_id' => $this->params['poll']['id']
 					)
 				);
-			}												
+			}																			
 			
 			if ($this->params['page']['system']):
+				
+				$this->params['news'] = $this->Crank_model->get_all_entries(
+					"sp_news", 
+					array(),
+					5,	
+					false,
+					'id',
+					'desc'
+				);
 				
 				$slug = $this->params['page']['slug'];
 				
@@ -76,14 +85,14 @@ class Page extends Crank {
 						$this->params['services_categories'] = $this->Crank_model->get_all_entries(
 							"sp_services_categories"
 						);
-						
+						$this->include_js('jquery/cycle.js');
 						$this->include_js('pages/goods.js');
 						$this->include_js('jquery/lightbox.js');
 						$this->include_css('lightbox.css');				
 						
 						break;
 					case 'organization':
-																		
+						$this->include_js('jquery/cycle.js');												
 						$this->include_js('pages/organizations.js');						
 						$this->include_css('pages/organizations.css');
 						
@@ -92,7 +101,8 @@ class Page extends Crank {
 						$this->params['all_categories'] = $this->Crank_model->get_all_entries(
 							"sp_ideas_categories"
 						);												
-						$this->include_js('pages/ideas.js');						
+						$this->include_js('pages/ideas.js');	
+						$this->include_js('jquery/cycle.js');
 						$this->include_css('pages/ideas.css');
 						
 						break;
@@ -100,7 +110,7 @@ class Page extends Crank {
 																		
 						$this->include_js('pages/education.js');						
 						$this->include_css('pages/education.css');
-						
+						$this->include_js('jquery/cycle.js');
 						break;
 					case 'blog':
 												
@@ -167,6 +177,7 @@ class Page extends Crank {
 						$this->include_js('jquery/ui/jquery.ui.draggable.js');		
 						$this->include_js('jquery/ui/jquery.ui.dialog.js');			
 						$this->include_js('jquery/ui/jquery.ui.datepicker.js');
+						$this->include_js('jquery/cycle.js');
 						$this->include_js('http://userapi.com/js/api/openapi.js?45', true);
 						$this->include_css('ui/jquery.ui.all.css');		
 						$this->include_css('pages/'.$slug.'.css');															
@@ -177,9 +188,10 @@ class Page extends Crank {
 				}
 				
 				$this->include_view('page_'.$page.'_view',$this->params);
-			else:				
+			else:						
 				$this->include_view('page_view',$this->params);
-			endif;			
+			endif;	
+			
 		}
 		else echo '404';
 	}

@@ -27,7 +27,7 @@
 			<div id="content-container">
 				<div id="sub-hdr">
 					<h3><?php echo $lang['all_projects']?></h3>
-					<div style="float:right; padding:6px;">						
+					<div id="tag_search">						
 						<div class="clear_search"></div><input id="search" type="text" value="" style="height:18px; width:150px; float:left;"/>
 						<div id="search_btn"></div>						
 						<div id="sort_by_block">

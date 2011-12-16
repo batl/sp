@@ -387,6 +387,7 @@ $lang["no_exists"]				= "Введенная ссылка уже занята!";
 $lang["copy_this"]				= "Скопировать...";
 $lang["copied"]					= "данные скопированы...";
 $lang["menu_forum"]				= "Форум";
+$lang["hot_news_title"]			= "Последние новости:";
 
 /* ToolTips */
 
