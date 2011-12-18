@@ -18,7 +18,7 @@ $(document).ready(function(){
 			$(this).find('.comments_actions').hide();
 		});
 		
-	},"json");*/
+	},"json");
 	
 	var URL = base_url + 'main/get_last_ideas';
 	
@@ -38,7 +38,7 @@ $(document).ready(function(){
 			$(this).find('.idea_actions').hide();
 		});
 		
-	},"json");
+	},"json");*/
 	
 	// Moderate comment
 	

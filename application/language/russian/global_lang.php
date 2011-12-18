@@ -387,8 +387,17 @@ $lang["no_exists"]				= "Введенная ссылка уже занята!";
 $lang["copy_this"]				= "Скопировать...";
 $lang["copied"]					= "данные скопированы...";
 $lang["menu_forum"]				= "Форум";
+$lang["visitors_statistics"]	= "Статистика просмотров и посещений:";
+$lang["visitsgraf"]				= "График посещений:";
+$lang["pageviews"]				= "График просмотра страниц:";
 $lang["hot_news_title"]			= "Последние новости:";
-
+$lang["visits"]					= "Количество посещений";
+$lang["pageviews"]				= "Количество просмотров";
+$lang["pages_visits"]			= "Просмотры/Посещения";
+$lang["bounce_rate"]			= "Показатель отказов";
+$lang["time_on_site"]			= "Время прибывания на сайте";
+$lang["new_visits"]				= "Новые посещения";
+$lang["rating_pages_visits"]	= "Самые посещаемые страницы";
 /* ToolTips */
 
 $lang["tip_project_name"]		= "Имя проекта";

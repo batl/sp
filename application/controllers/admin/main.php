@@ -8,6 +8,7 @@ class Main extends Crank {
 		parent::__construct();					
 		
 		$this->load->model("User_model");
+		$this->load->library('GoogleAnalytics', array('email' => 'maxdmitrief@gmail.com', 'pass' => 'cmd01021987'));
 		$this->params['main_navi'] = 1;			
 		
 	}
@@ -27,6 +28,92 @@ class Main extends Crank {
 			$this->include_keywords($this->params['lang']['menu_home']);
 			$this->set_description($this->params['lang']['menu_home']);
 
+			try {
+			
+				// set the Google Analytics profile you want to access - format is 'ga:123456';
+				$this->googleanalytics->setProfile('ga:53891452');
+
+				// set the date range we want for the report - format is YYYY-MM-DD
+				$this->googleanalytics->setDateRange('2011-11-17','2011-12-17');
+
+				// get the report for date and country filtered by Australia, showing pageviews and visits
+				$report = $this->googleanalytics->getReport(
+					array('dimensions'=>urlencode('ga:date'),
+						'metrics'=>urlencode('ga:visits'),
+						//'filters'=>urlencode('ga:country=@Australia'),
+						'sort'=>'ga:visits'
+						)
+					);
+				
+				$report_views = $this->googleanalytics->getReport(
+					array('dimensions'=>urlencode('ga:date'),
+						'metrics'=>urlencode('ga:pageviews'),
+						//'filters'=>urlencode('ga:country=@Australia'),
+						'sort'=>'ga:pageviews'
+						)
+					);
+				
+				$report_pages = $this->googleanalytics->getReport(
+					array('dimensions'=>urlencode('ga:pagePath'),
+						'metrics'=>urlencode('ga:pageviews'),
+						'filters'=>urlencode('ga:pageviews>0'),
+						'sort'=>'-ga:pageviews'
+						)
+					);
+				
+				$summary = $this->googleanalytics->getReport(
+					array('dimensions'=>'ga:date',
+						'metrics'=>join(array_reverse(array('ga:visits', 'ga:bounces', 'ga:entrances', 'ga:timeOnSite', 'ga:newVisits')), ','),
+						'filters'=>'',
+						'sort'=>''
+						)
+					);
+				$report_summary = array(
+					'ga:newVisits' => 0,
+					'ga:timeOnSite' => 0,
+					'ga:entrances' => 0,
+					'ga:bounces' => 0,
+					'ga:visits' => 0
+				);	
+				foreach ($summary as $sdate)
+				{
+					foreach ($sdate as $key => $value)
+					{
+						$report_summary[$key] += $value;
+					}
+				}		
+				
+			} catch (Exception $e) { 
+				print 'Error: ' . $e->getMessage(); 
+			}
+			
+			$this->params['pages'] = '';
+			
+			if (!empty($report_pages))
+			{
+				$this->params['pages'] = '<ul>';
+				$i = 0;
+				foreach ($report_pages as $url => $views)
+				{
+					if ($i == 9) break;
+					$this->params['pages'] .= '<li><a href="'.$this->params['front_url'].$url.'">'.$url.' - <b>'.$views['ga:pageviews'].'</b></a></li>';	
+					$i++;
+				}
+				$this->params['pages'] .= '</ul>';
+			}
+			
+			$this->params['report_visits'] = '<img width="450" height="200" src="'.$this->create_google_chart_url(440, 200, $report, 'ga:visits').'"/>';
+			$this->params['report_pageviews'] = '<img width="450" height="200" src="'.$this->create_google_chart_url(440, 200, $report_views, 'ga:pageviews').'"/>';
+			
+			$this->params['summary'] = array(
+				'visits' => number_format($report_summary['ga:visits']),
+				'pageviews' => number_format($this->total_pageviews),
+				'pages_visits' => round($this->total_pageviews / $report_summary['ga:visits'], 2),
+				'bounce_rate'	=> round($report_summary['ga:bounces'] / $report_summary['ga:entrances'] * 100, 2)."%",
+				'time_on_site'	=> $this->convert_seconds_to_time($report_summary['ga:timeOnSite'] / $report_summary['ga:visits']),
+				'new_visits'	=> round($report_summary['ga:newVisits'] / $report_summary['ga:visits'] * 100, 2)."%"
+			);						
+			
 			$this->include_js('jquery/ui/jquery.ui.core.js');		
 			$this->include_js('jquery/ui/jquery.ui.widget.js');		
 			$this->include_js('jquery/ui/jquery.ui.mouse.js');		
@@ -224,6 +311,57 @@ class Main extends Crank {
 			$data['message'] = $this->params['lang']['incorect_login'];
 			echo json_encode($data);
 		}
+	}
+	
+	function convert_seconds_to_time($time_in_seconds)
+    {
+		$hours = floor($time_in_seconds / (60 * 60));
+		$minutes = floor(($time_in_seconds - ($hours * 60 * 60)) / 60);
+		$seconds = $time_in_seconds - ($minutes * 60) - ($hours * 60 * 60);
+
+		return sprintf('%02d:%02d:%02d', $hours, $minutes, $seconds);
+	}
+	
+	function create_google_chart_url($width, $height, $report, $type)
+	{	
+		$start_date_ts = time() - (60 * 60 * 24 * 30); // 30 days in the past
+			
+		$this->x_axis_labels = '';
+		$this->y_axis_labels = '';
+		$this->chart_values = '';
+		$this->minvalue = 999999999;
+		$this->maxvalue = 0;
+		$this->total_count = sizeof($report);
+		$this->total_pageviews = 0;
+		$this->first_monday_index = -1;
+		$count = 0;
+		
+		foreach($report as $pageview)
+		{
+		  $current_date = $start_date_ts + (60 * 60 * 24 * $count);
+		  $day = date('w', $current_date); // 0 = sun 6 = sat
+
+		  if( $day == 1 ) // monday
+		  {
+			if( $this->first_monday_index == -1 )
+			{
+			  $this->first_monday_index = $count;
+			}
+			$this->x_axis_labels .= '|' . urlencode(date('D m/d', $current_date));
+			$this->y_axis_labels .= round($count/($this->total_count-1)*100, 2) . ',';
+		  }
+
+		  if($this->minvalue > $pageview[$type]) $this->minvalue = $pageview[$type];
+		  if($this->maxvalue < $pageview[$type]) $this->maxvalue = $pageview[$type];
+
+		  $this->chart_values .= $pageview[$type] . ($count < $this->total_count-1 ? "," : "");
+		  $count++;
+		  $this->total_pageviews += $pageview[$type];
+		}
+
+		$this->y_axis_labels = substr($this->y_axis_labels, 0, strlen($this->y_axis_labels)-1);
+		
+		return "http://chart.apis.google.com/chart?chs=" . $width . "x" . $height . "&chf=bg,s,FFFFFF00&cht=lc&chco=0077CC&chd=t:" . $this->chart_values . "&chds=" . ($this->minvalue - 20). "," . ($this->maxvalue + 20) . "&chxt=x,y&chxl=0:" . $this->x_axis_labels . "&chxr=1," . $this->minvalue . "," . $this->maxvalue . "&chxp=0," . $this->y_axis_labels . "&chm=V,707070,0," . $this->first_monday_index . ":" . $this->total_count . ":7,1|o,0077CC,0,-1.0,6";
 	}
 }
 

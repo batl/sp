@@ -3,9 +3,17 @@
 			<h2><?php echo $lang['overview'];?></h2>
 			<div id="overview">
 				<div id="dealer-info" style="font-size:11px;">
-					<h3><?php echo $lang['last_comments']?></h3>
+					<!--h3><?php echo $lang['last_comments']?></h3-->
 					<div id="comments_content">
-					
+						<table>
+						<?php
+							foreach ($summary as $key=>$value):
+								echo '<tr><td style="padding:5px;"><strong>'.$lang[$key].'</strong></td><td>&nbsp;</td><td style="text-align:center;">'.$value.'</td></tr>';
+							endforeach;
+						?>		
+						</table>
+						<p><?php echo $lang['rating_pages_visits'];?></p>
+						<?php echo $pages;?>
 					</div>
 				</div><!--  #dealer-info -->
 				<div id="total-commission"><?php echo $lang['count_projects'];?> <span><?php echo $statistics['projects']['count']?></span></div><!--  #total-commission -->
@@ -69,8 +77,12 @@
 				</div>
 			</div>
 			<div id="blog-view">
-				<div id="sub-hdr"><h3><?php echo $lang['new_ideas']?></h3></div>
+				<div id="sub-hdr"><h3><?php echo $lang['visitors_statistics']?></h3></div>
 				<div id="ideas_content">
+					<p><?php echo $lang['visitsgraf']?></p>
+					<?php echo $report_visits;?><br/>
+					<p><?php echo $lang['pageviews']?></p>
+					<?php echo $report_pageviews;?><br/>
 					
 				</div>
 			</div>
