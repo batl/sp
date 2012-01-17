@@ -90,7 +90,7 @@
 			}
 			
 			?>
-			<div class="f-news">								
+			<!--div class="f-news">								
 				<ul id="f-news" style="left: 20px;">
 					<?php foreach($news as $new)
 					{ 
@@ -101,7 +101,7 @@
 					} 
 					?>
 				</ul>					
-			</div>
+			</div-->
 			<?php endif;?>
 			<!-- f-news end -->
 		</div>

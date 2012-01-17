@@ -12,8 +12,8 @@
 							endforeach;
 						?>		
 						</table>
-						<p><?php echo $lang['rating_pages_visits'];?></p>
-						<?php echo $pages;?>
+						<p><?php //echo $lang['rating_pages_visits'];?></p>
+						<?php //echo $pages;?>
 					</div>
 				</div><!--  #dealer-info -->
 				<div id="total-commission"><?php echo $lang['count_projects'];?> <span><?php echo $statistics['projects']['count']?></span></div><!--  #total-commission -->

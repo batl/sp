@@ -1165,11 +1165,11 @@ color:#fff;
 }
 
 #dealer-nav a:hover{
-color:#FF6600;
+color:#45688E;
 }
 
 #dealer-nav ul li a.selected {
-color:#FF6600;
+color:#45688E;
 }
 
 #dealer-nav ul li a.login {
@@ -1781,7 +1781,7 @@ width:600px;
 	display:block
 }
 .world_preloader{
-	background: url("/static/images/world_preloader.gif") no-repeat;
+	/*background: url("/static/images/world_preloader.gif") no-repeat;*/
 	background-position:50% 0px;
 	width:90%;
 	height:100px;	

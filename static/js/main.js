@@ -397,9 +397,10 @@ function get_items(block, entry, start, sort, sort_type, clear_history, after_ge
 			if (server == 'goodpro') api_id = 2714697;
 			VK.init({apiId: api_id, onlyWidgets: true});
 			$('.vk_comments').each(function(){
+				//VK.Widgets.CommentsBrowse($(this).attr('id'), {width: 500, limit: 5, mini: 0});
 				VK.Widgets.Comments($(this).attr('id'), {limit: 5}, $(this).attr('id'));				
 			});			
-			VK.Observer.subscribe('widgets.comments.new_comment', function(num, last_comment) {});			
+			//VK.Observer.subscribe('widgets.comments.new_comment', function(num, last_comment) {});			
 		}
 		
 		switch (sub_entry[0])
